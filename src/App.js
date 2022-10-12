@@ -5,14 +5,20 @@ import Datos from './Components/Datos';
 import Iconos from './Components/Iconos';
 import Barra from './Components/Barra';
 
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Pedidos from "./Components/Laboratorio/Pedidos";
+
 function App() {
   return (
     <div >
-      {/* <Cards></Cards> */}
-      <Registrarse></Registrarse>
-      {/* <Datos></Datos> */}
-      {/* <Iconos></Iconos>
-      <Barra></Barra> */}
+      <Router>
+        <Switch>
+          <Route exact path="/">
+          <Pedidos />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
