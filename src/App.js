@@ -1,10 +1,9 @@
-
 import './App.css';
-import Cards from './componentes/Cards';
-import Registrarse from './componentes/Registrarse';
-import Datos from './componentes/Datos';
-import Iconos from './componentes/Iconos';
-import Barra from './componentes/Barra';
+import Cards from './Components/Cards';
+import Registrarse from './Components/Registrarse';
+import Datos from './Components/Datos';
+import Iconos from './Components/Iconos';
+import Barra from './Components/Barra';
 
 function App() {
   return (
