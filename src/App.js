@@ -14,8 +14,8 @@ function App() {
     <div >
       <Router>
         <Switch>
-          <Route exact path="/">
-          <Pedidos />
+          <Route exact path="/Laboratorio/Pedidos">
+            <Pedidos />
           </Route>
         </Switch>
       </Router>

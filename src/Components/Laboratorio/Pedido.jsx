@@ -20,13 +20,20 @@ const useStyles = makeStyles(() => ({
     "& > *": {
       //margin: "right",
       margin: "8px",
-      height:"240px"
+      height: "240px"
     },
   },
 }));
 
-function Pedido() {
+function Pedido({ pedido }) {
   const { root } = useStyles();
+
+  const {
+    numero_tp,
+    fecha_solicitud,
+    numero_laboratorio,
+    docente
+  } = pedido;
 
   return (
     <Box className={root}>
@@ -39,8 +46,8 @@ function Pedido() {
                 <AssignmentIcon />
               </Avatar>
             }
-            title="Pedido número 001"
-            subheader="Fecha : 10/10/2022"
+            title={`Pedido número ${numero_tp}`}
+            subheader={`Fecha : ${fecha_solicitud}`}
             action={
               <IconButton>
                 <MoreVertIcon />
@@ -54,16 +61,16 @@ function Pedido() {
           />
           <CardContent style={{ textAlign: "left" }}>
             <p>
-              <strong>Laboratorio : </strong> 1
+              <strong>Laboratorio: </strong> {numero_laboratorio}
             </p>
             <p>
-              <strong>Edificio:</strong> Malvinas
+              <strong>Edificio: </strong> Malvinas
             </p>
             <p>
-              <strong>Docente : </strong>Juan Perez
+              <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
             </p>
             <p>
-              <strong>Estado :</strong>Aceptado
+              <strong>Estado: </strong>Aceptado
             </p>
           </CardContent>
         </CardActionArea>
