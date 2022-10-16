@@ -18,7 +18,7 @@ import Pedidos from "./Components/Laboratorio/Pedidos";
   
 function App() {
   
-  const [pantalla,setpantalla]=useState("login");
+  const [pantalla,setPantalla]=useState("login");
 
   // useEffect(() =>{
   //   setpantalla("login");
@@ -32,7 +32,10 @@ function App() {
    
       { pantalla === "login" ? (
        
-        <Login></Login>
+        <Login
+        setPantalla={setPantalla}
+        // pantalla={pantalla}
+        />
       ) :(
         <Header></Header>
       )}
