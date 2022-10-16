@@ -1,6 +1,7 @@
 const Pedidos = () => {
     return ( 
-        
+        <div></div>
+
      );
 }
  
