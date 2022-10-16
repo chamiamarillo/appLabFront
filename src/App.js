@@ -1,12 +1,12 @@
 import React,{useEffect,useState} from 'react';
 
 import './App.css';
-import Cards from './Components/Cards';
+import Cards from './Components/Docente/Cards';
 
 import Login from './Components/Login/Login';
-import Datos from './Components/Datos';
-import Iconos from './Components/Iconos';
-import Barra from './Components/Barra';
+import Header from './Components/Header/Header';
+import Iconos from './Components/Docente/Iconos';
+
 import theme from './Components/Theme/theme';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -31,17 +31,17 @@ function App() {
     
    
       { pantalla === "login" ? (
-        
+       
         <Login></Login>
       ) :(
-        <Datos></Datos>
+        <Header></Header>
       )}
        <div >
       {/* <Cards></Cards> */}
       
       {/* <Datos></Datos> */}
-      {/* <Iconos></Iconos>
-      <Barra></Barra> */}
+      {/* <Iconos></Iconos>*/}
+     
       <Router>
         <Switch>
           <Route exact path="/Laboratorio/Pedidos">
