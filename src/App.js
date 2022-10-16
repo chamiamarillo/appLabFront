@@ -1,17 +1,46 @@
+import React,{useEffect,useState} from 'react';
+
 import './App.css';
 import Cards from './Components/Cards';
-import Registrarse from './Components/Registrarse';
+import Login from './Components/Login';
 import Datos from './Components/Datos';
 import Iconos from './Components/Iconos';
 import Barra from './Components/Barra';
+import theme from './Components/theme';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Pedidos from "./Components/Laboratorio/Pedidos";
 
+  
 function App() {
+  
+  const [pantalla,setpantalla]=useState("login");
+
+  // useEffect(() =>{
+  //   setpantalla("login");
+    
+   
+  // },[]);
+    
   return (
-    <div >
+    <ThemeProvider theme={theme}>
+    
+   
+      { pantalla === "login" ? (
+        
+        <Login></Login>
+      ) :(
+        <Datos></Datos>
+      )}
+       <div >
+      {/* <Cards></Cards> */}
+      
+      {/* <Datos></Datos> */}
+      {/* <Iconos></Iconos>
+      <Barra></Barra> */}
       <Router>
         <Switch>
           <Route exact path="/Laboratorio/Pedidos">
@@ -20,6 +49,13 @@ function App() {
         </Switch>
       </Router>
     </div>
+    
+      
+    
+     
+   </ThemeProvider>
+  
+
   );
 }
 
