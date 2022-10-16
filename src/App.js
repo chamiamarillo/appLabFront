@@ -2,11 +2,12 @@ import React,{useEffect,useState} from 'react';
 
 import './App.css';
 import Cards from './Components/Cards';
-import Login from './Components/Login';
+
+import Login from './Components/Login/Login';
 import Datos from './Components/Datos';
 import Iconos from './Components/Iconos';
 import Barra from './Components/Barra';
-import theme from './Components/theme';
+import theme from './Components/Theme/theme';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
