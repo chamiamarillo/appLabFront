@@ -38,10 +38,10 @@ export default function Login({setPantalla}) {
     const data = new FormData(event.currentTarget);
 
     console.log({
-      email: data.get('email'),
+      email: data.get('user'),
       password: data.get('password'),
     });
-    setPantalla(data.get('email'));
+    setPantalla(data.get('user').toLowerCase());
 
   };
 
@@ -68,10 +68,10 @@ export default function Login({setPantalla}) {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="user"
               label="Usuario"
-              name="email"
-              autoComplete="email"
+              name="user"
+              autoComplete="user"
               autoFocus
             />
             <TextField

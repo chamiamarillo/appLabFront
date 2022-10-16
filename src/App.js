@@ -36,14 +36,11 @@ function App() {
         setPantalla={setPantalla}
         // pantalla={pantalla}
         />
-      ) :(
-        <Header></Header>
-      )}
-       <div >
-      {/* <Cards></Cards> */}
-      
-      {/* <Datos></Datos> */}
-      {/* <Iconos></Iconos>*/}
+      ) :(pantalla === "docente" ?(
+        <Cards></Cards>
+      ):(
+       
+     
      
       <Router>
         <Switch>
@@ -52,7 +49,8 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+      ))}
+  
     
       
     
