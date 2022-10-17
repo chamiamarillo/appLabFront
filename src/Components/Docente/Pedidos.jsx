@@ -1,5 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 import Pedido from "./Pedido";
+import theme from '../Theme/theme';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import React, { useEffect, useState } from 'react';
 
@@ -44,6 +47,8 @@ function Pedidos() {
 
  
   return (
+    <ThemeProvider createTheme={theme}>
+
     <div className={marginTop}>
       
       {listaPedidos.map((pedido) => (
@@ -51,6 +56,7 @@ function Pedidos() {
       ))}
 
     </div>
+    </ThemeProvider>
   );
 }
 
