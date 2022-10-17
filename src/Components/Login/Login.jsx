@@ -13,12 +13,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import theme from '../Theme/theme';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        App.Laboratorio 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,16 +28,21 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+//const theme = createTheme();
 
-export default function Registrarse() {
+export default function Login({setPantalla}) {
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
+
     console.log({
-      email: data.get('email'),
+      email: data.get('user'),
       password: data.get('password'),
     });
+    setPantalla(data.get('user').toLowerCase());
+
   };
 
   return (
@@ -50,21 +57,21 @@ export default function Registrarse() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#80cbc4' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            INGRESO
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="user"
+              label="Usuario"
+              name="user"
+              autoComplete="user"
               autoFocus
             />
             <TextField
@@ -77,29 +84,29 @@ export default function Registrarse() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              INGRESAR
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  olvidaste tu password?
                 </Link>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>

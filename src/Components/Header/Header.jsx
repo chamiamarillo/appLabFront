@@ -1,9 +1,11 @@
 import React from 'react';
 import Typography from '@mui/material/Typography'
 
-const Barra = () => {
-    return (
+
+const Header = () => {
+    return ( 
         <div>
+  <div>
             <Typography variant="h1" color="initial">
                 gigante
             </Typography>
@@ -16,8 +18,8 @@ const Barra = () => {
             </Typography>
 
         </div>
-
-      );
+        </div>
+     );
 }
  
-export default Barra;
+export default Header;
