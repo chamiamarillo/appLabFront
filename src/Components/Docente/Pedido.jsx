@@ -25,10 +25,10 @@ export default function Pedido({pedido}) {
     docente
   } = pedido;
   return (
-    <ThemeProvider createTheme={theme}>
-    <Card sx={{ minWidth: 275 , minHeigth: 50, bg:"secondary"}}>
+    <ThemeProvider createTheme={theme} >
+    <Card sx={{ minWidth: 275 , minHeigth: 50}}  style={{ backgroundColor: "#b2dfdb" }} >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom title={`Pedido número ${numero_tp}`}
+        <Typography sx={{ fontSize: 14 }} color="primary" gutterBottom title={`Pedido número ${numero_tp}`}
         subheader={`Fecha : ${fecha_solicitud}`}>
       {bull} {`Pedido número ${numero_tp}`}
        <p>{bull}{`Fecha : ${fecha_solicitud}`}</p>
