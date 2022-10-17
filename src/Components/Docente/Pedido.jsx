@@ -1,82 +1,66 @@
-import React from "react";
-import { Icon, makeStyles } from "@material-ui/core";
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import {
-  Box,
-  Card,
-  CardContent,
-  Avatar,
-  CardHeader,
-  IconButton,
-  CardMedia,
-  CardActionArea,
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import theme from '../Theme/theme';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    "& > *": {
-      //margin: "right",
-      margin: "8px",
-      height: "240px"
-    },
-  },
-}));
+const bull = (
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
 
-function Pedido({ pedido }) {
-  const { root } = useStyles();
-
+export default function Pedido({pedido}) {
   const {
     numero_tp,
     fecha_solicitud,
     numero_laboratorio,
     docente
   } = pedido;
-
   return (
-    <Box className={root}>
-      <Card style={{ backgroundColor: "#b4e0bc" }}>
-        <CardActionArea>
-          <CardHeader
-            style={{ textAlign: "left" }}
-            avatar={
-              <Avatar>
-                <AssignmentIcon />
-              </Avatar>
-            }
-            title={`Pedido número ${numero_tp}`}
-            subheader={`Fecha : ${fecha_solicitud}`}
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-          />
-          <CardMedia
-            style={{ paddingTop: "3%" }}
-            image="./media/background.png"
-            title="Background image"
-          />
-          <CardContent style={{ textAlign: "left" }}>
-            <p>
+    <ThemeProvider createTheme={theme}>
+    <Card sx={{ minWidth: 275 , minHeigth: 50, bg:"secondary"}}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom title={`Pedido número ${numero_tp}`}
+        subheader={`Fecha : ${fecha_solicitud}`}>
+      {bull} {`Pedido número ${numero_tp}`}
+       <p>{bull}{`Fecha : ${fecha_solicitud}`}</p>
+          
+        </Typography>
+        <Typography variant="h5" component="div">
+        <p>
               <strong>Laboratorio: </strong> {numero_laboratorio}
             </p>
             <p>
               <strong>Edificio: </strong> Malvinas
             </p>
+           
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
             <p>
               <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
-            </p>
-            <p>
+            </p> 
+        </Typography>
+        <Typography variant="body2">
+        <p>
               <strong>Estado: </strong>Aceptado
             </p>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Box>
+          <br />
+         
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Mas Detalles</Button>
+      </CardActions>
+    </Card>
+    </ThemeProvider>
+
   );
 }
-
-export default Pedido;
