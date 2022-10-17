@@ -20,11 +20,7 @@ function App() {
   
   const [pantalla,setPantalla]=useState("login");
 
-  // useEffect(() =>{
-  //   setpantalla("login");
-    
-   
-  // },[]);
+  
     
   return (
     <ThemeProvider theme={theme}>
@@ -34,11 +30,11 @@ function App() {
        
         <Login
         setPantalla={setPantalla}
-        // pantalla={pantalla}
+       
         />
       ) :(pantalla === "docente" ?(
         <Cards></Cards>
-      ):(
+      ):(pantalla === "laboratorio" ?(
        
      
      
@@ -48,13 +44,14 @@ function App() {
             <Pedidos />
           </Route>
         </Switch>
-      </Router>
+      </Router>):( <Login
+        setPantalla={setPantalla}
+        
+        />
+
+      )
       ))}
-  
-    
       
-    
-     
    </ThemeProvider>
   
 
