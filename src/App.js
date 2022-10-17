@@ -12,6 +12,7 @@ import theme from './Components/Theme/theme';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Docente from './Components/Docente/Pedidos' ;
 
 import Pedidos from "./Components/Laboratorio/Pedidos";
 
@@ -33,7 +34,7 @@ function App() {
        
         />
       ) :(pantalla === "docente" ?(
-        <Cards></Cards>
+        <Docente></Docente>
       ):(pantalla === "laboratorio" ?(
        
      
