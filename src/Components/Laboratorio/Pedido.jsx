@@ -44,12 +44,28 @@ function Pedido({ pedido }) {
     numero_tp,
     fecha_solicitud,
     numero_laboratorio,
-    docente, cantidad_grupos,
+    docente,
+    cantidad_grupos,
+    lista_equipos
   } = pedido;
-
 
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+
+
+  function createDataEquipos(descripcion, tipo, cantidad) {
+    return { descripcion, tipo, cantidad };
+  };
+
+  const rows = [
+  ];
+
+  let equipos = lista_equipos;
+
+  equipos.forEach(element => {
+    rows.push(createDataEquipos(element.equipo.descripcion, element.equipo.clase, element.cantidad));
+  });
+
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -62,17 +78,7 @@ function Pedido({ pedido }) {
 
   const descriptionElementRef = React.useRef(null);
 
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  };
 
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
 
   return (
     <div>
@@ -150,11 +156,9 @@ function Pedido({ pedido }) {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Dessert (100g serving)</TableCell>
-                    <TableCell align="right">Calories</TableCell>
-                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                    <TableCell>Descripcion</TableCell>
+                    <TableCell align="right">Tipo</TableCell>
+                    <TableCell align="right">Cantidad</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -163,13 +167,9 @@ function Pedido({ pedido }) {
                       key={row.name}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell >{row.descripcion}</TableCell>
+                      <TableCell align="right">{row.tipo}</TableCell>
+                      <TableCell align="right">{row.cantidad}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
