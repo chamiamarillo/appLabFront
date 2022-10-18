@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 
 import theme from '../Theme/theme';
 
@@ -58,10 +59,10 @@ export default function NuevoPedido() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: '#80cbc4' }}>
-            <LockOutlinedIcon />
+          <PrecisionManufacturingIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            INGRESO
+          cargar pedido en proceso
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField

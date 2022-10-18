@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+
 import Pedido from "./Pedido";
 import theme from '../Theme/theme';
 
@@ -10,16 +10,14 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-// para iconos despues borrar
-import {Button} from '@mui/material';
+import BotonNPedido from "./BotonNuevoPedido";
+
 import { Icon,IconButton } from '@mui/material';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
 // 
 import Typography from '@mui/material/Typography';
+import NuevoPedido from "./NuevoPedido";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,18 +27,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-// const useStyles = makeStyles(() => ({
-//   marginTop: {
-//     //  marginTop: "100px",
-//     // height: "100vh",
-//     // marginLeft: "250px",
-//     display: "flex",
-//     flexDirection: "row",
-//     textAlign: "center"
-//   },
-// }));
 
 function Pedidos() {
+  const [nuevoPedido, setNuevoPedido] = useState(false);
  
   const [listaPedidos, setListaPedidos] = useState([]);
   const consultarAPI = async () => {
@@ -75,18 +64,14 @@ function Pedidos() {
       <Typography variant="body1" align='center' color="primary">
               HEADER
      </Typography>
-     <Typography variant="body1" align='right' color="primary">
-        <Button 
-        variant="contained" 
-        color="primary" 
-        startIcon={<AddCircleIcon />}
-        onClick={() => {
-          alert('clicked');
-        }}>
-          PEDIDO NUEVO
-        </Button>
-        
-        </Typography>
+     </Box>
+     { !(nuevoPedido) ?(
+      <div>
+     <Box sx={{ flexGrow: 1 ,m:2}}>
+
+     <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
+    
+
         
 
      </Box>
@@ -100,6 +85,10 @@ function Pedidos() {
   ))}
       </Grid>
       </Box>
+      </div>
+    ):(
+      <NuevoPedido></NuevoPedido>
+    )}
 
     
     </ThemeProvider>
