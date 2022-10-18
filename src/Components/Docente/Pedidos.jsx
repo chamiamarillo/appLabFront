@@ -10,6 +10,17 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+// para iconos despues borrar
+import {Button} from '@mui/material';
+import { Icon,IconButton } from '@mui/material';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+// 
+import Typography from '@mui/material/Typography';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -60,43 +71,23 @@ function Pedidos() {
  
   return (
     <ThemeProvider createTheme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 ,m:2}}>
       <Typography variant="body1" align='center' color="primary">
-                al centro
+              HEADER
      </Typography>
-     <DeleteIcon
-           color="primary"
-            fontSize="large"
-             />
-
-            <Icon
-             color="primary">
-            star
-            </Icon>
-
-<Button 
-variant="contained" 
-color="primary" 
-startIcon={<DeleteIcon />}>
-  Eliminar
-</Button>
-<Button 
-variant="outlined" 
-color="primary" 
-endIcon={<AttachFileIcon />}> 
-{/* //{acomoda al final el icnoco} */}
-  Adjuntar
-</Button>
-<Button 
-variant="text" 
-color="secondary" 
-endIcon={<AccessAlarmIcon 
-  color='secondary'
-  
-  fontSize='small'/>}> 
-{/* //{acomoda al final el icnoco} */}
-  Colocar Hora
-</Button>
+     <Typography variant="body1" align='right' color="primary">
+        <Button 
+        variant="contained" 
+        color="primary" 
+        startIcon={<AddCircleIcon />}
+        onClick={() => {
+          alert('clicked');
+        }}>
+          PEDIDO NUEVO
+        </Button>
+        
+        </Typography>
+        
 
      </Box>
        <Box sx={{ flexGrow: 1 }}>
