@@ -30,18 +30,18 @@ function Copyright(props) {
 
 //const theme = createTheme();
 
-export default function Login({setPantalla}) {
+export default function NuevoPedido() {
  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
 
-    console.log({
-      usuario: data.get('user'),
-      password: data.get('password'),
-    });
-    setPantalla(data.get('user').toLowerCase());
+    // console.log({
+    //   usuario: data.get('user'),
+    //   password: data.get('password'),
+    // });
+    // setPantalla(data.get('user').toLowerCase());
 
   };
 
@@ -84,10 +84,10 @@ export default function Login({setPantalla}) {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
+            <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            /> */}
+            />
             <Button
               type="submit"
               fullWidth
@@ -102,11 +102,11 @@ export default function Login({setPantalla}) {
                   olvidaste tu password?
                 </Link>
               </Grid>
-              {/* <Grid item>
+              <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         </Box>

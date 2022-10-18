@@ -34,6 +34,7 @@ function App() {
        
         />
       ) :(pantalla === "docente" ?(
+        
         <Docente></Docente>
       ):(pantalla === "laboratorio" ?(
        

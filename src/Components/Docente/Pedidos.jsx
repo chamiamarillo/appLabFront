@@ -60,6 +60,45 @@ function Pedidos() {
  
   return (
     <ThemeProvider createTheme={theme}>
+      <Box sx={{ flexGrow: 1 }}>
+      <Typography variant="body1" align='center' color="primary">
+                al centro
+     </Typography>
+     <DeleteIcon
+           color="primary"
+            fontSize="large"
+             />
+
+            <Icon
+             color="primary">
+            star
+            </Icon>
+
+<Button 
+variant="contained" 
+color="primary" 
+startIcon={<DeleteIcon />}>
+  Eliminar
+</Button>
+<Button 
+variant="outlined" 
+color="primary" 
+endIcon={<AttachFileIcon />}> 
+{/* //{acomoda al final el icnoco} */}
+  Adjuntar
+</Button>
+<Button 
+variant="text" 
+color="secondary" 
+endIcon={<AccessAlarmIcon 
+  color='secondary'
+  
+  fontSize='small'/>}> 
+{/* //{acomoda al final el icnoco} */}
+  Colocar Hora
+</Button>
+
+     </Box>
        <Box sx={{ flexGrow: 1 }}>
      
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
