@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 
 import theme from '../Theme/theme';
 
@@ -30,18 +31,18 @@ function Copyright(props) {
 
 //const theme = createTheme();
 
-export default function Login({setPantalla}) {
+export default function NuevoPedido() {
  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
 
-    console.log({
-      usuario: data.get('user'),
-      password: data.get('password'),
-    });
-    setPantalla(data.get('user').toLowerCase());
+    // console.log({
+    //   usuario: data.get('user'),
+    //   password: data.get('password'),
+    // });
+    // setPantalla(data.get('user').toLowerCase());
 
   };
 
@@ -58,10 +59,10 @@ export default function Login({setPantalla}) {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: '#80cbc4' }}>
-            <LockOutlinedIcon />
+          <PrecisionManufacturingIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            INGRESO
+          cargar pedido en proceso
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -84,10 +85,10 @@ export default function Login({setPantalla}) {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
+            <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            /> */}
+            />
             <Button
               type="submit"
               fullWidth
@@ -102,11 +103,11 @@ export default function Login({setPantalla}) {
                   olvidaste tu password?
                 </Link>
               </Grid>
-              {/* <Grid item>
+              <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         </Box>

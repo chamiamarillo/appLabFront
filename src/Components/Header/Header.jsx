@@ -1,25 +1,75 @@
-import React from 'react';
-import Typography from '@mui/material/Typography'
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import {ThemeProvider } from '@mui/material/styles';
+import theme from '../Theme/theme';
 
 
-const Header = () => {
-    return ( 
-        <div>
-  <div>
-            <Typography variant="h1" color="initial">
-                gigante
-            </Typography>
-            <Typography variant="body1" align='center' color="secondary" paragraph>
-                {/* paragraph o gutterbotton para darle espacio */}
-                al centro
-            </Typography>
-            <Typography variant="body1" align='center' color="primary">
-                al centro
-            </Typography>
+export default function Header({texto}) {
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-        </div>
-        </div>
-     );
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+        <ThemeProvider theme={theme}>
+      <AppBar color="secondary" position="static" maxWidth="lg">
+        <Toolbar>
+          <Typography variant="h6" align='center' component="div" sx={{ flexGrow: 1 }}>
+            {texto}
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              > 
+                <MenuItem onClick={handleClose}>Perfil</MenuItem>
+                <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+              </Menu>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+      </ThemeProvider>
+    </Box>
+  );
 }
- 
-export default Header;
