@@ -5,9 +5,6 @@ import React, { useEffect, useState } from 'react';
 
 const useStyles = makeStyles(() => ({
   marginTop: {
-    //  marginTop: "100px",
-    // height: "100vh",
-    // marginLeft: "250px",
     display: "flex",
     flexDirection: "row",
     textAlign: "center"
@@ -23,9 +20,7 @@ function Pedidos() {
     getListaPedidos()
       .then(items => {
         if (mounted) {
-          console.log(items);
           setListaPedidos(items)
-          console.log(listaPedidos);
         }
       })
     return () => mounted = false;
@@ -35,7 +30,7 @@ function Pedidos() {
     <div className={marginTop}>
       
       {listaPedidos.map((pedido) => (
-        <Pedido key={pedido.id} pedido={pedido} />
+        <Pedido key={pedido._id} pedido={pedido} />
       ))}
 
     </div>

@@ -52,19 +52,22 @@ function Pedido({ pedido }) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
-
-  function createDataEquipos(descripcion, tipo, cantidad) {
-    return { descripcion, tipo, cantidad };
+/*
+  function createDataEquipos(id, descripcion, tipo, cantidad) {
+    return { id, descripcion, tipo, cantidad };
   };
 
-  const rows = [
-  ];
+  const rowsEquipos = [];
 
-  let equipos = lista_equipos;
 
-  equipos.forEach(element => {
-    rows.push(createDataEquipos(element.equipo.descripcion, element.equipo.clase, element.cantidad));
+
+  lista_equipos.forEach(element => {
+    rowsEquipos.push(createDataEquipos(element._id, element.equipo.descripcion, element.equipo.clase, element.cantidad));
   });
+*/
+const rowsReactivos = [];
+
+const rowsMateriales = [];
 
 
   const handleClickOpen = (scrollType) => () => {
@@ -139,16 +142,18 @@ function Pedido({ pedido }) {
             tabIndex={-1}
           >
 
-            <fieldset>
-              <label for="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fecha_solicitud} disabled />
-              <label for="edificio" id="label_edificio">Edificio : </label> <input type="text" id="edificio" name="edificio" value={fecha_solicitud} disabled />
-              <label for="laboratorio" id="label_laboratorio">Laboratorio : </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
+            <div>
+              <fieldset>
+                <label htmlFor="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fecha_solicitud} disabled />
+                <label htmlFor="edificio" id="label_edificio">Edificio : </label> <input type="text" id="edificio" name="edificio" value={fecha_solicitud} disabled />
+                <label htmlFor="laboratorio" id="label_laboratorio">Laboratorio : </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
 
-              <br></br>
-              <label id="label_docente"> docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
-              <label id="label_alumno"> alumnos : </label> <input type="text" id="alumno" name="alumno" value="40" disabled />
-              <label id="label_grupo"> grupos : </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
-            </fieldset>
+                <br></br>
+                <label id="label_docente"> docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
+                <label id="label_alumno"> alumnos : </label> <input type="text" id="alumno" name="alumno" value="40" disabled />
+                <label id="label_grupo"> grupos : </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
+              </fieldset>
+            </div>
             <hr></hr>
             <h4>Equipos</h4>
 
@@ -162,13 +167,13 @@ function Pedido({ pedido }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {lista_equipos.map((row) => (
                     <TableRow
-                      key={row.name}
+                      key={row._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell >{row.descripcion}</TableCell>
-                      <TableCell align="right">{row.tipo}</TableCell>
+                      <TableCell >{row.equipo.descripcion}</TableCell>
+                      <TableCell align="right">{row.equipo.clase}</TableCell>
                       <TableCell align="right">{row.cantidad}</TableCell>
                     </TableRow>
                   ))}
@@ -183,26 +188,20 @@ function Pedido({ pedido }) {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Dessert (100g serving)</TableCell>
-                    <TableCell align="right">Calories</TableCell>
-                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                    <TableCell>Descripcion</TableCell>
+                    <TableCell align="right">Cantidad</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {rowsMateriales.map((row) => (
                     <TableRow
-                      key={row.name}
+                      key={row._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {row.name}
+                        {row.descripcion}
                       </TableCell>
                       <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -216,26 +215,30 @@ function Pedido({ pedido }) {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Dessert (100g serving)</TableCell>
-                    <TableCell align="right">Calories</TableCell>
-                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                    <TableCell>Descripcion</TableCell>
+                    <TableCell align="right">Cas</TableCell>
+                    <TableCell align="right">Calidad</TableCell>
+                    <TableCell align="right">Concentracion</TableCell>
+                    <TableCell align="right">Disolvente</TableCell>
+                    <TableCell align="right">Cantidad total</TableCell>
+                    <TableCell align="right">Unidad de medida</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {rowsReactivos.map((row) => (
                     <TableRow
-                      key={row.name}
+                      key={row._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        {row.name}
+                        {row.descipcion}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.cas}</TableCell>
+                      <TableCell align="right">{row.calidad}</TableCell>
+                      <TableCell align="right">{row.concentracion}</TableCell>
+                      <TableCell align="right">{row.disolvente}</TableCell>
+                      <TableCell align="right">{row.cantidadTotal}</TableCell>
+                      <TableCell align="right">{row.unidadDeMedida}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
