@@ -41,11 +41,11 @@ function App() {
      
      
       <Router>
-        <Switch>
-          <Route exact path="/Laboratorio/Pedidos">
-            <Pedidos />
-          </Route>
-        </Switch>
+        {/* <Switch> */}
+          <Route exact path="/Laboratorio/Pedidos" element={Pedidos}/>
+          
+         
+        {/* </Switch> */}
       </Router>):( <Login
         setPantalla={setPantalla}
         
