@@ -1,0 +1,89 @@
+[
+    {
+        "docente": {
+            "nombre": "Pedro",
+            "apellido": "Pelota",
+            "dni": 7897,
+            "matricula": 1233457
+        },
+        "_id": "6353c3abd75300e5b9005b44",
+        "descripcion": "Pedido 2",
+        "numero_laboratorio": 21,
+        "tipo_pedido": "algo",
+        "cantidad_grupos": 2,
+        "observaciones": "algo mas",
+        "materia": "materia",
+        "numero_tp": 2,
+        "lista_equipos": [
+            {
+                "_id": "6353c695d7b1f83529bf32b2",
+                "cantidad": 4,
+                "equipo": "634dffe0a23c83b43524c5c2"
+            },
+            {
+                "_id": "6353c695d7b1f83529bf32b3",
+                "cantidad": 14,
+                "equipo": "634dffe0a23c83b43524c5c2"
+            }
+        ]
+    },
+    {
+        "docente": {
+            "nombre": "Pedro",
+            "apellido": "Pelota",
+            "dni": 7897,
+            "matricula": 1233457
+        },
+        "_id": "6353c3bad75300e5b9005b45",
+        "descripcion": "Pedido 2",
+        "numero_laboratorio": 21,
+        "tipo_pedido": "algo",
+        "cantidad_grupos": 2,
+        "observaciones": "algo mas",
+        "materia": "materia",
+        "numero_tp": 2,
+        "lista_equipos": [
+            {
+                "_id": "6353c695d7b1f83529bf32b4",
+                "cantidad": 4,
+                "equipo": "634dffe0a23c83b43524c5c2"
+            },
+            {
+                "_id": "6353c695d7b1f83529bf32b5",
+                "cantidad": 14,
+                "equipo": "634dffe0a23c83b43524c5c2"
+            }
+        ]
+    },
+    {
+        "docente": {
+            "nombre": "Pedro",
+            "apellido": "Pelota",
+            "dni": 7897,
+            "matricula": 1233457
+        },
+        "_id": "6353c44dd7b1f83529bf3276",
+        "descripcion": "Pedido 2",
+        "fecha_solicitud": "1970-01-20T06:53:54.125Z",
+        "fecha_utilizacion": "1970-01-20T06:53:54.125Z",
+        "numero_laboratorio": 21,
+        "tipo_pedido": "algo",
+        "cantidad_grupos": 2,
+        "observaciones": "algo mas",
+        "materia": "materia",
+        "numero_tp": 2,
+        "lista_equipos": [
+            {
+                "cantidad": 4,
+                "equipo": "634dffe0a23c83b43524c5c2",
+                "_id": "6353c44dd7b1f83529bf3277"
+            },
+            {
+                "cantidad": 14,
+                "equipo": "634dffe0a23c83b43524c5c2",
+                "_id": "6353c44dd7b1f83529bf3278"
+            }
+        ],
+        "__v": 0
+    }
+]

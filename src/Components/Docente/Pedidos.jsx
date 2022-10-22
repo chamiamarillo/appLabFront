@@ -1,6 +1,7 @@
 
 import Pedido from "./Pedido";
-import {getPedidosServiceTxt} from '../../Services/getPedidosServiceTxt';
+import {getListaTxt} from '../../Services/getPedidosServiceTxt';
+import{getListaPedidos} from '../../Services/getPedidosService';
 
 
 
@@ -36,7 +37,7 @@ function Pedidos() {
 
   useEffect(() => {
     let mounted = true;
-    getPedidosServiceTxt()
+    getListaPedidos()
       .then(items => {
         if (mounted) {
           setListaPedidos(items)

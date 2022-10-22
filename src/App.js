@@ -1,11 +1,11 @@
 import React,{useEffect,useState} from 'react';
 
 import './App.css';
-import Cards from './Components/Docente/Cards';
+
 
 import Login from './Components/Login/Login';
 import Header from './Components/Header/Header';
-import Iconos from './Components/Docente/Iconos';
+
 
 import theme from './Components/Theme/Theme1';
 
