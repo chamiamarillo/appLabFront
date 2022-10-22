@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Theme1 from '../Theme/Theme1';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { StayPrimaryLandscape } from '@material-ui/icons';
 
 const bull = (
   <Box
@@ -27,12 +28,12 @@ export default function Pedido({pedido}) {
   return (
     <ThemeProvider theme={Theme1}>
     
-    <Box component="div" style={{display:'flex',margin:"8px", height:"240px",color:"secondary" ,backgroundColor: "#b4e0bc" }}>
-    <Card  >
+    
+    <Card component="div" style={{display:'flex',margin:"8px", height:"240px" ,backgroundColor: "#b4e0bc"  }} >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="primary" >
-      {bull} {`Pedido número ${numero_tp}`}
-       <p>{bull}{`Fecha : ${fecha_solicitud}`}</p>
+        <Typography sx={{ fontSize: 14 }}  >
+        <p><strong>Pedido número : </strong>{numero_tp}</p>
+       <p><strong>Fecha :</strong>{fecha_solicitud}</p>
           
         </Typography>
         <Typography  sx={{ fontSize: 14 }} component="div">
@@ -44,12 +45,12 @@ export default function Pedido({pedido}) {
             </p>
            
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{fontSize: 14}} color="text.secondary">
             <p>
               <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
             </p> 
         </Typography>
-        <Typography variant="body2">
+        <Typography sx={{fontSize: 14}}>
         <p>
               <strong>Estado: </strong>Aceptado
             </p>
@@ -61,7 +62,7 @@ export default function Pedido({pedido}) {
         <Button size="small">Mas Detalles</Button>
       </CardActions>
     </Card>
-    </Box>
+   
     </ThemeProvider>
 
   );

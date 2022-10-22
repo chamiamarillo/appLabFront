@@ -34,6 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Pedidos() {
   const [nuevoPedido, setNuevoPedido] = useState(false);
+  const [texto,setEncabezado]=useState("DOCENTE");
  
   const [listaPedidos, setListaPedidos] = useState([]);
  
@@ -53,39 +54,42 @@ function Pedidos() {
   return (
     <ThemeProvider theme={Theme1}>
       <Box sx={{ flexGrow: 1 ,m:2}}>
-          <Typography variant="body1" align='center' color="text.secondary" >
-                   <Header ></Header>
+          <Typography variant="body1" align='center' color='text.primary' >
+                   <Header texto={texto} ></Header>
           </Typography>
      </Box>
 
      { !(nuevoPedido) ?(
      
         <Box sx={{ flexGrow: 1 ,m:2}}>
-
+              <Typography variant="body1" align='center' color='primary' >
               <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
+              </Typography>
             
 
         </Box>
      ):( <NuevoPedido></NuevoPedido>)}
      {/* opcion pantalla */}
 
-       <Box sx={{ flexGrow: 1 ,md:2 }}>
+       
      
        {(listaPedidos.length <1) ?
-        ( <NoEncontrados/>):(
+        ( <Box sx={{ flexGrow: 1 ,md:2 }}><NoEncontrados/></Box>):(
+       <Box sx={{ flexGrow: 1 ,md:2 }}>    
       <Grid container direction="row"
       justifyContent="space-around"
       alignItems="center"  
       spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}> 
            {listaPedidos.map((pedido) => (
               <Grid item xs={3}  key={pedido.id}>
-                <Pedido key={pedido.id} pedido={pedido} />
+                <PedidoV1 key={pedido.id} pedido={pedido} />
               </Grid>
          ))}
-      </Grid>)}
+      </Grid>
+      </Box>)}
      
 
-      </Box>
+      
      
     
 

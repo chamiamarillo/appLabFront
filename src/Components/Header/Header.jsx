@@ -8,7 +8,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {ThemeProvider } from '@mui/material/styles';
-import theme from '../Theme/Theme1';
+import Theme1 from '../Theme/Theme1';
 
 
 export default function Header({texto}) {
@@ -28,11 +28,12 @@ export default function Header({texto}) {
   };
 
   return (
+    <ThemeProvider theme={Theme1}>
     <Box sx={{ flexGrow: 1 }}>
-        <ThemeProvider theme={theme}>
-      <AppBar color="secondary" position="static" maxWidth="lg">
+        
+      <AppBar style={{ backgroundColor: "#b4e0bc" }} position="static" maxWidth="lg">
         <Toolbar>
-          <Typography variant="h6" align='center' component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" align='center'color={"primary"} component="div" sx={{ flexGrow: 1 }}>
             {texto}
           </Typography>
           {auth && (
@@ -69,7 +70,8 @@ export default function Header({texto}) {
           )}
         </Toolbar>
       </AppBar>
-      </ThemeProvider>
+     
     </Box>
+    </ThemeProvider>
   );
 }

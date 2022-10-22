@@ -2,7 +2,7 @@ import React from "react";
 import { Icon, makeStyles } from "@material-ui/core";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import Theme1 from '../Theme/Theme1';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import {
   Box,
   Card,
@@ -57,7 +57,9 @@ function PedidoV1({ pedido }) {
 
   return (
     <ThemeProvider theme={Theme1}>
-      <Box className={root}>
+      <Box sx={{m:10}} styles={{display: "flex",
+    margin:"8px",
+    height:"240px" }}padding="2px">
         <Card style={{ backgroundColor: "#b4e0bc" }}>
           <CardActionArea onClick={handleClickOpen('body')}>
             <CardHeader

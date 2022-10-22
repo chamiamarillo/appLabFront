@@ -11,13 +11,14 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import Theme1 from '../Theme/Theme1';
+import { ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
-
+import Header from '../Header/Header'
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         App.Laboratorio 
@@ -31,6 +32,7 @@ function Copyright(props) {
 //const theme = createTheme();
 
 export default function Login() {
+  const [texto,setTexto]=React.useState("UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO")
   const navigate=useNavigate();
   const re_direccion=(usuario)=>{
     if(usuario==="docente"){
@@ -60,9 +62,14 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <ThemeProvider theme={Theme1}>
+       <Box sx={{ flexGrow: 1 ,m:2}}>
+          <Typography variant="body1" align='center' color='text.primary' >
+                   <Header texto={texto} ></Header>
+          </Typography>
+     </Box>
     
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" backgroundcolor="verdeC" >
         <CssBaseline />
         <Box
           sx={{
@@ -72,8 +79,8 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#80cbc4' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, }} color="secondary" >
+            <LockOutlinedIcon color="primary"/>
           </Avatar>
           <Typography component="h1" variant="h5">
             INGRESO
@@ -108,6 +115,8 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+             
+
             >
               INGRESAR
             </Button>
@@ -127,7 +136,7 @@ export default function Login() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-      </div>
+      </ThemeProvider>
     
   );
 }
