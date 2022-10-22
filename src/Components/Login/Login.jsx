@@ -11,9 +11,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import theme from '../Theme/theme';
+import {useNavigate} from 'react-router-dom';
+
 
 function Copyright(props) {
   return (
@@ -30,23 +30,38 @@ function Copyright(props) {
 
 //const theme = createTheme();
 
-export default function Login({setPantalla}) {
+export default function Login() {
+  const navigate=useNavigate();
+  const re_direccion=(usuario)=>{
+    if(usuario==="docente"){
+      navigate("/Docente/Pedidos");
+    }
+    else if(usuario==="laboratorio"){
+      navigate("/Laboratorio/Pedidos");
+    }else{
+      navigate("/");
+    }
+
+  }
  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-
+    const usuario=data.get('user');
+    re_direccion(usuario);
     console.log({
       usuario: data.get('user'),
       password: data.get('password'),
     });
-    setPantalla(data.get('user').toLowerCase());
+   
+    
 
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
+    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -112,6 +127,7 @@ export default function Login({setPantalla}) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+      </div>
+    
   );
 }

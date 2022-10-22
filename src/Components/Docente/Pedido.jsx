@@ -5,7 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import theme from '../Theme/theme';
+import theme from '../Theme/Theme1';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const bull = (

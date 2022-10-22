@@ -7,55 +7,41 @@ import Login from './Components/Login/Login';
 import Header from './Components/Header/Header';
 import Iconos from './Components/Docente/Iconos';
 
-import theme from './Components/Theme/theme';
+import theme from './Components/Theme/Theme1';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter , Switch, Route,Router,Routes } from "react-router-dom";
 import Docente from './Components/Docente/Pedidos' ;
+
 
 import Pedidos from "./Components/Laboratorio/Pedidos";
 
   
 function App() {
   
-  const [pantalla,setPantalla]=useState("login");
-
+  
   
     
   return (
-    <ThemeProvider theme={theme}>
+    <BrowserRouter>
+     
+      <Routes>
     
-   
-      { pantalla === "login" ? (
-       
-        <Login
-        setPantalla={setPantalla}
-       
-        />
-      ) :(pantalla === "docente" ?(
+          <Route  path="/" element={<Login/>} />
         
-        <Docente></Docente>
-      ):(pantalla === "laboratorio" ?(
-       
-     
-     
-      <Router>
-        {/* <Switch> */}
-          <Route exact path="/Laboratorio/Pedidos" element={Pedidos}/>
-          
+          <Route  path="/Docente/Pedidos"element={<Docente/>}/> 
          
-        {/* </Switch> */}
-      </Router>):( <Login
-        setPantalla={setPantalla}
-        
-        />
-
-      )
-      ))}
+          <Route  path="/Laboratorio/Pedidos" element={<Pedidos/>}/>
+          
       
-   </ThemeProvider>
-  
+    
+        
+         
+          </Routes>   
+      
+    
+    </BrowserRouter>
 
   );
 }

@@ -3,7 +3,7 @@ import teal from '@mui/material/colors/teal'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme=createTheme({
+const Theme1=createTheme({
     palette:{
         primary:{
             main:teal[700]
@@ -14,4 +14,4 @@ const theme=createTheme({
     }
 })
  
-export default theme;
+export default Theme1;

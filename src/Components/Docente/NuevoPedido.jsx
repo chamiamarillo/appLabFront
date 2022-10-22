@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 
-import theme from '../Theme/theme';
+import theme from '../Theme/Theme1';
 
 function Copyright(props) {
   return (

@@ -8,7 +8,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {ThemeProvider } from '@mui/material/styles';
-import theme from '../Theme/theme';
+import theme from '../Theme/Theme1';
 
 
 export default function Header({texto}) {

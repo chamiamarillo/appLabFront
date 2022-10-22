@@ -1,8 +1,8 @@
 
 import Pedido from "./Pedido";
-import theme from '../Theme/theme';
+import {getPedidosServiceTxt} from '../../Services/getPedidosServiceTxt';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 import React, { useEffect, useState } from 'react';
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 
 import BotonNPedido from "./BotonNuevoPedido";
 import NoEncontrados from "./NoEncontrados"
-import { Icon,IconButton } from '@mui/material';
+
 
 
 // 
@@ -32,71 +32,58 @@ function Pedidos() {
   const [nuevoPedido, setNuevoPedido] = useState(false);
  
   const [listaPedidos, setListaPedidos] = useState([]);
-  const consultarAPI = async () => {
-    try{
-    
-     const url= `texto.json`;
-    const api = await fetch(url);
-    
-   
-    const datos = await api.json();
-   
-    const pedidos=datos.pedidos;
-    
-    setListaPedidos(pedidos);
-   
-   
-    }
-    catch (error){
-      console.log(error);
-    }
-  }
+ 
+
   useEffect(() => {
-    // let mounted = true;
-    consultarAPI(); 
-    // return () => mounted = false;
+    let mounted = true;
+    getPedidosServiceTxt()
+      .then(items => {
+        if (mounted) {
+          setListaPedidos(items)
+        }
+      })
+    return () => mounted = false;
   }, [])
 
  
   return (
-    <ThemeProvider createTheme={theme}>
+    <div>
       <Box sx={{ flexGrow: 1 ,m:2}}>
-      <Typography variant="body1" align='center' color="primary">
-              HEADER
-     </Typography>
+          <Typography variant="body1" align='center' color="primary">
+                    HEADER
+          </Typography>
      </Box>
+
      { !(nuevoPedido) ?(
-      <div>
-     <Box sx={{ flexGrow: 1 ,m:2}}>
+     
+        <Box sx={{ flexGrow: 1 ,m:2}}>
 
-     <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
-    
+              <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
+            
 
-        
+        </Box>
+     ):( <NuevoPedido></NuevoPedido>)}
+     {/* opcion pantalla */}
 
-     </Box>
        <Box sx={{ flexGrow: 1 }}>
      
-       {
-        (listaPedidos.length > 0) ?
+       {(listaPedidos.length <1) ?
+        ( <NoEncontrados/>):(
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-      {listaPedidos.map((pedido) => (
-        <Grid item xs={2} sm={4} md={4} key={pedido.id}>
-          <Pedido key={pedido.id} pedido={pedido} />
-        </Grid>
-  ))}
-      </Grid>
-      :
-      <NoEncontrados/>
-}
-      </Box>
-      </div>
-    ):(
-      <NuevoPedido></NuevoPedido>
-    )}
+           {listaPedidos.map((pedido) => (
+              <Grid item xs={2} sm={4} md={4} key={pedido.id}>
+                <Pedido key={pedido.id} pedido={pedido} />
+              </Grid>
+         ))}
+      </Grid>)}
+     
 
+      </Box>
+     
     
-    </ThemeProvider>
+
+    </div>
+   
   );
 }
 
