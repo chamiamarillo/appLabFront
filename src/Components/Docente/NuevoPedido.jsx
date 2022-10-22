@@ -48,7 +48,7 @@ export default function NuevoPedido() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" color="primary">
         <CssBaseline />
         <Box
           sx={{

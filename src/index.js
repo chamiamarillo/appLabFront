@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material';
-import theme1 from './Components/Theme/Theme1';
+import Theme1 from './Components/Theme/Theme1';
 import {BrowserRouter}from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider theme={theme1}>
+  <ThemeProvider theme={Theme1}>
    
     <React.StrictMode>
       <App />

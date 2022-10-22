@@ -5,7 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import theme from '../Theme/Theme1';
+import Theme1 from '../Theme/Theme1';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const bull = (
@@ -25,16 +25,17 @@ export default function Pedido({pedido}) {
     docente
   } = pedido;
   return (
-    <ThemeProvider createTheme={theme} >
-    <Card sx={{ minWidth: 275 , minHeigth: 50}}  style={{ backgroundColor: "#b2dfdb" }} >
+    <ThemeProvider theme={Theme1}>
+    
+    <Box component="div" style={{display:'flex',margin:"8px", height:"240px",color:"secondary" ,backgroundColor: "#b4e0bc" }}>
+    <Card  >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="primary" gutterBottom title={`Pedido número ${numero_tp}`}
-        subheader={`Fecha : ${fecha_solicitud}`}>
+        <Typography sx={{ fontSize: 14 }} color="primary" >
       {bull} {`Pedido número ${numero_tp}`}
        <p>{bull}{`Fecha : ${fecha_solicitud}`}</p>
           
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography  sx={{ fontSize: 14 }} component="div">
         <p>
               <strong>Laboratorio: </strong> {numero_laboratorio}
             </p>
@@ -60,6 +61,7 @@ export default function Pedido({pedido}) {
         <Button size="small">Mas Detalles</Button>
       </CardActions>
     </Card>
+    </Box>
     </ThemeProvider>
 
   );

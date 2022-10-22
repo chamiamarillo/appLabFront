@@ -5,7 +5,8 @@ import './App.css';
 
 import Login from './Components/Login/Login';
 import Header from './Components/Header/Header';
-
+import Pedido from './Components/Docente/Pedido'
+import PedidoV1 from './Components/Docente/PedidoV1'
 
 import theme from './Components/Theme/Theme1';
 
@@ -33,6 +34,8 @@ function App() {
           <Route  path="/Docente/Pedidos"element={<Docente/>}/> 
          
           <Route  path="/Laboratorio/Pedidos" element={<Pedidos/>}/>
+          <Route  path="/Laboratorio/Pedidos/PedidoV1" element={<PedidoV1/>}/>
+          <Route  path="/Laboratorio/Pedidos/Pedido" element={<Pedido/>}/>
           
       
     

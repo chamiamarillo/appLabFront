@@ -1,8 +1,9 @@
 
-import Pedido from "./Pedido";
+import PedidoV1 from "./PedidoV1";
+import Pedido from "./Pedido"
 import {getListaTxt} from '../../Services/getPedidosServiceTxt';
 import{getListaPedidos} from '../../Services/getPedidosService';
-
+import Header from '../Header/Header'
 
 
 import React, { useEffect, useState } from 'react';
@@ -13,6 +14,8 @@ import Grid from '@mui/material/Grid';
 
 import BotonNPedido from "./BotonNuevoPedido";
 import NoEncontrados from "./NoEncontrados"
+import Theme1 from '../Theme/Theme1';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -48,10 +51,10 @@ function Pedidos() {
 
  
   return (
-    <div>
+    <ThemeProvider theme={Theme1}>
       <Box sx={{ flexGrow: 1 ,m:2}}>
-          <Typography variant="body1" align='center' color="primary">
-                    HEADER
+          <Typography variant="body1" align='center' color="text.secondary" >
+                   <Header ></Header>
           </Typography>
      </Box>
 
@@ -66,13 +69,16 @@ function Pedidos() {
      ):( <NuevoPedido></NuevoPedido>)}
      {/* opcion pantalla */}
 
-       <Box sx={{ flexGrow: 1 }}>
+       <Box sx={{ flexGrow: 1 ,md:2 }}>
      
        {(listaPedidos.length <1) ?
         ( <NoEncontrados/>):(
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container direction="row"
+      justifyContent="space-around"
+      alignItems="center"  
+      spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}> 
            {listaPedidos.map((pedido) => (
-              <Grid item xs={2} sm={4} md={4} key={pedido.id}>
+              <Grid item xs={3}  key={pedido.id}>
                 <Pedido key={pedido.id} pedido={pedido} />
               </Grid>
          ))}
@@ -83,7 +89,7 @@ function Pedidos() {
      
     
 
-    </div>
+      </ThemeProvider>
    
   );
 }

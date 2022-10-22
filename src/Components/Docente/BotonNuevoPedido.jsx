@@ -5,19 +5,24 @@ import Typography from '@mui/material/Typography';
 
 const BotonNPedido = ({setNuevoPedido}) => {
     return ( 
-        <Typography variant="body1" align='right' color="primary">
+       
+        <Typography variant="body1" align='right' color="primary">    
         <Button 
         variant="contained" 
-        color="primary" 
+        color='secondary'
+        
         startIcon={<AddCircleIcon />}
         onClick={() => {
           setNuevoPedido(true);
           alert('clicked');
         }}>
-          PEDIDO NUEVO
+          
+            PEDIDO NUEVO
+          
         </Button>
-        
         </Typography>
+      
+        
      );
 }
  
