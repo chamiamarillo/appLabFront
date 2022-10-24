@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 
-import theme from '../Theme/Theme1';
+import Theme1 from '../Theme/Theme1';
 
 function Copyright(props) {
   return (
@@ -47,7 +47,7 @@ export default function NuevoPedido() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme1}>
       <Container component="main" maxWidth="xs" color="primary">
         <CssBaseline />
         <Box
@@ -58,7 +58,7 @@ export default function NuevoPedido() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#80cbc4' }}>
+          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
           <PrecisionManufacturingIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">

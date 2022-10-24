@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import BotonNPedido from "./BotonNuevoPedido";
 import NoEncontrados from "./NoEncontrados"
 import Theme1 from '../Theme/Theme1';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 
 
@@ -41,6 +41,7 @@ function Pedidos() {
 
   useEffect(() => {
     let mounted = true;
+    //getListaTxt()
     getListaPedidos()
       .then(items => {
         if (mounted) {
@@ -54,18 +55,17 @@ function Pedidos() {
   return (
     <ThemeProvider theme={Theme1}>
       <Box sx={{ flexGrow: 1 ,m:2}}>
-          <Typography variant="body1" align='center' color='text.primary' >
+          
                    <Header texto={texto} ></Header>
-          </Typography>
+        
      </Box>
 
      { !(nuevoPedido) ?(
      
         <Box sx={{ flexGrow: 1 ,m:2}}>
-              <Typography variant="body1" align='center' color='primary' >
+              
               <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
-              </Typography>
-            
+              
 
         </Box>
      ):( <NuevoPedido></NuevoPedido>)}
@@ -80,7 +80,7 @@ function Pedidos() {
             <Grid container direction="row"
             justifyContent="space-around"
             alignItems="center"  
-            spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}> 
+            spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}> 
               {listaPedidos.map((pedido) => (
                   <Grid item xs={3}  key={pedido.id}>
                     <PedidoV1 key={pedido.id} pedido={pedido} />

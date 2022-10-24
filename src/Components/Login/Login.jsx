@@ -64,7 +64,7 @@ export default function Login() {
   return (
     <ThemeProvider theme={Theme1}>
        <Box sx={{ flexGrow: 1 ,m:2}}>
-          <Typography variant="body1" align='center' color='text.primary' >
+          <Typography variant="body1" align='center' color='primary.main' >
                    <Header texto={texto} ></Header>
           </Typography>
      </Box>
@@ -111,7 +111,7 @@ export default function Login() {
               label="Remember me"
             /> */}
            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-           <Grid item xs={6}>   
+           <Grid item xs={12} sm={6}>   
             <Button
               type="submit"
               fullWidth
@@ -123,7 +123,7 @@ export default function Login() {
             </Button>
             </Grid>
           
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
             <Button
               type="submit"
               fullWidth
