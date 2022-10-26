@@ -9,15 +9,21 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+
 import Header from '../Header/Header'
-
+import Paper from '@mui/material/Paper';
 import Theme1 from '../Theme/Theme1';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 
 //const theme = createTheme();
@@ -127,25 +133,193 @@ export default function NuevoPedido() {
                 margin="normal"
                 required
                 fullWidth
-                id="user"
-                label="Usuario"
-                name="user"
-                autoComplete="user"
+                id="edificio"
+                label="edificio"
+                name="edificio"
+                autoComplete="edificio"
                 autoFocus
               />
             </Grid>
+            <Grid item xs={6}>
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cantidad_alumnos"
+                label="cantidad_alumnos"
+                name="cantidad_alumnos"
+                autoComplete="cantidad_alumnos"
+                autoFocus
+              />
+              </Grid>
+              <Grid item xs={6}>
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cantidad_grupos"
+                label="cantidad_grupos"
+                name="cantidad_grupos"
+                autoComplete="cantidad_grupos"
+                autoFocus
+              />
             </Grid>
+           
+            </Grid>
+
+            <Avatar> 
+                                <AddCircleIcon />
+            </Avatar>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow alignItems="center">
+                            <TableCell>Descripcion</TableCell>
+                            <TableCell align="center">Tipo</TableCell>
+                            <TableCell align="center">Cantidad</TableCell>
+                            <TableCell align="center">confirmar</TableCell>
+                            <TableCell align="center">desechar</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                       
+                            <TableRow
+                                
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell >
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    />
+                                     </TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    /></TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="cantidad_grupos"
+                                    label="cantidad_grupos"
+                                    name="cantidad_grupos"
+                                    autoComplete="cantidad_grupos"
+                                    autoFocus
+                                  />
+                                </TableCell>
+                                <TableCell align="right">
+                                  
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar>
+
+                                </TableCell>
+                                <TableCell align="right">
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar> 
+                                </TableCell>
+                            </TableRow>
+                       
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <Avatar> 
+                                <AddCircleIcon />
+            </Avatar>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow alignItems="center">
+                            <TableCell>Descripcion</TableCell>
+                            <TableCell align="center">Tipo</TableCell>
+                            <TableCell align="center">Cantidad</TableCell>
+                            <TableCell align="center">confirmar</TableCell>
+                            <TableCell align="center">desechar</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                       
+                            <TableRow
+                                
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell >
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    />
+                                     </TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    /></TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="cantidad_grupos"
+                                    label="cantidad_grupos"
+                                    name="cantidad_grupos"
+                                    autoComplete="cantidad_grupos"
+                                    autoFocus
+                                  />
+                                </TableCell>
+                                <TableCell align="right">
+                                  
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar>
+
+                                </TableCell>
+                                <TableCell align="right">
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar> 
+                                </TableCell>
+                            </TableRow>
+                       
+                    </TableBody>
+                </Table>
+            </TableContainer>    
+
          </Box>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+
+
+
            
             <Button
               type="submit"
@@ -155,18 +329,7 @@ export default function NuevoPedido() {
             >
               INGRESAR
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  olvidaste tu password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+           
           </Box>
        
         
