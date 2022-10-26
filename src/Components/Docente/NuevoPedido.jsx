@@ -24,9 +24,37 @@ import Theme1 from '../Theme/Theme1';
 
 export default function NuevoPedido() {
   const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
+  const unpedido= {docente: {
+    "nombre": "Pedro",
+    "apellido": "Pelota",
+    "dni": 7897,
+    "matricula": 1233457
+},
+
+"descripcion": "Pedido 2",
+"numero_laboratorio": 21,
+"tipo_pedido": "algo",
+"cantidad_grupos": 2,
+"observaciones": "algo mas",
+"materia": "materia",
+"numero_tp": 2,
+"lista_equipos": [
+    {
+      
+        "cantidad": 4,
+        "equipo": "634dffe0a23c83b43524c5c2"
+    },
+    {
+       
+        "cantidad": 14,
+        "equipo": "634dffe0a23c83b43524c5c2"
+    }
+]
+}
  
   const handleSubmit = (event) => {
     event.preventDefault();
+    
 
     const data = new FormData(event.currentTarget);
 
@@ -45,33 +73,69 @@ export default function NuevoPedido() {
           <Header texto={texto} ></Header>
 
        </Box>
-      <Container component="main" maxWidth="xs" color="primary">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-          <PrecisionManufacturingIcon/>
-          </Avatar>
-          <Typography component="h1" variant="h5">
-          cargar pedido en proceso
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="user"
-              label="Usuario"
-              name="user"
-              autoComplete="user"
-              autoFocus
-            />
+      <Container component="main"  color="primary">
+        
+        
+          
+          <Box component="form" onSubmit={handleSubmit} noValidate>
+          <Box sx={{ flexGrow: 1 ,md:2 }}>    
+           
+     
+          <Grid container direction="row"
+            justifyContent="space-around"
+            alignItems="center"  
+          
+            
+          
+            sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+              borderBottom: 'var(--Grid-borderWidth) solid',
+              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1
+            }}
+            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
+             <Grid item xs={4}>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="numero_pedido"
+                    label="numero_pedido"
+                    name="numero_pedido"
+                    value={unpedido.numero_tp}
+                    autoComplete={"numero_pedido"}
+                    autoFocus
+                  />
+                 
+              </Grid> 
+              <Grid item xs={4}>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="numero_laboratorio"
+                    label="numero_laboratorio"
+                    name="numero_laboratorio"
+                    autoComplete="numero_laboratorio"
+                    autoFocus
+                  />
+              </Grid>
+            <Grid item xs={4}>
+
+
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="user"
+                label="Usuario"
+                name="user"
+                autoComplete="user"
+                autoFocus
+              />
+            </Grid>
+            </Grid>
+         </Box>
             <TextField
               margin="normal"
               required
@@ -82,10 +146,7 @@ export default function NuevoPedido() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+           
             <Button
               type="submit"
               fullWidth
@@ -107,7 +168,7 @@ export default function NuevoPedido() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
+       
         
       </Container>
     </ThemeProvider>
