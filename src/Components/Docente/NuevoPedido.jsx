@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import React,{useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,30 +9,21 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import Header from '../Header/Header'
 
 import Theme1 from '../Theme/Theme1';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        App.Laboratorio 
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 //const theme = createTheme();
 
 export default function NuevoPedido() {
+  const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,6 +40,11 @@ export default function NuevoPedido() {
 
   return (
     <ThemeProvider theme={Theme1}>
+       <Box sx={{ flexGrow: 1 ,m:2}}>
+          
+          <Header texto={texto} ></Header>
+
+       </Box>
       <Container component="main" maxWidth="xs" color="primary">
         <CssBaseline />
         <Box
@@ -111,7 +108,7 @@ export default function NuevoPedido() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        
       </Container>
     </ThemeProvider>
   );

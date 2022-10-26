@@ -5,7 +5,9 @@ import Typography from '@mui/material/Typography';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import {useNavigate} from 'react-router-dom';
 const BotonNPedido = ({setNuevoPedido}) => {
+  const navigate=useNavigate();
     return ( 
       <ThemeProvider theme={Theme1}>
         
@@ -16,6 +18,7 @@ const BotonNPedido = ({setNuevoPedido}) => {
          style={{ width:200,height:30 }}
         startIcon={<AddCircleIcon />}
         onClick={() => {
+          navigate('/Docente/NuevoPedido')
           setNuevoPedido(true);
           
         }}>
