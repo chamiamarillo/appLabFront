@@ -27,7 +27,9 @@ import TableRow from '@mui/material/TableRow';
 import laboratorio from '../Image/biologia.png'
 import pipeta from '../Image/pipeta.png'
 import quimica from '../Image/quimica.png'
-import { margin } from '@mui/system';
+
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 
 //const theme = createTheme();
 
@@ -244,13 +246,13 @@ export default function NuevoPedido() {
                                 <TableCell align="right">
                                   
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                 </Avatar>
 
                                 </TableCell>
                                 <TableCell align="right">
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <DeleteForeverIcon color={"rojo"} />
                                 </Avatar> 
                                 </TableCell>
                             </TableRow>
@@ -328,13 +330,13 @@ export default function NuevoPedido() {
                                 <TableCell align="right">
                                   
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                 </Avatar>
 
                                 </TableCell>
                                 <TableCell align="right">
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <DeleteForeverIcon color={"rojo"} />
                                 </Avatar> 
                                 </TableCell>
                             </TableRow>
@@ -409,13 +411,13 @@ export default function NuevoPedido() {
                                 <TableCell align="right">
                                   
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                 </Avatar>
 
                                 </TableCell>
                                 <TableCell align="right">
                                 <Avatar> 
-                                <AddCircleIcon />
+                                <DeleteForeverIcon color={"rojo"} />
                                 </Avatar> 
                                 </TableCell>
                             </TableRow>

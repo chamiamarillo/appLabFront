@@ -24,6 +24,9 @@ const Theme1=createTheme({
         },
         blanco:{
             main:teal[50]
+        },
+        rojo:{
+            main:"#ba000d"
         }
        
     }
