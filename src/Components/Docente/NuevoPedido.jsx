@@ -24,7 +24,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
+import laboratorio from '../Image/biologia.png'
+import pipeta from '../Image/pipeta.png'
+import quimica from '../Image/quimica.png'
+import { margin } from '@mui/system';
 
 //const theme = createTheme();
 
@@ -171,9 +174,21 @@ export default function NuevoPedido() {
            
             </Grid>
 
-            <Avatar> 
-                                <AddCircleIcon />
-            </Avatar>
+
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  >
+            <Grid item xs={1} container justifyContent="center"  >
+            <img width={40} heigth={40} src={laboratorio} />
+            </Grid>
+            <Grid  item xs={3} container justifyContent="start">
+            <Typography sx={{fontSize: 40}}  color="text.secondary">
+            Equipos
+            </Typography>
+            </Grid>
+            </Grid>
+            
+           
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -243,9 +258,21 @@ export default function NuevoPedido() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Avatar> 
-                                <AddCircleIcon />
-            </Avatar>
+
+
+            
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  >
+            <Grid item xs={1} container justifyContent="center"  >
+            <img width={40} heigth={40} src={pipeta} />
+            </Grid>
+            <Grid  item xs={3} container justifyContent="start">
+            <Typography sx={{fontSize: 40}}  color="text.secondary">
+            Materiales
+            </Typography>
+            </Grid>
+            </Grid>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -314,7 +341,88 @@ export default function NuevoPedido() {
                        
                     </TableBody>
                 </Table>
-            </TableContainer>    
+            </TableContainer>  
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  >
+            <Grid item xs={1} container justifyContent="center"  >
+            <img width={40} heigth={40} src={quimica} />
+            </Grid>
+            <Grid  item xs={3} container justifyContent="start">
+            <Typography sx={{fontSize: 40}}  color="text.secondary">
+            Reactivos
+            </Typography>
+            </Grid>
+            </Grid>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow alignItems="center">
+                            <TableCell>Descripcion</TableCell>
+                            <TableCell align="center">Tipo</TableCell>
+                            <TableCell align="center">Cantidad</TableCell>
+                            <TableCell align="center">confirmar</TableCell>
+                            <TableCell align="center">desechar</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                       
+                            <TableRow
+                                
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell >
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    />
+                                     </TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                      margin="normal"
+                                      required
+                                      fullWidth
+                                      id="cantidad_grupos"
+                                      label="cantidad_grupos"
+                                      name="cantidad_grupos"
+                                      autoComplete="cantidad_grupos"
+                                      autoFocus
+                                    /></TableCell>
+                                <TableCell align="right">
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="cantidad_grupos"
+                                    label="cantidad_grupos"
+                                    name="cantidad_grupos"
+                                    autoComplete="cantidad_grupos"
+                                    autoFocus
+                                  />
+                                </TableCell>
+                                <TableCell align="right">
+                                  
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar>
+
+                                </TableCell>
+                                <TableCell align="right">
+                                <Avatar> 
+                                <AddCircleIcon />
+                                </Avatar> 
+                                </TableCell>
+                            </TableRow>
+                       
+                    </TableBody>
+                </Table>
+            </TableContainer>          
 
          </Box>
 
