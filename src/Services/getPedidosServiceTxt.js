@@ -1,6 +1,6 @@
-
+import texto from './texto.json';
 export function getListaTxt (){
-    return (  fetch('texto.json')
-    .then(data => data.json())  );
+    console.log(texto);
+    return Promise.resolve(texto.pedidos);
 }
  

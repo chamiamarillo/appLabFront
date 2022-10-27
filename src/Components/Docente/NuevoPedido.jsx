@@ -196,23 +196,23 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
             </Typography>
             </Grid>
             </Grid>
+
+            
             
            
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow alignItems="center">
-                            <TableCell>Descripcion</TableCell>
-                            
-                            <TableCell align="center">Cantidad</TableCell>
+                        <TableRow align="center">
+                            <TableCell >Descripcion</TableCell>
+                              <TableCell align="center">Cantidad</TableCell>
                             <TableCell align="center">confirmar</TableCell>
                             <TableCell align="center">desechar</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                        
-                            <TableRow
-                                
+                            <TableRow                                
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell >
@@ -224,7 +224,7 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
-                                       label={"Descripcion Equipos "}
+                                       label={"seleccione Equipos "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
                                         ...params.InputProps,}}
@@ -258,15 +258,15 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                                 </TableCell>
                                 <TableCell align="right">
                                   
-                                <Avatar> 
-                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                </Avatar>
+                                    <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                                    </Avatar>
 
                                 </TableCell>
                                 <TableCell align="right">
-                                <Avatar> 
-                                <DeleteForeverIcon color={"rojo"} />
-                                </Avatar> 
+                                    <Avatar> 
+                                    <DeleteForeverIcon color={"rojo"} />
+                                    </Avatar> 
                                 </TableCell>
                             </TableRow>
                        
@@ -292,7 +292,7 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow alignItems="center">
-                            <TableCell>Descripcion</TableCell>
+                            <TableCell align='left'>Descripcion</TableCell>
                             <TableCell align="center">Tipo</TableCell>
                             <TableCell align="center">Cantidad</TableCell>
                             <TableCell align="center">confirmar</TableCell>
