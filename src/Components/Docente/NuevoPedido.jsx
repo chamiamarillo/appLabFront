@@ -27,13 +27,18 @@ import TableRow from '@mui/material/TableRow';
 import laboratorio from '../Image/biologia.png'
 import pipeta from '../Image/pipeta.png'
 import quimica from '../Image/quimica.png'
+import Autocomplete from '@mui/material/Autocomplete';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 //const theme = createTheme();
 
+
+
 export default function NuevoPedido() {
+  
+  
   const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
   const unpedido= {docente: {
     "nombre": "Pedro",
@@ -62,6 +67,8 @@ export default function NuevoPedido() {
     }
 ]
 }
+const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo laminar '},{label:'Campana para extracción de gases Biotec '},{label:'Campana para extracción gases Biotraza FH1200 '},{label:'Destilador Arcano GZ-10 lts '},{label:'Electrodo Redox/ORP MTC10105 n/s: 163563029004 / 163623029001 / 170093029002 '},{label:'Electrodo Redox/ORP MTC301 n/s: 163653018008 '},{label:'Electrodo Redox/ORP MTC301 n/s: 170033018005 '},{label:'Electroporador a micropulso BioRad '},{label:'Freezer vertical modelo FEDE -35 '},{label:'Heladera Righi 520-4 '},{label:'Heladera Samsung 370L '},{label:'Lavador ultrasónico PS-40 Arcano '},
+];
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -196,7 +203,7 @@ export default function NuevoPedido() {
                     <TableHead>
                         <TableRow alignItems="center">
                             <TableCell>Descripcion</TableCell>
-                            <TableCell align="center">Tipo</TableCell>
+                            
                             <TableCell align="center">Cantidad</TableCell>
                             <TableCell align="center">confirmar</TableCell>
                             <TableCell align="center">desechar</TableCell>
@@ -209,7 +216,23 @@ export default function NuevoPedido() {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell >
-                                <TextField
+                                <Autocomplete
+                                    disablePortal
+                                    id="combo-box-demo"
+                                    options={equipos}
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       label={"Descripcion Equipos "}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+                                {/* <TextField
                                       margin="normal"
                                       required
                                       fullWidth
@@ -218,28 +241,18 @@ export default function NuevoPedido() {
                                       name="cantidad_grupos"
                                       autoComplete="cantidad_grupos"
                                       autoFocus
-                                    />
+                                    /> */}
                                      </TableCell>
-                                <TableCell align="right">
-                                <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    /></TableCell>
+                               
                                 <TableCell align="right">
                                 <TextField
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="cantidad_grupos"
-                                    label="cantidad_grupos"
-                                    name="cantidad_grupos"
-                                    autoComplete="cantidad_grupos"
+                                    id="cantidad_equipo"
+                                    label="cantidad_equipo"
+                                    name="cantidad_equipo"
+                                    autoComplete="cantidad_equipo"
                                     autoFocus
                                   />
                                 </TableCell>
