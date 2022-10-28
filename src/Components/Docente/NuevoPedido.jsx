@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -30,6 +31,10 @@ import quimica from '../Image/quimica.png'
 import Autocomplete from '@mui/material/Autocomplete';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import Select from '@mui/material/Select';
 
 
 //const theme = createTheme();
@@ -37,8 +42,14 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 export default function NuevoPedido() {
+//PRUEBA CODIGO
+  const [cantEquipo, setCantEquipo] = React.useState('');
+
+  const handleChange = (event) => {
+    setCantEquipo(event.target.value);
+  };
   
-  
+  //PRUEBA CODIGO
   const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
   const unpedido= {docente: {
     "nombre": "Pedro",
@@ -69,6 +80,8 @@ export default function NuevoPedido() {
 }
 const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo laminar '},{label:'Campana para extracción de gases Biotec '},{label:'Campana para extracción gases Biotraza FH1200 '},{label:'Destilador Arcano GZ-10 lts '},{label:'Electrodo Redox/ORP MTC10105 n/s: 163563029004 / 163623029001 / 170093029002 '},{label:'Electrodo Redox/ORP MTC301 n/s: 163653018008 '},{label:'Electrodo Redox/ORP MTC301 n/s: 170033018005 '},{label:'Electroporador a micropulso BioRad '},{label:'Freezer vertical modelo FEDE -35 '},{label:'Heladera Righi 520-4 '},{label:'Heladera Samsung 370L '},{label:'Lavador ultrasónico PS-40 Arcano '},
 ];
+const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{label:7},{label:8},{label:9},{label:10},{label:11},{label:12},{label:13},
+];
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -91,11 +104,12 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
           <Header texto={texto} ></Header>
 
        </Box>
+    {/* COMIENZA EL CONTENEDOR DE LA PAGINA    */}
       <Container component="main"  color="primary">
         
-        
+     {/* COMIENZA EL CONTENEDOR DEL BLOQUE SUPERIOR    */}    
           
-          <Box component="form" onSubmit={handleSubmit} noValidate>
+     <Box component="form" onSubmit={handleSubmit} noValidate>
           <Box sx={{ flexGrow: 1 ,md:2 }}>    
            
      
@@ -109,7 +123,7 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
             borderLeft: 'var(--Grid-borderWidth) solid',
             borderRight: 'var(--Grid-borderWidth) solid',
               borderBottom: 'var(--Grid-borderWidth) solid',
-              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1
+              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
             }}
             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
              <Grid item xs={4}>
@@ -183,7 +197,19 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
            
             </Grid>
 
+{/* COMIENZA CONTENEDOR DE EQUIPOS */}
+<Grid container direction="row"
+            justifyContent="space-around"
+            alignItems="center"  
+            sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+              borderBottom: 'var(--Grid-borderWidth) solid',
+              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
+            }}
+            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
 
+            {/* TITULO */}
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  >
@@ -198,33 +224,48 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
             </Grid>
 
             
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="center">
+            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            Descripcion
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            Cantidad
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            Confirmar
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            Desechar
+            </Typography>
+            </Grid>
+            </Grid>
             
-           
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow align="center">
-                            <TableCell >Descripcion</TableCell>
-                              <TableCell align="center">Cantidad</TableCell>
-                            <TableCell align="center">confirmar</TableCell>
-                            <TableCell align="center">desechar</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                       
-                            <TableRow                                
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell >
-                                <Autocomplete
+             <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="start" >
+            <Autocomplete
                                     disablePortal
+                                    fullWidth
                                     id="combo-box-demo"
                                     options={equipos}
-                                    sx={{ width: 300 }}
+                                    // sx={{ width: 300 }}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
-                                       label={"seleccione Equipos "}
+                                       margin="normal"
+                                       
+                                       name="descripcion_equipo"
+                                       label={"seleccione_Equipos "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
                                         ...params.InputProps,}}
@@ -232,6 +273,62 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                                       );
                                        }}
                                        />
+            </Grid>
+          
+            <Grid  item xs={2} container justifyContent="center">
+            <Autocomplete
+                                    disablePortal
+                                    fullWidth
+                                    id="cant_equipos"
+                                    options={numeros}
+                                    // sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       margin="normal"
+                                       name="cant_equipo"
+
+                                       label={"cant_equipos"}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+            {/* <TextField
+                                    margin="normal"
+                                    
+                                    required
+                                    fullWidth
+                                    id="cantidad_equipo"
+                                    label="cantidad_equipo"
+                                    name="cantidad_equipo"
+                                    autoComplete="cantidad_equipo"
+                                    autoFocus
+                                  >
+                                   
+            </TextField> */}
+                                     
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                                    </Avatar>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <DeleteForeverIcon color={"rojo"} />
+                                    </Avatar> 
+            </Grid>
+            </Grid>        
+                    {/* <TableBody>
+                       
+                            <TableRow                                
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell >
+                              
                                 {/* <TextField
                                       margin="normal"
                                       required
@@ -242,40 +339,23 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                                       autoComplete="cantidad_grupos"
                                       autoFocus
                                     /> */}
-                                     </TableCell>
-                               
-                                <TableCell align="right">
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="cantidad_equipo"
-                                    label="cantidad_equipo"
-                                    name="cantidad_equipo"
-                                    autoComplete="cantidad_equipo"
-                                    autoFocus
-                                  />
-                                </TableCell>
-                                <TableCell align="right">
-                                  
-                                    <Avatar> 
-                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                    </Avatar>
+                                 
+            </Grid>
 
-                                </TableCell>
-                                <TableCell align="right">
-                                    <Avatar> 
-                                    <DeleteForeverIcon color={"rojo"} />
-                                    </Avatar> 
-                                </TableCell>
-                            </TableRow>
-                       
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
-
+{/* COMIENZA CONTENEDOR DE MATERIALES */}
+<Grid container direction="row"
+            justifyContent="space-around"
+            alignItems="center"  
+          
             
+          
+            sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+              borderBottom: 'var(--Grid-borderWidth) solid',
+              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
+            }}
+            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  >
@@ -357,6 +437,22 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                     </TableBody>
                 </Table>
             </TableContainer>  
+          </Grid>
+{/* COMIENZA CONTENEDOR DE REACTIVOS */}
+
+<Grid container direction="row"
+            justifyContent="space-around"
+            alignItems="center"  
+          
+            
+          
+            sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+              borderBottom: 'var(--Grid-borderWidth) solid',
+              borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
+            }}
+            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  >
@@ -438,7 +534,7 @@ const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo l
                     </TableBody>
                 </Table>
             </TableContainer>          
-
+</Grid>
          </Box>
 
 

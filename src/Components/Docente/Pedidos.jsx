@@ -41,8 +41,8 @@ function Pedidos() {
 
   useEffect(() => {
     let mounted = true;
-    //getListaTxt()
-    getListaPedidos()
+    getListaTxt()
+   // getListaPedidos()
       .then(items => {
         if (mounted) {
           setListaPedidos(items)
