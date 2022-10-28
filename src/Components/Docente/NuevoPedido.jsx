@@ -228,22 +228,22 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
             <Grid  item xs={6} container justifyContent="center">
-            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
             </Grid>
             <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
             Cantidad
             </Typography>
             </Grid>
             <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
             </Typography>
             </Grid>
             <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 20}}  color="text.secondary">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
             Desechar
             </Typography>
             </Grid>
@@ -296,19 +296,7 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
                                       );
                                        }}
                                        />
-            {/* <TextField
-                                    margin="normal"
-                                    
-                                    required
-                                    fullWidth
-                                    id="cantidad_equipo"
-                                    label="cantidad_equipo"
-                                    name="cantidad_equipo"
-                                    autoComplete="cantidad_equipo"
-                                    autoFocus
-                                  >
-                                   
-            </TextField> */}
+           
                                      
             </Grid>
             <Grid  item xs={2} container justifyContent="center">
@@ -322,33 +310,13 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
                                     </Avatar> 
             </Grid>
             </Grid>        
-                    {/* <TableBody>
-                       
-                            <TableRow                                
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell >
-                              
-                                {/* <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    /> */}
-                                 
-            </Grid>
-
+       <Grid></Grid>       
+       </Grid>    
 {/* COMIENZA CONTENEDOR DE MATERIALES */}
+
 <Grid container direction="row"
             justifyContent="space-around"
             alignItems="center"  
-          
-            
-          
             sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
             borderLeft: 'var(--Grid-borderWidth) solid',
             borderRight: 'var(--Grid-borderWidth) solid',
@@ -356,6 +324,8 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
               borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
             }}
             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
+
+            {/* TITULO */}
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  >
@@ -368,84 +338,103 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
             </Typography>
             </Grid>
             </Grid>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow alignItems="center">
-                            <TableCell align='left'>Descripcion</TableCell>
-                            <TableCell align="center">Tipo</TableCell>
-                            <TableCell align="center">Cantidad</TableCell>
-                            <TableCell align="center">confirmar</TableCell>
-                            <TableCell align="center">desechar</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                       
-                            <TableRow
-                                
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell >
-                                <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    />
-                                     </TableCell>
-                                <TableCell align="right">
-                                <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    /></TableCell>
-                                <TableCell align="right">
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="cantidad_grupos"
-                                    label="cantidad_grupos"
-                                    name="cantidad_grupos"
-                                    autoComplete="cantidad_grupos"
-                                    autoFocus
-                                  />
-                                </TableCell>
-                                <TableCell align="right">
-                                  
-                                <Avatar> 
-                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                </Avatar>
 
-                                </TableCell>
-                                <TableCell align="right">
-                                <Avatar> 
-                                <DeleteForeverIcon color={"rojo"} />
-                                </Avatar> 
-                                </TableCell>
-                            </TableRow>
-                       
-                    </TableBody>
-                </Table>
-            </TableContainer>  
-          </Grid>
+            
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="center">
+            <Typography sx={{fontSize: 14 }}  color="text.secondary">
+            Descripcion
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Cantidad
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
+            Confirmar
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Desechar
+            </Typography>
+            </Grid>
+            </Grid>
+            
+             <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="start" >
+            <Autocomplete
+                                    disablePortal
+                                    fullWidth
+                                    id="combo-box-demo"
+                                    options={equipos}
+                                    // sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       margin="normal"
+                                       
+                                       name="descripcion_equipo"
+                                       label={"seleccione_Equipos "}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+            </Grid>
+          
+            <Grid  item xs={2} container justifyContent="center">
+            <Autocomplete
+                                    disablePortal
+                                    fullWidth
+                                    id="cant_equipos"
+                                    options={numeros}
+                                    // sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       margin="normal"
+                                       name="cant_equipo"
+
+                                       label={"cant_equipos"}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+           
+                                     
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                                    </Avatar>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <DeleteForeverIcon color={"rojo"} />
+                                    </Avatar> 
+            </Grid>
+            </Grid>        
+       <Grid></Grid>       
+       </Grid>   
+
+
 {/* COMIENZA CONTENEDOR DE REACTIVOS */}
 
 <Grid container direction="row"
             justifyContent="space-around"
             alignItems="center"  
-          
-            
-          
             sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
             borderLeft: 'var(--Grid-borderWidth) solid',
             borderRight: 'var(--Grid-borderWidth) solid',
@@ -453,6 +442,8 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
               borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
             }}
             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
+
+            {/* TITULO */}
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  >
@@ -465,76 +456,97 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
             </Typography>
             </Grid>
             </Grid>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow alignItems="center">
-                            <TableCell>Descripcion</TableCell>
-                            <TableCell align="center">Tipo</TableCell>
-                            <TableCell align="center">Cantidad</TableCell>
-                            <TableCell align="center">confirmar</TableCell>
-                            <TableCell align="center">desechar</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                       
-                            <TableRow
-                                
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell >
-                                <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    />
-                                     </TableCell>
-                                <TableCell align="right">
-                                <TextField
-                                      margin="normal"
-                                      required
-                                      fullWidth
-                                      id="cantidad_grupos"
-                                      label="cantidad_grupos"
-                                      name="cantidad_grupos"
-                                      autoComplete="cantidad_grupos"
-                                      autoFocus
-                                    /></TableCell>
-                                <TableCell align="right">
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="cantidad_grupos"
-                                    label="cantidad_grupos"
-                                    name="cantidad_grupos"
-                                    autoComplete="cantidad_grupos"
-                                    autoFocus
-                                  />
-                                </TableCell>
-                                <TableCell align="right">
-                                  
-                                <Avatar> 
-                                <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                </Avatar>
 
-                                </TableCell>
-                                <TableCell align="right">
-                                <Avatar> 
-                                <DeleteForeverIcon color={"rojo"} />
-                                </Avatar> 
-                                </TableCell>
-                            </TableRow>
-                       
-                    </TableBody>
-                </Table>
-            </TableContainer>          
-</Grid>
+            
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="center">
+            <Typography sx={{fontSize: 14 }}  color="text.secondary">
+            Descripcion
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Cantidad
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
+            Confirmar
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Desechar
+            </Typography>
+            </Grid>
+            </Grid>
+            
+             <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={6} container justifyContent="start" >
+            <Autocomplete
+                                    disablePortal
+                                    fullWidth
+                                    id="combo-box-demo"
+                                    options={equipos}
+                                    // sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       margin="normal"
+                                       
+                                       name="descripcion_equipo"
+                                       label={"seleccione_Equipos "}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+            </Grid>
+          
+            <Grid  item xs={2} container justifyContent="center">
+            <Autocomplete
+                                    disablePortal
+                                    fullWidth
+                                    id="cant_equipos"
+                                    options={numeros}
+                                    // sx={{ width: 300 }}
+                                    renderInput={(params) =>{
+                                      return(
+                                       <TextField {...params} 
+                                       margin="normal"
+                                       name="cant_equipo"
+
+                                       label={"cant_equipos"}
+                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputProps={{
+                                        ...params.InputProps,}}
+                                        />
+                                      );
+                                       }}
+                                       />
+           
+                                     
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                                    </Avatar>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Avatar> 
+                                    <DeleteForeverIcon color={"rojo"} />
+                                    </Avatar> 
+            </Grid>
+            </Grid>        
+       <Grid></Grid>       
+       </Grid>  
+
          </Box>
 
 
