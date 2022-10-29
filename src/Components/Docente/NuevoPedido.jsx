@@ -78,10 +78,10 @@ export default function NuevoPedido() {
     }
 ]
 }
-const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo laminar '},{label:'Campana para extracción de gases Biotec '},{label:'Campana para extracción gases Biotraza FH1200 '},{label:'Destilador Arcano GZ-10 lts '},{label:'Electrodo Redox/ORP MTC10105 n/s: 163563029004 / 163623029001 / 170093029002 '},{label:'Electrodo Redox/ORP MTC301 n/s: 163653018008 '},{label:'Electrodo Redox/ORP MTC301 n/s: 170033018005 '},{label:'Electroporador a micropulso BioRad '},{label:'Freezer vertical modelo FEDE -35 '},{label:'Heladera Righi 520-4 '},{label:'Heladera Samsung 370L '},{label:'Lavador ultrasónico PS-40 Arcano '},
+const equipos=[{label:'Bomba p/vacio Arcano dos etapas '},{label:'Cabina Flujo laminar '},{label:'Campana para extracción de gases Biotec '},{label:'Campana para extracción gases Biotraza FH1200 '},{label:'Destilador Arcano GZ-10 lts '},{label:'Electrodo Redox/ORP MTC10105 n/s: 163563029004 / 163623029001 / 170093029002 '},{label:'Electrodo Redox/ORP MTC301 n/s: 163653018008 '},{label:'Electrodo Redox/ORP MTC301 n/s: 170033018005 '},{label:'Electroporador a micropulso BioRad '},{label:'Freezer vertical modelo FEDE -35 '},{label:'Heladera Righi 520-4 '},{label:'Heladera Samsung 370L '},{label:'Lavador ultrasónico PS-40 Arcano '}
 ];
-const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{label:7},{label:8},{label:9},{label:10},{label:11},{label:12},{label:13},
-];
+const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{label:"6"},{label:"7"},{label:"8"},{label:"9"},{label:"10"},{label:"11"},{label:"12"},{label:"13"}
+]
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,10 +89,10 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
 
     const data = new FormData(event.currentTarget);
 
-    // console.log({
-    //   usuario: data.get('user'),
-    //   password: data.get('password'),
-    // });
+    console.log({
+      usuario: data.get('descripcion_materiales'),
+      password: data.get('cant_material'),
+    });
     // setPantalla(data.get('user').toLowerCase());
 
   };
@@ -281,7 +281,7 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
                                     fullWidth
                                     id="cant_equipos"
                                     options={numeros}
-                                    // sx={{ width: 300 }}
+                                    
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
@@ -380,8 +380,8 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
                                        <TextField {...params} 
                                        margin="normal"
                                        
-                                       name="descripcion_equipo"
-                                       label={"seleccione_Equipos "}
+                                       name="descripcion_materiales"
+                                       label={"seleccione_material "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
                                         ...params.InputProps,}}
@@ -395,16 +395,16 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
             <Autocomplete
                                     disablePortal
                                     fullWidth
-                                    id="cant_equipos"
+                                    id="cant_material"
                                     options={numeros}
                                     // sx={{ width: 300 }}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
                                        margin="normal"
-                                       name="cant_equipo"
+                                       name="cant_material"
 
-                                       label={"cant_equipos"}
+                                       label={"cant_material"}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
                                         ...params.InputProps,}}
@@ -498,7 +498,7 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
                                        <TextField {...params} 
                                        margin="normal"
                                        
-                                       name="descripcion_equipo"
+                                       name="descripcion_reactivo"
                                        label={"seleccione_Equipos "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
@@ -513,7 +513,7 @@ const numeros=[{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{labe
             <Autocomplete
                                     disablePortal
                                     fullWidth
-                                    id="cant_equipos"
+                                    id="cant_reactivo"
                                     options={numeros}
                                     // sx={{ width: 300 }}
                                     renderInput={(params) =>{

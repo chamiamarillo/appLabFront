@@ -31,7 +31,9 @@ export default function Header({texto}) {
     <ThemeProvider theme={Theme1}>
     <Box sx={{ flexGrow: 1 }}>
         
-      <AppBar style={{ backgroundColor: "#b4e0bc" }} position="static" maxWidth="lg">
+      <AppBar style={{ backgroundColor: "#b4e0bc" }} position="static" 
+      maxwidth="lg"
+      >
         <Toolbar>
           <Typography variant="h6" align='center'color={"blanco.main"} component="div" sx={{ flexGrow: 1 }}>
             {texto}
