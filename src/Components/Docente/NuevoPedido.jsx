@@ -27,6 +27,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import InputLabel from '@mui/material/InputLabel';
+import { height } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -36,9 +38,10 @@ import InputLabel from '@mui/material/InputLabel';
 
 
 
-export default function NuevoPedido() {
+export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
   const [cantEquipo, setCantEquipo] = React.useState('');
+  const navigate=useNavigate();
 
   const handleChange = (event) => {
     setCantEquipo(event.target.value);
@@ -123,21 +126,21 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
               borderColor: 'divider',paddingX:2,borderRadius:4,paddingY:1,marginBottom:3
             }}
             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }}> 
-             <Grid item xs={4}>
+             <Grid item xs={1}>
                 <TextField
                     margin="normal"
-                    required
+                    // required
                     fullWidth
-                    id="numero_pedido"
-                    label="numero_pedido"
-                    name="numero_pedido"
+                    id="n_pedido"
+                    label="n_pedido"
+                    name="n_pedido"
                     value={unpedido.numero_tp}
-                    autoComplete={"numero_pedido"}
+                    autoComplete={"n_pedido"}
                     autoFocus
                   />
                  
               </Grid> 
-              <Grid item xs={4}>
+              <Grid item xs={2}>
                 <TextField
                     margin="normal"
                     required
@@ -163,6 +166,21 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
                 autoFocus
               />
             </Grid>
+            <Grid item xs={2}>
+           
+                <Button fullWidth
+                margin="normal"
+              variant="contained"
+              onClick={() => {
+          navigate('/Docente/Pedidos')
+          setNuevoPedido(false);
+          
+        }}
+              
+              
+              sx={{ mt: 3, mb: 2 ,height:50}}>Cargar pedido</Button>
+              
+              </Grid>
             <Grid item xs={6}>
 
 
@@ -224,22 +242,24 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={6} container justifyContent="center">
+            <Grid  item xs={5} container justifyContent="center">
             <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
             </Grid>
+            <Grid  item xs={1} container justifyContent="center"/>
             <Grid  item xs={2} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Cantidad
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={2} container justifyContent="center"/>
+            <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Desechar
             </Typography>
@@ -249,7 +269,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
              <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={6} container justifyContent="start" >
+            <Grid  item xs={5} container justifyContent="start" >
             <Autocomplete
                                     disablePortal
                                     fullWidth
@@ -270,6 +290,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
                                        }}
                                        />
             </Grid>
+            <Grid  item xs={1} container justifyContent="center"/>
           
             <Grid  item xs={2} container justifyContent="center">
             <Autocomplete
@@ -295,12 +316,13 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
            
                                      
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={2} container justifyContent="center"/>
+            <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
                                     <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                     </Avatar>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
                                     <DeleteForeverIcon color={"rojo"} />
                                     </Avatar> 
@@ -339,22 +361,24 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
             <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={6} container justifyContent="center">
+            <Grid  item xs={5} container justifyContent="center">
             <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
             </Grid>
+            <Grid  item xs={1} container justifyContent="center"/>
             <Grid  item xs={2} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Cantidad
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={2} container justifyContent="center"/>
+            <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Desechar
             </Typography>
@@ -364,7 +388,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
              <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={6} container justifyContent="start" >
+            <Grid  item xs={5} container justifyContent="start" >
             <Autocomplete
                                     disablePortal
                                     fullWidth
@@ -386,7 +410,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
                                        }}
                                        />
             </Grid>
-          
+            <Grid  item xs={1} container justifyContent="center"/>
             <Grid  item xs={2} container justifyContent="center">
             <Autocomplete
                                     disablePortal
@@ -411,12 +435,13 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
            
                                      
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={2} container justifyContent="center"/>
+            <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
                                     <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                     </Avatar>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center">
+            <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
                                     <DeleteForeverIcon color={"rojo"} />
                                     </Avatar> 
