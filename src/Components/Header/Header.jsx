@@ -9,8 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {ThemeProvider } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
-
-
+import logo from '../Image/logo_unahur.png'
 export default function Header({texto}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,7 +33,9 @@ export default function Header({texto}) {
       <AppBar style={{ backgroundColor: "#b4e0bc" }} position="static" 
       maxwidth="lg"
       >
+        
         <Toolbar>
+        <img width={150} heigth={60} src={logo} alt="logo" />
           <Typography variant="h6" align='center'color={"blanco.main"} component="div" sx={{ flexGrow: 1 }}>
             {texto}
           </Typography>
@@ -65,8 +66,7 @@ export default function Header({texto}) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               > 
-                <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+                <MenuItem onClick={handleClose}> Cerrar sesión </MenuItem>
               </Menu>
             </div>
           )}
