@@ -2,22 +2,29 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import {ThemeProvider } from '@mui/material/styles';
+import {ThemeProvider, createTheme } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
-import logo from '../Image/logo_unahur.png'
-export default function Header({texto}) {
-  const [auth, setAuth] = React.useState(true);
+import logo from '../Image/logo_unahur.png';
+const themeHeader=createTheme({
+  palette:{
+      primary:{
+          main:"#685E5E"
+      }
+  },
+})
+export default function Header(props) {
+//  const [auth, setAuth] = React.useState(props.isLogged);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+/*
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
-
+*/
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,10 +43,12 @@ export default function Header({texto}) {
         
         <Toolbar>
         <img width={150} heigth={60} src={logo} alt="logo" />
-          <Typography variant="h6" align='center'color={"blanco.main"} component="div" sx={{ flexGrow: 1 }}>
-            {texto}
+        <ThemeProvider theme={themeHeader}>
+          <Typography variant="h6" align='center'color={"primary.main"} component="div" sx={{ flexGrow: 1 }}>
+            {props.texto}
           </Typography>
-          {auth && (
+          </ThemeProvider>
+          {props.isLogged && (
             <div>
               <IconButton
                 size="large"
@@ -49,7 +58,7 @@ export default function Header({texto}) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <Avatar></Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"
