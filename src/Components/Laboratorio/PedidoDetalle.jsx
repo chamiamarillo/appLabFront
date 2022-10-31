@@ -38,14 +38,13 @@ function PedidoDetalle({ open = { open },
         docente,
         cantidad_grupos,
         lista_equipos,
+        lista_materiales,
+        lista_reactivos
     } = pedido;
 
-    //Esto se define para que no falle, pero cuando este el modelo tiene que llegar por props dentro del pedido
-    const rowsReactivos = [];
-
-    const rowsMateriales = [];
-
     const descriptionElementRef = React.useRef(null);
+
+    console.log(lista_materiales);
 
     return (
         <div>
@@ -116,15 +115,15 @@ function PedidoDetalle({ open = { open },
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rowsMateriales.map((row) => (
+                                    {lista_materiales.map((row) => (
                                         <TableRow
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row">
-                                                {row.descripcion}
+                                                {row.material.descripcion}
                                             </TableCell>
-                                            <TableCell align="right">{row.calories}</TableCell>
+                                            <TableCell align="right">{row.cantidad}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -148,20 +147,20 @@ function PedidoDetalle({ open = { open },
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rowsReactivos.map((row) => (
+                                    {lista_reactivos.map((row) => (
                                         <TableRow
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row">
-                                                {row.descipcion}
+                                                {row.reactivo.descripcion}
                                             </TableCell>
-                                            <TableCell align="right">{row.cas}</TableCell>
-                                            <TableCell align="right">{row.calidad}</TableCell>
-                                            <TableCell align="right">{row.concentracion}</TableCell>
-                                            <TableCell align="right">{row.disolvente}</TableCell>
-                                            <TableCell align="right">{row.cantidadTotal}</TableCell>
-                                            <TableCell align="right">{row.unidadDeMedida}</TableCell>
+                                            <TableCell align="right">{row.reactivo.cas}</TableCell>
+                                            <TableCell align="right">{row.reactivo.calidad}</TableCell>
+                                            <TableCell align="right">{row.reactivo.concentracion_tipo}</TableCell>
+                                            <TableCell align="right">{row.reactivo.disolvente}</TableCell>
+                                            <TableCell align="right">{row.cantidad}</TableCell>
+                                            <TableCell align="right">{row.reactivo.concentracion_medida}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

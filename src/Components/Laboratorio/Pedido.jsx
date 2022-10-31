@@ -34,8 +34,6 @@ function Pedido({ pedido }) {
     fecha_solicitud,
     numero_laboratorio,
     docente,
-    cantidad_grupos,
-    lista_equipos
   } = pedido;
 
   const [open, setOpen] = React.useState(false);
