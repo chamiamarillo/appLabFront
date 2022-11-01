@@ -29,6 +29,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import InputLabel from '@mui/material/InputLabel';
 import { height } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
+import {postPedido} from  '../../Services/postPedidoService'
 
 
 
@@ -40,6 +41,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
+const [nuevo_Pedido,setnuevo_pedido]=useState({});
   const [cantEquipo, setCantEquipo] = React.useState('');
   const navigate=useNavigate();
 
@@ -88,6 +90,28 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
     
 
     const data = new FormData(event.currentTarget);
+    const cargaDePedido2 ={docente: {
+      "nombre": "Pedro",
+      "apellido": "Pelota",
+      "dni": 7897,
+      "matricula": 1233457
+  }, 
+        "descripcion": "Pedido 2",
+        "fecha_solicitud":"2022/11/10",
+        "fecha_utilizacion":"2022/11/10",
+        "numero_laboratorio": data.numero_laboratorio,
+        "tipo_pedido": "algo",
+        "cantidad_grupos": data.cantidad_grupos,
+        "observaciones": "algo mas",
+        "materia": "materia",
+        "numero_tp": 2,
+        "lista_equipos": [],
+        "lista_reactivos":[],
+        "lista_materiales":[]
+           
+  };
+  setnuevo_pedido(cargaDePedido2);
+     postPedido(nuevo_Pedido) ;
 
     console.log({
       usuario: data.get('descripcion_materiales'),
