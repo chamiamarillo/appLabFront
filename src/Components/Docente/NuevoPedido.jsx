@@ -115,7 +115,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
      
           <Grid container direction="row"
             justifyContent="space-around"
-            alignItems="center"  
+            alignItems="center"   
           
             
           
@@ -178,7 +178,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
         }}
               
               
-              sx={{ mt: 3, mb: 2 ,height:50}}>Cargar pedido</Button>
+              sx={{ mt: 3, mb: 2 ,height:50}}>VOLVER</Button>
               
               </Grid>
             <Grid item xs={6}>
@@ -681,7 +681,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              INGRESAR
+              ENVIAR PEDIDO
             </Button>
            
           </Box>

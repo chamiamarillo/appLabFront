@@ -88,8 +88,10 @@ function PedidoDetalle({ open = { open },
                                         <TableCell align="right">Cantidad</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
-                                    {lista_equipos.map((row) => (
+                                <TableBody>{ (lista_equipos.length > 0)
+                                ?
+                                 (<div>{
+                                    lista_equipos.map((row) => (
                                         <TableRow
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -99,6 +101,9 @@ function PedidoDetalle({ open = { open },
                                             <TableCell align="right">{row.cantidad}</TableCell>
                                         </TableRow>
                                     ))}
+                                    </div>
+                                    ): (<div></div>) }
+                    
                                 </TableBody>
                             </Table>
                         </TableContainer>
@@ -114,7 +119,9 @@ function PedidoDetalle({ open = { open },
                                         <TableCell align="right">Cantidad</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
+                                <TableBody>{ (lista_materiales.length) > 0
+                                ?
+                                (<div>
                                     {lista_materiales.map((row) => (
                                         <TableRow
                                             key={row._id}
@@ -126,6 +133,9 @@ function PedidoDetalle({ open = { open },
                                             <TableCell align="right">{row.cantidad}</TableCell>
                                         </TableRow>
                                     ))}
+                                    </div>)
+                                    : (<div></div>) }
+                                                        
                                 </TableBody>
                             </Table>
                         </TableContainer>
@@ -146,7 +156,9 @@ function PedidoDetalle({ open = { open },
                                         <TableCell align="right">Unidad de medida</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
+                                <TableBody> { (lista_materiales.length) > 0
+                                     ? 
+                                     (<div>
                                     {lista_reactivos.map((row) => (
                                         <TableRow
                                             key={row._id}
@@ -163,6 +175,8 @@ function PedidoDetalle({ open = { open },
                                             <TableCell align="right">{row.reactivo.concentracion_medida}</TableCell>
                                         </TableRow>
                                     ))}
+                                    </div>)
+                                    : (<div></div>) }
                                 </TableBody>
                             </Table>
                         </TableContainer>
