@@ -90,21 +90,21 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
     
 
     const data = new FormData(event.currentTarget);
-    const cargaDePedido2 ={docente: {
-      "nombre": "Pedro",
-      "apellido": "Pelota",
-      "dni": 7897,
-      "matricula": 1233457
+    const cargaDePedido2 ={"docente": {
+      "nombre": "Josefa",
+      "apellido": "Perez",
+      "dni": "7897",
+      "matricula": "1233457"
   }, 
         "descripcion": "Pedido 2",
         "fecha_solicitud":"2022/11/10",
         "fecha_utilizacion":"2022/11/10",
-        "numero_laboratorio": data.numero_laboratorio,
+        "numero_laboratorio": "2",
         "tipo_pedido": "algo",
-        "cantidad_grupos": data.cantidad_grupos,
+        "cantidad_grupos": "2",
         "observaciones": "algo mas",
         "materia": "materia",
-        "numero_tp": 2,
+        "numero_tp": "2",
         "lista_equipos": [],
         "lista_reactivos":[],
         "lista_materiales":[]
