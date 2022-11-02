@@ -41,7 +41,7 @@ import {postPedido} from  '../../Services/postPedidoService'
 
 export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
-const [nuevo_Pedido,setnuevo_pedido]=useState({});
+
   const [cantEquipo, setCantEquipo] = React.useState('');
   const navigate=useNavigate();
 
@@ -85,14 +85,14 @@ const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{labe
 const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:"Acido cítrico anhidro p.a." ,cas:"77-92-9"},{label:"Ácido Fluorhídrico 40% p.a." ,cas:"7664-39-3"},{label:"Acido nítrico 70% p.a." ,cas:"7697-37-2"},{label:"Ácido Oxálico p.a." ,cas:"6153-56-6"},{label:"Almidón soluble" ,cas:"9005-84-9"},{label:"Azul de metileno p.a." ,cas:"122965-43-9"},{label:"Buffer pH 4,01" ,cas:"s/n"},{label:"Buffer pH 7,00" ,cas:"s/n"},{label:"Buffer pH 10,01" ,cas:"s/n"},{label:"Buffer pH 10,00" ,cas:"s/n"},{label:"Calcio carbonato p.a" ,cas:"471-34-1"},{label:"Clorato de potasio" ,cas:"3811-04-09"},
 ]
  
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
     event.preventDefault();
     
 
     const data = new FormData(event.currentTarget);
     const cargaDePedido2 ={"docente": {
-      "nombre": "Josefa",
-      "apellido": "Perez",
+      "nombre": "Miriam",
+      "apellido": "Gonzalez",
       "dni": "7897",
       "matricula": "1233457"
   }, 
@@ -110,8 +110,9 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
         "lista_materiales":[]
            
   };
-  setnuevo_pedido(cargaDePedido2);
-     postPedido(nuevo_Pedido) ;
+    
+   
+     postPedido(cargaDePedido2) ;
 
     console.log({
       usuario: data.get('descripcion_materiales'),
