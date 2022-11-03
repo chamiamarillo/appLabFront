@@ -15,6 +15,7 @@ import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
 import Header from '../Header/Header'
+import{getUsuario} from '../../Services/getUsuarioService';
 
 function Copyright(props) {
   return (
@@ -32,13 +33,15 @@ function Copyright(props) {
 //const theme = createTheme();
 
 export default function Login() {
+
   const [texto,setTexto]=React.useState("UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO")
   const navigate=useNavigate();
+
   const re_direccion=(usuario)=>{
-    if(usuario==="docente"){
+    if(usuario=== false){
       navigate("/Docente/Pedidos");
     }
-    else if(usuario==="laboratorio"){
+    else if(usuario=== true){
       navigate("/Laboratorio/Pedidos");
     }else{
       navigate("/");
@@ -50,15 +53,14 @@ export default function Login() {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    const usuario=data.get('user');
-    re_direccion(usuario);
-    console.log({
-      usuario: data.get('user'),
-      password: data.get('password'),
-    });
-   
-    
+    const datos = getUsuario(data.get('user'), data.get('password'));
 
+    
+    Promise.resolve(datos).then(value=>{
+      re_direccion(value[0].admin);
+
+    })
+    
   };
 
   return (
