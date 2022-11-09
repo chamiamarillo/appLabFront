@@ -10,6 +10,8 @@ import Menu from '@mui/material/Menu';
 import {ThemeProvider, createTheme } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
 import logo from '../Image/logo_unahur.png';
+import {useNavigate} from 'react-router-dom';
+
 const themeHeader=createTheme({
   palette:{
       primary:{
@@ -18,13 +20,10 @@ const themeHeader=createTheme({
   },
 })
 export default function Header(props) {
-//  const [auth, setAuth] = React.useState(props.isLogged);
+  const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [anchorEl, setAnchorEl] = React.useState(null);
-/*
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-*/
+  const navigate=useNavigate();
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -32,7 +31,10 @@ export default function Header(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <ThemeProvider theme={Theme1}>
     <Box sx={{ flexGrow: 1 }}>
@@ -48,7 +50,7 @@ export default function Header(props) {
             {props.texto}
           </Typography>
           </ThemeProvider>
-          {props.isLogged && (
+          {userActual && (
             <div>
               <IconButton
                 size="large"
@@ -58,7 +60,7 @@ export default function Header(props) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Avatar></Avatar>
+                <Avatar alt="usuario">{(userActual.nombre).charAt(0).concat((userActual.apellido).charAt(0))}</Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -75,7 +77,7 @@ export default function Header(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               > 
-                <MenuItem onClick={handleClose}> Cerrar sesión </MenuItem>
+                <MenuItem onClick={handleLogout}> Cerrar sesión </MenuItem>
               </Menu>
             </div>
           )}

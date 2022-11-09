@@ -58,7 +58,8 @@ export default function Login() {
     
     Promise.resolve(datos).then(value=>{
       re_direccion(value[0].admin);
-
+      console.log(value[0]);
+      localStorage.setItem('usuario',JSON.stringify(value[0]));
     })
     
   };
