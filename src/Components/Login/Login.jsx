@@ -58,7 +58,6 @@ export default function Login() {
     
     Promise.resolve(datos).then(value=>{
       re_direccion(value[0].admin);
-      console.log(value[0]);
       localStorage.setItem('usuario',JSON.stringify(value[0]));
     })
     
@@ -68,7 +67,7 @@ export default function Login() {
     <ThemeProvider theme={Theme1}>
        <Box sx={{ flexGrow: 1 ,m:2}}>
           <Typography variant="body1" align='center' color='primary.main' >
-                   <Header texto={texto} ></Header>
+                   <Header texto={texto} isNotLogin={false} ></Header>
           </Typography>
      </Box>
     

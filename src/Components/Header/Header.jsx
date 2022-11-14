@@ -19,6 +19,9 @@ const themeHeader=createTheme({
       }
   },
 })
+Header.defaultProps={
+  isNotLogin: true
+}
 export default function Header(props) {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -50,7 +53,7 @@ export default function Header(props) {
             {props.texto}
           </Typography>
           </ThemeProvider>
-          {userActual && (
+          {(props.isNotLogin && userActual ) && (
             <div>
               <IconButton
                 size="large"
