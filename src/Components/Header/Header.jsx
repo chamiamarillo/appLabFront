@@ -62,7 +62,10 @@ export default function Header(props) {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              >
+              > 
+              <ThemeProvider theme={themeHeader}>
+              <Typography  color={"primary.main"}> {(userActual.nombre)} {(userActual.apellido) } </Typography>
+              </ThemeProvider>
                 <Avatar alt="usuario">{(userActual.nombre).charAt(0).concat((userActual.apellido).charAt(0))}</Avatar>
               </IconButton>
               <Menu
