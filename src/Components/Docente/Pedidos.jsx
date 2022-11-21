@@ -3,6 +3,7 @@ import PedidoV1 from "./PedidoV1";
 import Pedido from "./Pedido"
 import {getListaTxt} from '../../Services/getPedidosServiceTxt';
 import{getListaPedidos} from '../../Services/getPedidosService';
+import { getPedidosPorDni } from "../../Services/getPedidosPorDNIService";
 import Header from '../Header/Header'
 
 
@@ -42,7 +43,7 @@ function Pedidos() {
   useEffect(() => {
     let mounted = true;
     //getListaTxt()
-    getListaPedidos()
+    getPedidosPorDni(7897)
       .then(items => {
         if (mounted) {
           setListaPedidos(items)
