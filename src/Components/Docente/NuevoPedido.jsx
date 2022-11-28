@@ -1,5 +1,5 @@
 
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,7 +11,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import{getListaEquipos} from '../../Services/getEquiposService';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
@@ -44,6 +44,7 @@ export default function NuevoPedido({setNuevoPedido}) {
 
   const [cantEquipo, setCantEquipo] = React.useState('');
   const navigate=useNavigate();
+  const[listaEquipos,setListaEquipos]=useState([]);
 
   const handleChange = (event) => {
     setCantEquipo(event.target.value);
@@ -105,7 +106,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
         "observaciones": "algo mas",
         "materia": "materia",
         "numero_tp": "2",
-        "lista_equipos": [],
+        "lista_equipos": [{"cantidad":data.get('cant_equipo'),"equipo":data.get('seleccione_equipos')}],
         "lista_reactivos":[],
         "lista_materiales":[]
            
@@ -115,12 +116,25 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
      postPedido(cargaDePedido2) ;
 
     console.log({
-      usuario: data.get('descripcion_materiales'),
-      password: data.get('cant_material'),
+      algo:"impresion",info:data.getAll(data),
+      equipos:listaEquipos[1],
+      usuario: data.get('cant_equipo'),
+      password: data.get('descripcion_equipo'),
     });
     // setPantalla(data.get('user').toLowerCase());
 
   };
+  useEffect(() => {
+    let mounted = true;
+    //getListaTxt()
+    getListaEquipos()
+      .then(items => {
+        if (mounted) {
+          setListaEquipos(items)
+        }
+      })
+    return () => mounted = false;
+  }, [])
 
   return (
     <ThemeProvider theme={Theme1}>
