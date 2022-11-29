@@ -41,7 +41,8 @@ import {postPedido} from  '../../Services/postPedidoService'
 
 export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
-
+  const[pedidoEquipos,setPedidoEquipos]=useState([]);
+  const[el_id,setId]=useState("");
   const [cantEquipo, setCantEquipo] = React.useState('');
   const navigate=useNavigate();
   const[listaEquipos,setListaEquipos]=useState([]);
@@ -49,6 +50,12 @@ export default function NuevoPedido({setNuevoPedido}) {
   const handleChange = (event) => {
     setCantEquipo(event.target.value);
   };
+  const cargaEquipo = (desc,cant) => {
+    listaEquipos.map((item)=> {if (item.descrpcion===desc) {setId(item._id)}});
+
+    
+  };
+
   
   //PRUEBA CODIGO
   const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
@@ -93,7 +100,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
     const data = new FormData(event.currentTarget);
     const cargaDePedido2 ={"docente": {
       "nombre": "Miriam",
-      "apellido": "Gonzalez",
+      "apellido": "Olson",
       "dni": "7897",
       "matricula": "1233457"
   }, 
@@ -106,7 +113,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
         "observaciones": "algo mas",
         "materia": "materia",
         "numero_tp": "2",
-        "lista_equipos": [{"cantidad":data.get('cant_equipo'),"equipo":data.get('seleccione_equipos')}],
+        "lista_equipos": pedidoEquipos,
         "lista_reactivos":[],
         "lista_materiales":[]
            
@@ -313,7 +320,9 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
                                     disablePortal
                                     fullWidth
                                     id="combo-box-demo"
-                                    options={equipos}
+                                    options={listaEquipos}
+                                   // groupBy={(option)=> option.descripcion}
+                                    getOptionLabel={(option)=>option.descripcion}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
