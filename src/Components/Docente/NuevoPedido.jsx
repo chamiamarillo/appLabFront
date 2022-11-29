@@ -43,17 +43,31 @@ export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[el_id,setId]=useState("");
-  const [cantEquipo, setCantEquipo] = React.useState('');
+  
   const navigate=useNavigate();
   const[listaEquipos,setListaEquipos]=useState([]);
 
-  const handleChange = (event) => {
-    setCantEquipo(event.target.value);
+ 
+  const cargaEquipo = async(event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+      
+    const listamap=listaEquipos.map((item)=> {
+      if (item.descripcion === data.get('descripcion_equipo')) {setId(item._id)};
+  });
+    //console.log({cantidad:data.get('cant_equipo'),equipo:el_id,listanueva:listamap} )
+    const pedEquipo={   
+      
+      "cantidad": data.get('cant_equipo'),
+      "equipo": el_id
   };
-  const cargaEquipo = (desc,cant) => {
-    listaEquipos.map((item)=> {if (item.descrpcion===desc) {setId(item._id)}});
 
-    
+  setPedidoEquipos(pedEquipo);
+  console.log({elPedidoREciente:pedEquipo});
+   
+   
+  
+      
   };
 
   
@@ -92,7 +106,8 @@ const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{labe
 ]
 const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:"Acido cítrico anhidro p.a." ,cas:"77-92-9"},{label:"Ácido Fluorhídrico 40% p.a." ,cas:"7664-39-3"},{label:"Acido nítrico 70% p.a." ,cas:"7697-37-2"},{label:"Ácido Oxálico p.a." ,cas:"6153-56-6"},{label:"Almidón soluble" ,cas:"9005-84-9"},{label:"Azul de metileno p.a." ,cas:"122965-43-9"},{label:"Buffer pH 4,01" ,cas:"s/n"},{label:"Buffer pH 7,00" ,cas:"s/n"},{label:"Buffer pH 10,01" ,cas:"s/n"},{label:"Buffer pH 10,00" ,cas:"s/n"},{label:"Calcio carbonato p.a" ,cas:"471-34-1"},{label:"Clorato de potasio" ,cas:"3811-04-09"},
 ]
- 
+console.log(pedidoEquipos);
+
   const handleSubmit =async (event) => {
     event.preventDefault();
     
@@ -119,15 +134,9 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
            
   };
     
-   
-     postPedido(cargaDePedido2) ;
+  postPedido(cargaDePedido2) ; 
 
-    console.log({
-      algo:"impresion",info:data.getAll(data),
-      equipos:listaEquipos[1],
-      usuario: data.get('cant_equipo'),
-      password: data.get('descripcion_equipo'),
-    });
+    
     // setPantalla(data.get('user').toLowerCase());
 
   };
@@ -154,8 +163,8 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
       <Container component="main"  color="primary">
         
      {/* COMIENZA EL CONTENEDOR DEL BLOQUE SUPERIOR    */}    
-          
-     <Box component="form" onSubmit={handleSubmit} noValidate>
+     {/* <Box component="form" onSubmit={handleSubmit} noValidate>      */}
+     <Box>
           <Box sx={{ flexGrow: 1 ,md:2 }}>    
            
      
@@ -311,8 +320,8 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
             </Typography>
             </Grid>
             </Grid>
-            
-             <Grid container direction="row"
+            {/* FORMULARIO PARA EQUIPOS */}
+            <Grid container component="form" onSubmit={cargaEquipo} noValidate  direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
             <Grid  item xs={5} container justifyContent="start" >
@@ -352,7 +361,7 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
                                        <TextField {...params} 
                                        margin="normal"
                                        name="cant_equipo"
-
+                                     
                                        label={"cant_equipos"}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
@@ -366,9 +375,15 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
             </Grid>
             <Grid  item xs={2} container justifyContent="center"/>
             <Grid  item xs={1} container justifyContent="center">
+            <Button fullWidth
+                margin="normal"
+              variant="text"
+              type="submit"
+              >
             <Avatar> 
                                     <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                     </Avatar>
+          </Button>                          
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
@@ -405,8 +420,8 @@ const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:
             </Grid>
             </Grid>
 
-            
-            <Grid container direction="row"
+            {/* //formulario materiales */}
+            <Grid container  component="form" onSubmit={handleSubmit} noValidatedirection="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
             <Grid  item xs={5} container justifyContent="center">
