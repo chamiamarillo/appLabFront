@@ -214,29 +214,61 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
               </Grid> 
               <Grid item xs={2}>
                 <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="numero_laboratorio"
-                    label="numero_laboratorio"
-                    name="numero_laboratorio"
-                    autoComplete="numero_laboratorio"
+                     id="fecha_solicitud"
+                     label="fecha_solicitud"
+                     type="date"
+                     defaultValue="2022-11-01"
+                     sx={{ width: 180 }}
+                     InputLabelProps={{
+                       shrink: true,
+                     }}
+                     margin="normal"
+                     required
+                     fullWidth
                     autoFocus
                   />
               </Grid>
-            <Grid item xs={4}>
+              <Grid item xs={2}>
 
 
+            <TextField
+              id="fecha_utilizacion"
+              label="fecha_utilizacion"
+              type="date"
+              defaultValue="2022-11-01"
+              sx={{ width: 180 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              required
+              fullWidth
+              autoFocus
+            />
+            </Grid>
+            <Grid item xs={3}>
               <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="edificio"
-                label="edificio"
-                name="edificio"
-                autoComplete="edificio"
-                autoFocus
-              />
+              id="cantidad_alumnos"
+              label="cantidad_alumnos"
+              name="cantidad_alumnos"
+              autoComplete="cantidad_alumnos"
+              autoFocus
+                  id="time"
+                  label="Hora"
+                  type="time"
+                  defaultValue="08:00"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, // 5 min
+                  }}
+                  sx={{ width: 150 }}
+                  margin="normal"
+                  required
+                  fullWidth
+                  autoFocus
+                />
             </Grid>
             <Grid item xs={2}>
            
@@ -252,8 +284,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
               
               sx={{ mt: 3, mb: 2 ,height:50}}>VOLVER</Button>
               
-              </Grid>
-            <Grid item xs={6}>
+            </Grid>
+            
+            <Grid item xs={4}>
 
 
               <TextField
@@ -267,7 +300,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                 autoFocus
               />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
 
 
               <TextField
@@ -281,7 +314,18 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                 autoFocus
               />
             </Grid>
-           
+            <Grid  item xs={1} container justifyContent="center">
+            <Button fullWidth
+                margin="normal"
+              variant="text"
+              type="submit"
+              >
+            <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+            </Avatar>
+          </Button>                          
+            </Grid>
+                                    
             </Grid>
 
 {/* COMIENZA CONTENEDOR DE EQUIPOS */}
