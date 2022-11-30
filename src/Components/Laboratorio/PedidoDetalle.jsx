@@ -156,7 +156,7 @@ function PedidoDetalle({ open = { open },
                                         <TableCell align="right">Unidad de medida</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody> { (lista_materiales.length) > 0
+                                <TableBody> { (lista_reactivos.length) > 0
                                      ? 
                                      (<div>
                                     {lista_reactivos.map((row) => (
