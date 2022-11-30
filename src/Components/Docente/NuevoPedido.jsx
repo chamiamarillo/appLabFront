@@ -30,7 +30,10 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useAsyncValue, useNavigate } from 'react-router-dom';
 import {postPedido} from  '../../Services/postPedidoService'
 import{getListaMateriales,getListaEquipos,getListaReactivos} from '../../Services/getService';
-
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 
 
 
@@ -50,18 +53,22 @@ export default function NuevoPedido({setNuevoPedido}) {
 
   const[pedidoReactivos,setPedidoReactivos]=useState([]);
   const[listaReactivos,setListaReactivos]=useState([]);
+  const[_med_reactivo,setUn_med_reactivo]=useState("");
 
 
 
   
   const navigate=useNavigate();
+  const med_reactivo = (event) => {
+    setUn_med_reactivo(event.target.value);
+  };
 
    //PRUEBA CODIGO
  const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
   
 
- const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{label:"6"},{label:"7"},{label:"8"},{label:"9"},{label:"10"},{label:"11"},{label:"12"},{label:"13"}
- ]
+ //const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{label:"6"},{label:"7"},{label:"8"},{label:"9"},{label:"10"},{label:"11"},{label:"12"},{label:"13"}
+ //]
  const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:"Acido cítrico anhidro p.a." ,cas:"77-92-9"},{label:"Ácido Fluorhídrico 40% p.a." ,cas:"7664-39-3"},{label:"Acido nítrico 70% p.a." ,cas:"7697-37-2"},{label:"Ácido Oxálico p.a." ,cas:"6153-56-6"},{label:"Almidón soluble" ,cas:"9005-84-9"},{label:"Azul de metileno p.a." ,cas:"122965-43-9"},{label:"Buffer pH 4,01" ,cas:"s/n"},{label:"Buffer pH 7,00" ,cas:"s/n"},{label:"Buffer pH 10,01" ,cas:"s/n"},{label:"Buffer pH 10,00" ,cas:"s/n"},{label:"Calcio carbonato p.a" ,cas:"471-34-1"},{label:"Clorato de potasio" ,cas:"3811-04-09"},
  ]
   
@@ -347,8 +354,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     fullWidth
                                     id="combo-box-demo"
                                     options={listaEquipos}
-                                    //groupBy={(option)=>option[0].toUpperCase()}
-                                   
+                                                                 
                                     getOptionLabel={(option)=>option.descripcion}
                                    
                                     renderInput={(params) =>{
@@ -388,26 +394,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                   }}
          
         />
-            {/* <Autocomplete
-                                    disablePortal
-                                    fullWidth
-                                    id="cant_equipos"
-                                    options={numeros}
-                                    
-                                    renderInput={(params) =>{
-                                      return(
-                                       <TextField {...params} 
-                                       margin="normal"
-                                       name="cant_equipo"
-                                     
-                                       label={"cant_equipos"}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
-                                       InputProps={{
-                                        ...params.InputProps,}}
-                                        />
-                                      );
-                                       }}
-                                       /> */}
+           
            
                                      
             </Grid>
@@ -458,7 +445,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Grid>
             </Grid>
 
-            {/* COMIENZA EL FORMULARIO DE MATERIALES */}
+         
 
             <Grid container direction="row"
             justifyContent="start"
@@ -486,7 +473,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Typography>
             </Grid>
             </Grid>
-            
+               {/* COMIENZA EL FORMULARIO DE MATERIALES */}
              <Grid container  component="form" onSubmit={cargaMaterial} noValidate direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
@@ -515,27 +502,25 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Grid>
             <Grid  item xs={1} container justifyContent="center"/>
             <Grid  item xs={2} container justifyContent="center">
-            <Autocomplete
-                                    disablePortal
-                                    fullWidth
-                                    id="cant_material"
-                                    options={numeros}
-                                    // sx={{ width: 300 }}
-                                    renderInput={(params) =>{
-                                      return(
-                                       <TextField {...params} 
-                                       margin="normal"
-                                       name="cant_material"
-
-                                       label={"cant_material"}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
-                                       InputProps={{
-                                        ...params.InputProps,}}
-                                        />
-                                      );
-                                       }}
-                                       />
-              
+            <TextField 
+             sx={{marginTop:1   }}
+                    
+                    id="cant_material"
+                    variant="outlined"
+                    name="cant_material"
+                  label="cant_material"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      inputProps: { 
+                          max: 100, min: 0 
+                      }
+                  }}
+         
+        />  
+           
                                      
             </Grid>
             <Grid  item xs={2} container justifyContent="center"/>
@@ -563,7 +548,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
 
 {/* COMIENZA CONTENEDOR DE REACTIVOS */}
 
-<Grid container direction="row"
+<Grid container component="form" onSubmit={cargaReactivos} noValidate direction="row"
             justifyContent="space-around"
             alignItems="center"  
             sx={{'--Grid-borderWidth': '1px',borderTop: 'var(--Grid-borderWidth) solid',
@@ -639,7 +624,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Typography>
             </Grid>
             </Grid>
-            
+            {/* COMIENZA EL FORMULARIO REACTIVOS */}
              <Grid container direction="row"
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
@@ -648,7 +633,8 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     disablePortal
                                     fullWidth
                                     id="combo-box-demo"
-                                    options={reactivos}
+                                    options={listaReactivos}
+                                    getOptionLabel={(option)=>option.descripcion}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
@@ -730,46 +716,61 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Grid>
           
             <Grid  item xs={1} container justifyContent="center">
-            <Autocomplete
-                                    disablePortal
-                                    fullWidth
-                                    id="cant_reactivo"
-                                    options={numeros}
-                                  
-                                    renderInput={(params) =>{
-                                      return(
-                                       <TextField {...params} 
-                                       margin="normal"
-                                       name="cant_reactivo"
-
-                                       label={"cant_reactivo"}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
-                                       InputProps={{
-                                        ...params.InputProps,}}
-                                        />
-                                      );
-                                       }}
-                                       />
-           
+            <TextField 
+             sx={{marginTop:1   }}
+                    
+                    id="cant_reactivo"
+                    variant="outlined"
+                    name="cant_reactivo"
+                  label="cant_reactivo"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      inputProps: { 
+                          max: 100, min: 0 
+                      }
+                  }}
+         
+        />  
+             
+              
+     
                                      
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="un_med_reactivo"
-                    label="un_med_reactivo"
-                    name="un_med_reactivo"
-                    autoComplete="un_med_reactivo"
-                    autoFocus
-                  />
+            <FormControl fullWidth>
+                <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
+                <Select
+                  labelId="un_med_reactivo"
+                  id="un_med_reactivo"
+                  value={_med_reactivo}
+                  label="un_med_reactivo"
+                  onChange={med_reactivo}
+                >
+                  <MenuItem value={"puro"}>PURO</MenuItem>
+                  <MenuItem value={"molaridad"}>MOLARIDAD</MenuItem>
+                  <MenuItem value={"normalidad"}>NORMALIDAD</MenuItem>
+                  <MenuItem value={"mas/vol"}>%MASA/MASA</MenuItem>
+                  <MenuItem value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
+                  <MenuItem value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
+                </Select>
+              </FormControl>
+ 
               
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
+            <Button fullWidth
+                margin="normal"
+              variant="text"
+              type="submit"
+              >
             <Avatar> 
                                     <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
                                     </Avatar>
+           </Button>    
+            
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
             <Avatar> 
