@@ -27,10 +27,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-import { useNavigate } from 'react-router-dom';
+import { useAsyncValue, useNavigate } from 'react-router-dom';
 import {postPedido} from  '../../Services/postPedidoService'
-import{getListaMateriales} from '../../Services/getMaterialesService';
-import{getListaEquipos} from '../../Services/getEquiposService';
+import{getListaMateriales,getListaEquipos,getListaReactivos} from '../../Services/getService';
+
 
 
 
@@ -42,9 +42,14 @@ export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
+ 
+
 
   const[pedidoMateriales,setPedidoMateriales]=useState([]);
   const[listaMateriales,setListaMateriales]=useState([]);
+
+  const[pedidoReactivos,setPedidoReactivos]=useState([]);
+  const[listaReactivos,setListaReactivos]=useState([]);
 
 
 
@@ -65,6 +70,7 @@ export default function NuevoPedido({setNuevoPedido}) {
   const cargaEquipo = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+   
       
    listaEquipos.map((item,key)=> (
        (item.descripcion === data.get('descripcion_equipo'))?(
@@ -72,8 +78,8 @@ export default function NuevoPedido({setNuevoPedido}) {
         setPedidoEquipos({       
           "cantidad": parseInt(data.get('cant_equipo'),10),
           "equipo": item._id
-      })  ):(console.log(item.descripcion))  ));
-    //console.log({cantidad:data.get('cant_equipo'),equipo:el_id,listanueva:listamap} )
+      })  ):(<div></div>))  );
+    
   
      
   };
@@ -96,6 +102,25 @@ export default function NuevoPedido({setNuevoPedido}) {
    
       
   };
+// CARGA MATERIAL A LA LISTA
+const cargaReactivos = async(event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+    
+  listaMateriales.map((item,key)=> (
+    (item.descripcion === data.get('descripcion_material'))?(
+    
+     setPedidoReactivos({       
+        "cantidad": parseInt(data.get('cant_material'),10),
+        "material": item._id
+    })):(console.log(item.descripcion)) ) );
+ 
+
+console.log({elPedidoREcienteMaterial:pedidoMateriales});
+ 
+    
+};
+
 
   
 
@@ -127,13 +152,20 @@ export default function NuevoPedido({setNuevoPedido}) {
   postPedido(pedido) ; 
 
     
+     
+
     // setPantalla(data.get('user').toLowerCase());
 
   };
   useEffect(() => {
     let mounted = true;
     getListaEquipos().then(items => { if (mounted) {setListaEquipos(items) } });
-    getListaMateriales().then(items => { if (mounted) {setListaMateriales(items) } })
+    getListaMateriales().then(items => { if (mounted) {setListaMateriales(items) } });
+    getListaReactivos().then(items => { if (mounted) {setListaReactivos(items) } })
+
+   
+   
+
     return () => mounted = false;
   }, [])
 
@@ -310,18 +342,20 @@ export default function NuevoPedido({setNuevoPedido}) {
             justifyContent="start"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
             <Grid  item xs={5} container justifyContent="start" >
-            <Autocomplete
+            <Autocomplete 
                                     disablePortal
                                     fullWidth
                                     id="combo-box-demo"
                                     options={listaEquipos}
-                                   // groupBy={(option)=> option.descripcion}
+                                    //groupBy={(option)=>option[0].toUpperCase()}
+                                   
                                     getOptionLabel={(option)=>option.descripcion}
+                                   
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
                                        margin="normal"
-                                       
+                                      // value={params._id}
                                        name="descripcion_equipo"
                                        label={"descripcion_equipo"}
                                        InputLabelProps={{className:"autocompleteLabel"}}
@@ -334,8 +368,27 @@ export default function NuevoPedido({setNuevoPedido}) {
             </Grid>
             <Grid  item xs={1} container justifyContent="center"/>
           
-            <Grid  item xs={2} container justifyContent="center">
-            <Autocomplete
+            <Grid  item xs={2} container justifyContent="center" >
+          
+            <TextField 
+             sx={{marginTop:1   }}
+                    
+                    id="cant_equipo"
+                    variant="outlined"
+                    name="cant_equipo"
+                  label="cant_equipos"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      inputProps: { 
+                          max: 100, min: 0 
+                      }
+                  }}
+         
+        />
+            {/* <Autocomplete
                                     disablePortal
                                     fullWidth
                                     id="cant_equipos"
@@ -354,7 +407,7 @@ export default function NuevoPedido({setNuevoPedido}) {
                                         />
                                       );
                                        }}
-                                       />
+                                       /> */}
            
                                      
             </Grid>
@@ -367,7 +420,7 @@ export default function NuevoPedido({setNuevoPedido}) {
               >
             <Avatar> 
                                     <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                    </Avatar>
+            </Avatar>
           </Button>                          
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
