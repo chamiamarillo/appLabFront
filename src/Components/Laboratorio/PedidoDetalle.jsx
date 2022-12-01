@@ -96,7 +96,8 @@ function PedidoDetalle({ open = { open },
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell >{row.equipo.descripcion}</TableCell>
+                                            <TableCell  component="th" scope="row">
+                                                {row.equipo.descripcion}</TableCell>
                                             <TableCell align="right">{row.equipo.clase}</TableCell>
                                             <TableCell align="right">{row.cantidad}</TableCell>
                                         </TableRow>
