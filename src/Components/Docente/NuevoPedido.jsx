@@ -113,7 +113,7 @@ export default function NuevoPedido({setNuevoPedido}) {
       })):(console.log(item.descripcion)) ) );
    
   
-  console.log({elPedidoREcienteMaterial:pedidoMateriales});
+ 
    
       
   };
@@ -144,8 +144,8 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
   const handleSubmit = () => {
     
     const pedido ={"docente": {
-      "nombre": "Romina",
-      "apellido": "Vera",
+      "nombre": "Miriam",
+      "apellido": "Gonzalez",
       "dni": "7897",
       "matricula": "1233457"
   }, 
@@ -169,7 +169,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
     
      
 
-    // setPantalla(data.get('user').toLowerCase());
+   
 
   };
   useEffect(() => {
