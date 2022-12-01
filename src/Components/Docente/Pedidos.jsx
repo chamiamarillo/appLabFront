@@ -60,7 +60,6 @@ function Pedidos() {
                    <Header texto={texto} ></Header>
         
      </Box>
-
      { !(nuevoPedido) ?(
      
         <Box sx={{ flexGrow: 1 ,m:2}}>
@@ -94,7 +93,6 @@ function Pedidos() {
       
      
     
-
       </ThemeProvider>
    
   );
