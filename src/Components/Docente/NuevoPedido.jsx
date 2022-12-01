@@ -34,6 +34,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 
 
@@ -43,6 +44,8 @@ import MenuItem from '@mui/material/MenuItem';
 
 export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
+
+  const userActual = JSON.parse(localStorage.getItem('usuario'));
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
  
@@ -144,10 +147,10 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
   const handleSubmit = () => {
     
     const pedido ={"docente": {
-      "nombre": "Miriam",
-      "apellido": "Gonzalez",
-      "dni": "7897",
-      "matricula": "1233457"
+      "nombre": userActual.nombre,
+      "apellido": userActual.apellido,
+      "dni": userActual.dni,
+      "matricula": userActual.matricula
   }, 
         "descripcion": "Pedido 2",
         "fecha_solicitud":"2022/11/10",
