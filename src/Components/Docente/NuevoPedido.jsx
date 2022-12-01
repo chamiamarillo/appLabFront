@@ -54,23 +54,31 @@ export default function NuevoPedido({setNuevoPedido}) {
   const[pedidoReactivos,setPedidoReactivos]=useState([]);
   const[listaReactivos,setListaReactivos]=useState([]);
   const[_med_reactivo,setUn_med_reactivo]=useState("");
-
-
+  const[_cas,setCas]=useState("1-A365");
+  const[cal_reactivo,setCalReactivo]=useState("");
+  const[_tip_reactivo,setTipReactivo]=useState("");
+  const[_disol_reactivo,setDisolReactivo]=useState("");
 
   
-  const navigate=useNavigate();
-  const med_reactivo = (event) => {
-    setUn_med_reactivo(event.target.value);
-  };
+  const disolReactivo= (event) => { setDisolReactivo(event.target.value);  };
 
-   //PRUEBA CODIGO
+  const tipReactivo = (event) => { setTipReactivo(event.target.value);  };
+
+  
+  const calReactivo = (event) => {setCalReactivo(event.target.value); };
+
+  const casElegido = (event) => {   setCas("1-A365");  };
+  const med_reactivo = (event) => {  setUn_med_reactivo(event.target.value);  };
+  
+  const navigate=useNavigate();
+  
+
+ 
  const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
   
 
- //const numeros=[{label:"1"},{label:"2"},{label:"3"},{label:"4"},{label:"5"},{label:"6"},{label:"7"},{label:"8"},{label:"9"},{label:"10"},{label:"11"},{label:"12"},{label:"13"}
- //]
- const reactivos=[{label:"Alcohol etílico (96° uso medicinal)" ,cas:""},{label:"Acido cítrico anhidro p.a." ,cas:"77-92-9"},{label:"Ácido Fluorhídrico 40% p.a." ,cas:"7664-39-3"},{label:"Acido nítrico 70% p.a." ,cas:"7697-37-2"},{label:"Ácido Oxálico p.a." ,cas:"6153-56-6"},{label:"Almidón soluble" ,cas:"9005-84-9"},{label:"Azul de metileno p.a." ,cas:"122965-43-9"},{label:"Buffer pH 4,01" ,cas:"s/n"},{label:"Buffer pH 7,00" ,cas:"s/n"},{label:"Buffer pH 10,01" ,cas:"s/n"},{label:"Buffer pH 10,00" ,cas:"s/n"},{label:"Calcio carbonato p.a" ,cas:"471-34-1"},{label:"Clorato de potasio" ,cas:"3811-04-09"},
- ]
+ 
+ 
   
 
  //CARGA EQUIPO A LA LISTA
@@ -254,12 +262,8 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             />
             </Grid>
             <Grid item xs={3}>
+              
               <TextField
-              id="cantidad_alumnos"
-              label="cantidad_alumnos"
-              name="cantidad_alumnos"
-              autoComplete="cantidad_alumnos"
-              autoFocus
                   id="time"
                   label="Hora"
                   type="time"
@@ -683,7 +687,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                       return(
                                        <TextField {...params} 
                                        margin="normal"
-                                       
+                                       value={params.InputProps}
+       
+                                       onChange={casElegido}
                                        name="descripcion_reactivo"
                                        label={"seleccione_reactivo "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
@@ -697,39 +703,60 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             <Grid  item xs={1} container justifyContent="center">
                   <TextField
                     margin="normal"
-                    required
+                   // required
                     fullWidth
+                    //value={_cas}
                     id="cas"
                     label="cas"
-                    name="user"
-                    autoComplete="user"
-                    autoFocus
+                    name="cas"
+                    //autoComplete="cas"
+                   // autoFocus
+                    value={_cas}
+                    
+                  //  variant="filled"
                   />
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="calidad_reactivo"
-                    label="Calidad_reactivo"
-                    name="calidad_reactivo"
-                    autoComplete="calidad_reactivo"
-                    autoFocus
-                  />
+            <FormControl fullWidth>
+                <InputLabel id="calidad_reactivo">calidad_reactivo</InputLabel>
+                <Select
+                  
+                  labelId="calidad_reactivo"
+                  id="calidad_reactivo"
+                  value={cal_reactivo}
+                  label="calidad_reactivo"
+                  onChange={calReactivo}
+                >
+               
+                  <MenuItem sx={{ fontSize: 10 }}value={"p/analisis"}>P/ANALISIS</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"molecular"}>CALIDAD MOLECULAR</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"grado_tecnico"}>°TECNICO</MenuItem>
+                  
+                </Select>
+              </FormControl>
+      
               
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="tipo_reactivo"
-                    label="tipo_reactivo"
-                    name="tipo_reactivo"
-                    autoComplete="tipo_reactivo"
-                    autoFocus
-                  />
+            <FormControl fullWidth>
+                <InputLabel id="tipo_reactivo">calidad_reactivo</InputLabel>
+                <Select
+                  
+                  labelId="tipo_reactivo"
+                  id="tipo_reactivo"
+                  value={_tip_reactivo}
+                  label="tipo_reactivo"
+                  onChange={tipReactivo}
+                >
+                  
+                  <MenuItem sx={{ fontSize: 10 }}value={"puro"}>PURO</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"molaridad"}>MOLARIDAD</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"normalidad"}>NORMALIDAD</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"mas/vol"}>%MASA/MASA</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
+                  </Select>
+              </FormControl>      
               
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
@@ -746,16 +773,24 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
               
             </Grid>
             <Grid  item xs={2} container justifyContent="center">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="disolvente_reactivo"
-                    label="disolvente_reactivo"
-                    name="disolvente_reactivo"
-                    autoComplete="disolvente_reactivo"
-                    autoFocus
-                  />
+            <FormControl fullWidth>
+                <InputLabel id="disolvente_reactivo">calidad_reactivo</InputLabel>
+                <Select
+                  
+                  labelId="disolvente_reactivo"
+                  id="disolvente_reactivo"
+                  value={_disol_reactivo}
+                  label="disolvente_reactivo"
+                  onChange={disolReactivo}
+                >
+               
+                  <MenuItem sx={{ fontSize: 10 }}value={"agua"}>AGUA</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"alcohol"}>ALCOHOL</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"otros"}>OTROS</MenuItem>
+                  
+                </Select>
+              </FormControl>
+                  
               
             </Grid>
           
@@ -787,18 +822,21 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             <FormControl fullWidth>
                 <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
                 <Select
+                  
                   labelId="un_med_reactivo"
                   id="un_med_reactivo"
                   value={_med_reactivo}
                   label="un_med_reactivo"
                   onChange={med_reactivo}
                 >
-                  <MenuItem value={"puro"}>PURO</MenuItem>
-                  <MenuItem value={"molaridad"}>MOLARIDAD</MenuItem>
-                  <MenuItem value={"normalidad"}>NORMALIDAD</MenuItem>
-                  <MenuItem value={"mas/vol"}>%MASA/MASA</MenuItem>
-                  <MenuItem value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
-                  <MenuItem value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"grs"}>GRAMOS</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"kg"}>KILO</MenuItem>
+                  <MenuItem sx={{ fontSize: 10 }}value={"unidad"}>UNIDAD</MenuItem>
+                 
+                  
+               
+                 
+                 
                 </Select>
               </FormControl>
  
