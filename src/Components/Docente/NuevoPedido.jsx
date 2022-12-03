@@ -30,6 +30,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useAsyncValue, useNavigate } from 'react-router-dom';
 import {postPedido} from  '../../Services/postPedidoService'
 import{getListaMateriales,getListaEquipos,getListaReactivos} from '../../Services/getService';
+import { getListaPedidos } from '../../Services/getPedidosService';
+import { getCantidadPedidos } from '../../Services/getPedidosService';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -48,8 +50,7 @@ export default function NuevoPedido({setNuevoPedido}) {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
- 
-
+ const [cantidadPedidos,setCantPedido] = useState([]);
 
   const[pedidoMateriales,setPedidoMateriales]=useState([]);
   const[listaMateriales,setListaMateriales]=useState([]);
@@ -179,10 +180,8 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
     let mounted = true;
     getListaEquipos().then(items => { if (mounted) {setListaEquipos(items) } });
     getListaMateriales().then(items => { if (mounted) {setListaMateriales(items) } });
-    getListaReactivos().then(items => { if (mounted) {setListaReactivos(items) } })
-
-   
-   
+    getListaReactivos().then(items => { if (mounted) {setListaReactivos(items) } });
+    getCantidadPedidos().then(items => { if (mounted) {setCantPedido(items) } });
 
     return () => mounted = false;
   }, [])
@@ -224,8 +223,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                     id="n_pedido"
                     label="n_pedido"
                     name="n_pedido"
-                   
-                    autoComplete="n_pedido"
+                    variant="outlined"
+                   value={cantidadPedidos + 1}
+                   // autoComplete={cantPedidos}
                     autoFocus
                   />
                  
