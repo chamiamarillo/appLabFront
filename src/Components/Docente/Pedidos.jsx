@@ -63,7 +63,7 @@ function Pedidos() {
      </Box>
      { !(nuevoPedido) ?(
      
-        <Box sx={{ flexGrow: 1 ,m:2}}>
+        <Box sx={{ flexGrow: 0 ,m:2}}>
               
               <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
               
@@ -80,7 +80,7 @@ function Pedidos() {
        <Box sx={{ flexGrow: 1 ,md:2 }}>    
             <Grid container direction="row"
             justifyContent="space-around"
-            alignItems="center"  
+            alignItems="center"
             spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}> 
               {listaPedidos.map((pedido) => (
                   <Grid item xs={3}  key={pedido.id}>

@@ -121,7 +121,7 @@ export default function NuevoPedido({setNuevoPedido}) {
    
       
   };
-// CARGA MATERIAL A LA LISTA
+// CARGA REACTIVOS A LA LISTA
 const cargaReactivos = async(event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);

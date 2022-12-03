@@ -21,11 +21,8 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     margin:"8px",
     height:"240px"
-    // flexWrap: "wrap",
-    // "& > *": {
-    //   margin: "8px",
-    //   height: "240px"
-    // },
+    
+  
   },
 }));
 
@@ -59,8 +56,8 @@ function PedidoV1({ pedido }) {
     <ThemeProvider theme={Theme1}>
       <Box sx={{m:10}} styles={{display: "flex",
     margin:"8px",
-    height:"240px" }}padding="2px">
-        <Card style={{ backgroundColor: "#b4e0bc" }}>
+    height:"240px" }} padding="2px">
+        <Card style={{ backgroundColor: "#b4e0bc",borderRadius: 15 }}>
           <CardActionArea onClick={handleClickOpen('body')}>
             <CardHeader
               style={{ textAlign: "left" }}
