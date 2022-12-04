@@ -27,16 +27,16 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-import { useAsyncValue, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {postPedido} from  '../../Services/postPedidoService'
 import{getListaMateriales,getListaEquipos,getListaReactivos} from '../../Services/getService';
-import { getListaPedidos } from '../../Services/getPedidosService';
+//import { getListaPedidos } from '../../Services/getPedidosService';
 import { getCantidadPedidos } from '../../Services/getPedidosService';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+//import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import SendIcon from '@mui/icons-material/Send';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
@@ -52,7 +52,7 @@ export default function NuevoPedido({setNuevoPedido}) {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
-  const[equipoElegido,setEquipoElegido]=useState("");
+  const[equipoElegido,setEquipoElegido]=useState({});
  const [cantidadPedidos,setCantPedido] = useState([]);
 
   const[pedidoMateriales,setPedidoMateriales]=useState([]);
@@ -64,7 +64,7 @@ export default function NuevoPedido({setNuevoPedido}) {
   const[reactivoElegido,setReacElegido]=useState({});
 
   const[_med_reactivo,setUn_med_reactivo]=useState("");
-  const[_cas,setCas]=useState("1-A365");
+ 
   const[cal_reactivo,setCalReactivo]=useState("");
   const[_tip_reactivo,setTipReactivo]=useState("");
   const[_disol_reactivo,setDisolReactivo]=useState("");
@@ -77,7 +77,7 @@ export default function NuevoPedido({setNuevoPedido}) {
   
   const calReactivo = (event) => {setCalReactivo(event.target.value); };
 
-  const casElegido = (event) => {   setCas("1-A365");  };
+ 
   const med_reactivo = (event) => {  setUn_med_reactivo(event.target.value);  };
   
   const navigate=useNavigate();
@@ -122,21 +122,16 @@ export default function NuevoPedido({setNuevoPedido}) {
 const cargaReactivos = async(event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
+   // console.log("reactivo",reactivoElegido._id);
+  
     
-  // listaMateriales.map((item,key)=> (
-  //   (item.descripcion === data.get('descripcion_material'))?(
-    
-  //    setPedidoReactivos({       
-  //       "cantidad": parseInt(data.get('cant_material'),10),
-  //       "material": item._id
-  //   })):(console.log(item.descripcion)) ) );
- 
-
-//console.log({elPedidoREcienteMaterial:pedidoMateriales});
- 
+   setPedidoReactivos({       
+        "cantidad": parseInt(data.get('cant_reactivo'),10),
+      "reactivo": reactivoElegido._id
+});
     
 };
-const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(reactivoElegido) };
+const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("hand",reactivoElegido) };
 
 
   
@@ -161,7 +156,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(r
         "materia": "materia",
         "numero_tp": "2",
         "lista_equipos": pedidoEquipos,
-        //"lista_reactivos":[],
+        "lista_reactivos":pedidoReactivos,
         "lista_materiales":pedidoMateriales
            
   };
@@ -714,7 +709,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(r
                     InputProps={{
                       readOnly: true,
                     }}
-                   // **variant="standard"
+                   
                     variant="outlined"
                   />
             </Grid>
@@ -734,116 +729,12 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(r
                   <MenuItem sx={{ fontSize: 10 }}value={"molecular"}>CALIDAD MOLECULAR</MenuItem>
                   <MenuItem sx={{ fontSize: 10 }}value={"grado_tecnico"}>°TECNICO</MenuItem>
                   
-                </Select>
+checout                </Select>
               </FormControl>
       
               
             </Grid>
-           {/* <Grid  item xs={1} container justifyContent="center">
-            <FormControl fullWidth>
-                <InputLabel id="tipo_reactivo">calidad_reactivo</InputLabel>
-                <Select
-                  
-                  labelId="tipo_reactivo"
-                  id="tipo_reactivo"
-                  value={_tip_reactivo}
-                  label="tipo_reactivo"
-                  onChange={tipReactivo}
-                >
-                  
-                  <MenuItem sx={{ fontSize: 10 }}value={"puro"}>PURO</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"molaridad"}>MOLARIDAD</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"normalidad"}>NORMALIDAD</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"mas/vol"}>%MASA/MASA</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
-                  </Select>
-              </FormControl>      
-              
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="medida_reactivo"
-                    label="medida_reactivo"
-                    name="medida_reactivo"
-                    autoComplete="medida_reactivo"
-                    autoFocus
-                  />
-              
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center">
-            <FormControl fullWidth>
-                <InputLabel id="disolvente_reactivo">calidad_reactivo</InputLabel>
-                <Select
-                  
-                  labelId="disolvente_reactivo"
-                  id="disolvente_reactivo"
-                  value={_disol_reactivo}
-                  label="disolvente_reactivo"
-                  onChange={disolReactivo}
-                >
-               
-                  <MenuItem sx={{ fontSize: 10 }}value={"agua"}>AGUA</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"alcohol"}>ALCOHOL</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"otros"}>OTROS</MenuItem>
-                  
-                </Select>
-              </FormControl>
-                  
-              
-            </Grid>
-          
-            <Grid  item xs={1} container justifyContent="center">
-            <TextField 
-             sx={{marginTop:1   }}
-                    
-                    id="cant_reactivo"
-                    variant="outlined"
-                    name="cant_reactivo"
-                  label="cant_reactivo"
-                    type="number"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    InputProps={{
-                      inputProps: { 
-                          max: 100, min: 0 
-                      }
-                  }}
-         
-        />  
-             
-              
-     
-                                     
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <FormControl fullWidth>
-                <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
-                <Select
-                  
-                  labelId="un_med_reactivo"
-                  id="un_med_reactivo"
-                  value={_med_reactivo}
-                  label="un_med_reactivo"
-                  onChange={med_reactivo}
-                >
-                  <MenuItem sx={{ fontSize: 10 }}value={"grs"}>GRAMOS</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"kg"}>KILO</MenuItem>
-                  <MenuItem sx={{ fontSize: 10 }}value={"unidad"}>UNIDAD</MenuItem>
-                 
-                  
-               
-                 
-                 
-                </Select>
-              </FormControl>
-  */}
-              
-            {/* </Grid> */}
+           
             <Grid  item xs={1} container justifyContent="center" marginLeft={11}>
             <Button fullWidth
                 margin="normal"
@@ -872,21 +763,6 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(r
             Concentración
             </Typography>
             </Grid>
-            {/* <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Disolvente
-            </Typography>
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            cant_reactivo
-            </Typography>
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Un_Med
-            </Typography>
-            </Grid> */}
             
             
             </Grid>
