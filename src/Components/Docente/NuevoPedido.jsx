@@ -37,6 +37,8 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import SendIcon from '@mui/icons-material/Send';
+import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
 
 
@@ -370,9 +372,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
 
             
             <Grid container direction="row"
-            justifyContent="start"
+            justifyContent="flex-end"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={5} container justifyContent="center">
+            {/* <Grid  item xs={5} container justifyContent="center">
             <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
@@ -383,8 +385,8 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             Cantidad
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center"/>
-            <Grid  item xs={1} container justifyContent="center">
+          <Grid  item xs={2} container justifyContent="center"/>*/}
+            <Grid  item xs={1} container justifyContent="center"> 
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
             </Typography>
@@ -499,9 +501,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
          
 
             <Grid container direction="row"
-            justifyContent="start"
+            justifyContent="flex-end"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={5} container justifyContent="center">
+            {/* <Grid  item xs={5} container justifyContent="center">
             <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
@@ -512,7 +514,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             Cantidad
             </Typography>
             </Grid>
-            <Grid  item xs={2} container justifyContent="center"/>
+            <Grid  item xs={2} container justifyContent="center"/> */}
             <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
@@ -626,9 +628,9 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
 
             
             <Grid container direction="row"
-            justifyContent="start"
+            justifyContent="flex-end"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={2} container justifyContent="center">
+            {/*<Grid  item xs={2} container justifyContent="center">
             <Typography sx={{fontSize: 14 }}  color="text.secondary">
             Descripcion
             </Typography>
@@ -655,14 +657,14 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
-            cant_grupo
+            cant_reactivo
             </Typography>
             </Grid>
             <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Un_Med
             </Typography>
-            </Grid>
+          </Grid>*/}
             
             <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
@@ -674,12 +676,12 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             Desechar
             </Typography>
             </Grid>
-            </Grid>
+            </Grid> 
             {/* COMIENZA EL FORMULARIO REACTIVOS */}
              <Grid container direction="row"
             justifyContent="start"
-            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            <Grid  item xs={2} container justifyContent="start" >
+            alignItems="center"  spacing={{ xs: 2, md: 2 }} columns={{ xs: 12  }} > 
+            <Grid  item xs={5} container justifyContent="start" >
             <Autocomplete
                                     disablePortal
                                     fullWidth
@@ -703,23 +705,23 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                        }}
                                        />
             </Grid>
-            <Grid  item xs={1} container justifyContent="center">
+            <Grid  item xs={2} container justifyContent="center">
                   <TextField
                     margin="normal"
                    // required
                     fullWidth
-                    //value={_cas}
+                    defaultValue={_cas}
                     id="cas"
                     label="cas"
                     name="cas"
                     //autoComplete="cas"
                    // autoFocus
-                    value={_cas}
+                    //defualtvalue={_cas}
                     
                   //  variant="filled"
                   />
             </Grid>
-            <Grid  item xs={1} container justifyContent="center">
+             <Grid  item xs={2}  container justifyContent="center" marginTop={1}>
             <FormControl fullWidth>
                 <InputLabel id="calidad_reactivo">calidad_reactivo</InputLabel>
                 <Select
@@ -740,7 +742,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
       
               
             </Grid>
-            <Grid  item xs={1} container justifyContent="center">
+           {/* <Grid  item xs={1} container justifyContent="center">
             <FormControl fullWidth>
                 <InputLabel id="tipo_reactivo">calidad_reactivo</InputLabel>
                 <Select
@@ -842,10 +844,10 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                  
                 </Select>
               </FormControl>
- 
+  */}
               
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
+            {/* </Grid> */}
+            <Grid  item xs={1} container justifyContent="center" marginLeft={11}>
             <Button fullWidth
                 margin="normal"
               variant="text"
@@ -862,25 +864,194 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     <DeleteForeverIcon color={"rojo"} />
                                     </Avatar> 
             </Grid>
-            </Grid>        
+            
+            </Grid> 
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+            
+            <Grid  item xs={5} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Concentración
+            </Typography>
+            </Grid>
+            {/* <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Disolvente
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            cant_reactivo
+            </Typography>
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Un_Med
+            </Typography>
+            </Grid> */}
+            
+            
+            </Grid>
+            {/* COMIENZA EL FORMULARIO REACTIVOS */}
+             <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center" 
+            spacing={3}
+            //  spacing={{ xs: 2, md: 1 }} 
+             columns={{ xs: 12  }} > 
+           
+            <Grid  item xs={3} container justifyContent="center"  marginTop={1}>
+            <FormControl fullWidth>
+                <InputLabel id="tipo_reactivo">tipo_reactivo</InputLabel>
+                <Select
+                  
+                  labelId="tipo_reactivo"
+                  id="tipo_reactivo"
+                  value={_tip_reactivo}
+                  label="tipo_reactivo"
+                  onChange={tipReactivo}
+                >
+                  
+                  <MenuItem sx={{ fontSize: 14 }}value={"puro"}>PURO</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"molaridad"}>MOLARIDAD</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"normalidad"}>NORMALIDAD</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"mas/vol"}>%MASA/MASA</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
+                  </Select>
+              </FormControl>      
+              
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center">
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="medida_reactivo"
+                    label="med_reactivo"
+                    name="medida_reactivo"
+                    autoComplete="medida_reactivo"
+                    autoFocus
+                  />
+              
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center" marginTop={1}>
+            <FormControl fullWidth>
+                <InputLabel id="disolvente_reactivo">disolvente</InputLabel>
+                <Select
+                  
+                  labelId="disolvente_reactivo"
+                  id="disolvente_reactivo"
+                  value={_disol_reactivo}
+                  label="disolvente_reactivo"
+                  onChange={disolReactivo}
+                >
+               
+                  <MenuItem sx={{ fontSize: 14 }}value={"agua"}>AGUA</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"alcohol"}>ALCOHOL</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"otros"}>OTROS</MenuItem>
+                  
+                </Select>
+              </FormControl>
+                  
+              
+            </Grid>
+          
+            <Grid  item xs={1} container justifyContent="center">
+            <TextField 
+             sx={{marginTop:1   }}
+                    
+                    id="cant_reactivo"
+                    variant="outlined"
+                    name="cant_reactivo"
+                  label="cant_reactivo"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      inputProps: { 
+                          max: 100, min: 0 
+                      }
+                  }}
+         
+        />  
+             
+              
+     
+                                     
+            </Grid>
+            <Grid  item xs={2} container justifyContent="center" marginTop={1}>
+            <FormControl fullWidth>
+                <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
+                <Select
+                  
+                  labelId="un_med_reactivo"
+                  id="un_med_reactivo"
+                  value={_med_reactivo}
+                  label="un_med_reactivo"
+                  onChange={med_reactivo}
+                >
+                  <MenuItem sx={{ fontSize: 14 }}value={"grs"}>GRAMOS</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"kg"}>KILO</MenuItem>
+                  <MenuItem sx={{ fontSize: 14 }}value={"unidad"}>UNIDAD</MenuItem>
+                 
+                  
+               
+                 
+                 
+                </Select>
+              </FormControl>
+ 
+            </Grid>  
+            </Grid>       
        <Grid></Grid>       
        </Grid>  
 
          </Box>
+{/* EMPIEZAN BOTONES */}
+         <Grid container justifyContent="flex-end" spacing={2}
+              >
+       <Grid item xs={2} >
+           
+           <Button fullWidth
+           color="error"
+           style={{borderRadius:8}}
+           margin="normal"
+         variant="contained"
+         startIcon={<ReplyAllIcon/>}
+         onClick={() => {
+          navigate('/Docente/Pedidos')
+          setNuevoPedido(false);
+          
+        }}
+        
+         
+         
+         sx={{ mt: 3, mb: 2 ,height:50}}>  REGRESAR</Button>
+         
+       </Grid>          
+      <Grid item xs={2} >
+           
+           <Button fullWidth
+           style={{borderRadius:8}}
+           margin="normal"
+         variant="contained"
+         endIcon={<SendIcon />}
+        
+         onClick={handleSubmit}
+         
+         
+         sx={{ mt: 3, mb: 2 ,height:50}}>  ENVIAR PEDIDO</Button>
+         
+       </Grid>
+       </Grid>
 
 
 
            
-            <Button
-             // type="submit"
-             onClick={handleSubmit}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              ENVIAR PEDIDO
-            </Button>
-           
+          
           </Box>
        
         
