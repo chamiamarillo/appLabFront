@@ -52,10 +52,12 @@ export default function NuevoPedido({setNuevoPedido}) {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
+  const[equipoElegido,setEquipoElegido]=useState("");
  const [cantidadPedidos,setCantPedido] = useState([]);
 
   const[pedidoMateriales,setPedidoMateriales]=useState([]);
   const[listaMateriales,setListaMateriales]=useState([]);
+  const[materialElegido,setMatElegido]=useState({});
 
   const[pedidoReactivos,setPedidoReactivos]=useState([]);
   const[listaReactivos,setListaReactivos]=useState([]);
@@ -110,13 +112,26 @@ export default function NuevoPedido({setNuevoPedido}) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
       
-    listaMateriales.map((item,key)=> (
-      (item.descripcion === data.get('descripcion_material'))?(
+    // listaMateriales.map((item,key)=> (
+    //   (item.descripcion === data.get('descripcion_material'))?(
       
-       setPedidoMateriales({       
-          "cantidad": parseInt(data.get('cant_material'),10),
-          "material": item._id
-      })):(console.log(item.descripcion)) ) );
+    //    setPedidoMateriales({       
+    //       "cantidad": parseInt(data.get('cant_material'),10),
+    //       "material": item._id
+    //   })):(console.log(item.descripcion)) ) );
+      setPedidoMateriales({       
+        "cantidad": parseInt(data.get('cant_material'),10),
+        "material": materialElegido._id
+      });
+      console.log("elegido",materialElegido);
+   };
+
+      const  set_IdMat=(event,value) => {
+       // event.preventDefault(); 
+       console.log("elegido",materialElegido,value);
+        setMatElegido(value);
+        console.log("elegido",materialElegido)
+  
    
   
  
@@ -537,7 +552,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     id="combo-box-demo"
                                     options={listaMateriales}
                                     getOptionLabel={(option)=>option.descripcion}
-                                    
+                                    onChange={(event, value) => set_IdMat(event,value)}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
