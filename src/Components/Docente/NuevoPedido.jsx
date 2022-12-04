@@ -61,6 +61,8 @@ export default function NuevoPedido({setNuevoPedido}) {
 
   const[pedidoReactivos,setPedidoReactivos]=useState([]);
   const[listaReactivos,setListaReactivos]=useState([]);
+  const[reactivoElegido,setReacElegido]=useState({});
+
   const[_med_reactivo,setUn_med_reactivo]=useState("");
   const[_cas,setCas]=useState("1-A365");
   const[cal_reactivo,setCalReactivo]=useState("");
@@ -94,68 +96,47 @@ export default function NuevoPedido({setNuevoPedido}) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
    
-      
-   listaEquipos.map((item,key)=> (
-       (item.descripcion === data.get('descripcion_equipo'))?(
-        
         setPedidoEquipos({       
           "cantidad": parseInt(data.get('cant_equipo'),10),
-          "equipo": item._id
-      })  ):(<div></div>))  );
-    
-  
-     
+          "equipo": equipoElegido._id
+      })  ;  
   };
+  const  set_IdEquip=(event,value) => {  setEquipoElegido(value);  };
 
   // CARGA MATERIAL A LA LISTA
   const cargaMaterial = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-      
-    // listaMateriales.map((item,key)=> (
-    //   (item.descripcion === data.get('descripcion_material'))?(
-      
-    //    setPedidoMateriales({       
-    //       "cantidad": parseInt(data.get('cant_material'),10),
-    //       "material": item._id
-    //   })):(console.log(item.descripcion)) ) );
+    
       setPedidoMateriales({       
         "cantidad": parseInt(data.get('cant_material'),10),
         "material": materialElegido._id
       });
-      console.log("elegido",materialElegido);
+    
    };
 
-      const  set_IdMat=(event,value) => {
-       // event.preventDefault(); 
-       console.log("elegido",materialElegido,value);
-        setMatElegido(value);
-        console.log("elegido",materialElegido)
-  
-   
-  
- 
-   
-      
-  };
+      const  set_IdMat=(event,value) => {    setMatElegido(value);  };
+
+
 // CARGA REACTIVOS A LA LISTA
 const cargaReactivos = async(event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
     
-  listaMateriales.map((item,key)=> (
-    (item.descripcion === data.get('descripcion_material'))?(
+  // listaMateriales.map((item,key)=> (
+  //   (item.descripcion === data.get('descripcion_material'))?(
     
-     setPedidoReactivos({       
-        "cantidad": parseInt(data.get('cant_material'),10),
-        "material": item._id
-    })):(console.log(item.descripcion)) ) );
+  //    setPedidoReactivos({       
+  //       "cantidad": parseInt(data.get('cant_material'),10),
+  //       "material": item._id
+  //   })):(console.log(item.descripcion)) ) );
  
 
-console.log({elPedidoREcienteMaterial:pedidoMateriales});
+//console.log({elPedidoREcienteMaterial:pedidoMateriales});
  
     
 };
+const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log(reactivoElegido) };
 
 
   
@@ -424,7 +405,7 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     options={listaEquipos}
                                                                  
                                     getOptionLabel={(option)=>option.descripcion}
-                                   
+                                    onChange={(event, value) => set_IdEquip(event,value)}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
@@ -703,15 +684,14 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
                                     id="combo-box-demo"
                                     options={listaReactivos}
                                     getOptionLabel={(option)=>option.descripcion}
+                                    onChange={(event, value) => set_IdReactivo(event,value)}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
                                        margin="normal"
-                                       value={params.InputProps}
-       
-                                       onChange={casElegido}
+                                        
                                        name="descripcion_reactivo"
-                                       label={"seleccione_reactivo "}
+                                       label={"descripcion_reactivo "}
                                        InputLabelProps={{className:"autocompleteLabel"}}
                                        InputProps={{
                                         ...params.InputProps,}}
@@ -723,17 +703,19 @@ console.log({elPedidoREcienteMaterial:pedidoMateriales});
             <Grid  item xs={2} container justifyContent="center">
                   <TextField
                     margin="normal"
-                   // required
+                  
                     fullWidth
-                    defaultValue={_cas}
+                    value={reactivoElegido.cas}
                     id="cas"
                     label="cas"
                     name="cas"
-                    //autoComplete="cas"
-                   // autoFocus
-                    //defualtvalue={_cas}
                     
-                  //  variant="filled"
+                    autoFocus
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                   // **variant="standard"
+                    variant="outlined"
                   />
             </Grid>
              <Grid  item xs={2}  container justifyContent="center" marginTop={1}>
