@@ -44,7 +44,7 @@ function PedidoDetalle({ open = { open },
 
     const descriptionElementRef = React.useRef(null);
 
-    console.log(lista_materiales);
+    //console.log(lista_materiales);
 
     return (
         <div>
@@ -78,7 +78,7 @@ function PedidoDetalle({ open = { open },
                         </div>
                         <hr></hr>
                         <h4>Equipos</h4>
-
+{/* LISTA EQUIPOS */}
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                 <TableHead>
@@ -109,7 +109,7 @@ function PedidoDetalle({ open = { open },
                             </Table>
                         </TableContainer>
 
-
+{/* LISTA MATERIALES */}
                         <h4>Materiales</h4>
 
                         <TableContainer component={Paper}>
@@ -128,7 +128,7 @@ function PedidoDetalle({ open = { open },
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell component="th" scope="row">
+                                            <TableCell  align="right"component="th" scope="row">
                                                 {row.material.descripcion}
                                             </TableCell>
                                             <TableCell align="right">{row.cantidad}</TableCell>
@@ -140,7 +140,7 @@ function PedidoDetalle({ open = { open },
                                 </TableBody>
                             </Table>
                         </TableContainer>
-
+{/* LISTA REACTIVOS */}
 
                         <h4>Reactivos</h4>
 
