@@ -138,32 +138,35 @@ function PedidoDetalle({ open = { open },
 
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Descripcion</TableCell>
-                                        <TableCell align="right">Cantidad</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>{ (lista_materiales.length) > 0
-                                ?
-                                (<div>
-                                    {lista_materiales.map((row) => (
-                                        <TableRow
-                                            key={row._id}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell  align="right"component="th" scope="row">
-                                                {row.material.descripcion}
-                                            </TableCell>
-                                            <TableCell align="right">{row.cantidad}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                    </div>)
-                                    : (<div></div>) }
+                            <Grid container direction="row" justifyContent="Start"
+                        alignItems="center" spacing={{ xs: 2, md: 2}} columns={{ xs: 12  }} > 
+                                
+                    <Grid  item xs={6} container justifyContent="flex-start" >  
+                                            Descripcion
+                    </Grid>  
+                    <Grid  item xs={2} container justifyContent="flex-start" >Cantidad
+                    </Grid>
+                    </Grid>
+                    <TableBody>{ (lista_materiales.length) > 0
+                            ?
+                            (<div>
+                            {lista_materiales.map((row) => (
+                                       
+                        <Grid container direction="row" alignItems="center"  spacing={{ xs: 2, md: 2 }} columns={{ xs: 12  }} > 
+                            <Grid  item xs={6} container justifyContent="start" > 
+                                {row.material.descripcion}
+                            </Grid>
+                        <Grid  item xs={1} container justifyContent="end" >  
+                            {row.cantidad}
+                        </Grid>
+                        </Grid>
+                        ))}
+                        </div>)
+                        : (<div></div>) }
                                                         
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 {/* LISTA REACTIVOS */}
 
                         <h4>Reactivos</h4>
