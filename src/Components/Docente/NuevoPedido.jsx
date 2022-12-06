@@ -25,6 +25,7 @@ import pipeta from '../Image/pipeta.png'
 import quimica from '../Image/quimica.png'
 import Autocomplete from '@mui/material/Autocomplete';
 
+
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { useNavigate } from 'react-router-dom';
@@ -53,7 +54,10 @@ export default function NuevoPedido({setNuevoPedido}) {
   const[pedidoEquipos,setPedidoEquipos]=useState([]);
   const[listaEquipos,setListaEquipos]=useState([]);
   const[equipoElegido,setEquipoElegido]=useState({});
- const [cantidadPedidos,setCantPedido] = useState([]);
+ 
+  const [cantidadPedidos,setCantPedido] = useState([]);
+  const [pedidoEncabezado,setEncabezadoPedido]= useState({});
+  //const [fechaActual,setFechaActual]=useState(new Date());
 
   const[pedidoMateriales,setPedidoMateriales]=useState([]);
   const[listaMateriales,setListaMateriales]=useState([]);
@@ -87,7 +91,36 @@ export default function NuevoPedido({setNuevoPedido}) {
  const [texto,setEncabezado]=useState("CARGA DE PEDIDO");
   
 
- 
+ //CARGA ENCABEZADO AL PEDIDO
+ const cargaEncabezado =  async(event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+
+  const nro_pedido = cantidadPedidos+1;
+
+  setEncabezadoPedido({
+   
+    "descripcion": (nro_pedido).toString(),
+    "fecha_solicitud":data.get('fecha_solicitud'),
+    "fecha_utilizacion":data.get('fecha_utilizacion'),
+    "numero_laboratorio": "2",
+    "tipo_pedido": "algo",
+    "cantidad_alumnos":data.get('cantidad_alumnos'),
+    "cantidad_grupos": data.get('cantidad_grupos'),
+    "observaciones": "algo mas",
+    "materia": "materia",
+    "numero_tp": "2"
+    
+  });
+
+    console.log(data.get('fecha_solicitud'));
+    console.log(data.get('fecha_utilizacion'));
+    console.log(data.get('hora'));
+    console.log(data.get('cantidad_alumnos'));
+    console.log(data.get('cantidad_grupos'));
+    console.log(pedidoEncabezado);
+};
+  
  
   
 
@@ -176,7 +209,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
     getListaMateriales().then(items => { if (mounted) {setListaMateriales(items) } });
     getListaReactivos().then(items => { if (mounted) {setListaReactivos(items) } });
     getCantidadPedidos().then(items => { if (mounted) {setCantPedido(items) } });
-
+   // setFechaActual(new Date()); 
     return () => mounted = false;
   }, [])
 
@@ -196,7 +229,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
           <Box sx={{ flexGrow: 1 ,md:2 }}>    
            
      
-          <Grid container direction="row"
+          <Grid container component="form" onSubmit={cargaEncabezado} noValidate direction="row"
             justifyContent="space-around"
             alignItems="center"   
           
@@ -224,16 +257,24 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                   />
                  
               </Grid> 
+             
               <Grid item xs={2}>
                 <TextField
                      id="fecha_solicitud"
                      label="fecha_solicitud"
+                     name="fecha_solicitud"
                      type="date"
-                     defaultValue="2022-11-01"
+                   //  format="yyyy-MM-dd"
+                    // value={fechaActual}
                      sx={{ width: 180 }}
                      InputLabelProps={{
                        shrink: true,
                      }}
+                     InputProps={{
+                       readOnly:false,
+                     }
+
+                     }
                      margin="normal"
                      required
                      fullWidth
@@ -246,8 +287,8 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             <TextField
               id="fecha_utilizacion"
               label="fecha_utilizacion"
+              name="fecha_utilizacion"
               type="date"
-              defaultValue="2022-11-01"
               sx={{ width: 180 }}
               InputLabelProps={{
                 shrink: true,
@@ -262,7 +303,8 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
               
               <TextField
                   id="time"
-                  label="Hora"
+                  label="hora"
+                  name="hora"
                   type="time"
                   defaultValue="08:00"
                   InputLabelProps={{
@@ -280,17 +322,6 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             </Grid>
             <Grid item xs={2}>
            
-                <Button fullWidth
-                margin="normal"
-              variant="contained"
-              onClick={() => {
-          navigate('/Docente/Pedidos')
-          setNuevoPedido(false);
-          
-        }}
-              
-              
-              sx={{ mt: 3, mb: 2 ,height:50}}>VOLVER</Button>
               
             </Grid>
             
