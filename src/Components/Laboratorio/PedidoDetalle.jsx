@@ -12,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import moment from 'moment'
+import Grid from '@mui/material/Grid';
 const useStyles = makeStyles(() => ({
     root: {
         display: "flex",
@@ -84,31 +85,51 @@ function PedidoDetalle({ open = { open },
 {/* LISTA EQUIPOS */}
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Descripcion</TableCell>
-                                        <TableCell align="right">Tipo</TableCell>
-                                        <TableCell align="right">Cantidad</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>{ (lista_equipos.length > 0)
+                              
+                                  
+                             <Grid container direction="row"    justifyContent="start"
+                                 alignItems="center"  spacing={{ xs: 2, md: 2 }} columns={{ xs: 12  }} > 
+                                    <Grid  item xs={6} container justifyContent="flex-start" >  
+                                        Descripcion
+                                    </Grid>  
+                                    <Grid  item xs={2} container justifyContent="flex-start" >                                 
+                                        Tipo
+                                    </Grid>  
+                                    <Grid  item xs={1} container justifyContent="flex-end" >                                 
+                                       Cantidad
+                                    </Grid>                            
+                                </Grid>                            
+                                    
+                               
+                                { (lista_equipos.length > 0)
                                 ?
                                  (<div>{
                                     lista_equipos.map((row) => (
-                                        <TableRow
-                                            key={row._id}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell  component="th" scope="row">
-                                                {row.equipo.descripcion}</TableCell>
-                                            <TableCell align="right">{row.equipo.clase}</TableCell>
-                                            <TableCell align="right">{row.cantidad}</TableCell>
-                                        </TableRow>
+                                       
+                                            //key={row._id}
+                                           // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        
+                                        <Grid container direction="row"  
+                                                 alignItems="center"  spacing={{ xs: 2, md: 2 }} columns={{ xs: 12  }} > 
+
+                                             <Grid  item xs={6} container justifyContent="start" > 
+                                            
+                                                {row.equipo.descripcion}
+                                                </Grid>  
+                                            <Grid  item xs={2} container justifyContent="flex-start" >       
+                                            {row.equipo.clase}
+                                            </Grid>  
+                                            <Grid  item xs={1} container justifyContent="end" >  
+
+                                            {row.cantidad}
+                                            </Grid>
+                                            </Grid>
+                                      
                                     ))}
                                     </div>
                                     ): (<div></div>) }
                     
-                                </TableBody>
+                              
                             </Table>
                         </TableContainer>
 
@@ -149,39 +170,71 @@ function PedidoDetalle({ open = { open },
 
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell align="right">Descripcion</TableCell>
-                                        <TableCell align="right">Cas</TableCell>
-                                        <TableCell align="right">Calidad</TableCell>
-                                        <TableCell align="right">Concentracion</TableCell>
-                                        <TableCell align="right">Disolvente</TableCell>
-                                        <TableCell align="right">Cantidad total</TableCell>
-                                        <TableCell align="right">Unidad de medida</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody> { (lista_reactivos.length) > 0
+                            <Grid container direction="row"    justifyContent="flex-start"
+                                 alignItems="center"  marginBottom={1} spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+
+                                    <Grid  item xs={2} container justifyContent="center" >     
+                                
+                                        Descripcion
+                                    </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >  
+                                       Cas
+                                    </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >      
+                                        Calidad
+                                    </Grid>    
+                                    <Grid  item xs={2} container justifyContent="center" >      
+                                        Concentracion
+                                        </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >      
+                                        Disolvente
+                                        </Grid>  
+                                    <Grid  item xs={1} container justifyContent="center" >
+                                        Cant Total
+                                        </Grid>  
+                                    <Grid  item xs={1} container justifyContent="center" >      
+                                        U. Med
+                                        </Grid>  
+                                     </Grid>     
+                                          
+                                    
+                               { (lista_reactivos.length) > 0
                                      ? 
                                      (<div>
                                     {lista_reactivos.map((row) => (
-                                        <TableRow
-                                            key={row._id}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell align="right" component="th" scope="row">
+                                        
+                                            <Grid container direction="row"    justifyContent="start"
+                                            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
+                                            <Grid  item xs={2} container justifyContent="center" >     
+                                           
                                                 {row.reactivo.descripcion}
-                                            </TableCell>
-                                            <TableCell align="right">{row.reactivo.cas}</TableCell>
-                                            <TableCell align="right">{row.reactivo.calidad}</TableCell>
-                                            <TableCell align="right">{row.reactivo.concentracion_tipo}</TableCell>
-                                            <TableCell align="right">{row.reactivo.disolvente}</TableCell>
-                                            <TableCell align="right">{row.cantidad}</TableCell>
-                                            <TableCell align="right">{row.reactivo.concentracion_medida}</TableCell>
-                                        </TableRow>
+                                            
+                                            </Grid>  
+                                            <Grid  item xs={2} container justifyContent="center" >  
+                                           {row.reactivo.cas}
+                                            </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >  
+                                           {row.reactivo.calidad}
+                                            </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >  
+                                            {row.reactivo.concentracion_tipo}
+                                            </Grid>  
+                                    <Grid  item xs={2} container justifyContent="center" >  
+                                           {row.reactivo.disolvente}
+                                            </Grid>  
+                                    <Grid  item xs={1} container justifyContent="center" >  
+                                            {row.cantidad}
+                                            </Grid>  
+                                    <Grid  item xs={1} container justifyContent="center" alignItems="center">  
+                                            {row.reactivo.concentracion_medida}
+                                            </Grid>  
+                                            </Grid> 
+                                     
+                                      
                                     ))}
                                     </div>)
                                     : (<div></div>) }
-                                </TableBody>
+                              
                             </Table>
                         </TableContainer>
                     </DialogContentText>

@@ -42,8 +42,7 @@ function PedidoV1({ pedido }) {
     lista_equipos
   } = pedido;
  const fechaActual=(moment(fecha_solicitud).format('DD/MM/YYYY'));
-  //console.log(fecha_solicitud);
- // console.log(moment(fecha_solicitud).format('DD/MM/YYYY'));
+ 
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
