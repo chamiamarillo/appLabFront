@@ -148,7 +148,7 @@ function PedidoDetalle({ open = { open },
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Descripcion</TableCell>
+                                        <TableCell align="right">Descripcion</TableCell>
                                         <TableCell align="right">Cas</TableCell>
                                         <TableCell align="right">Calidad</TableCell>
                                         <TableCell align="right">Concentracion</TableCell>
@@ -165,7 +165,7 @@ function PedidoDetalle({ open = { open },
                                             key={row._id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell component="th" scope="row">
+                                            <TableCell align="right" component="th" scope="row">
                                                 {row.reactivo.descripcion}
                                             </TableCell>
                                             <TableCell align="right">{row.reactivo.cas}</TableCell>

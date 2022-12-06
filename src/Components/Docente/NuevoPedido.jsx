@@ -128,6 +128,7 @@ const cargaReactivos = async(event) => {
    setPedidoReactivos({       
         "cantidad": parseInt(data.get('cant_reactivo'),10),
       "reactivo": reactivoElegido._id
+    //   ejemplo para mas adelante
 });
     
 };
@@ -704,7 +705,9 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                     id="cas"
                     label="cas"
                     name="cas"
-                    
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                     autoFocus
                     InputProps={{
                       readOnly: true,
@@ -902,7 +905,7 @@ checout                </Select>
         
          
          
-         sx={{ mt: 3, mb: 2 ,height:50}}>  REGRESAR</Button>
+         sx={{ mt: 3, mb: 2 ,height:50}}>  CANCELAR</Button>
          
        </Grid>          
       <Grid item xs={2} >
@@ -916,7 +919,7 @@ checout                </Select>
          onClick={handleSubmit}
          
          
-         sx={{ mt: 3, mb: 2 ,height:50}}>  ENVIAR PEDIDO</Button>
+         sx={{ mt: 3, mb: 2 ,height:50}}> CONFIRMAR PEDIDO</Button>
          
        </Grid>
        </Grid>
