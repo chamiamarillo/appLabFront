@@ -95,7 +95,7 @@ function PedidoDetalle({ open = { open },
                                     <Grid  item xs={2} container justifyContent="flex-start" >                                 
                                         Tipo
                                     </Grid>  
-                                    <Grid  item xs={1} container justifyContent="flex-end" >                                 
+                                    <Grid  item xs={3} container justifyContent="flex-end" >                                 
                                        Cantidad
                                     </Grid>                            
                                 </Grid>                            
@@ -119,7 +119,7 @@ function PedidoDetalle({ open = { open },
                                             <Grid  item xs={2} container justifyContent="flex-start" >       
                                             {row.equipo.clase}
                                             </Grid>  
-                                            <Grid  item xs={1} container justifyContent="end" >  
+                                            <Grid  item xs={3} container justifyContent="end" >  
 
                                             {row.cantidad}
                                             </Grid>
@@ -144,7 +144,8 @@ function PedidoDetalle({ open = { open },
                     <Grid  item xs={6} container justifyContent="flex-start" >  
                                             Descripcion
                     </Grid>  
-                    <Grid  item xs={2} container justifyContent="flex-start" >Cantidad
+                    <Grid  item xs={5} container justifyContent="flex-end" >
+                            Cantidad
                     </Grid>
                     </Grid>
                     <TableBody>{ (lista_materiales.length) > 0
@@ -156,7 +157,7 @@ function PedidoDetalle({ open = { open },
                             <Grid  item xs={6} container justifyContent="start" > 
                                 {row.material.descripcion}
                             </Grid>
-                        <Grid  item xs={1} container justifyContent="end" >  
+                        <Grid  item xs={5} container justifyContent="flex-end" >  
                             {row.cantidad}
                         </Grid>
                         </Grid>
