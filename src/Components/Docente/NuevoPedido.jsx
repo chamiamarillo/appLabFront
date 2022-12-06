@@ -323,6 +323,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             </Grid>
             
             <Grid item xs={4}>
+              
 
 
               <TextField
@@ -673,7 +674,8 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                                         
                                        name="descripcion_reactivo"
                                        label={"descripcion_reactivo "}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       
+                                       InputLabelProps={{className:"autocompleteLabel",shrink:true}}
                                        InputProps={{
                                         ...params.InputProps,}}
                                         />
@@ -705,7 +707,9 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             <FormControl fullWidth>
                 <InputLabel id="calidad_reactivo">calidad_reactivo</InputLabel>
                 <Select
-                  
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   labelId="calidad_reactivo"
                   id="calidad_reactivo"
                   value={cal_reactivo}
@@ -790,6 +794,9 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                   id="tipo_reactivo"
                   value={_tip_reactivo}
                   label="tipo_reactivo"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   onChange={tipReactivo}
                 >
                   
@@ -812,13 +819,20 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                     label="med_reactivo"
                     name="medida_reactivo"
                     autoComplete="medida_reactivo"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                     autoFocus
                   />
               
             </Grid>
             <Grid  item xs={2} container justifyContent="center" marginTop={1}>
             <FormControl fullWidth>
-                <InputLabel id="disolvente_reactivo">disolvente</InputLabel>
+                <InputLabel id="disolvente_reactivo"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                >disolvente</InputLabel>
                 <Select
                   
                   labelId="disolvente_reactivo"
