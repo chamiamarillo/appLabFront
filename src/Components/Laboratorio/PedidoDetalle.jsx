@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import moment from 'moment'
 const useStyles = makeStyles(() => ({
     root: {
         display: "flex",
@@ -34,14 +34,17 @@ function PedidoDetalle({ open = { open },
     const {
         numero_tp,
         fecha_solicitud,
+        fecha_utilizacion,
         numero_laboratorio,
         docente,
         cantidad_grupos,
         lista_equipos,
         lista_materiales,
-        lista_reactivos
+        lista_reactivos,
+        descripcion
     } = pedido;
-
+    const fechaActual=(moment(fecha_solicitud).format('DD/MM/YYYY'));
+    const fechaActual2=(moment(fecha_utilizacion).format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
 
     //console.log(lista_materiales);
@@ -56,7 +59,7 @@ function PedidoDetalle({ open = { open },
                 aria-describedby="scroll-dialog-description"
                 maxWidth="lg"
             >
-                <DialogTitle id="scroll-dialog-title">Pedido n°: {numero_laboratorio}</DialogTitle>
+                <DialogTitle id="scroll-dialog-title">Pedido n°: {descripcion}</DialogTitle>
                 <DialogContent dividers={scroll === 'paper'}>
                     <DialogContentText
                         id="scroll-dialog-description"
@@ -66,8 +69,8 @@ function PedidoDetalle({ open = { open },
 
                         <div>
                             <fieldset>
-                                <label htmlFor="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fecha_solicitud} disabled />
-                                <label htmlFor="edificio" id="label_edificio">Edificio : </label> <input type="text" id="edificio" name="edificio" value={fecha_solicitud} disabled />
+                                <label htmlFor="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fechaActual} disabled />
+                                <label htmlFor="edificio" id="label_edificio">Fecha Utilización : </label> <input type="text" id="edificio" name="edificio" value={fechaActual2} disabled />
                                 <label htmlFor="laboratorio" id="label_laboratorio">Laboratorio : </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
 
                                 <br></br>
