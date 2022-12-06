@@ -333,23 +333,49 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                 label="cantidad_alumnos"
                 name="cantidad_alumnos"
                 autoComplete="cantidad_alumnos"
+                InputLabelProps={{ shrink: true}}
                 autoFocus
               />
               </Grid>
-              <Grid item xs={4}>
+              {/* <Grid item xs={4}> */}
+               
 
-
-              <TextField
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="cantidad_grupos"
                 label="cantidad_grupos"
                 name="cantidad_grupos"
+                InputLabelProps={{ shrink: true}}
                 autoComplete="cantidad_grupos"
                 autoFocus
-              />
-            </Grid>
+              /> */}
+            {/* </Grid> */}
+            <Grid  item xs={3} container justifyContent="center" >
+          
+          <TextField 
+           sx={{marginTop:1   }}
+                  
+                  id="cantidad_grupos"
+                  variant="outlined"
+                  name="cantidad_grupos"
+                label="cant_grupos"
+                  type="number"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    inputProps: { 
+                        max: 100, min: 0 
+                    }
+                }}
+       
+      />
+         
+         
+                                   
+          </Grid>
             <Grid  item xs={1} container justifyContent="center">
             <Button fullWidth
                 margin="normal"
@@ -426,7 +452,8 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                                       // value={params._id}
                                        name="descripcion_equipo"
                                        label={"descripcion_equipo"}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       
+                                       InputLabelProps={{className:"autocompleteLabel", shrink: true}}
                                        InputProps={{
                                         ...params.InputProps,}}
                                         />
@@ -512,18 +539,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             <Grid container direction="row"
             justifyContent="flex-end"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            {/* <Grid  item xs={5} container justifyContent="center">
-            <Typography sx={{fontSize: 14 }}  color="text.secondary">
-            Descripcion
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center"/>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Cantidad
-            </Typography>
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center"/> */}
+           
             <Grid  item xs={1} container justifyContent="center">
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
@@ -551,10 +567,10 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                                       return(
                                        <TextField {...params} 
                                        margin="normal"
-                                       
+                                    
                                        name="descripcion_material"
                                        label={"descripcion_material"}
-                                       InputLabelProps={{className:"autocompleteLabel"}}
+                                       InputLabelProps={{className:"autocompleteLabel", shrink: true,}}
                                        InputProps={{
                                         ...params.InputProps,}}
                                         />
