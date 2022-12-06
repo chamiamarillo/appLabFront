@@ -31,6 +31,7 @@ function PedidoV1({ pedido }) {
   const { root } = useStyles();
 
   const {
+    descripcion,
     numero_tp,
     fecha_solicitud,
     numero_laboratorio,
@@ -66,7 +67,7 @@ function PedidoV1({ pedido }) {
                   <AssignmentIcon />
                 </Avatar>
               }
-              title={`Pedido número ${numero_tp}`}
+              title={`Pedido número ${descripcion}`}
               subheader={`Fecha : ${fecha_solicitud}`}
               action={
                 <IconButton>

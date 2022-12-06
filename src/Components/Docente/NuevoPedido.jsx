@@ -103,21 +103,17 @@ export default function NuevoPedido({setNuevoPedido}) {
     "descripcion": (nro_pedido).toString(),
     "fecha_solicitud":data.get('fecha_solicitud'),
     "fecha_utilizacion":data.get('fecha_utilizacion'),
-    "numero_laboratorio": "2",
+    "numero_laboratorio": parseInt(10,10),
     "tipo_pedido": "algo",
     "cantidad_alumnos":data.get('cantidad_alumnos'),
     "cantidad_grupos": data.get('cantidad_grupos'),
-    "observaciones": "algo mas",
-    "materia": "materia",
+    "observaciones": "string",
+    "materia": "string",
     "numero_tp": "2"
     
   });
 
-    console.log(data.get('fecha_solicitud'));
-    console.log(data.get('fecha_utilizacion'));
-    console.log(data.get('hora'));
-    console.log(data.get('cantidad_alumnos'));
-    console.log(data.get('cantidad_grupos'));
+   
     console.log(pedidoEncabezado);
 };
   
@@ -180,15 +176,15 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
       "dni": userActual.dni,
       "matricula": userActual.matricula
   }, 
-        "descripcion": "Pedido 2",
-        "fecha_solicitud":"2022/11/10",
-        "fecha_utilizacion":"2022/11/10",
-        "numero_laboratorio": "2",
-        "tipo_pedido": "algo",
-        "cantidad_grupos": "2",
-        "observaciones": "algo mas",
-        "materia": "materia",
-        "numero_tp": "2",
+        "descripcion": pedidoEncabezado.descripcion,
+        "fecha_solicitud":pedidoEncabezado.fecha_solicitud,
+        "fecha_utilizacion":pedidoEncabezado.fecha_utilizacion,
+        "numero_laboratorio": pedidoEncabezado.numero_laboratorio,
+        "tipo_pedido": pedidoEncabezado.tipo_pedido,
+        "cantidad_grupos": pedidoEncabezado.cantidad_grupos,
+        "observaciones": pedidoEncabezado.observaciones,
+        "materia": pedidoEncabezado.materia,
+        "numero_tp":pedidoEncabezado.numero_tp,
         "lista_equipos": pedidoEquipos,
         "lista_reactivos":pedidoReactivos,
         "lista_materiales":pedidoMateriales
@@ -397,18 +393,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             <Grid container direction="row"
             justifyContent="flex-end"
             alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            {/* <Grid  item xs={5} container justifyContent="center">
-            <Typography sx={{fontSize: 14 }}  color="text.secondary">
-            Descripcion
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center"/>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Cantidad
-            </Typography>
-            </Grid>
-          <Grid  item xs={2} container justifyContent="center"/>*/}
+            
             <Grid  item xs={1} container justifyContent="center"> 
             <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
             Confirmar
@@ -650,56 +635,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             </Grid>
 
             
-            <Grid container direction="row"
-            justifyContent="flex-end"
-            alignItems="center"  spacing={{ xs: 1, md: 1 }} columns={{ xs: 12  }} > 
-            {/*<Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14 }}  color="text.secondary">
-            Descripcion
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            CAS
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Calidad
-            </Typography>
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Concentración
-            </Typography>
-            </Grid>
-            <Grid  item xs={2} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Disolvente
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            cant_reactivo
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Un_Med
-            </Typography>
-          </Grid>*/}
             
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
-            Confirmar
-            </Typography>
-            </Grid>
-            <Grid  item xs={1} container justifyContent="center">
-            <Typography sx={{fontSize: 14}}  color="text.secondary">
-            Desechar
-            </Typography>
-            </Grid>
-            </Grid> 
             {/* COMIENZA EL FORMULARIO REACTIVOS */}
              <Grid container direction="row"
             justifyContent="start"
@@ -712,6 +648,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                                     options={listaReactivos}
                                     getOptionLabel={(option)=>option.descripcion}
                                     onChange={(event, value) => set_IdReactivo(event,value)}
+                                    //value={reactivoElegido}
                                     renderInput={(params) =>{
                                       return(
                                        <TextField {...params} 
@@ -763,29 +700,37 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
                   <MenuItem sx={{ fontSize: 10 }}value={"molecular"}>CALIDAD MOLECULAR</MenuItem>
                   <MenuItem sx={{ fontSize: 10 }}value={"grado_tecnico"}>°TECNICO</MenuItem>
                   
-checout                </Select>
+               </Select>
               </FormControl>
       
               
             </Grid>
-           
-            <Grid  item xs={1} container justifyContent="center" marginLeft={11}>
-            <Button fullWidth
-                margin="normal"
-              variant="text"
-              type="submit"
-              >
-            <Avatar> 
-                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                    </Avatar>
-           </Button>    
-            
-            </Grid>
             <Grid  item xs={1} container justifyContent="center">
-            <Avatar> 
-                                    <DeleteForeverIcon color={"rojo"} />
-                                    </Avatar> 
+            <TextField 
+             sx={{marginTop:1   }}
+                    
+                    id="cant_reactivo"
+                    variant="outlined"
+                    name="cant_reactivo"
+                  label="cant_reactivo"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    InputProps={{
+                      inputProps: { 
+                          max: 100, min: 0 
+                      }
+                  }}
+         
+        />  
+             
+              
+     
+                                     
             </Grid>
+           
+           
             
             </Grid> 
             <Grid container direction="row"
@@ -795,6 +740,17 @@ checout                </Select>
             <Grid  item xs={5} container justifyContent="center">
             <Typography sx={{fontSize: 14}}  color="text.secondary">
             Concentración
+            </Typography>
+            </Grid>
+            <Grid  item xs={5} container justifyContent="center"></Grid>
+            <Grid  item xs={1} container justifyContent="end">
+            <Typography sx={{fontSize: 14}} aria-label="simple table"  color="text.secondary">
+            Confirmar
+            </Typography>
+            </Grid>
+            <Grid  item xs={1} container justifyContent="end">
+            <Typography sx={{fontSize: 14}}  color="text.secondary">
+            Desechar
             </Typography>
             </Grid>
             
@@ -865,30 +821,7 @@ checout                </Select>
               
             </Grid>
           
-            <Grid  item xs={1} container justifyContent="center">
-            <TextField 
-             sx={{marginTop:1   }}
-                    
-                    id="cant_reactivo"
-                    variant="outlined"
-                    name="cant_reactivo"
-                  label="cant_reactivo"
-                    type="number"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    InputProps={{
-                      inputProps: { 
-                          max: 100, min: 0 
-                      }
-                  }}
-         
-        />  
-             
-              
-     
-                                     
-            </Grid>
+            
             <Grid  item xs={2} container justifyContent="center" marginTop={1}>
             <FormControl fullWidth>
                 <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
@@ -912,6 +845,23 @@ checout                </Select>
               </FormControl>
  
             </Grid>  
+            <Grid  item xs={1} container justifyContent="center" marginLeft={11}>
+            <Button fullWidth
+                margin="normal"
+              variant="text"
+              type="submit"
+              >
+            <Avatar> 
+                                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                                    </Avatar>
+           </Button>    
+            
+            </Grid>
+            <Grid  item xs={1} container justifyContent="center">
+            <Avatar> 
+                                    <DeleteForeverIcon color={"rojo"} />
+                                    </Avatar> 
+            </Grid>
             </Grid>       
        <Grid></Grid>       
        </Grid>  
@@ -961,8 +911,8 @@ checout                </Select>
           
           </Box>
        
-        
+         
       </Container>
-    </ThemeProvider>
+      </ThemeProvider>  
   );
 }
