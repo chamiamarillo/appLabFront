@@ -192,7 +192,8 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
   };
     
   postPedido(pedido) ; 
-
+  navigate('/Docente/Pedidos');
+  setNuevoPedido(false);
     
      
 
