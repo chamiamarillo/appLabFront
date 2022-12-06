@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import Pedido from "./Pedido";
+import PedidoV1 from "../Docente/PedidoV1";
 import { getListaPedidos } from "../../Services/getPedidosService";
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
@@ -48,7 +49,7 @@ function Pedidos() {
       
       {listaPedidos.map((pedido) => (
         <Grid item xs={3}  key={pedido.id}>
-        <Pedido key={pedido._id} pedido={pedido} />
+        <PedidoV1 key={pedido._id} pedido={pedido} />
         </Grid>
       ))}
     </Grid>
