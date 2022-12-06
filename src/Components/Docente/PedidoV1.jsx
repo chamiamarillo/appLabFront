@@ -3,6 +3,8 @@ import { Icon, makeStyles } from "@material-ui/core";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
+
+import moment from 'moment'
 import {
   Box,
   Card,
@@ -39,7 +41,9 @@ function PedidoV1({ pedido }) {
     cantidad_grupos,
     lista_equipos
   } = pedido;
-
+ const fechaActual=(moment(fecha_solicitud).format('DD/MM/YYYY'));
+  //console.log(fecha_solicitud);
+ // console.log(moment(fecha_solicitud).format('DD/MM/YYYY'));
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -68,7 +72,8 @@ function PedidoV1({ pedido }) {
                 </Avatar>
               }
               title={`Pedido número ${descripcion}`}
-              subheader={`Fecha : ${fecha_solicitud}`}
+           // subheader={`Fecha : ${fecha_solicitud}`}
+          subheader={`Fecha : ${fechaActual}`}
               action={
                 <IconButton>
                   <MoreVertIcon />
