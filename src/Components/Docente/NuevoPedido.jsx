@@ -829,9 +829,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
             <Grid  item xs={2} container justifyContent="center" marginTop={1}>
             <FormControl fullWidth>
                 <InputLabel id="disolvente_reactivo"
-                InputLabelProps={{
-                  shrink: true,
-                }}
+               
                 >disolvente</InputLabel>
                 <Select
                   

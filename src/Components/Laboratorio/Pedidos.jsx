@@ -43,8 +43,15 @@ function Pedidos() {
       : (
      <Box sx={{ flexGrow: 1 ,md:2 }}>    
             <Grid container direction="row"
-            justifyContent="space-around"
-            alignItems="center"  
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p:8,
+              m: 4,
+             }}
+             alignItems="space-between" 
+            //justifyContent="space-around"
+          //  alignItems="center"  
             spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}>
       
       {listaPedidos.map((pedido) => (
