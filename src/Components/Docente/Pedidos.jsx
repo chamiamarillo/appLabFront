@@ -81,8 +81,8 @@ function Pedidos() {
             <Grid container direction="row"
              sx={{
               display: 'flex',
-              justifyContent: 'space-between',
-              p:8,
+              justifyContent: 'center',
+              px:8,
               m: 4,
              }}
              alignItems="space-between" 
