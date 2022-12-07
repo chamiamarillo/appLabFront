@@ -35,13 +35,14 @@ function PedidoV1({ pedido }) {
   const {
     descripcion,
     numero_tp,
+    fecha_utilizacion,
     fecha_solicitud,
     numero_laboratorio,
     docente,
     cantidad_grupos,
     lista_equipos
   } = pedido;
- const fechaActual=(moment(fecha_solicitud).format('DD/MM/YYYY'));
+ const fechaActual=(moment(fecha_utilizacion).format('DD/MM/YYYY'));
  
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -72,7 +73,7 @@ function PedidoV1({ pedido }) {
               }
               title={`Pedido número ${descripcion}`}
            // subheader={`Fecha : ${fecha_solicitud}`}
-          subheader={`Fecha : ${fechaActual}`}
+          subheader={`Fecha de Utilización : ${fechaActual}`}
               action={
                 <IconButton>
                   <MoreVertIcon />

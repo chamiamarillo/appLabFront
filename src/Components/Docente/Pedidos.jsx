@@ -79,9 +79,14 @@ function Pedidos() {
         :((listaPedidos.length >=1) && !(nuevoPedido))?(  
        <Box sx={{ flexGrow: 1 ,md:2 }}>    
             <Grid container direction="row"
-            justifyContent="space-around"
-            alignItems="center"
-            spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}> 
+             sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p:8,
+              m: 4,
+             }}
+             alignItems="space-between" 
+            spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }} > 
               {listaPedidos.map((pedido) => (
                   <Grid item xs={3}  key={pedido.id}>
                     <PedidoV1 key={pedido.id} pedido={pedido} />
