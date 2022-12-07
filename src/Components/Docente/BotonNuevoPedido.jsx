@@ -15,10 +15,12 @@ const BotonNPedido = ({setNuevoPedido}) => {
       {/* //  <Typography component="div" align='rigth'width={200} height={30} color={"blanco.main"} bgcolor={"verdeC.main"}   >  */}
       <Grid container justifyContent="flex-end" 
               >
-      <Grid item xs={2} color="white"   bgcolor="primary.main"  style={{borderRadius:8}}>
+      <Grid item xs={2}  style={{borderRadius:8}}>
            
            <Button fullWidth
-           style={{borderRadius:8}}
+          
+          // sx={{color:{"white"} ,  bgcolor:{"primary.main"} }}
+           style={{borderRadius:8,color:"white",background:"#26a69a"}}
            margin="normal"
          variant="contained"
          startIcon={<AddCircleIcon />}
