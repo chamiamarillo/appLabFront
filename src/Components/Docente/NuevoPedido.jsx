@@ -46,8 +46,8 @@ import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 //const theme = createTheme();
 
 
-
-export default function NuevoPedido({setNuevoPedido}) {
+export default function NuevoPedido() {
+// export default function NuevoPedido({setNuevoPedido}) {
 //PRUEBA CODIGO
 
   const userActual = JSON.parse(localStorage.getItem('usuario'));
@@ -193,7 +193,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
     
   postPedido(pedido) ; 
   navigate('/Docente/Pedidos');
-  setNuevoPedido(false);
+  // setNuevoPedido(false);
     
      
 
@@ -937,7 +937,7 @@ const  set_IdReactivo=(event,value) => {    setReacElegido(value); console.log("
          startIcon={<ReplyAllIcon/>}
          onClick={() => {
           navigate('/Docente/Pedidos')
-          setNuevoPedido(false);
+          // setNuevoPedido(false);
           
         }}
         

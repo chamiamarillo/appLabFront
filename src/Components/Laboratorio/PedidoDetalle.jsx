@@ -24,12 +24,15 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function PedidoDetalle({ open = { open },
+function PedidoDetalle(
+    { open = { open },
     setOpen = { setOpen },
     scroll = { scroll },
     handleClose = { handleClose },
     pedido = { pedido }
-}) {
+}
+) 
+{
     const { root } = useStyles();
 
     const {
@@ -76,7 +79,7 @@ function PedidoDetalle({ open = { open },
 
                                 <br></br>
                                 <label id="label_docente"> docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
-                                <label id="label_alumno"> alumnos : </label> <input type="text" id="alumno" name="alumno" value="40" disabled />
+                                {/* <label id="label_alumno"> alumnos : </label> <input type="text" id="alumno" name="alumno" value="40" disabled /> */}
                                 <label id="label_grupo"> grupos : </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
                             </fieldset>
                         </div>
