@@ -1,33 +1,29 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
-import {Button, IconButton, Autocomplete, TextField, Box, Grid, Typography, ThemeProvider } from '@mui/material';
+import {Button,  Autocomplete, TextField,  Grid, Typography, ThemeProvider } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import laboratorio from '../Image/biologia.png';
-import { margin } from '@mui/system';
+
 
 const PedidoEquipos = (props) => {
 
 
     return (
 
-
-        <Grid container direction="row"
-            justifyContent="space-around"
-            alignItems="center"
-            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}
+        <Grid container 
+        sx={{
+            '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+            borderBottom: 'var(--Grid-borderWidth) solid',
+            borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 4,marginX:10
+        }}
+        spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}
+        
         >
-
-            <Grid item xs={12} >
-                <Box
-                    border={1}
-                    borderColor={"borde.main"}
-                    borderRadius={5}
-                    padding={1}
-
-
-                >
+        
 
                     {/* TITULO */}
                     <Grid container direction="row"
@@ -136,9 +132,9 @@ const PedidoEquipos = (props) => {
                     </Grid>
                     <Grid></Grid>
 
-                </Box>
+               
             </Grid>
-        </Grid>
+     
 
     )
 }
