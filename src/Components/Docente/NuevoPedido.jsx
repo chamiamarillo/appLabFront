@@ -4,9 +4,6 @@ import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
 
-
-
-
 import { Grid, Box } from '@mui/material';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -31,7 +28,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useNavigate } from 'react-router-dom';
 import { postPedido } from '../../Services/postPedidoService'
 import { getListaMateriales, getListaEquipos, getListaReactivos } from '../../Services/getService';
-//import { getListaPedidos } from '../../Services/getPedidosService';
+
 import { getCantidadPedidos } from '../../Services/getPedidosService';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -40,9 +37,9 @@ import MenuItem from '@mui/material/MenuItem';
 //import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import SendIcon from '@mui/icons-material/Send';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
-import IconButton from '@mui/material/IconButton'
+
 import PedidoEquipos from './PedidoEquipos';
-import { red } from '@mui/material/colors';
+
 import PedidoCabecera from './PedidoCabecera';
 
 
@@ -77,6 +74,13 @@ export default function NuevoPedido() {
   const [cal_reactivo, setCalReactivo] = useState("");
   const [_tip_reactivo, setTipReactivo] = useState("");
   const [_disol_reactivo, setDisolReactivo] = useState("");
+
+
+
+
+ 
+  
+
 
 
   const disolReactivo = (event) => { setDisolReactivo(event.target.value); };
@@ -137,15 +141,23 @@ export default function NuevoPedido() {
   };
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
 
+
+
+
   // CARGA MATERIAL A LA LISTA
   const cargaMaterial = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const dato={
+        "cantidad": parseInt(data.get('cant_material'), 10),
+        "material": materialElegido._id
+      }; 
+      const cargarNuevosMateriales = dato => {
+           setPedidoMateriales([...pedidoMateriales, dato]);
+         }
+    cargarNuevosMateriales(dato)
 
-    setPedidoMateriales({
-      "cantidad": parseInt(data.get('cant_material'), 10),
-      "material": materialElegido._id
-    });
+    
 
   };
 
@@ -231,24 +243,14 @@ export default function NuevoPedido() {
         <Box>
           <Box sx={{ flexGrow: 1, md: 2 }}>
 
-            <PedidoCabecera
+             <PedidoCabecera
             cargaEncabezado={cargaEncabezado}
             cantidadPedidos={cantidadPedidos}
             />
            
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
-            {/* <Grid container 
-            sx={{
-                '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
-                borderLeft: 'var(--Grid-borderWidth) solid',
-                borderRight: 'var(--Grid-borderWidth) solid',
-                borderBottom: 'var(--Grid-borderWidth) solid',
-                borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 4,marginX:10
-            }}
-            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}
-            
-            > */}
+           
 
 
 
@@ -261,7 +263,7 @@ export default function NuevoPedido() {
             />
 
 
-            {/* </Grid> */}
+           
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
             <Grid container direction="row"
