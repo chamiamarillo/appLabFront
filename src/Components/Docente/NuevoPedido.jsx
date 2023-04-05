@@ -56,6 +56,8 @@ export default function NuevoPedido() {
   const [pedidoEquipos, setPedidoEquipos] = useState([]);
   const [listaEquipos, setListaEquipos] = useState([]);
   const [equipoElegido, setEquipoElegido] = useState({});
+  const [verMasEquip,setverMasEquip]=useState([]);
+ 
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
@@ -123,7 +125,7 @@ export default function NuevoPedido() {
     });
 
 
-    console.log(pedidoEncabezado);
+    // console.log(pedidoEncabezado);
   };
 
 
@@ -133,12 +135,32 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    setPedidoEquipos({
+    const dato={
       "cantidad": parseInt(data.get('cant_equipo'), 10),
       "equipo": equipoElegido._id
-    });
+    }; 
+    const cargarNuevosEquipos = dato => {
+         setPedidoEquipos([...pedidoEquipos, dato]);
+       }
+    const datoVer={
+        "cantidad": parseInt(data.get('cant_equipo'), 10),
+        "equipo": equipoElegido
+      }; 
+      const cargarNuevosEquiposVer = dato => {
+        setverMasEquip([...verMasEquip, dato]);
+         }
+        
+  cargarNuevosEquiposVer(datoVer)
+
+  cargarNuevosEquipos(dato)
+
+    // setPedidoEquipos({
+    //   "cantidad": parseInt(data.get('cant_equipo'), 10),
+    //   "equipo": equipoElegido._id
+    // });
+
   };
+
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
 
 
@@ -179,7 +201,7 @@ export default function NuevoPedido() {
 
   };
   const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
-
+  
 
 
 
@@ -246,6 +268,7 @@ export default function NuevoPedido() {
              <PedidoCabecera
             cargaEncabezado={cargaEncabezado}
             cantidadPedidos={cantidadPedidos}
+            
             />
            
 
@@ -259,6 +282,9 @@ export default function NuevoPedido() {
               cargaEquipo={cargaEquipo}
               listaEquipos={listaEquipos}
               set_IdEquip={set_IdEquip}
+              pedidoEquipos={pedidoEquipos}
+              equipoElegido={equipoElegido}
+              verMasEquip={verMasEquip}
 
             />
 
