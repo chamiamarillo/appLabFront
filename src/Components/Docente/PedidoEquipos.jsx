@@ -61,12 +61,13 @@ const PedidoEquipos = (props) => {
 
                 <Grid item xs={1} container justifyContent="center">
                     <Typography sx={{ fontSize: 14 }} aria-label="simple table" color="text.secondary">
-                        Confirmar
+                        
+                        
                     </Typography>
                 </Grid>
                 <Grid item xs={1} container justifyContent="center">
                     <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                        Desechar
+                    Confirmar
                     </Typography>
                 </Grid>
             </Grid>
@@ -127,7 +128,7 @@ const PedidoEquipos = (props) => {
 
 
                 </Grid>
-                <Grid item xs={2} container justifyContent="center" />
+                <Grid item xs={3} container justifyContent="center" />
                 <Grid item xs={1} container justifyContent="center">
                     <Button fullWidth
                         margin="normal"
@@ -138,11 +139,11 @@ const PedidoEquipos = (props) => {
                         </Avatar>
                     </Button>
                 </Grid>
-                <Grid item xs={1} container justifyContent="center">
+                {/* <Grid item xs={1} container justifyContent="center">
                     <Avatar>
                         <DeleteForeverIcon color={"rojo"} />
-                    </Avatar>
-                </Grid>
+                    </Avatar> 
+                    </Grid>*/}
 
             </Grid>
 
@@ -180,9 +181,15 @@ const PedidoEquipos = (props) => {
                                         Clase
 
                                     </Grid>
-                                    <Grid item xs={3} container justifyContent="end" >
+                                    <Grid item xs={2} container justifyContent="end" >
 
                                         Cantidad
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                       
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                        Desechar
                                     </Grid>
                                 </Grid>
 
@@ -192,7 +199,7 @@ const PedidoEquipos = (props) => {
 
 
 
-                                <Grid container direction="row"
+                                <Grid container  component="form" onSubmit={props.cargaEquipo} noValidate direction="row"
                                     alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                     <Grid item xs={6} container justifyContent="start" >
@@ -204,10 +211,23 @@ const PedidoEquipos = (props) => {
                                         {row.equipo.clase}
 
                                     </Grid>
-                                    <Grid item xs={3} container justifyContent="end" >
+                                    <Grid item xs={2} container justifyContent="end" >
 
                                         {row.cantidad}
                                     </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                       
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                        <Button fullWidth
+                                                margin="normal"
+                                                variant="text"
+                                                type="submit" >
+                                        <Avatar>
+                                            <DeleteForeverIcon color={"rojo"} />
+                                        </Avatar>
+                                        </Button>
+                                    </Grid> 
                                 </Grid>
 
                             ))}
