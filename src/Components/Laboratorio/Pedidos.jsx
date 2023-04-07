@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core";
-import Pedido from "./Pedido";
 import PedidoV1 from "../Docente/PedidoV1";
 import { getListaPedidos } from "../../Services/getPedidosService";
 import React, { useEffect, useState } from 'react';
@@ -50,12 +49,11 @@ function Pedidos() {
               m: 4,
              }}
              alignItems="space-between" 
-            //justifyContent="space-around"
-          //  alignItems="center"  
-            spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}>
+             spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}>
       
       {listaPedidos.map((pedido) => (
         <Grid item xs={3}  key={pedido.id}>
+
         <PedidoV1 key={pedido._id} pedido={pedido} />
         </Grid>
       ))}
