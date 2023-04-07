@@ -5,7 +5,7 @@ import './App.css';
 
 import Login from './Components/Login/Login';
 
-import PedidoD from './Components/Docente/Pedido'
+
 import PedidoV1 from './Components/Docente/PedidoV1'
 import NuevoPedido from './Components/Docente/NuevoPedido';
 
@@ -35,7 +35,7 @@ function App() {
           <Route  path="/Laboratorio/Pedidos" element={<Pedidos/>}/>
 
           <Route  path="/Docente/Pedidos/PedidoV1" element={<PedidoV1/>}/>
-          <Route  path="/Docente/Pedidos/Pedido" element={<PedidoD/>}/>
+          {/* <Route  path="/Docente/Pedidos/Pedido" element={<PedidoD/>}/> */}
           <Route  path="/Docente/NuevoPedido" element={<NuevoPedido/>}/>
          
           

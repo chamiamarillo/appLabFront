@@ -1,12 +1,6 @@
-
 import PedidoV1 from "./PedidoV1";
-import Pedido from "./Pedido"
-import {getListaTxt} from '../../Services/getPedidosServiceTxt';
-import{getListaPedidos} from '../../Services/getPedidosService';
 import { getPedidosPorDni } from "../../Services/getPedidosPorDNIService";
 import Header from '../Header/Header'
-
-
 import React, { useEffect, useState } from 'react';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -18,10 +12,6 @@ import NoEncontrados from "./NoEncontrados"
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
 
-
-
-// 
-import Typography from '@mui/material/Typography';
 import NuevoPedido from "./NuevoPedido";
 
 const Item = styled(Paper)(({ theme }) => ({
