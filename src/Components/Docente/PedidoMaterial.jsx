@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import {Button, IconButton, Autocomplete, TextField, Box, Grid, Typography, ThemeProvider } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import pipeta from '../Image/pipeta.png';
 import { margin } from '@mui/system';
 
 const PedidoMaterial = (props) => {
+    
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
 
 
     return (
@@ -50,11 +60,11 @@ const PedidoMaterial = (props) => {
                         Confirmar
                     </Typography>
                     </Grid>
-                    <Grid item xs={1} container justifyContent="center">
+                    {/* <Grid item xs={1} container justifyContent="center">
                     <Typography sx={{ fontSize: 14 }} color="text.secondary">
                         Desechar
                     </Typography>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 {/* COMIENZA EL FORMULARIO DE MATERIALES */}
 
@@ -109,7 +119,7 @@ const PedidoMaterial = (props) => {
 
 
                     </Grid>
-                    <Grid item xs={2} container justifyContent="center" />
+                    <Grid item xs={3} container justifyContent="center" />
                     <Grid item xs={1} container justifyContent="center">
                     <Button fullWidth
                     margin="normal"
@@ -122,12 +132,16 @@ const PedidoMaterial = (props) => {
             </Button>  
             
                 </Grid>
-                <Grid  item xs={1} container justifyContent="center">
+                {/* <Grid  item xs={1} container justifyContent="center">
                 <Avatar> 
                                         <DeleteForeverIcon color={"rojo"} />
                                         </Avatar> 
-                    </Grid>
+                    </Grid> */}
                 </Grid>
+
+
+
+                
                 <Grid></Grid>
                 </Grid>
 
