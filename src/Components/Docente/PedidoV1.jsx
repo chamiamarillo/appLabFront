@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon, makeStyles } from "@material-ui/core";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
-
+import{getUsuario} from '../../Services/getUsuarioService';
 import moment from 'moment'
 import {
   Box,
@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PedidoDetalle from "../Laboratorio/PedidoDetalle";
+import PedidoDetalleLabo from "../Laboratorio/PedidoDetalleLabo";
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,9 +31,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-function PedidoV1({ pedido }) {
+function PedidoV1({ pedido  ,esAdmin,setEdicionActiva,edicionActiva}) {
   const { root } = useStyles();
-
+  
+ 
+   
   const {
     descripcion,
     numero_tp,
@@ -44,7 +48,7 @@ function PedidoV1({ pedido }) {
   } = pedido;
  const fechaActual=(moment(fecha_utilizacion).format('DD/MM/YYYY'));
  
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState("");
   const [scroll, setScroll] = React.useState('paper');
 
   const handleClickOpen = (scrollType) => () => {
@@ -55,8 +59,7 @@ function PedidoV1({ pedido }) {
   const handleClose = () => {
     setOpen(false);
   };
-
-
+ 
   return (
     <ThemeProvider theme={Theme1}>
       <Box sx={{m:10}} styles={{display: "flex",
@@ -102,13 +105,24 @@ function PedidoV1({ pedido }) {
           </CardActionArea>
         </Card>
       </Box>
-
-      <PedidoDetalle open={open}
+      {!(esAdmin)
+      ?(<PedidoDetalle open={open}
         setOpen={setOpen}
         handleClose={handleClose}
         scroll={scroll}
         pedido={pedido}
-      ></PedidoDetalle>
+      ></PedidoDetalle>)
+      :(
+      <PedidoDetalleLabo open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        scroll={scroll}
+        pedido={pedido}
+        setEdicionActiva={setEdicionActiva}
+        edicionActiva={edicionActiva}
+      ></PedidoDetalleLabo>)
+    }
+
     </ThemeProvider>
   );
 

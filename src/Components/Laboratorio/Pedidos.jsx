@@ -21,8 +21,14 @@ function Pedidos() {
   const { marginTop } = useStyles();
   const [listaPedidos, setListaPedidos] = useState([]);
   const [texto,setEncabezado]=useState("Laboratorio");
+  const [esAdmin,setEsAdmin]=useState(true)  
+
+  const [edicionActiva,setEdicionActiva]=useState(false)
+
   useEffect(() => {
     let mounted = true;
+    const userActual=JSON.parse(localStorage.getItem('usuario'));
+    setEsAdmin(userActual.admin)
     getListaPedidos()
       .then(items => {
         if (mounted) {
@@ -54,7 +60,9 @@ function Pedidos() {
       {listaPedidos.map((pedido) => (
         <Grid item xs={3}  key={pedido.id}>
 
-        <PedidoV1 key={pedido._id} pedido={pedido} />
+        <PedidoV1 key={pedido._id} 
+        pedido={pedido} esAdmin={esAdmin}
+         edicionActiva={edicionActiva} setEdicionActiva={setEdicionActiva} />
         </Grid>
       ))}
     </Grid>

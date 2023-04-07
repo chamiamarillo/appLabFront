@@ -1,18 +1,21 @@
 import React from "react";
-import { Icon, makeStyles } from "@material-ui/core";
+import {  makeStyles, Button } from "@material-ui/core";
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import DialogActions from '@mui/material/DialogActions';
+import { useState } from "react";
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+
 import Paper from '@mui/material/Paper';
 import moment from 'moment'
 import Grid from '@mui/material/Grid';
+
+
+import AsignarLaboratorio from "./AsignarLaboratorio";
 const useStyles = makeStyles(() => ({
     root: {
         display: "flex",
@@ -29,11 +32,13 @@ function PedidoDetalle(
         setOpen = { setOpen },
         scroll = { scroll },
         handleClose = { handleClose },
-        pedido = { pedido }
+        pedido = { pedido },
+        setEdicionActiva={setEdicionActiva},
+        edicionActiva={edicionActiva}
     }
 ) {
     const { root } = useStyles();
-
+    
     const {
         numero_tp,
         fecha_solicitud,
@@ -46,11 +51,23 @@ function PedidoDetalle(
         lista_reactivos,
         descripcion
     } = pedido;
+
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
     const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
+  
 
-    //console.log(lista_materiales);
+
+
+    
+    const irAAsignarLaboratorio = () => {
+      
+        setEdicionActiva(true)
+        
+
+    }
+
+    
 
     return (
         <div>
@@ -245,8 +262,20 @@ function PedidoDetalle(
                         </TableContainer>
                     </DialogContentText>
                 </DialogContent>
+                <DialogActions>
+                    <Button onClick={irAAsignarLaboratorio}
+                     style={{ borderRadius: 8 }}
+                     variant="contained"
+                    bgcolor={"secondary"} color={"primary"}>
+                        Asignar Edificio y Laboratorio
 
+
+                    </Button>
+           
+                </DialogActions>
             </Dialog>
+         
+           
 
         </div>
     );
