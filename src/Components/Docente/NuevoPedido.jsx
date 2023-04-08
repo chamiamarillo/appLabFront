@@ -183,7 +183,7 @@ export default function NuevoPedido() {
 
       const datoVer={
           "cantidad": parseInt(data.get('cant_material'), 10),
-          "equipo": materialElegido
+          "material": materialElegido
         }; 
       const cargarNuevosMaterialesVer = dato => {
           setverMasMateriales([...verMasMateriales, dato]);
@@ -311,8 +311,10 @@ export default function NuevoPedido() {
                     cargaMaterial={cargaMaterial}
                     listaMateriales={listaMateriales}
                     set_IdMat={set_IdMat}
-
-              />
+                    pedidoMateriales={pedidoMateriales}
+                    materialElegido={materialElegido}
+                    verMasMateriales={verMasMateriales}
+            />
             
             <PedidoReactivo
               cargaReactivos = {cargaReactivos}

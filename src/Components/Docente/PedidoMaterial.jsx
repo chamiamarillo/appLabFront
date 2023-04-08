@@ -127,11 +127,11 @@ const PedidoMaterial = (props) => {
                 type="submit"
                 >
                 <Avatar> 
-                                        <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
-                                        </Avatar>
+                    <AddCircleIcon bgcolor={"secondary"} color={"primary"} />
+                </Avatar>
             </Button>  
             
-                </Grid>
+        </Grid>
                 {/* <Grid  item xs={1} container justifyContent="center">
                 <Avatar> 
                                         <DeleteForeverIcon color={"rojo"} />
@@ -139,16 +139,101 @@ const PedidoMaterial = (props) => {
                     </Grid> */}
                 </Grid>
 
+                {(props.verMasMateriales.length > 0) ? (
+                <Grid container  alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+                 <Grid item xs={12}>
+                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} >
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel3bh-content"
+                        id="panel3bh-header"
+                    >
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                            MÁS MATERIALES SOLICITADOS
+                        </Typography>
+                        <Typography sx={{ color: 'text.secondary' }}>
+                            presione la flecha hacia abajo para ver
+                        </Typography>
+                    </AccordionSummary>
+                     <AccordionDetails>
+                    <Typography >
+                        <Grid container direction="row"
+                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+
+                                    <Grid item xs={8} container justifyContent="start" >
 
 
-                
-                <Grid></Grid>
+                                       Descripcion
+                                    </Grid>
+                                   {/*  <Grid item xs={2} container justifyContent="flex-start" >
+                                        Clase
+
+                                    </Grid> */}
+                                    <Grid item xs={2} container justifyContent="end" >
+
+                                        Cantidad
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                       
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                        Desechar
+                                    </Grid>
+                                </Grid>
+
+
+
+                            {props.verMasMateriales.map((row) => (
+
+
+
+                                <Grid container  component="form" onSubmit={props.cargaMaterial} noValidate direction="row"
+                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+
+                                    <Grid item xs={8} container justifyContent="start" >
+
+
+                                        {row.material.descripcion}
+                                    </Grid>
+                                   {/*  <Grid item xs={2} container justifyContent="flex-start" >
+                                        {row.equipo.clase}
+
+                                    </Grid> */}
+                                    <Grid item xs={2} container justifyContent="end" >
+
+                                        {row.cantidad}
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                       
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center">
+                                        <Button fullWidth
+                                                margin="normal"
+                                                variant="text"
+                                                type="submit" >
+                                        <Avatar>
+                                            <DeleteForeverIcon color={"rojo"} />
+                                        </Avatar>
+                                        </Button>
+                                    </Grid> 
+                                </Grid>
+
+                            ))}
+                        </Typography>
+                    </AccordionDetails> 
+                </Accordion> 
                 </Grid>
+                </Grid>
+            ) : (<div></div>)}
 
-   
-)
+        </Grid>
+
+
+
+
+
+    )
 }
 
-
-
+                
 export default PedidoMaterial
