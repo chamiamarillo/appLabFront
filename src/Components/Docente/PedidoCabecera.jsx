@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 
 
 
-
+import moment from 'moment'
 import { Grid, Box } from '@mui/material';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -18,6 +18,9 @@ import Typography from '@mui/material/Typography';
 
 
 const PedidoCabecera = (props) => {
+ 
+  const fecha = new Date();
+  const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
   return (
     <div> <Grid container component="form" onSubmit={props.cargaEncabezado} noValidate direction="row"
     justifyContent="space-around"
@@ -59,16 +62,18 @@ const PedidoCabecera = (props) => {
           id="fecha_solicitud"
           label="fecha_solicitud"
           name="fecha_solicitud"
-          type="date"
+          type="text"
           InputLabelProps={{
             shrink: true,
           }}
-          InputProps={{
-            readOnly: false,
-          }
+          // InputProps={{
+          //   readOnly: true,
+          // }
 
-          }
+          // }
+          value={fechaActual}
           margin="normal"
+          disabled
           required
           fullWidth
           autoFocus

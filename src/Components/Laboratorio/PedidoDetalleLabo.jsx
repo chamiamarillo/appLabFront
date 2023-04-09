@@ -1,5 +1,5 @@
 import React from "react";
-import {  makeStyles, Button } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import DialogActions from '@mui/material/DialogActions';
 import { useState } from "react";
 import TableContainer from '@mui/material/TableContainer';
+import { useNavigate } from 'react-router-dom';
 
 import Paper from '@mui/material/Paper';
 import moment from 'moment'
@@ -16,6 +17,7 @@ import Grid from '@mui/material/Grid';
 
 
 import AsignarLaboratorio from "./AsignarLaboratorio";
+
 const useStyles = makeStyles(() => ({
     root: {
         display: "flex",
@@ -33,41 +35,54 @@ function PedidoDetalle(
         scroll = { scroll },
         handleClose = { handleClose },
         pedido = { pedido },
-        setEdicionActiva={setEdicionActiva},
-        edicionActiva={edicionActiva}
+        setEdicionActiva = { setEdicionActiva },
+        edicionActiva = { edicionActiva }
     }
 ) {
     const { root } = useStyles();
-    
+    const navigate = useNavigate();
     const {
+        _id,
         numero_tp,
         fecha_solicitud,
         fecha_utilizacion,
         numero_laboratorio,
         docente,
+        observaciones,
         cantidad_grupos,
         lista_equipos,
         lista_materiales,
         lista_reactivos,
-        descripcion
+        descripcion,
+        tipo_pedido,
+        materia
     } = pedido;
 
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
     const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
-  
 
 
 
-    
+
+
     const irAAsignarLaboratorio = () => {
-      
+
         setEdicionActiva(true)
-        
+        console.log("adentro", edicionActiva);
+
+
+
+
+    }
+    const re_direccion__grabar = () => {
+        setEdicionActiva(false)
+        navigate("/Laboratorio/Pedidos");
+
 
     }
 
-    
+
 
     return (
         <div>
@@ -84,14 +99,18 @@ function PedidoDetalle(
                     <DialogContentText
                         id="scroll-dialog-description"
                         ref={descriptionElementRef}
-                        tabIndex={-1}
-                    >
+                        tabIndex={-1}      >
+
+
 
                         <div>
+
                             <fieldset>
                                 <label htmlFor="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fechaActual} disabled />
-                                <label htmlFor="edificio" id="label_edificio">Fecha Utilización : </label> <input type="text" id="edificio" name="edificio" value={fechaActual2} disabled />
-                                <label htmlFor="laboratorio" id="label_laboratorio">Laboratorio : </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
+                                <label htmlFor="edificio" id="label_edificio">Fecha Utilización : </label>
+                                <input type="text" id="edificio" name="edificio" value={fechaActual2} disabled />
+                                <label htmlFor="laboratorio" id="label_laboratorio">Laboratorio : </label>
+                                <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
 
                                 <br></br>
                                 <label id="label_docente"> docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
@@ -123,12 +142,12 @@ function PedidoDetalle(
                                 {(lista_equipos.length > 0)
                                     ?
                                     (<div>{
-                                        lista_equipos.map((row) => (
+                                        lista_equipos.map((row, index) => (
 
                                             //key={row._id}
                                             // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-                                            <Grid container direction="row"
+                                            <Grid key={index} container direction="row"
                                                 alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                                 <Grid item xs={6} container justifyContent="start" >
@@ -170,9 +189,9 @@ function PedidoDetalle(
                                 <TableBody>{(lista_materiales.length) > 0
                                     ?
                                     (<div>
-                                        {lista_materiales.map((row) => (
+                                        {lista_materiales.map((row, index) => (
 
-                                            <Grid container direction="row" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+                                            <Grid key={index} container direction="row" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
                                                 <Grid item xs={6} container justifyContent="start" >
                                                     {row.material.descripcion}
                                                 </Grid>
@@ -224,9 +243,9 @@ function PedidoDetalle(
                                 {(lista_reactivos.length) > 0
                                     ?
                                     (<div>
-                                        {lista_reactivos.map((row) => (
+                                        {lista_reactivos.map((row, index) => (
 
-                                            <Grid container direction="row" justifyContent="start"
+                                            <Grid key={index} container direction="row" justifyContent="start"
                                                 alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
                                                 <Grid item xs={2} container justifyContent="center" >
 
@@ -260,24 +279,55 @@ function PedidoDetalle(
 
                             </Table>
                         </TableContainer>
+
+
+
+                        <Grid container direction='row'
+                            sx={{ marginTop: 4 }}>
+
+                            <AsignarLaboratorio
+                                pedido={pedido}
+                                _id={_id}
+                                numero_tp={numero_tp}
+                                fecha_solicitud={fecha_solicitud}
+                                fecha_utilizacion={fecha_utilizacion}
+                                numero_laboratorio={numero_laboratorio}
+                                docente={docente}
+                                observaciones={observaciones}
+                                cantidad_grupos={cantidad_grupos}
+                                lista_equipos={lista_equipos}
+                                lista_materiales={lista_materiales}
+                                lista_reactivos={lista_reactivos}
+                                descripcion={descripcion}
+                                tipo_pedido={tipo_pedido}
+                                materia={materia}
+                            ></AsignarLaboratorio>
+
+                        </Grid>
+
+
                     </DialogContentText>
+                    {/* <DialogActions>
+
+
+                        <Button onClick={irAAsignarLaboratorio}
+                            style={{ borderRadius: 8 }}
+                            variant="contained"
+                            bgcolor={"secondary"} color={"primary"}>
+                            Asignar Edificio y Laboratorio
+
+
+                        </Button>
+
+                    </DialogActions> */}
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={irAAsignarLaboratorio}
-                     style={{ borderRadius: 8 }}
-                     variant="contained"
-                    bgcolor={"secondary"} color={"primary"}>
-                        Asignar Edificio y Laboratorio
 
 
-                    </Button>
-           
-                </DialogActions>
             </Dialog>
-         
-           
 
-        </div>
+
+
+        </div >
     );
 
 }

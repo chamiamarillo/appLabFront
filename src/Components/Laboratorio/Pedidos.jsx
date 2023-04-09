@@ -58,7 +58,7 @@ function Pedidos() {
              spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}>
       
       {listaPedidos.map((pedido) => (
-        <Grid item xs={3}  key={pedido.id}>
+        <Grid item xs={3}  key={pedido._id}>
 
         <PedidoV1 key={pedido._id} 
         pedido={pedido} esAdmin={esAdmin}
