@@ -9,7 +9,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import { getEquipoPorId } from '../../Services/getEquipoPorId';
 
 
 
@@ -61,13 +61,13 @@ const PedidoEquipos = (props) => {
 
                 <Grid item xs={1} container justifyContent="center">
                     <Typography sx={{ fontSize: 14 }} aria-label="simple table" color="text.secondary">
-                        
-                        
+
+
                     </Typography>
                 </Grid>
                 <Grid item xs={1} container justifyContent="center">
                     <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                    Confirmar
+                        Confirmar
                     </Typography>
                 </Grid>
             </Grid>
@@ -152,89 +152,89 @@ const PedidoEquipos = (props) => {
 
 
             {(props.verMasEquip.length > 0) ? (
-                <Grid container  alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-                 <Grid item xs={12}>
-                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} >
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel3bh-content"
-                        id="panel3bh-header"
-                    >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            MÁS EQUIPOS SOLICITADOS
-                        </Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>
-                            presione la flecha hacia abajo para ver
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography >
-                        <Grid container direction="row"
-                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+                <Grid container alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+                    <Grid item xs={12}>
+                        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} >
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel3bh-content"
+                                id="panel3bh-header"
+                            >
+                                <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                                    MÁS EQUIPOS SOLICITADOS
+                                </Typography>
+                                <Typography sx={{ color: 'text.secondary' }}>
+                                    presione la flecha hacia abajo para ver
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    <Grid container direction="row"
+                                        alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
-                                    <Grid item xs={6} container justifyContent="start" >
+                                        <Grid item xs={6} container justifyContent="start" >
 
 
-                                       Descripcion
+                                            Descripcion
+                                        </Grid>
+                                        <Grid item xs={2} container justifyContent="flex-start" >
+                                            Clase
+
+                                        </Grid>
+                                        <Grid item xs={2} container justifyContent="end" >
+
+                                            Cantidad
+                                        </Grid>
+                                        <Grid item xs={1} container justifyContent="center">
+
+                                        </Grid>
+                                        <Grid item xs={1} container justifyContent="center">
+                                            Desechar
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={2} container justifyContent="flex-start" >
-                                        Clase
-
-                                    </Grid>
-                                    <Grid item xs={2} container justifyContent="end" >
-
-                                        Cantidad
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        Desechar
-                                    </Grid>
-                                </Grid>
 
 
 
-                            {props.verMasEquip.map((row) => (
+                                    {props.verMasEquip.map((row) => (
 
 
 
-                                <Grid container  component="form" onSubmit={props.cargaEquipo} noValidate direction="row"
-                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+                                        <Grid container component="form" onSubmit={props.cargaEquipo} noValidate direction="row"
+                                            alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
-                                    <Grid item xs={6} container justifyContent="start" >
+                                            <Grid item xs={6} container justifyContent="start" >
 
 
-                                        {row.equipo.descripcion}
-                                    </Grid>
-                                    <Grid item xs={2} container justifyContent="flex-start" >
-                                        {row.equipo.clase}
+                                                {row.equipo.descripcion}
+                                            </Grid>
+                                            <Grid item xs={2} container justifyContent="flex-start" >
+                                                {row.equipo.clase}
 
-                                    </Grid>
-                                    <Grid item xs={2} container justifyContent="end" >
+                                            </Grid>
+                                            <Grid item xs={2} container justifyContent="end" >
 
-                                        {row.cantidad}
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        <Button fullWidth
-                                                margin="normal"
-                                                variant="text"
-                                                type="submit" >
-                                        <Avatar>
-                                            <DeleteForeverIcon color={"rojo"} />
-                                        </Avatar>
-                                        </Button>
-                                    </Grid> 
-                                </Grid>
+                                                {row.cantidad}
+                                            </Grid>
+                                            <Grid item xs={1} container justifyContent="center">
 
-                            ))}
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion> 
-                </Grid>
+                                            </Grid>
+                                            <Grid item xs={1} container justifyContent="center">
+                                                <Button fullWidth
+                                                    margin="normal"
+                                                    variant="text"
+                                                    type="submit" >
+                                                    <Avatar>
+                                                        <DeleteForeverIcon color={"rojo"} />
+                                                    </Avatar>
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
+
+                                    ))}
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Grid>
                 </Grid>
             ) : (<div></div>)}
 

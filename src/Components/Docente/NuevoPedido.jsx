@@ -109,19 +109,23 @@ export default function NuevoPedido() {
   const cargaEncabezado = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    
+    const fecha = new Date();
+    
 
     const nro_pedido = cantidadPedidos + 1;
 
     setEncabezadoPedido({
 
       "descripcion": (nro_pedido).toString(),
-      "fecha_solicitud": data.get('fecha_solicitud'),
+        "fecha_solicitud": fecha,
+      // "fecha_solicitud": data.get('fecha_solicitud'),
       "fecha_utilizacion": data.get('fecha_utilizacion'),
-      "numero_laboratorio": parseInt(10, 10),
+      "numero_laboratorio": parseInt(0, 10),
       "tipo_pedido": "algo",
       "cantidad_alumnos": data.get('cantidad_alumnos'),
       "cantidad_grupos": data.get('cantidad_grupos'),
-      "observaciones": "string",
+      "observaciones": "sin asignar",
       "materia": "string",
       "numero_tp": "2"
 
@@ -260,7 +264,7 @@ export default function NuevoPedido() {
     getListaMateriales().then(items => { if (mounted) { setListaMateriales(items) } });
     getListaReactivos().then(items => { if (mounted) { setListaReactivos(items) } });
     getCantidadPedidos().then(items => { if (mounted) { setCantPedido(items) } });
-    // setFechaActual(new Date()); 
+    
     return () => mounted = false;
   }, [])
 

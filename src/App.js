@@ -11,41 +11,37 @@ import NuevoPedido from './Components/Docente/NuevoPedido';
 
 
 
-import { BrowserRouter , Route,Router,Routes } from "react-router-dom";
-import Docente from './Components/Docente/Pedidos' ;
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import Docente from './Components/Docente/Pedidos';
 
 
 import Pedidos from "./Components/Laboratorio/Pedidos";
 
-  
+
 function App() {
-  
-  
-  
-    
+
+
+
+
   return (
     <BrowserRouter>
-     
-      <Routes>
-    
-          <Route  path="/" element={<Login/>} />
-        
-          <Route  path="/Docente/Pedidos"element={<Docente/>}/> 
-         
-          <Route  path="/Laboratorio/Pedidos" element={<Pedidos/>}/>
 
-          <Route  path="/Docente/Pedidos/PedidoV1" element={<PedidoV1/>}/>
-          {/* <Route  path="/Docente/Pedidos/Pedido" element={<PedidoD/>}/> */}
-          <Route  path="/Docente/NuevoPedido" element={<NuevoPedido/>}/>
-         
-          
-      
-    
+      <Routes>
+
+        <Route path="/" element={<Login />} />
+
+        <Route path="/Docente/Pedidos" element={<Docente />} />
+
+        <Route path="/Laboratorio/Pedidos" element={<Pedidos />} />
+
+        <Route path="/Docente/Pedidos/PedidoV1" element={<PedidoV1 />} />
+
+        <Route path="/Docente/NuevoPedido" element={<NuevoPedido />} />
         
-         
-          </Routes>   
-      
-    
+
+      </Routes>
+
+
     </BrowserRouter>
 
   );
