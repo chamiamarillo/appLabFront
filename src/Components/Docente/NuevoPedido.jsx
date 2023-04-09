@@ -68,6 +68,7 @@ export default function NuevoPedido() {
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
   const [materialElegido, setMatElegido] = useState({});
+  const [verMasMateriales,setverMasMateriales]=useState([]);
 
   const [pedidoReactivos, setPedidoReactivos] = useState([]);
   const [listaReactivos, setListaReactivos] = useState([]);
@@ -183,6 +184,17 @@ export default function NuevoPedido() {
       const cargarNuevosMateriales = dato => {
            setPedidoMateriales([...pedidoMateriales, dato]);
          }
+
+      const datoVer={
+          "cantidad": parseInt(data.get('cant_material'), 10),
+          "material": materialElegido
+        }; 
+      const cargarNuevosMaterialesVer = dato => {
+          setverMasMateriales([...verMasMateriales, dato]);
+           }
+          
+    cargarNuevosMaterialesVer(datoVer)
+     
     cargarNuevosMateriales(dato)
 
     
@@ -303,8 +315,10 @@ export default function NuevoPedido() {
                     cargaMaterial={cargaMaterial}
                     listaMateriales={listaMateriales}
                     set_IdMat={set_IdMat}
-
-              />
+                    pedidoMateriales={pedidoMateriales}
+                    materialElegido={materialElegido}
+                    verMasMateriales={verMasMateriales}
+            />
             
             <PedidoReactivo
               cargaReactivos = {cargaReactivos}
