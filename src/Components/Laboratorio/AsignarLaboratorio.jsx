@@ -38,15 +38,33 @@ function AsignarLaboratorio(pedido,
   const navigate=useNavigate();
   const [edificioElegido, setEdificioElegido] = useState('')
   const [laboAsignado, setLaboAsignado] = useState('')
+  const [estado_ped,setEstadoPed]=useState('')  
   const edificio_elegido = (event) => {
-   
+   if(event.target.value===null){
+    setEdificioElegido(observaciones);
+   }
+   else{
     setEdificioElegido(event.target.value);
+   }
   };
+  const estado_pedido = (event) => {
+    if(event.target.value===null){
+      setEstadoPed(tipo_pedido);
+    }
+    else{
+      setEstadoPed(event.target.value);
+    }
+   };
 
   const laboEleg = (event) => {
+    if(event.target.value===null){
+      setLaboAsignado(numero_laboratorio)
+    }
+    else{
     
     setLaboAsignado(event.target.value)
   }
+}
 
 
 
@@ -65,7 +83,7 @@ function AsignarLaboratorio(pedido,
       "fecha_solicitud": fecha_solicitud,
       "fecha_utilizacion": fecha_utilizacion,
       "numero_laboratorio": parseInt(laboAsignado, 10),
-      "tipo_pedido": tipo_pedido,
+      "tipo_pedido": "ACEPTADO",
       "cantidad_grupos": cantidad_grupos,
       "observaciones": edificioElegido,
       "materia": materia,
@@ -127,7 +145,7 @@ function AsignarLaboratorio(pedido,
 
             />
           </Grid>
-          <Grid item xs={6} container justifyContent="center" marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2}>
+          <Grid item xs={5} container justifyContent="center" marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2}>
             <FormControl fullWidth>
               <InputLabel id="edificio">edificio</InputLabel>
               <Select
@@ -142,9 +160,31 @@ function AsignarLaboratorio(pedido,
                 name='edificio'
               >
 
-                <MenuItem sx={{ fontSize: 10 }} value={"Malvinas"}>Malvinas</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"Origone-A"}>Origone-A</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"Origone-B"}>"Origone-B</MenuItem>
+                <MenuItem sx={{ fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
+                <MenuItem sx={{ fontSize: 10 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
+                <MenuItem sx={{ fontSize: 10 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
+
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={5} container justifyContent="center" marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2}>
+            <FormControl fullWidth>
+              <InputLabel id="tipo_pedido">estado_pedido</InputLabel>
+              <Select
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                labelId="tipo_pedido"
+                id="tipo_pedido"
+                value={tipo_pedido}
+                label="tipo_pedido"
+                onChange={estado_pedido}
+                name='tipo_pedido'
+              >
+
+                <MenuItem sx={{ fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
+                <MenuItem sx={{ fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
+                <MenuItem sx={{ fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
 
               </Select>
             </FormControl>
@@ -164,7 +204,7 @@ function AsignarLaboratorio(pedido,
             onClick={modificarEncabezado}
             type="button"
           >
-            GRABAR
+            Modificar Laboratorio-Edificio-Estado
 
           </Button>
 
