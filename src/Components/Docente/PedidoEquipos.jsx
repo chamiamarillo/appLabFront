@@ -195,11 +195,11 @@ const PedidoEquipos = (props) => {
 
 
 
-                                    {props.verMasEquip.map((row) => (
+                                    {props.verMasEquip.map((row,index) => (
 
 
 
-                                        <Grid container component="form" onSubmit={props.cargaEquipo} noValidate direction="row"
+                                        <Grid container  key={index} direction="row"
                                             alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                             <Grid item xs={6} container justifyContent="start" >
@@ -222,7 +222,12 @@ const PedidoEquipos = (props) => {
                                                 <Button fullWidth
                                                     margin="normal"
                                                     variant="text"
-                                                    type="submit" >
+                                                    type= "submit"
+                                                    onClick={()=>{
+                                                        props.eliminarEquipo(row.equipo)
+                                                    }}
+                                                    
+                                                    >
                                                     <Avatar>
                                                         <DeleteForeverIcon color={"rojo"} />
                                                     </Avatar>

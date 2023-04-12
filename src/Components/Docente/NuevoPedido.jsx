@@ -64,7 +64,7 @@ export default function NuevoPedido() {
   const [_med_reactivo, setUn_med_reactivo] = useState("");
 
   const [cal_reactivo, setCalReactivo] = useState("");
-  const [_tip_reactivo, setTipReactivo] = useState("");
+  const [_tip_reactivo,setTipReactivo] = useState("");
   const [_disol_reactivo, setDisolReactivo] = useState("");
 
 
@@ -147,13 +147,22 @@ export default function NuevoPedido() {
 
   cargarNuevosEquipos(dato)
 
-    // setPedidoEquipos({
-    //   "cantidad": parseInt(data.get('cant_equipo'), 10),
-    //   "equipo": equipoElegido._id
-    // });
+   
 
   };
+  const eliminarEquipo =  (event) => {
+    console.log(event)
+    const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq =>eq.equipo._id !== event._id)
+      setverMasEquip(cargar_Nuevos_EquiposVer);
 
+
+       
+       const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq =>eq.equipo !== event._id) 
+        setPedidoEquipos(cargar_Nuevos_Equipos);
+       
+    console.log(event._id)
+  }
+ 
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
 
 
@@ -289,6 +298,7 @@ export default function NuevoPedido() {
               pedidoEquipos={pedidoEquipos}
               equipoElegido={equipoElegido}
               verMasEquip={verMasEquip}
+              eliminarEquipo={eliminarEquipo}
 
             />
 
@@ -352,7 +362,6 @@ export default function NuevoPedido() {
                 margin="normal"
                 variant="contained"
                 endIcon={<SendIcon />}
-
                 onClick={handleSubmit}
 
 
