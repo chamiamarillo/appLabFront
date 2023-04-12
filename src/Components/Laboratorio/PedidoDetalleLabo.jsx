@@ -307,19 +307,7 @@ function PedidoDetalle(
 
 
                     </DialogContentText>
-                    {/* <DialogActions>
-
-
-                        <Button onClick={irAAsignarLaboratorio}
-                            style={{ borderRadius: 8 }}
-                            variant="contained"
-                            bgcolor={"secondary"} color={"primary"}>
-                            Asignar Edificio y Laboratorio
-
-
-                        </Button>
-
-                    </DialogActions> */}
+                   
                 </DialogContent>
 
 

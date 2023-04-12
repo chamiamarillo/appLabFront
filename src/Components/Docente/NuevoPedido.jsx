@@ -119,10 +119,9 @@ export default function NuevoPedido() {
 
       "descripcion": (nro_pedido).toString(),
         "fecha_solicitud": fecha,
-      // "fecha_solicitud": data.get('fecha_solicitud'),
-      "fecha_utilizacion": data.get('fecha_utilizacion'),
+       "fecha_utilizacion": data.get('fecha_utilizacion'),
       "numero_laboratorio": parseInt(0, 10),
-      "tipo_pedido": "algo",
+      "tipo_pedido": "PENDIENTE",
       "cantidad_alumnos": data.get('cantidad_alumnos'),
       "cantidad_grupos": data.get('cantidad_grupos'),
       "observaciones": "sin asignar",

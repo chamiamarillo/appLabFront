@@ -38,6 +38,7 @@ function PedidoV1({ pedido, esAdmin, setEdicionActiva, edicionActiva }) {
 
   const {
     descripcion,
+    tipo_pedido,
     numero_tp,
     fecha_utilizacion,
     fecha_solicitud,
@@ -102,7 +103,7 @@ function PedidoV1({ pedido, esAdmin, setEdicionActiva, edicionActiva }) {
                 <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
               </p>
               <p>
-                <strong>Estado: </strong>Aceptado
+                <strong>Estado: </strong>{tipo_pedido}
               </p>
             </CardContent>
           </CardActionArea>
