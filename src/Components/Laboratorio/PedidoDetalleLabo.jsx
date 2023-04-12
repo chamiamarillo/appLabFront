@@ -1,15 +1,14 @@
 import React from "react";
-import { makeStyles, Button } from "@material-ui/core";
+
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import DialogActions from '@mui/material/DialogActions';
-import { useState } from "react";
+
 import TableContainer from '@mui/material/TableContainer';
-import { useNavigate } from 'react-router-dom';
+
 
 import Paper from '@mui/material/Paper';
 import moment from 'moment'
@@ -18,16 +17,7 @@ import Grid from '@mui/material/Grid';
 
 import AsignarLaboratorio from "./AsignarLaboratorio";
 
-const useStyles = makeStyles(() => ({
-    root: {
-        display: "flex",
-        flexWrap: "wrap",
-        "& > *": {
-            margin: "8px",
-            height: "240px"
-        },
-    },
-}));
+
 
 function PedidoDetalle(
     { open = { open },
@@ -35,12 +25,10 @@ function PedidoDetalle(
         scroll = { scroll },
         handleClose = { handleClose },
         pedido = { pedido },
-        setEdicionActiva = { setEdicionActiva },
-        edicionActiva = { edicionActiva }
+        
     }
 ) {
-    const { root } = useStyles();
-    const navigate = useNavigate();
+  
     const {
         _id,
         numero_tp,
@@ -61,26 +49,6 @@ function PedidoDetalle(
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
     const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
-
-
-
-
-
-    const irAAsignarLaboratorio = () => {
-
-        setEdicionActiva(true)
-        console.log("adentro", edicionActiva);
-
-
-
-
-    }
-    const re_direccion__grabar = () => {
-        setEdicionActiva(false)
-        navigate("/Laboratorio/Pedidos");
-
-
-    }
 
 
 

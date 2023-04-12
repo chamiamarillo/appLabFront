@@ -174,12 +174,13 @@ const PedidoReactivo = (props) => {
                         shrink: true,
                       }}
                       onChange={props.tipReactivo}
+                      defaultValue={""}
                     >
 
                       <MenuItem sx={{ fontSize: 14 }} value={"puro"}>PURO</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"molaridad"}>MOLARIDAD</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"normalidad"}>NORMALIDAD</MenuItem>
-                      <MenuItem sx={{ fontSize: 14 }} value={"mas/vol"}>%MASA/MASA</MenuItem>
+                      <MenuItem sx={{ fontSize: 14 }} value={"mas/masa"}>%MASA/MASA</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"mas/vol"}>%MASA/VOLUMEN</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"vol/vol"}>%VOLUMEN/VOLUMEN</MenuItem>
                     </Select>

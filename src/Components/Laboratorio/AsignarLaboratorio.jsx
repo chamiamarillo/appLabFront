@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Button, Grid, TextField } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
+
+// import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import Avatar from '@mui/material/Avatar';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DialogContentText from '@mui/material/DialogContentText';
+// import Avatar from '@mui/material/Avatar';
+// import AddCircleIcon from '@mui/icons-material/AddCircle';
+// import DialogContentText from '@mui/material/DialogContentText';
 import updatePedido from '../../Services/updatePedido';
 
 
@@ -35,55 +35,49 @@ function AsignarLaboratorio(pedido,
 
 
 
-  const navigate=useNavigate();
-  const [edificioElegido, setEdificioElegido] = useState('')
-  const [laboAsignado, setLaboAsignado] = useState('')
-  const [estado_ped,setEstadoPed]=useState('')  
+
+  const [edificioElegido, setEdificioElegido] = useState(observaciones)
+  const [laboAsignado, setLaboAsignado] = useState(numero_laboratorio)
+  const [estado_ped, setEstadoPed] = useState(tipo_pedido)
   const edificio_elegido = (event) => {
-   if(event.target.value===null){
-    setEdificioElegido(observaciones);
-   }
-   else{
-    setEdificioElegido(event.target.value);
-   }
+    if (event.target.value !== null) {
+
+      setEdificioElegido(event.target.value);
+    }
   };
   const estado_pedido = (event) => {
-    if(event.target.value===null){
-      setEstadoPed(tipo_pedido);
-    }
-    else{
+    if (event.target.value !== null) {
+
       setEstadoPed(event.target.value);
     }
-   };
+  };
 
   const laboEleg = (event) => {
-    if(event.target.value===null){
-      setLaboAsignado(numero_laboratorio)
+    if (event.target.value !== null) {
+
+      var valor = parseInt(event.target.value, 10)
+      setLaboAsignado(valor)
     }
-    else{
-    
-    setLaboAsignado(event.target.value)
   }
-}
 
 
 
-  // const descriptionElementRef = React.useRef(null);
+
 
 
 
 
   const modificarEncabezado = () => {
 
-   
+
 
     const pedidoModificado = {
       "docente": docente,
       "descripcion": descripcion,
       "fecha_solicitud": fecha_solicitud,
       "fecha_utilizacion": fecha_utilizacion,
-      "numero_laboratorio": parseInt(laboAsignado, 10),
-      "tipo_pedido": "ACEPTADO",
+      "numero_laboratorio": laboAsignado,
+      "tipo_pedido": estado_ped,
       "cantidad_grupos": cantidad_grupos,
       "observaciones": edificioElegido,
       "materia": materia,
@@ -93,15 +87,15 @@ function AsignarLaboratorio(pedido,
       "lista_materiales": lista_materiales
 
     };
-   
+
     updatePedido(pedido.pedido._id, pedidoModificado)
-   
 
-    
-   
-    
 
-   
+
+
+
+
+
   }
 
   return (

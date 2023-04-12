@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Icon, makeStyles } from "@material-ui/core";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
-import { getUsuario } from '../../Services/getUsuarioService';
+// import { getUsuario } from '../../Services/getUsuarioService';
 import moment from 'moment'
 import {
   Box,
@@ -31,8 +31,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-function PedidoV1({ pedido, esAdmin, setEdicionActiva, edicionActiva }) {
-  const { root } = useStyles();
+function PedidoV1({ pedido, esAdmin}) {
+  // const { root } = useStyles();
 
 
 
@@ -80,7 +80,7 @@ function PedidoV1({ pedido, esAdmin, setEdicionActiva, edicionActiva }) {
               }
               title={`Pedido número ${descripcion}`}
               // subheader={`Fecha : ${fecha_solicitud}`}
-              subheader={`Fecha de Utilización : ${fechaActual}`}
+              subheader={`Fecha de Práctica : ${fechaActual}`}
               action={
                 <IconButton>
                   <MoreVertIcon />
@@ -126,8 +126,7 @@ function PedidoV1({ pedido, esAdmin, setEdicionActiva, edicionActiva }) {
             handleClose={handleClose}
             scroll={scroll}
             pedido={pedido}
-            setEdicionActiva={setEdicionActiva}
-            edicionActiva={edicionActiva}
+           
           ></PedidoDetalleLabo>)
       }
 

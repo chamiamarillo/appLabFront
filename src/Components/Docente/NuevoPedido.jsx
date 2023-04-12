@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 
-import TextField from '@mui/material/TextField';
+
 
 import { Grid, Box } from '@mui/material';
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -19,10 +14,6 @@ import Header from '../Header/Header'
 import Theme1 from '../Theme/Theme1';
 
 
-import pipeta from '../Image/pipeta.png'
-import quimica from '../Image/quimica.png'
-import Autocomplete from '@mui/material/Autocomplete';
-
 
 
 import { useNavigate } from 'react-router-dom';
@@ -30,11 +21,7 @@ import { postPedido } from '../../Services/postPedidoService'
 import { getListaMateriales, getListaEquipos, getListaReactivos } from '../../Services/getService';
 
 import { getCantidadPedidos } from '../../Services/getPedidosService';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-//import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+
 import SendIcon from '@mui/icons-material/Send';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
@@ -77,7 +64,7 @@ export default function NuevoPedido() {
   const [_med_reactivo, setUn_med_reactivo] = useState("");
 
   const [cal_reactivo, setCalReactivo] = useState("");
-  const [_tip_reactivo, setTipReactivo] = useState("");
+  const [_tip_reactivo,setTipReactivo] = useState("");
   const [_disol_reactivo, setDisolReactivo] = useState("");
 
 
@@ -160,13 +147,22 @@ export default function NuevoPedido() {
 
   cargarNuevosEquipos(dato)
 
-    // setPedidoEquipos({
-    //   "cantidad": parseInt(data.get('cant_equipo'), 10),
-    //   "equipo": equipoElegido._id
-    // });
+   
 
   };
+  const eliminarEquipo =  (event) => {
+    console.log(event)
+    const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq =>eq.equipo._id !== event._id)
+      setverMasEquip(cargar_Nuevos_EquiposVer);
 
+
+       
+       const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq =>eq.equipo !== event._id) 
+        setPedidoEquipos(cargar_Nuevos_Equipos);
+       
+    console.log(event._id)
+  }
+ 
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
 
 
@@ -302,6 +298,7 @@ export default function NuevoPedido() {
               pedidoEquipos={pedidoEquipos}
               equipoElegido={equipoElegido}
               verMasEquip={verMasEquip}
+              eliminarEquipo={eliminarEquipo}
 
             />
 
@@ -365,7 +362,6 @@ export default function NuevoPedido() {
                 margin="normal"
                 variant="contained"
                 endIcon={<SendIcon />}
-
                 onClick={handleSubmit}
 
 
