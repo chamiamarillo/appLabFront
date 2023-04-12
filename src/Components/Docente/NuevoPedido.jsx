@@ -197,6 +197,26 @@ export default function NuevoPedido() {
 
   };
 
+  
+// ELIMINAR MATERIAL DE LA LISTA
+
+  const eliminarMaterial = id => {
+    const pedido_Materiales = pedidoMateriales.filter(mate => mate.id !== id);
+    setPedidoMateriales (pedido_Materiales);
+    console.log(pedido_Materiales);
+  }
+  
+  const eliminarMaterialVer = id => {
+    const pedido_MaterialesVer = verMasMateriales.filter(mate => mate.id !== id);
+    setverMasMateriales (pedido_MaterialesVer);
+  }
+
+  const eliminarMaterialPedido = id =>{
+  eliminarMaterial(id);
+  eliminarMaterialVer(id);
+
+  }
+
   const set_IdMat = (event, value) => { setMatElegido(value); };
 
 
@@ -307,13 +327,14 @@ export default function NuevoPedido() {
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
             <PedidoMaterial
-
+                    //key={id}
                     cargaMaterial={cargaMaterial}
                     listaMateriales={listaMateriales}
                     set_IdMat={set_IdMat}
                     pedidoMateriales={pedidoMateriales}
                     materialElegido={materialElegido}
                     verMasMateriales={verMasMateriales}
+                    eliminarMaterialPedido={eliminarMaterialPedido}
             />
             
             <PedidoReactivo

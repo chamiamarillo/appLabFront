@@ -210,7 +210,9 @@ const PedidoMaterial = (props) => {
                                         <Button fullWidth
                                                 margin="normal"
                                                 variant="text"
-                                                type="submit" >
+                                                type="button" 
+                                                onClick = { () => 
+                                                props.eliminarMaterialPedido(row.material._id)}>
                                         <Avatar>
                                             <DeleteForeverIcon color={"rojo"} />
                                         </Avatar>
