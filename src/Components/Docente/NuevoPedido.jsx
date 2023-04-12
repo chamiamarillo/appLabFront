@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 
-import TextField from '@mui/material/TextField';
+
 
 import { Grid, Box } from '@mui/material';
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -19,10 +14,6 @@ import Header from '../Header/Header'
 import Theme1 from '../Theme/Theme1';
 
 
-import pipeta from '../Image/pipeta.png'
-import quimica from '../Image/quimica.png'
-import Autocomplete from '@mui/material/Autocomplete';
-
 
 
 import { useNavigate } from 'react-router-dom';
@@ -30,11 +21,7 @@ import { postPedido } from '../../Services/postPedidoService'
 import { getListaMateriales, getListaEquipos, getListaReactivos } from '../../Services/getService';
 
 import { getCantidadPedidos } from '../../Services/getPedidosService';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-//import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+
 import SendIcon from '@mui/icons-material/Send';
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
