@@ -25,6 +25,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Pedidos() {
  
+ 
+  
+
+   // controlar se es adminitrador
+   const [esAdmin,setEsAdmin]=useState(true)  
+  
+
+ 
   const [nuevoPedido, setNuevoPedido] = useState(false);
   const [texto,setEncabezado]=useState("DOCENTE");
  
@@ -34,6 +42,7 @@ function Pedidos() {
   useEffect(() => {
     let mounted = true;
     const userActual=JSON.parse(localStorage.getItem('usuario'));
+    setEsAdmin(userActual.admin)
     getPedidosPorDni(userActual.dni)
       .then(items => {
         if (mounted) {
@@ -78,8 +87,8 @@ function Pedidos() {
              alignItems="space-between" 
             spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }} > 
               {listaPedidos.map((pedido) => (
-                  <Grid item xs={3}  key={pedido.id}>
-                    <PedidoV1 key={pedido.id} pedido={pedido} />
+                  <Grid item xs={3}  key={pedido._id}>
+                    <PedidoV1 key={pedido._id} pedido={pedido} esAdmin={esAdmin} />
                   </Grid>
                 ))}
             </Grid>

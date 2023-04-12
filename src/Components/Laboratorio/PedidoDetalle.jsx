@@ -108,10 +108,10 @@ function PedidoDetalle(
                                     (<div>{
                                         lista_equipos.map((row) => (
 
-                                            //key={row._id}
+                                           
                                             // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-                                            <Grid container direction="row"
+                                            <Grid  key={(row.equipo._id).toString()} container direction="row"
                                                 alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                                 <Grid item xs={6} container justifyContent="start" >
@@ -153,9 +153,9 @@ function PedidoDetalle(
                                 <TableBody>{(lista_materiales.length) > 0
                                     ?
                                     (<div>
-                                        {lista_materiales.map((row) => (
-
-                                            <Grid container direction="row" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+                                        {lista_materiales.map((row,index) => (
+                                            // key={row._id}
+                                            <Grid  key={(row.material._id).toString()} container direction="row" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
                                                 <Grid item xs={6} container justifyContent="start" >
                                                     {row.material.descripcion}
                                                 </Grid>
@@ -209,7 +209,7 @@ function PedidoDetalle(
                                     (<div>
                                         {lista_reactivos.map((row) => (
 
-                                            <Grid container direction="row" justifyContent="start"
+                                            <Grid key={(row.reactivo._id).toString()} container direction="row" justifyContent="start"
                                                 alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
                                                 <Grid item xs={2} container justifyContent="center" >
 
