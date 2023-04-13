@@ -24,24 +24,24 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 function Pedidos() {
- 
- 
-  
 
-   // controlar se es adminitrador
-   const [esAdmin,setEsAdmin]=useState(true)  
-  
 
- 
+
+
+  // controlar si es adminitrador
+  const [esAdmin, setEsAdmin] = useState(true)
+
+
+
   const [nuevoPedido, setNuevoPedido] = useState(false);
-  const [texto,setEncabezado]=useState("DOCENTE");
- 
+  const [texto, setEncabezado] = useState("DOCENTE");
+
   const [listaPedidos, setListaPedidos] = useState([]);
- 
+
 
   useEffect(() => {
     let mounted = true;
-    const userActual=JSON.parse(localStorage.getItem('usuario'));
+    const userActual = JSON.parse(localStorage.getItem('usuario'));
     setEsAdmin(userActual.admin)
     getPedidosPorDni(userActual.dni)
       .then(items => {
@@ -52,54 +52,54 @@ function Pedidos() {
     return () => mounted = false;
   }, [])
 
- 
+
   return (
     <ThemeProvider theme={Theme1}>
-      <Box sx={{ flexGrow: 1 ,m:2}}>
-          
-                   <Header texto={texto} ></Header>
-        
-     </Box>
-     { !(nuevoPedido) ?(
-     
-        <Box sx={{ flexGrow: 0 ,m:2}}>
-              
-              <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
-              
+      <Box sx={{ flexGrow: 1, m: 2 }}>
+
+        <Header texto={texto} ></Header>
+
+      </Box>
+      {!(nuevoPedido) ? (
+
+        <Box sx={{ flexGrow: 0, m: 2 }}>
+
+          <BotonNPedido setNuevoPedido={setNuevoPedido}></BotonNPedido>
+
 
         </Box>
-     ):( <NuevoPedido></NuevoPedido>)}
-     {/* opcion pantalla */}
+      ) : (<NuevoPedido></NuevoPedido>)}
+      {/* opcion pantalla */}
 
-       
-     
-       {(listaPedidos.length <1 && !(nuevoPedido)) ?
-        ( <Box sx={{ flexGrow: 1 ,md:2 }}><NoEncontrados/></Box>)
-        :((listaPedidos.length >=1) && !(nuevoPedido))?(  
-       <Box sx={{ flexGrow: 1 ,md:2 }}>    
+
+
+      {(listaPedidos.length < 1 && !(nuevoPedido)) ?
+        (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
+        : ((listaPedidos.length >= 1) && !(nuevoPedido)) ? (
+          <Box sx={{ flexGrow: 1, md: 2 }}>
             <Grid container direction="row"
-             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              px:8,
-              m: 4,
-             }}
-             alignItems="space-between" 
-            spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }} > 
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                px: 8,
+                m: 4,
+              }}
+              alignItems="space-between"
+              spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm: 6, md: 12 }} >
               {listaPedidos.map((pedido) => (
-                  <Grid item xs={3}  key={pedido._id}>
-                    <PedidoV1 key={pedido._id} pedido={pedido} esAdmin={esAdmin} />
-                  </Grid>
-                ))}
+                <Grid item xs={3} key={pedido._id}>
+                  <PedidoV1 key={pedido._id} pedido={pedido} esAdmin={esAdmin} />
+                </Grid>
+              ))}
             </Grid>
-      </Box>):(<div></div>)}
-     
+          </Box>) : (<div></div>)}
 
-      
-     
-    
-      </ThemeProvider>
-   
+
+
+
+
+    </ThemeProvider>
+
   );
 }
 

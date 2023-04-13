@@ -151,7 +151,7 @@ export default function NuevoPedido() {
 
   };
   const eliminarEquipo =  (event) => {
-    console.log(event)
+    
     const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq =>eq.equipo._id !== event._id)
       setverMasEquip(cargar_Nuevos_EquiposVer);
 
