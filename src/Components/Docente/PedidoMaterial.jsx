@@ -179,11 +179,11 @@ const PedidoMaterial = (props) => {
 
 
 
-                            {props.verMasMateriales.map((row) => (
+                            {props.verMasMateriales.map((row,index) => (
 
 
 
-                                <Grid container  component="form" onSubmit={props.cargaMaterial} noValidate direction="row"
+                                <Grid container key={index} direction="row"
                                     alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                     <Grid item xs={8} container justifyContent="start" >
@@ -206,7 +206,9 @@ const PedidoMaterial = (props) => {
                                         <Button fullWidth
                                                 margin="normal"
                                                 variant="text"
-                                                type="submit" >
+                                               // type="submit" 
+                                                onClick = { () => 
+                                                props.eliminarMaterial(row.material)}>
                                         <Avatar>
                                             <DeleteForeverIcon color={"rojo"} />
                                         </Avatar>
