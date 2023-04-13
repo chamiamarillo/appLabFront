@@ -224,6 +224,13 @@ export default function NuevoPedido() {
       cargarNuevosReactivos(dato)
 
   };
+
+  const eliminarReactivo =  (value) => {
+    const cargar_reactivos_ver = verMasReactivos.filter(reactivo =>reactivo.reactivo._id !== value._id)
+    setverMasReactivos(cargar_reactivos_ver);
+    const cargar_reactivos = pedidoReactivos.filter(reactivo => reactivo.reactivo !== value._id) 
+    setPedidoReactivos(cargar_reactivos);
+  }
   const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
   
 
@@ -338,6 +345,7 @@ export default function NuevoPedido() {
               _med_reactivo = {_med_reactivo}
               med_reactivo = {med_reactivo}
               verMasReactivos = {verMasReactivos}
+              eliminarReactivo = {eliminarReactivo}
             />
 
           </Box>

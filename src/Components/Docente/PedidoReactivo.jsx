@@ -182,6 +182,7 @@ const PedidoReactivo = (props) => {
                         shrink: true,
                       }}
                       onChange={props.tipReactivo}
+                      defaultValue={""}
                     >
 
                       <MenuItem sx={{ fontSize: 14 }} value={"puro"}>PURO</MenuItem>
@@ -333,11 +334,11 @@ const PedidoReactivo = (props) => {
 
 
 
-                            {props.verMasReactivos.map((row) => (
+                            {props.verMasReactivos.map((row, index) => (
 
 
 
-                                <Grid container  component="form" onSubmit={props.cargaReactivos} noValidate direction="row"
+                                <Grid container key = {index} direction="row"
                                     alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                     <Grid item xs={2} container justifyContent="start">
@@ -380,7 +381,10 @@ const PedidoReactivo = (props) => {
                                         <Button fullWidth
                                                 margin="normal"
                                                 variant="text"
-                                                type="submit" >
+                                                 
+                                                onClick = {() => {
+                                                  props.eliminarReactivo(row.reactivo)
+                                                }}>
                                         <Avatar>
                                             <DeleteForeverIcon color={"rojo"} />
                                         </Avatar>
