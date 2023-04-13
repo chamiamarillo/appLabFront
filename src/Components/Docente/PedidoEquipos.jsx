@@ -45,10 +45,10 @@ const PedidoEquipos = (props) => {
                 justifyContent="start"
                 alignItems="center"  >
                 <Grid item xs={1} container justifyContent="center"  >
-                    <img width={40} alt="" heigth={40} src={laboratorio} />
+                    <img width={30} alt="" heigth={30} src={laboratorio} />
                 </Grid>
                 <Grid item xs={3} container justifyContent="start">
-                    <Typography sx={{ fontSize: 40 }} color="text.secondary">
+                    <Typography sx={{ fontSize: 30 }} color="text.secondary">
                         Equipos
                     </Typography>
                 </Grid>
@@ -139,11 +139,7 @@ const PedidoEquipos = (props) => {
                         </Avatar>
                     </Button>
                 </Grid>
-                {/* <Grid item xs={1} container justifyContent="center">
-                    <Avatar>
-                        <DeleteForeverIcon color={"rojo"} />
-                    </Avatar> 
-                    </Grid>*/}
+                
 
             </Grid>
 

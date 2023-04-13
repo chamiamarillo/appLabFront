@@ -40,10 +40,10 @@ const PedidoMaterial = (props) => {
                     justifyContent="start"
                     alignItems="center"  >
                     <Grid item xs={1} container justifyContent="center"  >
-                    <img width={40} alt="" heigth={40} src={pipeta} />
+                    <img width={30} alt="" heigth={30} src={pipeta} />
                     </Grid>
                     <Grid item xs={3} container justifyContent="start">
-                    <Typography sx={{ fontSize: 40 }} color="text.secondary">
+                    <Typography sx={{ fontSize: 30 }} color="text.secondary">
                         Materiales
                     </Typography>
                     </Grid>
@@ -60,11 +60,7 @@ const PedidoMaterial = (props) => {
                         Confirmar
                     </Typography>
                     </Grid>
-                    {/* <Grid item xs={1} container justifyContent="center">
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                        Desechar
-                    </Typography>
-                    </Grid> */}
+                    
                 </Grid>
                 {/* COMIENZA EL FORMULARIO DE MATERIALES */}
 

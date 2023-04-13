@@ -23,16 +23,19 @@ const PedidoReactivo = (props) => {
                 borderBottom: 'var(--Grid-borderWidth) solid',
                 borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 3
               }}
-              spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
+              
+              spacing={{ xs: 1, md: 1 }}
+               columns={{ xs: 12 }}
+              >
             {/* TITULO */}
             <Grid container direction="row"
                 justifyContent="start"
-                alignItems="center"  >
+                alignItems="center" mb={2} >
                 <Grid item xs={1} container justifyContent="center"  >
-                  <img width={40} alt="" heigth={40} src={quimica} />
+                  <img width={30} alt="" heigth={30} src={quimica} />
                 </Grid>
                 <Grid item xs={3} container justifyContent="start">
-                  <Typography sx={{ fontSize: 40 }} color="text.secondary">
+                  <Typography sx={{ fontSize: 30 }} color="text.secondary">
                     Reactivos
                   </Typography>
                 </Grid>
@@ -40,7 +43,7 @@ const PedidoReactivo = (props) => {
             {/* COMIENZA EL FORMULARIO REACTIVOS */}
             <Grid container direction="row"
                 justifyContent="start"
-                alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
+                alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
                 <Grid item xs={5} container justifyContent="start" >
                   <Autocomplete
                     disablePortal

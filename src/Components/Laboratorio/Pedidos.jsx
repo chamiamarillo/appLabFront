@@ -20,14 +20,14 @@ const useStyles = makeStyles(() => ({
 function Pedidos() {
   const { marginTop } = useStyles();
   const [listaPedidos, setListaPedidos] = useState([]);
-  const [texto,setEncabezado]=useState("Laboratorio");
-  const [esAdmin,setEsAdmin]=useState(true)  
+  const [texto, setEncabezado] = useState("Laboratorio");
+  const [esAdmin, setEsAdmin] = useState(true)
 
-  const [edicionActiva,setEdicionActiva]=useState(false)
+  const [edicionActiva, setEdicionActiva] = useState(false)
 
   useEffect(() => {
     let mounted = true;
-    const userActual=JSON.parse(localStorage.getItem('usuario'));
+    const userActual = JSON.parse(localStorage.getItem('usuario'));
     setEsAdmin(userActual.admin)
     getListaPedidos()
       .then(items => {
@@ -40,33 +40,33 @@ function Pedidos() {
 
   return (
     <ThemeProvider theme={Theme1}>
-      <Box sx={{ flexGrow: 1 ,m:2}}>
+      <Box sx={{ flexGrow: 1, m: 2 }}>
         <Header texto={texto} ></Header>
-     </Box>
-     {(listaPedidos.length <1) ?
-        ( <Box sx={{ flexGrow: 1 ,md:2 }}><NoEncontrados/></Box>)
-      : (
-     <Box sx={{ flexGrow: 1 ,md:2 }}>    
+      </Box>
+      {(listaPedidos.length < 1) ?
+        (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
+        : (
+          <Box sx={{ flexGrow: 1, md: 2 }}>
             <Grid container direction="row"
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              p:8,
-              m: 4,
-             }}
-             alignItems="space-between" 
-             spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm:6 , md: 12 }}>
-      
-      {listaPedidos.map((pedido) => (
-        <Grid item xs={3}  key={pedido._id}>
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                p: 8,
+                m: 4,
+              }}
+              alignItems="space-between"
+              spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm: 6, md: 12 }}>
 
-        <PedidoV1 key={pedido._id} 
-        pedido={pedido} esAdmin={esAdmin}
-         edicionActiva={edicionActiva} setEdicionActiva={setEdicionActiva} />
-        </Grid>
-      ))}
-    </Grid>
-    </Box>)}
+              {listaPedidos.map((pedido) => (
+                <Grid item xs={3} key={pedido._id}>
+
+                  <PedidoV1 key={pedido._id}
+                    pedido={pedido} esAdmin={esAdmin}
+                    edicionActiva={edicionActiva} setEdicionActiva={setEdicionActiva} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>)}
     </ThemeProvider>
   );
 }
