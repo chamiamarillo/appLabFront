@@ -8,17 +8,9 @@ import Avatar from '@mui/material/Avatar';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import quimica from '../Image/quimica.png'
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const PedidoReactivo = (props) => {
-  const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-      setExpanded(isExpanded ? panel : false);
-  };
 
     return (
         <Grid container component="form" onSubmit={props.cargaReactivos} noValidate direction="row"
@@ -156,13 +148,13 @@ const PedidoReactivo = (props) => {
                   <Typography sx={{ fontSize: 14 }} aria-label="simple table" color="text.secondary">
                     Confirmar
                   </Typography>
-                </Grid> {/*
+                </Grid>
                 <Grid item xs={1} container justifyContent="end">
                   <Typography sx={{ fontSize: 14 }} color="text.secondary">
                     Desechar
                   </Typography>
                 </Grid>
-                  */}
+
 
               </Grid>
               <Grid container direction="row"
@@ -274,134 +266,13 @@ const PedidoReactivo = (props) => {
            </Button>    
             
             </Grid>
-            {/*<Grid  item xs={1} container justifyContent="center">
+            <Grid  item xs={1} container justifyContent="center">
               <Avatar> 
                 <DeleteForeverIcon color={"rojo"} />
               </Avatar> 
-            </Grid>*/}
+            </Grid>
             
         </Grid>
-        {(props.verMasReactivos.length > 0) ? (
-          <Grid container  alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-            <Grid item xs={12}>
-                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} >
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel3bh-content"
-                        id="panel3bh-header"
-                    >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            MÁS REACTIVOS SOLICITADOS
-                        </Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>
-                            presione la flecha hacia abajo para ver
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography >
-                        <Grid container direction="row"
-                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
-
-                                    <Grid item xs={2} container justifyContent="start" >
-                                       Descripcion
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center" >
-                                        CAS
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center" >
-
-                                        Calidad
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       Cantidad
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       Tipo de Conc.
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       Medida de Conc.
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       Disolvente
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="end">
-                                       Ud. de Medida
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                       
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        Desechar
-                                    </Grid>
-                                </Grid>
-
-
-
-                            {props.verMasReactivos.map((row, index) => (
-
-
-
-                                <Grid container key = {index} direction="row"
-                                    alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
-
-                                    <Grid item xs={2} container justifyContent="start">
-
-
-                                        {row.reactivo.descripcion}
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.cas}
-
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.calidad}
-
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.cantidad}
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.concentracion_tipo}
-
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.concentracion_medida}
-
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.disolvente}
-
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        
-
-                                    </Grid>
-                                    
-                                    <Grid item xs={1} container justifyContent="center">
-                                       
-                                    </Grid>
-                                    <Grid item xs={1} container justifyContent="center">
-                                        <Button fullWidth
-                                                margin="normal"
-                                                variant="text"
-                                                 
-                                                onClick = {() => {
-                                                  props.eliminarReactivo(row.reactivo)
-                                                }}>
-                                        <Avatar>
-                                            <DeleteForeverIcon color={"rojo"} />
-                                        </Avatar>
-                                        </Button>
-                                    </Grid> 
-                                </Grid>
-
-                            ))}
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion> 
-                </Grid>
-          </Grid>
-        ): null }
       </Grid>
         
     )
