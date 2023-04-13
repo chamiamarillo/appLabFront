@@ -60,7 +60,7 @@ export default function NuevoPedido() {
   const [pedidoReactivos, setPedidoReactivos] = useState([]);
   const [listaReactivos, setListaReactivos] = useState([]);
   const [reactivoElegido, setReacElegido] = useState({});
-  const [verMasReactivos,setverMasReactivos]=useState([]);
+
   const [_med_reactivo, setUn_med_reactivo] = useState("");
 
   const [cal_reactivo, setCalReactivo] = useState("");
@@ -220,32 +220,15 @@ export default function NuevoPedido() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log("reactivo",reactivoElegido._id);
-    const dato={
-        "cantidad": parseInt(data.get('cant_reactivo'), 10),
-        "reactivo": reactivoElegido._id
-      };
 
-      const cargarNuevosReactivos = dato => {
-        setPedidoReactivos([...pedidoReactivos, dato]);
-      }
-      const datoVer={
-        "cantidad": parseInt(data.get('cant_reactivo'), 10),
-        "reactivo": reactivoElegido
-        };
-      const cargarNuevosReactivosVer = dato => {
-        setverMasReactivos([...verMasReactivos, dato]);
-        }
-      cargarNuevosReactivosVer(datoVer)
-      cargarNuevosReactivos(dato)
+
+    setPedidoReactivos({
+      "cantidad": parseInt(data.get('cant_reactivo'), 10),
+      "reactivo": reactivoElegido._id
+      //   ejemplo para mas adelante
+    });
 
   };
-
-  const eliminarReactivo =  (value) => {
-    const cargar_reactivos_ver = verMasReactivos.filter(reactivo =>reactivo.reactivo._id !== value._id)
-    setverMasReactivos(cargar_reactivos_ver);
-    const cargar_reactivos = pedidoReactivos.filter(reactivo => reactivo.reactivo !== value._id) 
-    setPedidoReactivos(cargar_reactivos);
-  }
   const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
   
 
@@ -361,8 +344,7 @@ export default function NuevoPedido() {
               disolReactivo = {disolReactivo}
               _med_reactivo = {_med_reactivo}
               med_reactivo = {med_reactivo}
-              verMasReactivos = {verMasReactivos}
-              eliminarReactivo = {eliminarReactivo}
+
             />
 
           </Box>
