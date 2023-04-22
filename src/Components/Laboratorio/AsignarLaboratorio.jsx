@@ -151,9 +151,10 @@ function AsignarLaboratorio(pedido,
                 value={edificioElegido}
                 label="edificio"
                 onChange={edificio_elegido}
-                name='edificio'
+                
+                // name='edificio'
               >
-
+                 <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
@@ -173,9 +174,9 @@ function AsignarLaboratorio(pedido,
                 value={tipo_pedido}
                 label="tipo_pedido"
                 onChange={estado_pedido}
-                name='tipo_pedido'
+               
               >
-
+                 <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
                 <MenuItem sx={{ fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>

@@ -114,7 +114,7 @@ const PedidoReactivo = (props) => {
 
                       <MenuItem sx={{ fontSize: 10 }} value={"p/analisis"}>P/ANALISIS</MenuItem>
                       <MenuItem sx={{ fontSize: 10 }} value={"molecular"}>CALIDAD MOLECULAR</MenuItem>
-                      <MenuItem sx={{ fontSize: 10 }} value={"grado_tecnico"}>°TECNICO</MenuItem>
+                      <MenuItem sx={{ fontSize: 10 }} value={"°_tecnico"}>°TECNICO</MenuItem>
 
                     </Select>
                   </FormControl>
@@ -174,20 +174,20 @@ const PedidoReactivo = (props) => {
 
                 <Grid item xs={3} container justifyContent="center" marginTop={1}>
                   <FormControl fullWidth>
-                    <InputLabel id="tipo_reactivo">tipo_reactivo</InputLabel>
+                    <InputLabel id="tipo_reactivo">tipo_concentracion</InputLabel>
                     <Select
-
+                    //  InputLabelProps={{
+                    //   shrink: true,
+                    // }}
                       labelId="tipo_reactivo"
                       id="tipo_reactivo"
                       value={props._tip_reactivo}
                       label="tipo_reactivo"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
                       onChange={props.tipReactivo}
-                      defaultValue={""}
+                    //  defaultValue={""}
                     >
 
+                      <MenuItem sx={{ fontSize: 14 }} value={""}> </MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"puro"}>PURO</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"molaridad"}>MOLARIDAD</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"normalidad"}>NORMALIDAD</MenuItem>
@@ -199,14 +199,15 @@ const PedidoReactivo = (props) => {
 
                 </Grid>
                 <Grid item xs={2} container justifyContent="center">
+                
                   <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="medida_reactivo"
-                    label="med_reactivo"
-                    name="medida_reactivo"
-                    autoComplete="medida_reactivo"
+                    id="med_concent"
+                    label="med_concent"
+                    name="med_concent"
+                    autoComplete="med_concent"
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -216,9 +217,7 @@ const PedidoReactivo = (props) => {
                 </Grid>
                 <Grid item xs={2} container justifyContent="center" marginTop={1}>
                   <FormControl fullWidth>
-                    <InputLabel id="disolvente_reactivo"
-
-                    >disolvente</InputLabel>
+                    <InputLabel id="disolvente_reactivo" >disolvente</InputLabel>
                     <Select
 
                       labelId="disolvente_reactivo"
@@ -250,9 +249,9 @@ const PedidoReactivo = (props) => {
                       label="un_med_reactivo"
                       onChange={props.med_reactivo}
                     >
-                      <MenuItem sx={{ fontSize: 14 }} value={"grs"}>GRAMOS</MenuItem>
+                      <MenuItem sx={{ fontSize: 14 }} value={"gr"}>GRAMOS</MenuItem>
                       <MenuItem sx={{ fontSize: 14 }} value={"kg"}>KILO</MenuItem>
-                      <MenuItem sx={{ fontSize: 14 }} value={"unidad"}>UNIDAD</MenuItem>
+                      <MenuItem sx={{ fontSize: 14 }} value={"un"}>UNIDAD</MenuItem>
 
 
 
@@ -316,16 +315,16 @@ const PedidoReactivo = (props) => {
                                        Cantidad
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                       Tipo de Conc.
+                                       Tipo Conc.
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                       Medida de Conc.
+                                       Medida Conc.
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
                                        Disolvente
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="end">
-                                       Ud. de Medida
+                                       U.de Medida
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
                                        
@@ -354,26 +353,26 @@ const PedidoReactivo = (props) => {
 
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.calidad}
+                                        {row.calidad}
 
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
                                         {row.cantidad}
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.concentracion_tipo}
+                                        {row.concentracion_tipo}
 
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.concentracion_medida}
+                                        {row.concentracion_medida}
 
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                        {row.reactivo.disolvente}
+                                        {row.disolvente}
 
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center">
-                                        
+                                          {row.un_medida}
 
                                     </Grid>
                                     

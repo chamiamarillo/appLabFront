@@ -61,11 +61,13 @@ export default function NuevoPedido() {
   const [listaReactivos, setListaReactivos] = useState([]);
   const [reactivoElegido, setReacElegido] = useState({});
   const [verMasReactivos,setverMasReactivos]=useState([]);
-  const [_med_reactivo, setUn_med_reactivo] = useState("");
 
+  const [_med_reactivo, setUn_med_reactivo] = useState("");
   const [cal_reactivo, setCalReactivo] = useState("");
-  const [_tip_reactivo,setTipReactivo] = useState("");
+  const [_tip_reactivo,setTipReactivo] = useState("");//tipo_concentracion
   const [_disol_reactivo, setDisolReactivo] = useState("");
+  
+
 
 
 
@@ -77,7 +79,7 @@ export default function NuevoPedido() {
 
   const disolReactivo = (event) => { setDisolReactivo(event.target.value); };
 
-  const tipReactivo = (event) => { setTipReactivo(event.target.value); };
+  const tipReactivo = (event) => {     setTipReactivo(event.target.value);   };
 
 
   const calReactivo = (event) => { setCalReactivo(event.target.value); };
@@ -118,7 +120,7 @@ export default function NuevoPedido() {
     });
 
 
-    // console.log(pedidoEncabezado);
+   
   };
 
 
@@ -216,12 +218,28 @@ export default function NuevoPedido() {
 
 
   // CARGA REACTIVOS A LA LISTA
+
+  
+
+  //   const [_med_reactivo, setUn_med_reactivo] = useState("");
+  // const [cal_reactivo, setCalReactivo] = useState("");
+  // const [_tip_reactivo,setTipReactivo] = useState("");
+  // const [_disol_reactivo, setDisolReactivo] = useState("");
+
+ 
   const cargaReactivos = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log("reactivo",reactivoElegido._id);
+    console.log(data.get('cant_reactivo'));
+    console.log(data.get('med_concent'));
     const dato={
         "cantidad": parseInt(data.get('cant_reactivo'), 10),
+        "un_medida":_med_reactivo,
+        "calidad" :cal_reactivo,
+         "concentracion_tipo":_tip_reactivo, 
+         "concentracion_medida":data.get('med_concent') ,
+         "disolvente":_disol_reactivo,
+         "otro_disolvente_descripcion":"",
         "reactivo": reactivoElegido._id
       };
 
@@ -230,7 +248,13 @@ export default function NuevoPedido() {
       }
       const datoVer={
         "cantidad": parseInt(data.get('cant_reactivo'), 10),
-        "reactivo": reactivoElegido
+        "un_medida":_med_reactivo,
+        "calidad" :cal_reactivo,
+         "concentracion_tipo":_tip_reactivo, 
+         "concentracion_medida":data.get('med_concent') ,
+         "disolvente":_disol_reactivo,
+         "otro_disolvente_descripcion":"",
+         "reactivo": reactivoElegido
         };
       const cargarNuevosReactivosVer = dato => {
         setverMasReactivos([...verMasReactivos, dato]);
@@ -357,10 +381,16 @@ export default function NuevoPedido() {
               reactivoElegido = {reactivoElegido}
               cal_reactivo = {cal_reactivo}
               calReactivo = {calReactivo}
+
+              _tip_reactivo={_tip_reactivo}
+              tipReactivo={tipReactivo}
+
               _disol_reactivo = {_disol_reactivo}
               disolReactivo = {disolReactivo}
+
               _med_reactivo = {_med_reactivo}
               med_reactivo = {med_reactivo}
+
               verMasReactivos = {verMasReactivos}
               eliminarReactivo = {eliminarReactivo}
             />
