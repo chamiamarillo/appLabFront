@@ -224,19 +224,19 @@ function PedidoDetalle(
                                                     {row.reactivo.cas}
                                                 </Grid>
                                                 <Grid item xs={2} container justifyContent="center" >
-                                                    {row.reactivo.calidad}
+                                                    {row.calidad}
                                                 </Grid>
                                                 <Grid item xs={2} container justifyContent="center" >
-                                                    {row.reactivo.concentracion_tipo}
+                                                    {row.concentracion_tipo}
                                                 </Grid>
                                                 <Grid item xs={2} container justifyContent="center" >
-                                                    {row.reactivo.disolvente}
+                                                    {row.disolvente}
                                                 </Grid>
                                                 <Grid item xs={1} container justifyContent="center" >
                                                     {row.cantidad}
                                                 </Grid>
                                                 <Grid item xs={1} container justifyContent="center" alignItems="center">
-                                                    {row.reactivo.concentracion_medida}
+                                                    {row.concentracion_medida}
                                                 </Grid>
                                             </Grid>
 
