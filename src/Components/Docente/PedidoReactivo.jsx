@@ -141,6 +141,24 @@ const PedidoReactivo = (props) => {
 
                   />
                 </Grid>
+
+              {/* ROMINA AGREGADO DE UNIDAD DE MEDIDA REACTIVO */}
+              <Grid item xs={2} container justifyContent="center" marginTop={0}>
+                  <TextField
+                      margin="normal"
+                    
+                      fullWidth
+                      id="un_med_reactivo"
+                      label="un_med_reactivo"
+                      name="un_med_reactivo"
+                      InputLabelProps={{ shrink: true }}
+                      autoComplete="un_med_reactivo"
+                      autoFocus
+                  />
+
+                </Grid>
+
+
               </Grid>
               <Grid container direction="row"
                 justifyContent="start"
@@ -241,13 +259,13 @@ const PedidoReactivo = (props) => {
 
                 <Grid item xs={2} container justifyContent="center" marginTop={1}>
                   <FormControl fullWidth>
-                    <InputLabel id="un_med_reactivo">un_med_reactivo</InputLabel>
+                    <InputLabel id="un_med_reactivo2">un_med_reactivo</InputLabel>
                     <Select
 
-                      labelId="un_med_reactivo"
-                      id="un_med_reactivo"
+                      labelId="un_med_reactivo2"
+                      id="un_med_reactivo2"
                       value={props._med_reactivo}
-                      label="un_med_reactivo"
+                      label="un_med_reactivo2"
                       onChange={props.med_reactivo}
                     >
                       <MenuItem sx={{ fontSize: 14 }} value={"grs"}>GRAMOS</MenuItem>
