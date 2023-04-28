@@ -37,6 +37,8 @@ function PedidoDetalle(
         numero_laboratorio,
         docente,
         observaciones,
+        edificio,
+        alumnos,
         cantidad_grupos,
         lista_equipos,
         lista_materiales,
@@ -49,7 +51,7 @@ function PedidoDetalle(
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
     const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
-
+    const hora = (moment(fecha_utilizacion).format('HH:mm'));
 
 
     return (
@@ -75,15 +77,17 @@ function PedidoDetalle(
 
                             <fieldset>
                                 <label htmlFor="fecha_trabajo" id="label_fecha_trabajo">Fecha solicitud : </label> <input type="text" id="fecha_trabajo" name="fecha_trabajo" value={fechaActual} disabled />
-                                <label htmlFor="edificio" id="label_edificio">Fecha Utilización : </label>
-                                <input type="text" id="edificio" name="edificio" value={fechaActual2} disabled />
-                                <label htmlFor="laboratorio" id="label_laboratorio">Laboratorio : </label>
-                                <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
+                                <label htmlFor="fecha_utilizacion" id="label_fecha_utilizacion"> Fecha Utilización : </label> <input type="text" id="fecha_utilizacion" name="fecha_utilizacion" value={fechaActual2} disabled />
+                                <label htmlFor="hora" id="label_hora"> Hora: </label> <input type="text" id="hora" name="hora" value={hora} disabled />
 
                                 <br></br>
-                                <label id="label_docente"> docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
-                                {/* <label id="label_alumno"> alumnos : </label> <input type="text" id="alumno" name="alumno" value="40" disabled /> */}
-                                <label id="label_grupo"> grupos : </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
+                                <label id="label_docente"> Docente : </label> <input type="text" id="docente" name="docente" value={`${docente.nombre}  ${docente.apellido}`} disabled />
+                                <label id="label_alumno"> Alumnos : </label> <input type="text" id="alumno" name="alumno" value={alumnos} disabled />
+                                <label id="label_grupo"> Grupos : </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
+                                <br></br>
+                                <label htmlFor="laboratorio" id="label_laboratorio"> Laboratorio: </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
+                                <label htmlFor="edificio" id="label_edificio"> Edificio: </label> <input type="text" id="edificio" name="edificio" value={edificio} disabled />
+                                <label htmlFor="estado" id="label_estado"> Estado: </label> <input type="text" id="tipo_pedido" name="tipo_pedido" value={tipo_pedido} disabled />
                             </fieldset>
                         </div>
                         <hr></hr>
