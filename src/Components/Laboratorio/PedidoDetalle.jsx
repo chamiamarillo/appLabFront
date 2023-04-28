@@ -50,8 +50,8 @@ function PedidoDetalle(
         descripcion
     } = pedido;
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
-    const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
-    const hora = (moment(fecha_utilizacion).format('HH:mm'));
+    const fechaActual2 = (moment(fecha_utilizacion).utc().format('DD/MM/YYYY'));
+    const hora = (moment(fecha_utilizacion).utc().format('HH:mm'));
     const descriptionElementRef = React.useRef(null);
 
     //console.log(lista_materiales);

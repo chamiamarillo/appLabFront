@@ -49,9 +49,9 @@ function PedidoDetalle(
     } = pedido;
 
     const fechaActual = (moment(fecha_solicitud).format('DD/MM/YYYY'));
-    const fechaActual2 = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
+    const fechaActual2 = (moment(fecha_utilizacion).utc().format('DD/MM/YYYY'));
     const descriptionElementRef = React.useRef(null);
-    const hora = (moment(fecha_utilizacion).format('HH:mm'));
+    const hora = (moment(fecha_utilizacion).utc().format('HH:mm'));
 
 
     return (
