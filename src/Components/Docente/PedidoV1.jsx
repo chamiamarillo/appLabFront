@@ -42,14 +42,14 @@ function PedidoV1({ pedido, esAdmin}) {
     numero_tp,
     fecha_utilizacion,
     fecha_solicitud,
-    observaciones,
+    alumnos,
+    edificio,
     numero_laboratorio,
     docente,
     cantidad_grupos,
     lista_equipos
   } = pedido;
-  const fechaActual = (moment(fecha_utilizacion).format('DD/MM/YYYY'));
-
+  const fecha_utilizar = (moment(fecha_utilizacion).utc().format('DD/MM/YYYY HH:mm'));
   const [open, setOpen] = React.useState("");
   const [scroll, setScroll] = React.useState('paper');
 
@@ -80,7 +80,7 @@ function PedidoV1({ pedido, esAdmin}) {
               }
               title={`Pedido número ${descripcion}`}
               // subheader={`Fecha : ${fecha_solicitud}`}
-              subheader={`Fecha de Práctica : ${fechaActual}`}
+              subheader={`Fecha de Práctica : ${fecha_utilizar}`}
               action={
                 <IconButton>
                   <MoreVertIcon />
@@ -97,7 +97,10 @@ function PedidoV1({ pedido, esAdmin}) {
                 <strong>Laboratorio: </strong> {numero_laboratorio}
               </p>
               <p>
-                <strong>Edificio: </strong> {observaciones}
+                <strong>Edificio: </strong> {edificio}
+              </p>
+              <p>
+                <strong>Alumnos: </strong> {alumnos}
               </p>
               <p>
                 <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
