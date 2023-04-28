@@ -100,24 +100,22 @@ export default function NuevoPedido() {
     const data = new FormData(event.currentTarget);
     
     const fecha = new Date();
-    
-
+    const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`);
     const nro_pedido = cantidadPedidos + 1;
-
     setEncabezadoPedido({
 
       "descripcion": (nro_pedido).toString(),
-        "fecha_solicitud": fecha,
-       "fecha_utilizacion": data.get('fecha_utilizacion'),
+      "fecha_solicitud": fecha,
+      "fecha_utilizacion": fecha_utilizacion,
       "numero_laboratorio": parseInt(0, 10),
       "tipo_pedido": "PENDIENTE",
-      "cantidad_alumnos": data.get('cantidad_alumnos'),
+      "alumnos": data.get('cantidad_alumnos'),
       "cantidad_grupos": data.get('cantidad_grupos'),
-      "observaciones": "sin asignar",
+      "edificio": "Sin asignar",
       "materia": "string",
-      "numero_tp": "2"
-
-    });
+      "numero_tp": "2",
+    },
+    );
 
 
    
@@ -278,7 +276,6 @@ export default function NuevoPedido() {
 
 
   const handleSubmit = () => {
-
     const pedido = {
       "docente": {
         "nombre": userActual.nombre,
@@ -292,7 +289,8 @@ export default function NuevoPedido() {
       "numero_laboratorio": pedidoEncabezado.numero_laboratorio,
       "tipo_pedido": pedidoEncabezado.tipo_pedido,
       "cantidad_grupos": pedidoEncabezado.cantidad_grupos,
-      "observaciones": pedidoEncabezado.observaciones,
+      "alumnos": pedidoEncabezado.alumnos,
+      "edificio": pedidoEncabezado.edificio,
       "materia": pedidoEncabezado.materia,
       "numero_tp": pedidoEncabezado.numero_tp,
       "lista_equipos": pedidoEquipos,

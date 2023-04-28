@@ -22,7 +22,7 @@ function AsignarLaboratorio(pedido,
   fecha_utilizacion,
   numero_laboratorio,
   docente,
-  observaciones,
+  edificio,
   cantidad_grupos,
   lista_equipos,
   lista_materiales,
@@ -36,7 +36,7 @@ function AsignarLaboratorio(pedido,
 
 
 
-  const [edificioElegido, setEdificioElegido] = useState(observaciones)
+  const [edificioElegido, setEdificioElegido] = useState(edificio)
   const [laboAsignado, setLaboAsignado] = useState(numero_laboratorio)
   const [estado_ped, setEstadoPed] = useState(tipo_pedido)
   const edificio_elegido = (event) => {
@@ -79,7 +79,7 @@ function AsignarLaboratorio(pedido,
       "numero_laboratorio": laboAsignado,
       "tipo_pedido": estado_ped,
       "cantidad_grupos": cantidad_grupos,
-      "observaciones": edificioElegido,
+      "edificio": edificioElegido,
       "materia": materia,
       "numero_tp": numero_tp,
       "lista_equipos": lista_equipos,
