@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import TextField from '@mui/material/TextField';
-
+import Input from '@mui/material/Input';
 
 
 import moment from 'moment'
@@ -16,11 +16,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import Typography from '@mui/material/Typography';
 
-
 const PedidoCabecera = (props) => {
  
   const fecha = new Date();
+  const hoy = new Date()
+  const manana = hoy.setTime(hoy.getTime() + (2*24*60*60*1000))
+  const maniana = new Date(manana)
+  const formatManiana=(moment(maniana).format('YYYY-MM-DD')).toString();
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
+  
   return (
     <div> <Grid container component="form" onSubmit={props.cargaEncabezado} noValidate direction="row"
     justifyContent="space-around"
@@ -79,14 +83,28 @@ const PedidoCabecera = (props) => {
           autoFocus
         />
       </Grid>
-      <Grid item xs={2}  >
-
-
-        <TextField
+      <Grid item xs={2} >
+      <Typography sx={{ fontSize: 12 }} aria-label="simple table" color="text.secondary" >
+        <fieldset  style={{width:"145px",height:"56px"}} >
+       
+          <legend>fecha_utilizacion:</legend>
+     
+        {/* <label for="fecha_utilizacion">fecha_utilizacion:</label> */}
+        <input  type="date" 
+        style={{ border: "none",padding:"10px",width: "80%",fontSize:"14px",fontFamily:"cursive",color: "grey"}}
+              
+          min={formatManiana} 
+        id="fecha_utilizacion" name="fecha_utilizacion" ></input>
+         </fieldset>
+        </Typography>
+       
+        {/* <TextField
           id="fecha_utilizacion"
           label="fecha_utilizacion"
           name="fecha_utilizacion"
           type="date"
+          min={formatManiana}
+   
           // sx={{ width: 180 }}
           InputLabelProps={{
             shrink: true,
@@ -95,7 +113,7 @@ const PedidoCabecera = (props) => {
           required
           fullWidth
           autoFocus
-        />
+        /> */}
       </Grid>
       <Grid item xs={2} >
 
