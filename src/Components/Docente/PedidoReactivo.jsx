@@ -110,8 +110,9 @@ const PedidoReactivo = (props) => {
               value={props.cal_reactivo}
               label="calidad_reactivo"
               onChange={props.calReactivo}
+              defaultValue={" "}
             >
-               <MenuItem sx={{ fontSize: 10 }} value={""}> </MenuItem>
+               <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"p/analisis"}>P/ANALISIS</MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"molecular"}>CALIDAD MOLECULAR</MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"°_tecnico"}>°TECNICO</MenuItem>
@@ -148,13 +149,13 @@ const PedidoReactivo = (props) => {
           <FormControl fullWidth>
             <InputLabel id="_med_reactivo2">un_med_reactivo</InputLabel>
             <Select
-
+              
               labelId="_med_reactivo2"
               id="_med_reactivo2"
               value={props._med_reactivo}
               label="_med_reactivo2"
               onChange={props.med_reactivo}
-
+             
             >
               <MenuItem sx={{ fontSize: 14 }} value={""}></MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"gr"}>GRAMOS</MenuItem>
@@ -200,18 +201,18 @@ const PedidoReactivo = (props) => {
           <FormControl fullWidth>
             <InputLabel id="tipo_reactivo">tipo_concentracion</InputLabel>
             <Select
-              //  InputLabelProps={{
-              //   shrink: true,
-              // }}
+               InputLabelProps={{
+                shrink: true,
+              }}
               labelId="tipo_reactivo"
               id="tipo_reactivo"
               value={props._tip_reactivo}
               label="tipo_reactivo"
               onChange={props.tipReactivo}
-            //  defaultValue={""}
+              defaultValue={" "}
             >
 
-              <MenuItem sx={{ fontSize: 14 }} value={""}> </MenuItem>
+              <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"puro"}>PURO</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"molaridad"}>MOLARIDAD</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"normalidad"}>NORMALIDAD</MenuItem>
@@ -243,14 +244,18 @@ const PedidoReactivo = (props) => {
           <FormControl fullWidth>
             <InputLabel id="disolvente_reactivo" >disolvente</InputLabel>
             <Select
-
+              InputLabelProps={{
+                shrink: true,
+              }}
               labelId="disolvente_reactivo"
               id="disolvente_reactivo"
               value={props._disol_reactivo}
               label="disolvente_reactivo"
               onChange={props.disolReactivo}
+              defaultValue={" "}
+              
             >
-              <MenuItem sx={{ fontSize: 14 }} value={""}> </MenuItem>
+              <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"agua"}>AGUA</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"alcohol"}>ALCOHOL</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"otros"}>OTROS</MenuItem>
@@ -277,30 +282,6 @@ const PedidoReactivo = (props) => {
         </Grid>
 
 
-        {/* 
-                <Grid item xs={2} container justifyContent="center" marginTop={1}>
-                  <FormControl fullWidth>
-                    <InputLabel id="_med_reactivo2">un_med_reactivo</InputLabel>
-                    <Select
-
-                      labelId="_med_reactivo2"
-                      id="_med_reactivo2"
-                      value={props._med_reactivo}
-                      label="_med_reactivo2"
-                      onChange={props.med_reactivo}
-                    >
-                      <MenuItem sx={{ fontSize: 14 }} value={"gr"}>GRAMOS</MenuItem>
-                      <MenuItem sx={{ fontSize: 14 }} value={"kg"}>KILO</MenuItem>
-                      <MenuItem sx={{ fontSize: 14 }} value={"un"}>UNIDAD</MenuItem>
-
-
-
-
-
-                    </Select>
-                  </FormControl>
-
-                </Grid> */}
         <Grid item xs={1} container justifyContent="center" marginLeft={11}>
           <Button fullWidth
             margin="normal"
@@ -313,11 +294,7 @@ const PedidoReactivo = (props) => {
           </Button>
 
         </Grid>
-        {/*<Grid  item xs={1} container justifyContent="center">
-              <Avatar> 
-                <DeleteForeverIcon color={"rojo"} />
-              </Avatar> 
-            </Grid>*/}
+       
 
       </Grid>
       {(props.verMasReactivos.length > 0) ? (
