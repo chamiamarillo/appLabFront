@@ -67,7 +67,7 @@ export default function NuevoPedido() {
   const [_tip_reactivo,setTipReactivo] = useState("");//tipo_concentracion
   const [_disol_reactivo, setDisolReactivo] = useState("");
   
-
+  //const [_otro_disol_reactivo, setOtroDisolReactivo] = useState("");
 
 
 
@@ -75,7 +75,7 @@ export default function NuevoPedido() {
  
   
 
-
+  //const otroDisolReactivo = (event) => { setOtroDisolReactivo(event.target.value); };
 
   const disolReactivo = (event) => { setDisolReactivo(event.target.value); };
 
@@ -230,6 +230,7 @@ export default function NuevoPedido() {
     const data = new FormData(event.currentTarget);
     console.log(data.get('cant_reactivo'));
     console.log(data.get('med_concent'));
+    console.log(data.get('_otro_disol_reactivo'))
     const dato={
         "cantidad": parseInt(data.get('cant_reactivo'), 10),
         "un_medida":_med_reactivo,
@@ -237,7 +238,7 @@ export default function NuevoPedido() {
          "concentracion_tipo":_tip_reactivo, 
          "concentracion_medida":data.get('med_concent') ,
          "disolvente":_disol_reactivo,
-         "otro_disolvente_descripcion":"",
+         "otro_disolvente_descripcion":data.get('_otro_disol_reactivo'),
         "reactivo": reactivoElegido._id
       };
 
@@ -251,7 +252,7 @@ export default function NuevoPedido() {
          "concentracion_tipo":_tip_reactivo, 
          "concentracion_medida":data.get('med_concent') ,
          "disolvente":_disol_reactivo,
-         "otro_disolvente_descripcion":"",
+         "otro_disolvente_descripcion":data.get('_otro_disol_reactivo'),
          "reactivo": reactivoElegido
         };
       const cargarNuevosReactivosVer = dato => {
@@ -385,6 +386,9 @@ export default function NuevoPedido() {
 
               _disol_reactivo = {_disol_reactivo}
               disolReactivo = {disolReactivo}
+
+              //_otro_disol_reactivo = {_otro_disol_reactivo}
+             // otroDisolReactivo = {otroDisolReactivo}
 
               _med_reactivo = {_med_reactivo}
               med_reactivo = {med_reactivo}

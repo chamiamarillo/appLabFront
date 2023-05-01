@@ -143,21 +143,46 @@ const PedidoReactivo = (props) => {
                 </Grid>
 
               {/* ROMINA AGREGADO DE UNIDAD DE MEDIDA REACTIVO */}
-              <Grid item xs={2} container justifyContent="center" marginTop={0}>
+
+              <Grid item xs={2} container justifyContent="center" marginTop={1}>
+                  <FormControl fullWidth>
+                    <InputLabel id="_med_reactivo2">un_med_reactivo</InputLabel>
+                    <Select
+
+                      labelId="_med_reactivo2"
+                      id="_med_reactivo2"
+                      value={props._med_reactivo}
+                      label="_med_reactivo2"
+                      onChange={props.med_reactivo}
+                    >
+                      <MenuItem sx={{ fontSize: 14 }} value={"gr"}>GRAMOS</MenuItem>
+                      <MenuItem sx={{ fontSize: 14 }} value={"kg"}>KILO</MenuItem>
+                      <MenuItem sx={{ fontSize: 14 }} value={"un"}>UNIDAD</MenuItem>
+
+
+
+
+
+                    </Select>
+                  </FormControl>
+
+                </Grid>
+
+             {/*  <Grid item xs={2} container justifyContent="center" marginTop={0}>
                   <TextField
                       margin="normal"
-                    
+                      required
                       fullWidth
-                      id="un_med_reactivo"
-                      label="un_med_reactivo"
-                      name="un_med_reactivo"
+                      id="_med_reactivo"
+                      label="unidad_med_reactivo"
+                      name="_med_reactivo"
                       InputLabelProps={{ shrink: true }}
-                      autoComplete="un_med_reactivo"
+                      autoComplete="_med_reactivo"
                       autoFocus
                   />
 
                 </Grid>
-
+ */}
 
               </Grid>
               <Grid container direction="row"
@@ -255,16 +280,32 @@ const PedidoReactivo = (props) => {
 
                 </Grid>
 
+                   <Grid item xs={2} container justifyContent="center" marginTop={0}>
+                  <TextField
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="_otro_disol_reactivo"
+                      label="detalle_otro_disolvente"
+                      name="_otro_disol_reactivo"
+                      InputLabelProps={{ shrink: true }}
+                      autoComplete="_otro_disol_reactivo"
+                      autoFocus
+                  />
 
+                </Grid>
+
+
+{/* 
                 <Grid item xs={2} container justifyContent="center" marginTop={1}>
                   <FormControl fullWidth>
-                    <InputLabel id="un_med_reactivo2">un_med_reactivo</InputLabel>
+                    <InputLabel id="_med_reactivo2">un_med_reactivo</InputLabel>
                     <Select
 
-                      labelId="un_med_reactivo2"
-                      id="un_med_reactivo2"
+                      labelId="_med_reactivo2"
+                      id="_med_reactivo2"
                       value={props._med_reactivo}
-                      label="un_med_reactivo2"
+                      label="_med_reactivo2"
                       onChange={props.med_reactivo}
                     >
                       <MenuItem sx={{ fontSize: 14 }} value={"gr"}>GRAMOS</MenuItem>
@@ -278,7 +319,7 @@ const PedidoReactivo = (props) => {
                     </Select>
                   </FormControl>
 
-                </Grid>
+                </Grid> */}
                 <Grid  item xs={1} container justifyContent="center" marginLeft={11}>
             <Button fullWidth
                 margin="normal"
@@ -393,7 +434,10 @@ const PedidoReactivo = (props) => {
                                           {row.un_medida}
 
                                     </Grid>
-                                    
+                                    <Grid item xs={1} container justifyContent="center">
+                                          {row.otro_disolvente_descripcion}
+
+                                    </Grid>
                                     <Grid item xs={1} container justifyContent="center">
                                        
                                     </Grid>
