@@ -8,6 +8,7 @@ import Header from '../Header/Header'
 import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import NoEncontrados from "../Docente/NoEncontrados"
+import Filtros from "./Filtros";
 
 const useStyles = makeStyles(() => ({
   marginTop: {
@@ -43,6 +44,7 @@ function Pedidos() {
       <Box sx={{ flexGrow: 1, m: 2 }}>
         <Header texto={texto} ></Header>
       </Box>
+      <Filtros></Filtros>
       {(listaPedidos.length < 1) ?
         (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
         : (
