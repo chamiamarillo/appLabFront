@@ -258,7 +258,7 @@ const PedidoReactivo = (props) => {
               <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"agua"}>AGUA</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"alcohol"}>ALCOHOL</MenuItem>
-              <MenuItem sx={{ fontSize: 14 }} value={" "}>OTROS</MenuItem>
+              <MenuItem sx={{ fontSize: 14 }} value={"otro"}>OTROS</MenuItem>
 
             </Select>
           </FormControl>
