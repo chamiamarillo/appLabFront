@@ -8,14 +8,13 @@ import { createTheme} from '@mui/material/styles';
 const Theme1=createTheme({
     palette:{
         primary:{
-           // main:"#b4e0bc"
+       //   main:"#6d8e46"
            main:teal[400]
-          // main:"#1de9b6"
+         //  main:"#9ccc65"
+         
         },
         secondary:{
-         //  main:teal[400]
-            // main:"#43a047"
-            // main:green[400]
+        
             main:"#b4e0bc"
         },
         verdeC:{
@@ -23,11 +22,15 @@ const Theme1=createTheme({
 
         },
         blanco:{
-            main:teal[50]
+            main:"white"
         },
         rojo:{
             main:"#ba000d"
-        }
+        },
+        gris:{
+            main:"#685E5E"
+            }
+           
        
     }
 })

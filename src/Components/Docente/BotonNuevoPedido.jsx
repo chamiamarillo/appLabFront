@@ -1,49 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
-const BotonNPedido = ({setNuevoPedido}) => {
-  const navigate=useNavigate();
-    return ( 
-      <ThemeProvider theme={Theme1}>
-        
-      {/* //  <Typography component="div" align='rigth'width={200} height={30} color={"blanco.main"} bgcolor={"verdeC.main"}   >  */}
-      <Grid container justifyContent="flex-end" 
-              >
-      <Grid item xs={2}  style={{borderRadius:8}}>
-           
-           <Button fullWidth
-          
-          // sx={{color:{"white"} ,  bgcolor:{"primary.main"} }}
-           style={{borderRadius:8,color:"white",background:"#26a69a"}}
-           margin="normal"
-         variant="contained"
-         startIcon={<AddCircleIcon />}
-        onClick={() => {
-          navigate('/Docente/NuevoPedido')
-          setNuevoPedido(true);
-       
-     
-   }}
-         
-         
-         sx={{ mt: 3, mb: 2 ,height:50}}> PEDIDO NUEVO</Button>
-         
-       </Grid>
-       </Grid>
-       
-       
-       
-        {/* //</Typography> */}
-    
-        </ThemeProvider>
-        
-     );
+import SendIcon from '@mui/icons-material/Send';
+
+import { styled } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
+
+// const ColorButton = styled(Button)(({ theme=Theme1 }) => ({
+//   color: theme.palette.getContrastText("primary"),
+//   backgroundColor: primary.fondo,
+//   '&:hover': {
+//     backgroundColor: primary.letra,
+//   },
+// }));
+
+const BotonNPedido = ({ setNuevoPedido }) => {
+  const navigate = useNavigate();
+  return (
+    <ThemeProvider theme={Theme1}>
+
+
+      <Grid container justifyContent="flex-end"
+      >
+        <Grid item xs={2}
+
+        >
+          <Typography
+            //component="button" 
+            borderRadius={8}
+            borderColor={"gris"}
+            align='rigth' width={200} height={50} color={"gris.main"} bgcolor={"secondary.main"}   >
+            <Button
+              fullWidth
+              style={{ borderRadius: 24,  height: 50 }}
+              margin="normal"
+              variant="contained"
+              endIcon={<SendIcon />}
+             
+              onClick={() => {
+                navigate('/Docente/NuevoPedido')
+                setNuevoPedido(true);
+              }}>
+
+              PEDIDO NUEVO</Button>
+          </Typography>
+
+
+        </Grid>
+      </Grid>
+
+
+      
+
+
+    </ThemeProvider>
+
+  );
 }
- 
+
 export default BotonNPedido;

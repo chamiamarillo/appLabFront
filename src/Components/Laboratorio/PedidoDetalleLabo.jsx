@@ -259,20 +259,20 @@ function PedidoDetalle(
 
                             <AsignarLaboratorio
                                 pedido={pedido}
-                                _id={_id}
-                                numero_tp={numero_tp}
-                                fecha_solicitud={fecha_solicitud}
-                                fecha_utilizacion={fecha_utilizacion}
-                                numero_laboratorio={numero_laboratorio}
-                                docente={docente}
-                                observaciones={observaciones}
-                                cantidad_grupos={cantidad_grupos}
-                                lista_equipos={lista_equipos}
-                                lista_materiales={lista_materiales}
-                                lista_reactivos={lista_reactivos}
-                                descripcion={descripcion}
-                                tipo_pedido={tipo_pedido}
-                                materia={materia}
+                                // _id={_id}
+                                // numero_tp={numero_tp}
+                                // fecha_solicitud={fecha_solicitud}
+                                // fecha_utilizacion={fecha_utilizacion}
+                                // numero_laboratorio={numero_laboratorio}
+                                // docente={docente}
+                                // edificio={edificio}
+                                // cantidad_grupos={cantidad_grupos}
+                                // lista_equipos={lista_equipos}
+                                // lista_materiales={lista_materiales}
+                                // lista_reactivos={lista_reactivos}
+                                // descripcion={descripcion}
+                                // tipo_pedido={tipo_pedido}
+                                // materia={materia}
                             ></AsignarLaboratorio>
 
                         </Grid>

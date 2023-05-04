@@ -45,8 +45,8 @@ export default function NuevoPedido() {
   const [pedidoEquipos, setPedidoEquipos] = useState([]);
   const [listaEquipos, setListaEquipos] = useState([]);
   const [equipoElegido, setEquipoElegido] = useState({});
-  const [verMasEquip,setverMasEquip]=useState([]);
- 
+  const [verMasEquip, setverMasEquip] = useState([]);
+
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
@@ -55,31 +55,31 @@ export default function NuevoPedido() {
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
   const [materialElegido, setMatElegido] = useState({});
-  const [verMasMateriales,setverMasMateriales]=useState([]);
+  const [verMasMateriales, setverMasMateriales] = useState([]);
 
   const [pedidoReactivos, setPedidoReactivos] = useState([]);
   const [listaReactivos, setListaReactivos] = useState([]);
   const [reactivoElegido, setReacElegido] = useState({});
-  const [verMasReactivos,setverMasReactivos]=useState([]);
+  const [verMasReactivos, setverMasReactivos] = useState([]);
 
   const [_med_reactivo, setUn_med_reactivo] = useState("");
   const [cal_reactivo, setCalReactivo] = useState("");
-  const [_tip_reactivo,setTipReactivo] = useState("");//tipo_concentracion
+  const [_tip_reactivo, setTipReactivo] = useState("");//tipo_concentracion
   const [_disol_reactivo, setDisolReactivo] = useState("");
-  
+
   //const [_otro_disol_reactivo, setOtroDisolReactivo] = useState("");
 
 
 
 
- 
-  
+
+
 
   //const otroDisolReactivo = (event) => { setOtroDisolReactivo(event.target.value); };
 
   const disolReactivo = (event) => { setDisolReactivo(event.target.value); };
 
-  const tipReactivo = (event) => {     setTipReactivo(event.target.value);   };
+  const tipReactivo = (event) => { setTipReactivo(event.target.value); };
 
 
   const calReactivo = (event) => { setCalReactivo(event.target.value); };
@@ -99,8 +99,8 @@ export default function NuevoPedido() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // hoy = new Date()
-// maniana = hoy.setTime(hoy.getTime() + (1*24*60*60*1000))
-// maniana = new Date(maniana)
+    // maniana = hoy.setTime(hoy.getTime() + (1*24*60*60*1000))
+    // maniana = new Date(maniana)
     const fecha = new Date();
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`);
     const nro_pedido = cantidadPedidos + 1;
@@ -120,7 +120,7 @@ export default function NuevoPedido() {
     );
 
 
-   
+
   };
 
 
@@ -130,41 +130,41 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const dato={
+    const dato = {
       "cantidad": parseInt(data.get('cant_equipo'), 10),
       "equipo": equipoElegido._id
-    }; 
+    };
     const cargarNuevosEquipos = dato => {
-         setPedidoEquipos([...pedidoEquipos, dato]);
-       }
-    const datoVer={
-        "cantidad": parseInt(data.get('cant_equipo'), 10),
-        "equipo": equipoElegido
-      }; 
-      const cargarNuevosEquiposVer = dato => {
-        setverMasEquip([...verMasEquip, dato]);
-         }
-        
-  cargarNuevosEquiposVer(datoVer)
+      setPedidoEquipos([...pedidoEquipos, dato]);
+    }
+    const datoVer = {
+      "cantidad": parseInt(data.get('cant_equipo'), 10),
+      "equipo": equipoElegido
+    };
+    const cargarNuevosEquiposVer = dato => {
+      setverMasEquip([...verMasEquip, dato]);
+    }
 
-  cargarNuevosEquipos(dato)
+    cargarNuevosEquiposVer(datoVer)
 
-   
+    cargarNuevosEquipos(dato)
+
+
 
   };
-  const eliminarEquipo =  (event) => {
-    
-    const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq =>eq.equipo._id !== event._id)
-      setverMasEquip(cargar_Nuevos_EquiposVer);
+  const eliminarEquipo = (event) => {
+
+    const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq => eq.equipo._id !== event._id)
+    setverMasEquip(cargar_Nuevos_EquiposVer);
 
 
-       
-       const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq =>eq.equipo !== event._id) 
-        setPedidoEquipos(cargar_Nuevos_Equipos);
-       
+
+    const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq => eq.equipo !== event._id)
+    setPedidoEquipos(cargar_Nuevos_Equipos);
+
     console.log(event._id)
   }
- 
+
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
 
 
@@ -174,105 +174,105 @@ export default function NuevoPedido() {
   const cargaMaterial = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const dato={
-        "cantidad": parseInt(data.get('cant_material'), 10),
-        "material": materialElegido._id
-      }; 
-      const cargarNuevosMateriales = dato => {
-           setPedidoMateriales([...pedidoMateriales, dato]);
-         }
+    const dato = {
+      "cantidad": parseInt(data.get('cant_material'), 10),
+      "material": materialElegido._id
+    };
+    const cargarNuevosMateriales = dato => {
+      setPedidoMateriales([...pedidoMateriales, dato]);
+    }
 
-      const datoVer={
-          "cantidad": parseInt(data.get('cant_material'), 10),
-          "material": materialElegido
-        }; 
-      const cargarNuevosMaterialesVer = dato => {
-          setverMasMateriales([...verMasMateriales, dato]);
-           }
-          
+    const datoVer = {
+      "cantidad": parseInt(data.get('cant_material'), 10),
+      "material": materialElegido
+    };
+    const cargarNuevosMaterialesVer = dato => {
+      setverMasMateriales([...verMasMateriales, dato]);
+    }
+
     cargarNuevosMaterialesVer(datoVer)
-     
+
     cargarNuevosMateriales(dato)
 
-    
+
 
   };
 
-  
-// ELIMINAR MATERIAL DE LA LISTA
+
+  // ELIMINAR MATERIAL DE LA LISTA
 
   const eliminarMaterial = (event) => {
-      console.log(event)
-      const pedido_MaterialesVer = verMasMateriales.filter
-                  (mate => mate.material._id !== event._id);
-      setverMasMateriales (pedido_MaterialesVer);
+    console.log(event)
+    const pedido_MaterialesVer = verMasMateriales.filter
+      (mate => mate.material._id !== event._id);
+    setverMasMateriales(pedido_MaterialesVer);
 
     const pedido_Materiales = pedidoMateriales.filter
-                  (mate => mate.material !== event._id);
-    setPedidoMateriales (pedido_Materiales);
+      (mate => mate.material !== event._id);
+    setPedidoMateriales(pedido_Materiales);
     console.log(event._id)
   }
-  
-  
+
+
   const set_IdMat = (event, value) => { setMatElegido(value); };
 
 
   // CARGA REACTIVOS A LA LISTA
 
-  
+
 
   //   const [_med_reactivo, setUn_med_reactivo] = useState("");
   // const [cal_reactivo, setCalReactivo] = useState("");
   // const [_tip_reactivo,setTipReactivo] = useState("");
   // const [_disol_reactivo, setDisolReactivo] = useState("");
 
- 
+
   const cargaReactivos = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get('cant_reactivo'));
     console.log(data.get('med_concent'));
     console.log(data.get('_otro_disol_reactivo'))
-    const dato={
-        "cantidad": parseInt(data.get('cant_reactivo'), 10),
-        "un_medida":_med_reactivo,
-        "calidad" :cal_reactivo,
-         "concentracion_tipo":_tip_reactivo, 
-         "concentracion_medida":data.get('med_concent') ,
-         "disolvente":_disol_reactivo,
-         "otro_disolvente_descripcion":data.get('_otro_disol_reactivo'),
-        "reactivo": reactivoElegido._id
-      };
+    const dato = {
+      "cantidad": parseInt(data.get('cant_reactivo'), 10),
+      "un_medida": _med_reactivo,
+      "calidad": cal_reactivo,
+      "concentracion_tipo": _tip_reactivo,
+      "concentracion_medida": data.get('med_concent'),
+      "disolvente": _disol_reactivo,
+      "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+      "reactivo": reactivoElegido._id
+    };
 
-      const cargarNuevosReactivos = dato => {
-        setPedidoReactivos([...pedidoReactivos, dato]);
-      }
-      const datoVer={
-        "cantidad": parseInt(data.get('cant_reactivo'), 10),
-        "un_medida":_med_reactivo,
-        "calidad" :cal_reactivo,
-         "concentracion_tipo":_tip_reactivo, 
-         "concentracion_medida":data.get('med_concent') ,
-         "disolvente":_disol_reactivo,
-         "otro_disolvente_descripcion":data.get('_otro_disol_reactivo'),
-         "reactivo": reactivoElegido
-        };
-      const cargarNuevosReactivosVer = dato => {
-        setverMasReactivos([...verMasReactivos, dato]);
-        }
-      cargarNuevosReactivosVer(datoVer)
-      cargarNuevosReactivos(dato)
+    const cargarNuevosReactivos = dato => {
+      setPedidoReactivos([...pedidoReactivos, dato]);
+    }
+    const datoVer = {
+      "cantidad": parseInt(data.get('cant_reactivo'), 10),
+      "un_medida": _med_reactivo,
+      "calidad": cal_reactivo,
+      "concentracion_tipo": _tip_reactivo,
+      "concentracion_medida": data.get('med_concent'),
+      "disolvente": _disol_reactivo,
+      "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+      "reactivo": reactivoElegido
+    };
+    const cargarNuevosReactivosVer = dato => {
+      setverMasReactivos([...verMasReactivos, dato]);
+    }
+    cargarNuevosReactivosVer(datoVer)
+    cargarNuevosReactivos(dato)
 
   };
 
-  const eliminarReactivo =  (value) => {
-    const cargar_reactivos_ver = verMasReactivos.filter(reactivo =>reactivo.reactivo._id !== value._id)
+  const eliminarReactivo = (value) => {
+    const cargar_reactivos_ver = verMasReactivos.filter(reactivo => reactivo.reactivo._id !== value._id)
     setverMasReactivos(cargar_reactivos_ver);
-    const cargar_reactivos = pedidoReactivos.filter(reactivo => reactivo.reactivo !== value._id) 
+    const cargar_reactivos = pedidoReactivos.filter(reactivo => reactivo.reactivo !== value._id)
     setPedidoReactivos(cargar_reactivos);
   }
   const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
-  
+
 
 
 
@@ -304,7 +304,7 @@ export default function NuevoPedido() {
 
     postPedido(pedido);
     navigate('/Docente/Pedidos');
-   
+
 
 
 
@@ -317,7 +317,7 @@ export default function NuevoPedido() {
     getListaMateriales().then(items => { if (mounted) { setListaMateriales(items) } });
     getListaReactivos().then(items => { if (mounted) { setListaReactivos(items) } });
     getCantidadPedidos().then(items => { if (mounted) { setCantPedido(items) } });
-    
+
     return () => mounted = false;
   }, [])
 
@@ -336,15 +336,15 @@ export default function NuevoPedido() {
         <Box>
           <Box sx={{ flexGrow: 1, md: 2 }}>
 
-             <PedidoCabecera
-            cargaEncabezado={cargaEncabezado}
-            cantidadPedidos={cantidadPedidos}
-            
+            <PedidoCabecera
+              cargaEncabezado={cargaEncabezado}
+              cantidadPedidos={cantidadPedidos}
+
             />
-           
+
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
-           
+
 
 
 
@@ -361,47 +361,47 @@ export default function NuevoPedido() {
             />
 
 
-           
+
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
             <PedidoMaterial
-                    //key={id}
-                    cargaMaterial={cargaMaterial}
-                    listaMateriales={listaMateriales}
-                    set_IdMat={set_IdMat}
-                    pedidoMateriales={pedidoMateriales}
-                    materialElegido={materialElegido}
-                    verMasMateriales={verMasMateriales}
-                    eliminarMaterial={eliminarMaterial}
+              //key={id}
+              cargaMaterial={cargaMaterial}
+              listaMateriales={listaMateriales}
+              set_IdMat={set_IdMat}
+              pedidoMateriales={pedidoMateriales}
+              materialElegido={materialElegido}
+              verMasMateriales={verMasMateriales}
+              eliminarMaterial={eliminarMaterial}
             />
-            
+
             <PedidoReactivo
-              cargaReactivos = {cargaReactivos}
-              listaReactivos = {listaReactivos}
-              set_IdReactivo = {set_IdReactivo}
-              reactivoElegido = {reactivoElegido}
-              cal_reactivo = {cal_reactivo}
-              calReactivo = {calReactivo}
+              cargaReactivos={cargaReactivos}
+              listaReactivos={listaReactivos}
+              set_IdReactivo={set_IdReactivo}
+              reactivoElegido={reactivoElegido}
+              cal_reactivo={cal_reactivo}
+              calReactivo={calReactivo}
 
               _tip_reactivo={_tip_reactivo}
               tipReactivo={tipReactivo}
 
-              _disol_reactivo = {_disol_reactivo}
-              disolReactivo = {disolReactivo}
+              _disol_reactivo={_disol_reactivo}
+              disolReactivo={disolReactivo}
 
               //_otro_disol_reactivo = {_otro_disol_reactivo}
-             // otroDisolReactivo = {otroDisolReactivo}
+              // otroDisolReactivo = {otroDisolReactivo}
 
-              _med_reactivo = {_med_reactivo}
-              med_reactivo = {med_reactivo}
+              _med_reactivo={_med_reactivo}
+              med_reactivo={med_reactivo}
 
-              verMasReactivos = {verMasReactivos}
-              eliminarReactivo = {eliminarReactivo}
+              verMasReactivos={verMasReactivos}
+              eliminarReactivo={eliminarReactivo}
             />
 
           </Box>
 
-          
+
           {/* EMPIEZAN BOTONES */}
           <Grid container justifyContent="flex-end" spacing={2}
           >
@@ -415,7 +415,7 @@ export default function NuevoPedido() {
                 startIcon={<ReplyAllIcon />}
                 onClick={() => {
                   navigate('/Docente/Pedidos')
-               
+
 
                 }}
 
