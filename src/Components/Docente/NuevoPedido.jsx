@@ -62,10 +62,15 @@ export default function NuevoPedido() {
   const [reactivoElegido, setReacElegido] = useState({});
   const [verMasReactivos, setverMasReactivos] = useState([]);
 
-  const [_med_reactivo, setUn_med_reactivo] = useState("");
-  const [cal_reactivo, setCalReactivo] = useState("");
-  const [_tip_reactivo, setTipReactivo] = useState("");//tipo_concentracion
-  const [_disol_reactivo, setDisolReactivo] = useState("");
+  const [_med_reactivo, setUn_med_reactivo] = useState(" ");
+  const [cal_reactivo, setCalReactivo] = useState(" ");
+  const [_tip_reactivo, setTipReactivo] = useState(" ");//tipo_concentracion
+  const [_disol_reactivo, setDisolReactivo] = useState(" ");
+  const [ver_disolvente,set_ver_disolvente] = useState("none");
+  const [ver_otro_disolvente,set_otro_disolvente] = useState("none");
+  const [visible_off,set_visible_off] = useState("block");
+  const [visible_off_otro,set_visible_off_otro] = useState("block");
+
 
   //const [_otro_disol_reactivo, setOtroDisolReactivo] = useState("");
 
@@ -77,9 +82,19 @@ export default function NuevoPedido() {
 
   //const otroDisolReactivo = (event) => { setOtroDisolReactivo(event.target.value); };
 
-  const disolReactivo = (event) => { setDisolReactivo(event.target.value); };
+  const disolReactivo = (event) => {
+     const disolvente=event.target.value;
+     if (disolvente === "otro") {set_otro_disolvente("block");set_visible_off_otro("none")}
+     else {set_otro_disolvente("none");set_visible_off_otro("block")};
+     
+     setDisolReactivo(disolvente); }
 
-  const tipReactivo = (event) => { setTipReactivo(event.target.value); };
+  const tipReactivo = (event) => { 
+    const tipo_reactivo=event.target.value;
+    if (tipo_reactivo==="puro"){ set_ver_disolvente("none");set_otro_disolvente("none");set_visible_off("block")}
+      else{set_ver_disolvente("block") ; set_visible_off("none")   }  ;
+
+    setTipReactivo(tipo_reactivo); }
 
 
   const calReactivo = (event) => { setCalReactivo(event.target.value); };
@@ -221,24 +236,23 @@ export default function NuevoPedido() {
 
 
 
-  //   const [_med_reactivo, setUn_med_reactivo] = useState("");
-  // const [cal_reactivo, setCalReactivo] = useState("");
-  // const [_tip_reactivo,setTipReactivo] = useState("");
-  // const [_disol_reactivo, setDisolReactivo] = useState("");
+  
 
 
   const cargaReactivos = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data.get('cant_reactivo'));
-    console.log(data.get('med_concent'));
-    console.log(data.get('_otro_disol_reactivo'))
+    // console.log(data.get('cant_reactivo'));
+    var med_conc=data.get('med_concent');
+    if (med_conc===""){ med_conc=" " }  ;
+    // console.log(data.get('med_concent'));
+    // console.log(data.get('_otro_disol_reactivo'))
     const dato = {
       "cantidad": parseInt(data.get('cant_reactivo'), 10),
       "un_medida": _med_reactivo,
       "calidad": cal_reactivo,
       "concentracion_tipo": _tip_reactivo,
-      "concentracion_medida": data.get('med_concent'),
+      "concentracion_medida": med_conc,
       "disolvente": _disol_reactivo,
       "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
       "reactivo": reactivoElegido._id
@@ -262,7 +276,7 @@ export default function NuevoPedido() {
     }
     cargarNuevosReactivosVer(datoVer)
     cargarNuevosReactivos(dato)
-
+     data.reset()
   };
 
   const eliminarReactivo = (value) => {
@@ -397,6 +411,11 @@ export default function NuevoPedido() {
 
               verMasReactivos={verMasReactivos}
               eliminarReactivo={eliminarReactivo}
+              
+              ver_disolvente={ver_disolvente}
+              ver_otro_disolvente={ver_otro_disolvente}
+              visible_off={visible_off}
+              visible_off_otro={visible_off_otro}
             />
 
           </Box>
