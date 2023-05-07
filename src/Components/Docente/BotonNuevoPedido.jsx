@@ -27,28 +27,31 @@ const BotonNPedido = ({ setNuevoPedido }) => {
 
       <Grid container justifyContent="flex-end"
       >
-        <Grid item xs={2}
+        <Grid item xs={2}  height={50} 
+         bgcolor={"primary.main"} borderRadius={2}
 
         >
-          <Typography
+          {/* <Typography
             //component="button" 
             borderRadius={8}
             borderColor={"gris"}
-            align='rigth' width={200} height={50} color={"gris.main"} bgcolor={"secondary.main"}   >
+            align='rigth' width={200}
+             height={50} color={"gris.main"} bgcolor={"secondary.main"}   > */}
             <Button
               fullWidth
-              style={{ borderRadius: 24,  height: 50 }}
+             style={{   height: 50 ,borderRadius:8}}
               margin="normal"
               variant="contained"
               endIcon={<SendIcon />}
-             
+              color="primary"
+              borderRadius={4}
               onClick={() => {
                 navigate('/Docente/NuevoPedido')
                 setNuevoPedido(true);
               }}>
 
               PEDIDO NUEVO</Button>
-          </Typography>
+          {/* </Typography> */}
 
 
         </Grid>
