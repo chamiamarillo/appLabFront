@@ -186,7 +186,7 @@ function PedidoDetalle(
                                 <Grid container direction="row" justifyContent="flex-start"
                                     alignItems="center" marginBottom={1} spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
-                                    <Grid item xs={2} container justifyContent="center" >
+                                    <Grid item xs={2} container justifyContent="start" >
 
                                         Descripcion
                                     </Grid>
@@ -196,24 +196,24 @@ function PedidoDetalle(
                                     <Grid item xs={1} container justifyContent="start" >
                                         Calidad
                                     </Grid>
-                                    <Grid item xs={1} container justifyContent="center" >
+                                    <Grid item xs={2} container justifyContent="center" >
                                         Cant Total
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center" >
-                                        Medida Reactivo
+                                        U. de Medida
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center" >
-                                        Concent
+                                        Tipo Conc.
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center" >
-                                        Med Conc
+                                        Medida Conc.
                                     </Grid>
                                     <Grid item xs={2} container justifyContent="center" >
                                         Disolvente
                                     </Grid>
-                                    <Grid item xs={1} container justifyContent="center" >
+                                    {/* <Grid item xs={1} container justifyContent="center" >
                                         Otro Disolv
-                                    </Grid>
+                                    </Grid> */}
                                    {/*  <Grid item xs={1} container justifyContent="center" >
                                         Cant Total
                                     </Grid> */}
@@ -241,7 +241,7 @@ function PedidoDetalle(
                                                 <Grid item xs={1} container justifyContent="start" >
                                                     {row.calidad}
                                                 </Grid>
-                                                <Grid item xs={1} container justifyContent="center" >
+                                                <Grid item xs={2} container justifyContent="center" >
                                                     {row.cantidad}
                                                 </Grid>
                                                 <Grid item xs={1} container justifyContent="center" >
@@ -254,11 +254,17 @@ function PedidoDetalle(
                                                     {row.concentracion_medida}
                                                 </Grid>
                                                 <Grid item xs={2} container justifyContent="center" >
-                                                    {row.disolvente}
+                                                    {(row.disolvente === "otro") 
+                                                        ?
+                                                        (<div>
+                                                        {row.otro_disolvente_descripcion}
+                                                        </div>)
+                                                        : (<div>{row.disolvente} </div>)
+                                                    }                                                   
                                                 </Grid>
-                                                <Grid item xs={1} container justifyContent="center" >
+                                                {/* <Grid item xs={1} container justifyContent="center" >
                                                     {row.otro_disolvente_descripcion}
-                                                </Grid> 
+                                                </Grid>  */}
                                                 {/* <Grid item xs={1} container justifyContent="center" >
                                                     {row.cantidad}
                                                 </Grid> */}

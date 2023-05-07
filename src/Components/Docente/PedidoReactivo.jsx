@@ -336,7 +336,7 @@ const PedidoReactivo = (props) => {
                       U. de Medida
                     </Grid>
 
-                    <Grid item xs={2} container justifyContent="center">
+                    <Grid item xs={1} container justifyContent="center">
                       Tipo Conc.
                     </Grid>
                     <Grid item xs={1} container justifyContent="center">
@@ -352,9 +352,9 @@ const PedidoReactivo = (props) => {
                    {/*  <Grid item xs={1} container justifyContent="center">
                       Otro Disolvente
                     </Grid> */}
-                   {/*  <Grid item xs={1} container justifyContent="center">
+                    <Grid item xs={1} container justifyContent="center">
 
-                    </Grid> */}
+                    </Grid>
                     <Grid item xs={1} container justifyContent="end">
                       Desechar
                     </Grid>
@@ -391,14 +391,14 @@ const PedidoReactivo = (props) => {
 
                       </Grid>
 
-                      <Grid item xs={2} container justifyContent="center">
+                      <Grid item xs={1} container justifyContent="center">
                         {row.concentracion_tipo}
 
                       </Grid>
                       <Grid item xs={1} container justifyContent="center">
                         {row.concentracion_medida}
 
-                      </Grid>
+                      </Grid>  
                       <Grid item xs={1} container justifyContent="center">
                         {(row.disolvente === "otro") 
                                     ?
@@ -417,9 +417,9 @@ const PedidoReactivo = (props) => {
                         {row.otro_disolvente_descripcion}
 
                       </Grid> */}
-                      {/* <Grid item xs={1} container justifyContent="center">
+                      <Grid item xs={1} container justifyContent="center">
 
-                      </Grid> */}
+                      </Grid>
                       <Grid item xs={1} container justifyContent="end">
                         <Button fullWidth
                           margin="normal"
