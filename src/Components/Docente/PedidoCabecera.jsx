@@ -160,10 +160,10 @@ const PedidoCabecera = (props) => {
           Confirmar
         </Typography>
       </Grid>
-      <Grid item xs={1} container justifyContent="center">
+     {/*  <Grid item xs={1} container justifyContent="center">
 
       </Grid>
-
+ */}
 
     </Grid>
     <Grid container direction="row"
@@ -218,7 +218,7 @@ const PedidoCabecera = (props) => {
         />
 
       </Grid>
-      <Grid item xs={2} justifyContent="flex-end"></Grid>
+      <Grid item xs={3} justifyContent="flex-end"></Grid>
 
       <Grid item xs={1} justifyContent="flex-end">
 

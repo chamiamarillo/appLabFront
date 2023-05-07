@@ -194,21 +194,30 @@ function PedidoDetalle(
                                     <Grid item xs={2} container justifyContent="center" >
                                         Cas
                                     </Grid>
-                                    <Grid item xs={2} container justifyContent="center" >
+                                    <Grid item xs={1} container justifyContent="center" >
                                         Calidad
                                     </Grid>
                                     <Grid item xs={2} container justifyContent="center" >
-                                        Concentracion
+                                        Cant Total
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center" >
+                                        U. de Medida
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center" >
+                                        Tipo Conc.
+                                    </Grid>
+                                    <Grid item xs={1} container justifyContent="center" >
+                                        Medida Conc.
                                     </Grid>
                                     <Grid item xs={2} container justifyContent="center" >
                                         Disolvente
                                     </Grid>
-                                    <Grid item xs={1} container justifyContent="center" >
+                                    {/* <Grid item xs={1} container justifyContent="center" >
                                         Cant Total
                                     </Grid>
                                     <Grid item xs={1} container justifyContent="center" >
                                         U. Med
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid>
 
 
@@ -227,21 +236,37 @@ function PedidoDetalle(
                                                 <Grid item xs={2} container justifyContent="center" >
                                                     {row.reactivo.cas}
                                                 </Grid>
-                                                <Grid item xs={2} container justifyContent="center" >
+                                                <Grid item xs={1} container justifyContent="center" >
                                                     {row.calidad}
                                                 </Grid>
                                                 <Grid item xs={2} container justifyContent="center" >
-                                                    {row.concentracion_tipo}
-                                                </Grid>
-                                                <Grid item xs={2} container justifyContent="center" >
-                                                    {row.disolvente}
+                                                    {row.cantidad}
+                                                </Grid> 
+                                                <Grid item xs={1} container justifyContent="center" >
+                                                    {row.un_medida}
                                                 </Grid>
                                                 <Grid item xs={1} container justifyContent="center" >
-                                                    {row.cantidad}
+                                                    {row.concentracion_tipo}
                                                 </Grid>
                                                 <Grid item xs={1} container justifyContent="center" alignItems="center">
                                                     {row.concentracion_medida}
                                                 </Grid>
+                                                <Grid item xs={2} container justifyContent="center" >
+                                                    {(row.disolvente === "otro") 
+                                                            ?
+                                                            (<div>
+                                                            {row.otro_disolvente_descripcion}
+                                                            </div>)
+                                                            : (<div>{row.disolvente} </div>)
+                                                    }      
+                                                    {/* {row.disolvente} */}
+                                                </Grid>
+                                                {/* <Grid item xs={1} container justifyContent="center" >
+                                                    {row.cantidad}
+                                                </Grid> */}
+                                                {/* <Grid item xs={1} container justifyContent="center" alignItems="center">
+                                                    {row.concentracion_medida}
+                                                </Grid> */}
                                             </Grid>
 
 
