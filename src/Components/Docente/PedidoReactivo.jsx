@@ -318,7 +318,7 @@ const PedidoReactivo = (props) => {
                   <Grid container direction="row"
                     alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
-                    <Grid item xs={2} container justifyContent="start" >
+                    <Grid item xs={3} container justifyContent="start" >
                       Descripcion
                     </Grid>
                     <Grid item xs={1} container justifyContent="center" >
@@ -333,7 +333,7 @@ const PedidoReactivo = (props) => {
                     </Grid>
 
                     <Grid item xs={1} container justifyContent="center">
-                      U.de Medida
+                      U. de Medida
                     </Grid>
 
                     <Grid item xs={1} container justifyContent="center">
@@ -349,9 +349,9 @@ const PedidoReactivo = (props) => {
                       U.de Medida
                     </Grid> */}
 
-                    <Grid item xs={1} container justifyContent="center">
+                   {/*  <Grid item xs={1} container justifyContent="center">
                       Otro Disolvente
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={1} container justifyContent="center">
 
                     </Grid>
@@ -369,7 +369,7 @@ const PedidoReactivo = (props) => {
                     <Grid container key={index} direction="row"
                       alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
-                      <Grid item xs={2} container justifyContent="start">
+                      <Grid item xs={3} container justifyContent="start">
 
 
                         {row.reactivo.descripcion}
@@ -398,19 +398,25 @@ const PedidoReactivo = (props) => {
                       <Grid item xs={1} container justifyContent="center">
                         {row.concentracion_medida}
 
-                      </Grid>
+                      </Grid>  
                       <Grid item xs={1} container justifyContent="center">
-                        {row.disolvente}
+                        {(row.disolvente === "otro") 
+                                    ?
+                                    (<div>
+                                      {row.otro_disolvente_descripcion}
+                                    </div>)
+                                    : (<div>{row.disolvente} </div>)
+                        }
 
-                      </Grid>
+                      </Grid>  
                       {/* <Grid item xs={1} container justifyContent="center">
                         {row.un_medida}
 
                       </Grid> */}
-                      <Grid item xs={1} container justifyContent="center">
+                      {/* <Grid item xs={1} container justifyContent="center">
                         {row.otro_disolvente_descripcion}
 
-                      </Grid>
+                      </Grid> */}
                       <Grid item xs={1} container justifyContent="center">
 
                       </Grid>
