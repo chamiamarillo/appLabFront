@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function getListaPedidos() {
     return fetch('http://localhost:3000/api/pedido/getAll')
         .then(data => data.json())
@@ -10,4 +12,18 @@ export async function getCantidadPedidos() {
 
     return cantidad 
     
+}
+
+
+export async function getListaPedidosAxios() {
+    try {
+        const response = await axios.get('http://localhost:3000/api/pedido') /*, {
+        params: {
+            fecha_utilizacion: '2023-05-02',
+            tipo_pedido: 'ACEPTADO'
+        }});*/
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 }
