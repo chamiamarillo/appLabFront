@@ -20,8 +20,51 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function Filtros() {
+import {Grid} from '@mui/material';
+
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+
+
+
+
+
+import { axiosGetPedido } from '../../Services/getPedidosService';
+export default function Filtros(props) {
+
+
+
     return (
+        <Grid container direction="row"
+        justifyContent="center"
+       
+        alignItems="center" mb={2} >
+        <Grid item xs={3} container justifyContent="center"  >
+            <FormControl fullWidth>
+            <InputLabel id="estado" >Filtrar por estado</InputLabel>
+            <Select
+            InputLabelProps={{
+                shrink: true,
+            }}
+            labelId="estado"
+            id="estado"
+            value={props.tipo_pedido}
+            label="estado"
+            onChange={props.cargarEstado}
+            
+            size={1}
+
+            >
+           
+            <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
+            <MenuItem sx={{ fontSize: 14 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
+            <MenuItem sx={{ fontSize: 14 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
+            <MenuItem sx={{ fontSize: 14 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
+
+            </Select>
+        </FormControl>
+        </Grid>
         <FormControl component="fieldset" sx={{ marginLeft: 10 }}>
               <Typography sx={{ fontSize: 30 }} aria-label="simple table"  >
             {/* <FormLabel component="legend">Filtro tarjetas</FormLabel> */}
@@ -63,5 +106,6 @@ export default function Filtros() {
             </FormGroup>
             </Typography>
         </FormControl>
+        </Grid>
     );
 }
