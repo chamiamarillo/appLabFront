@@ -71,7 +71,8 @@ export default function NuevoPedido() {
   const [visible_off,set_visible_off] = useState("block");
   const [visible_off_otro,set_visible_off_otro] = useState("block");
 
-
+  const [ver_med,set_ver_med] = useState("none");
+  const [visible_off_med,set_visible_off_med] = useState("block");
   //const [_otro_disol_reactivo, setOtroDisolReactivo] = useState("");
 
 
@@ -84,15 +85,29 @@ export default function NuevoPedido() {
 
   const disolReactivo = (event) => {
      const disolvente=event.target.value;
-     if (disolvente === "otro") {set_otro_disolvente("block");set_visible_off_otro("none")}
-     else {set_otro_disolvente("none");set_visible_off_otro("block")};
+     if (disolvente === "otro") {
+       set_otro_disolvente("block");
+       set_visible_off_otro("none")}
+     else {
+       set_otro_disolvente("none");
+       set_visible_off_otro("block")};
      
      setDisolReactivo(disolvente); }
 
   const tipReactivo = (event) => { 
     const tipo_reactivo=event.target.value;
-    if (tipo_reactivo==="puro"){ set_ver_disolvente("none");set_otro_disolvente("none");set_visible_off("block")}
-      else{set_ver_disolvente("block") ; set_visible_off("none")   }  ;
+    if (tipo_reactivo==="puro"){ 
+      set_ver_disolvente("none");
+      set_otro_disolvente("none");
+      set_visible_off("block");
+      set_visible_off_med("block");
+      set_ver_med("none")
+    }
+    else{set_ver_disolvente("block") ;
+      set_visible_off("none");
+      set_visible_off_med("none");
+      set_ver_med("block")
+       }  ;
 
     setTipReactivo(tipo_reactivo); }
 
@@ -416,6 +431,10 @@ export default function NuevoPedido() {
               ver_otro_disolvente={ver_otro_disolvente}
               visible_off={visible_off}
               visible_off_otro={visible_off_otro}
+
+              ver_med={ver_med}
+              visible_off_med={visible_off_med}
+              
             />
 
           </Box>

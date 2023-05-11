@@ -223,7 +223,9 @@ const PedidoReactivo = (props) => {
           </FormControl>
 
         </Grid>
-        <Grid item xs={2} container justifyContent="center">
+        <Grid item xs={2} container justifyContent="center" display={props.visible_off_med}> 
+        </Grid>
+        <Grid item xs={2} container justifyContent="center" display={props.ver_med}>
 
           <TextField
             margin="normal"
