@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import NoEncontrados from "../Docente/NoEncontrados"
 import Filtros from "./Filtros";
+import { axiosGetPedido } from '../../Services/getPedidosService';
 
 const useStyles = makeStyles(() => ({
   marginTop: {
@@ -26,6 +27,40 @@ function Pedidos() {
 
   const [edicionActiva, setEdicionActiva] = useState(false)
 
+
+
+/********************************************** */  
+const [tipo_pedido,  setTipoPedido] = React.useState(" ");
+const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
+const [fecha_inicio, set_fecha_inicio] = React.useState("");
+const [fecha_fin, set_fecha_fin] = React.useState("");
+const [edificio, set_edificio] = React.useState(" ");
+
+
+  
+  const cargarEstado = (event) => {
+    // const dato=event.target.value
+    event.preventDefault();
+    console.log(event.target.value)
+    guardarEstadoPedido(event.target.value)
+    
+   
+   
+    
+
+}
+const guardarEstadoPedido=(event)=>{setTipoPedido(event)}
+
+
+function cargarNuevosPedidos() {
+console.log("se guarda algo en el estado",tipo_pedido);
+    axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio).then((item) => {setListaPedidos(item)}
+    
+   
+   );
+  
+};
+
   useEffect(() => {
     let mounted = true;
     const userActual = JSON.parse(localStorage.getItem('usuario'));
@@ -37,14 +72,16 @@ function Pedidos() {
         }
       })
     return () => mounted = false;
-  }, [])
+  }, [listaPedidos])
 
   return (
     <ThemeProvider theme={Theme1}>
       <Box sx={{ flexGrow: 1, m: 2 }}>
         <Header texto={texto} ></Header>
       </Box>
-      <Filtros></Filtros>
+      <Filtros
+      cargarEstado={cargarEstado}
+      />
       {(listaPedidos.length < 1) ?
         (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
         : (

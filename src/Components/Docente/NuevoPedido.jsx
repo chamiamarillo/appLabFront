@@ -102,11 +102,13 @@ export default function NuevoPedido() {
       set_visible_off("block");
       set_visible_off_med("block");
       set_ver_med("none")
+      set_visible_off_otro("block")
     }
     else{set_ver_disolvente("block") ;
       set_visible_off("none");
       set_visible_off_med("none");
-      set_ver_med("block")
+      set_ver_med("block");
+      set_visible_off_otro("block")
        }  ;
 
     setTipReactivo(tipo_reactivo); }

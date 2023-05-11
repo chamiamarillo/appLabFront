@@ -199,7 +199,7 @@ const PedidoReactivo = (props) => {
 
         <Grid item xs={3} container justifyContent="center" marginTop={1}>
           <FormControl fullWidth>
-            <InputLabel id="tipo_reactivo">tipo_concentracion</InputLabel>
+            <InputLabel id="tipo_reactivo"> Tipo </InputLabel>
             <Select
               InputLabelProps={{
                 shrink: true,
