@@ -52,15 +52,16 @@ export default function Filtros(props) {
             value={props.tipo_pedido}
             label="estado"
             onChange={props.cargarEstado}
-            
+            defaultValue={""}
             size={1}
 
             >
            
-            <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
+          
             <MenuItem sx={{ fontSize: 14 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
             <MenuItem sx={{ fontSize: 14 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
             <MenuItem sx={{ fontSize: 14 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
+            <MenuItem sx={{ fontSize: 14 }} value={"TODOS"}>TODOS</MenuItem>
 
             </Select>
         </FormControl>
