@@ -30,7 +30,7 @@ function Pedidos() {
 
 
 /********************************************** */  
-const [tipo_pedido,  setTipoPedido] = React.useState(" ");
+const [tipo_pedido,  setTipoPedido] = React.useState("");
 const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
 const [fecha_inicio, set_fecha_inicio] = React.useState("");
 const [fecha_fin, set_fecha_fin] = React.useState("");
@@ -43,6 +43,7 @@ const [edificio, set_edificio] = React.useState(" ");
     event.preventDefault();
     console.log(event.target.value)
     guardarEstadoPedido(event.target.value)
+    // cargarNuevosPedidos()
     
    
    
@@ -60,19 +61,37 @@ console.log("se guarda algo en el estado",tipo_pedido);
    );
   
 };
+useEffect(()=>{
+  if (tipo_pedido.length>0){
+    if (tipo_pedido=="TODOS")  {
+       getListaPedidos()
+            .then(items => { 
+       
+        setListaPedidos(items)});
+     }
+    else{
+    cargarNuevosPedidos()
+
+  }
+
+ }
+      
+},[tipo_pedido])
 
   useEffect(() => {
     let mounted = true;
     const userActual = JSON.parse(localStorage.getItem('usuario'));
     setEsAdmin(userActual.admin)
+    console.log("voy a pedir los pedidos");
     getListaPedidos()
       .then(items => {
         if (mounted) {
+          console.log("voy a setear los pedidos");
           setListaPedidos(items)
         }
       })
     return () => mounted = false;
-  }, [listaPedidos])
+  }, [])
 
   return (
     <ThemeProvider theme={Theme1}>

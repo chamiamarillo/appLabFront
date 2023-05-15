@@ -27,28 +27,57 @@ export async function getListaPedidosAxios() {
         console.error(error);
     }
 }
-export function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio) {
-    console.log("funcion", tipo_pedido);
-    const params =
-    {
-        tipo_pedido: tipo_pedido,
-        fecha_utilizacion: fecha_utilizacion,
-        fecha_inicio: fecha_inicio,
-        fecha_fin: fecha_fin,
-        edificio: edificio
+
+
+// export function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio) {
+//     console.log("funcion", tipo_pedido);
+//     const params =
+//     {
+//         tipo_pedido: tipo_pedido,
+//         fecha_utilizacion: fecha_utilizacion,
+//         fecha_inicio: fecha_inicio,
+//         fecha_fin: fecha_fin,
+//         edificio: edificio
+//     }
+
+
+//     return fetch('http://localhost:3000/api/pedido/',
+//         {
+//             params: {
+//                 tipo_pedido: tipo_pedido,
+//                 fecha_utilizacion: fecha_utilizacion,
+//                 fecha_inicio: fecha_inicio,
+//                 fecha_fin: fecha_fin,
+//                 edificio: edificio
+//             }
+//         })
+
+//         .then(data => data.json())
+// }
+
+
+
+export async function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio)  {
+    var params={}
+    if(tipo_pedido.length>0){params.tipo_pedido= tipo_pedido}
+    try {
+        console.log("funcion",tipo_pedido);
+        const response = await axios({
+            method: 'get',params,
+            // params: {
+            //     tipo_pedido:tipo_pedido,
+            //        fecha_utilizacion: fecha_utilizacion,
+            //        fecha_inicio:fecha_inicio,
+            //        fecha_fin: fecha_fin,
+            //        edificio:edificio},
+            url: `http://localhost:3000/api/pedido/`,
+            responseType: 'json'
+        });
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.log(error);
     }
+};
 
 
-    return fetch('http://localhost:3000/api/pedido/',
-        {
-            params: {
-                tipo_pedido: tipo_pedido,
-                fecha_utilizacion: fecha_utilizacion,
-                fecha_inicio: fecha_inicio,
-                fecha_fin: fecha_fin,
-                edificio: edificio
-            }
-        })
-
-        .then(data => data.json())
-}
