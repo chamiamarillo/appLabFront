@@ -1,17 +1,4 @@
-// import * as React from 'react';
-// import Switch from '@mui/material/Switch';
 
-// const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-// export default function Filtros() {
-//   return (
-//     <div>
-//       <Switch {...label} defaultChecked />
-//       <Switch {...label} />
-
-//     </div>
-//   );
-// }
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Switch from '@mui/material/Switch';
@@ -30,7 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 
 
 
-import { axiosGetPedido } from '../../Services/getPedidosService';
+
 export default function Filtros(props) {
 
 
@@ -40,9 +27,9 @@ export default function Filtros(props) {
         justifyContent="center"
        
         alignItems="center" mb={2} >
-        <Grid item xs={3} container justifyContent="center"  >
-            <FormControl fullWidth>
-            <InputLabel id="estado" >Filtrar por estado</InputLabel>
+        <Grid item xs={1} container justifyContent="center"  >
+            <FormControl   variant="filled" fullWidth>
+            <InputLabel  variant="standard"  id="estado" >Filtrar por estado</InputLabel>
             <Select
             InputLabelProps={{
                 shrink: true,
@@ -52,16 +39,16 @@ export default function Filtros(props) {
             value={props.tipo_pedido}
             label="estado"
             onChange={props.cargarEstado}
-            defaultValue={""}
-            size={1}
+            // defaultValue={""}
+             size={1}
 
             >
-           
+              <MenuItem sx={{ fontSize: 14 }} value={"TODOS"}>TODOS</MenuItem>
           
             <MenuItem sx={{ fontSize: 14 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
             <MenuItem sx={{ fontSize: 14 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
             <MenuItem sx={{ fontSize: 14 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
-            <MenuItem sx={{ fontSize: 14 }} value={"TODOS"}>TODOS</MenuItem>
+           
 
             </Select>
         </FormControl>
