@@ -73,15 +73,7 @@ export default function NuevoPedido() {
 
   const [ver_med,set_ver_med] = useState("none");
   const [visible_off_med,set_visible_off_med] = useState("block");
-  //const [_otro_disol_reactivo, setOtroDisolReactivo] = useState("");
-
-
-
-
-
-
-
-  //const otroDisolReactivo = (event) => { setOtroDisolReactivo(event.target.value); };
+ 
 
   const disolReactivo = (event) => {
      const disolvente=event.target.value;
@@ -130,9 +122,7 @@ export default function NuevoPedido() {
   const cargaEncabezado = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // hoy = new Date()
-    // maniana = hoy.setTime(hoy.getTime() + (1*24*60*60*1000))
-    // maniana = new Date(maniana)
+    
     const fecha = new Date();
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`);
     const nro_pedido = cantidadPedidos + 1;

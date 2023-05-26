@@ -92,9 +92,11 @@ const PedidoCabecera = (props) => {
         
         <input  type="date" 
         style={{ border: "none",padding:"10px",width: "80%",fontSize:"14px",fontFamily:"cursive",color: "grey"}}
-              
-          min={formatManiana} 
-        id="fecha_utilizacion" name="fecha_utilizacion" ></input>
+        min={formatManiana} 
+        id="fecha_utilizacion"
+        name="fecha_utilizacion" >
+          
+        </input>
          </fieldset>
         </Typography>
        

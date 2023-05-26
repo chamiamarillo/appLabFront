@@ -34,7 +34,7 @@ const [tipo_pedido,  setTipoPedido] = React.useState("");
 const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
 const [fecha_inicio, set_fecha_inicio] = React.useState("");
 const [fecha_fin, set_fecha_fin] = React.useState("");
-const [edificio, set_edificio] = React.useState(" ");
+const [edificio, set_edificio] = React.useState("");
 
 
   
@@ -62,21 +62,27 @@ console.log("se guarda algo en el estado",tipo_pedido);
   
 };
 useEffect(()=>{
-  if (tipo_pedido.length>0){
-    if (tipo_pedido=="TODOS")  {
-       getListaPedidos()
-            .then(items => { 
-       
-        setListaPedidos(items)});
-     }
-    else{
+  
     cargarNuevosPedidos()
 
-  }
+  
 
- }
+//  }
+  // if (tipo_pedido.length>0 ||){
+  //   if (tipo_pedido=="TODOS")  {
+  //      getListaPedidos()
+  //           .then(items => { 
+       
+  //       setListaPedidos(items)});
+  //    }
+  //   else{
+  //   cargarNuevosPedidos()
+
+  // }
+
+//  }
       
-},[tipo_pedido])
+},[tipo_pedido,fecha_fin,edificio])
 
   useEffect(() => {
     let mounted = true;
@@ -100,6 +106,12 @@ useEffect(()=>{
       </Box>
       <Filtros
       cargarEstado={cargarEstado}
+      fecha_fin={fecha_fin}
+      set_fecha_fin={set_fecha_fin}
+      set_fecha_inicio={set_fecha_inicio}
+      fecha_inicio={fecha_inicio}
+      edificio={edificio}
+      set_edificio={set_edificio}
       />
       {(listaPedidos.length < 1) ?
         (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
