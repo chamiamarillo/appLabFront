@@ -15,18 +15,6 @@ export async function getCantidadPedidos() {
 }
 
 
-export async function getListaPedidosAxios() {
-    try {
-        const response = await axios.get('http://localhost:3000/api/pedido') /*, {
-        params: {
-            fecha_utilizacion: '2023-05-02',
-            tipo_pedido: 'ACEPTADO'
-        }});*/
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 
 // export function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio) {
@@ -58,10 +46,15 @@ export async function getListaPedidosAxios() {
 
 
 export async function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio)  {
+    console.log(fecha_inicio);
     var params={}
     if(tipo_pedido.length>0){params.tipo_pedido= tipo_pedido}
+    if(edificio.length>0){params.edificio= edificio}
+    if(fecha_inicio.length>0 && fecha_fin.length>0){
+        params.fecha_fin=fecha_fin;params.fecha_inicio=fecha_inicio    }
     try {
         console.log("funcion",tipo_pedido);
+        console.log("fecha",fecha_inicio,fecha_fin);
         const response = await axios({
             method: 'get',params,
             // params: {

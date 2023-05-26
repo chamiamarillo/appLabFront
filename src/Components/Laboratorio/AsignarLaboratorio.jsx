@@ -154,15 +154,15 @@ function AsignarLaboratorio(pedido,
                 
                 // name='edificio'
               >
-                 <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
+                 <MenuItem sx={{width:100, fontSize: 10 }} value={" "}> </MenuItem>
+                <MenuItem sx={{width:100, fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
+                <MenuItem sx={{width:100, fontSize: 10 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
+                <MenuItem sx={{ width:100,fontSize: 10 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
 
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={5} container justifyContent="center" marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2}>
+          <Grid item xs={5} container justifyContent="flex-start"  marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2} alignItems="flex-start">
             <FormControl fullWidth>
               <InputLabel id="tipo_pedido">estado_pedido</InputLabel>
               <Select
@@ -176,10 +176,10 @@ function AsignarLaboratorio(pedido,
                 onChange={estado_pedido}
                
               >
-                 <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
-                <MenuItem sx={{ fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
+                 <MenuItem sx={{ width:100, fontSize: 10 }} value={" "}> </MenuItem>
+                <MenuItem sx={{ width:100,fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
+                <MenuItem sx={{ width:100,fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
+                <MenuItem sx={{width:100, fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
 
               </Select>
             </FormControl>

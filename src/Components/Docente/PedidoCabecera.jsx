@@ -89,31 +89,18 @@ const PedidoCabecera = (props) => {
        
           <legend>fecha_utilizacion:</legend>
      
-        {/* <label for="fecha_utilizacion">fecha_utilizacion:</label> */}
+        
         <input  type="date" 
         style={{ border: "none",padding:"10px",width: "80%",fontSize:"14px",fontFamily:"cursive",color: "grey"}}
-              
-          min={formatManiana} 
-        id="fecha_utilizacion" name="fecha_utilizacion" ></input>
+        min={formatManiana} 
+        id="fecha_utilizacion"
+        name="fecha_utilizacion" >
+          
+        </input>
          </fieldset>
         </Typography>
        
-        {/* <TextField
-          id="fecha_utilizacion"
-          label="fecha_utilizacion"
-          name="fecha_utilizacion"
-          type="date"
-          min={formatManiana}
-   
-          // sx={{ width: 180 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-          required
-          fullWidth
-          autoFocus
-        /> */}
+       
       </Grid>
       <Grid item xs={2} >
 
