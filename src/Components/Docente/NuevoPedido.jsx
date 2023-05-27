@@ -46,7 +46,8 @@ export default function NuevoPedido() {
   const [listaEquipos, setListaEquipos] = useState([]);
   const [equipoElegido, setEquipoElegido] = useState({});
   const [verMasEquip, setverMasEquip] = useState([]);
-
+  const [errorEquipo, setErrorEquipo] = useState("none");
+  const [equipoOk, setEquipoOk] = useState("block");
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
@@ -156,6 +157,14 @@ export default function NuevoPedido() {
       "cantidad": parseInt(data.get('cant_equipo'), 10),
       "equipo": equipoElegido._id
     };
+    const equipoRepetido = pedidoEquipos.filter(elemento=>elemento.equipo === dato.equipo)
+    if(equipoRepetido.length>0){
+      setErrorEquipo("block")
+      setEquipoOk("none")
+    }
+    else{  
+      setErrorEquipo("none")
+      setEquipoOk("block")
     const cargarNuevosEquipos = dato => {
       setPedidoEquipos([...pedidoEquipos, dato]);
     }
@@ -171,7 +180,7 @@ export default function NuevoPedido() {
 
     cargarNuevosEquipos(dato)
 
-
+  }
 
   };
   const eliminarEquipo = (event) => {
@@ -378,6 +387,8 @@ export default function NuevoPedido() {
               equipoElegido={equipoElegido}
               verMasEquip={verMasEquip}
               eliminarEquipo={eliminarEquipo}
+              errorEquipo={errorEquipo}
+              equipoOk={equipoOk}
 
             />
 
