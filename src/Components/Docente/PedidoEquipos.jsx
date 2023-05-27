@@ -128,7 +128,14 @@ const PedidoEquipos = (props) => {
 
 
                 </Grid>
-                <Grid item xs={3} container justifyContent="center" />
+                <Grid item xs={3} container justifyContent="center" display={props.equipoOk} />
+
+                <Grid item xs={3} container justifyContent="center" display={props.errorEquipo}>
+                <Button variant="outlined" color="error" fullWidth heigth={40}>
+        EL EQUIPO YA FUE CARGADO
+      </Button>
+                </Grid>
+                
                 <Grid item xs={1} container justifyContent="center">
                     <Button fullWidth
                         margin="normal"
