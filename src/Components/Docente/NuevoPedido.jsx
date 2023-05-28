@@ -57,6 +57,8 @@ export default function NuevoPedido() {
   const [listaMateriales, setListaMateriales] = useState([]);
   const [materialElegido, setMatElegido] = useState({});
   const [verMasMateriales, setverMasMateriales] = useState([]);
+  const [errorMaterial, setErrorMaterial] = useState("none");
+  const [materialOk, setMaterialOk] = useState("block");
 
   const [pedidoReactivos, setPedidoReactivos] = useState([]);
   const [listaReactivos, setListaReactivos] = useState([]);
@@ -209,6 +211,14 @@ export default function NuevoPedido() {
       "cantidad": parseInt(data.get('cant_material'), 10),
       "material": materialElegido._id
     };
+    const materialRepetido = pedidoMateriales.filter(elemento=>elemento.material === dato.material)
+    if(materialRepetido.length>0){
+      setErrorMaterial("block")
+      setMaterialOk("none")
+    }
+    else{
+      setErrorMaterial("none")
+      setMaterialOk("block")  
     const cargarNuevosMateriales = dato => {
       setPedidoMateriales([...pedidoMateriales, dato]);
     }
@@ -225,7 +235,7 @@ export default function NuevoPedido() {
 
     cargarNuevosMateriales(dato)
 
-
+  }
 
   };
 
@@ -405,6 +415,8 @@ export default function NuevoPedido() {
               materialElegido={materialElegido}
               verMasMateriales={verMasMateriales}
               eliminarMaterial={eliminarMaterial}
+              errorMaterial={errorMaterial}
+              materialOk={materialOk}
             />
 
             <PedidoReactivo
