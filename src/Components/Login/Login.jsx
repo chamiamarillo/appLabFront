@@ -37,7 +37,9 @@ export default function Login() {
   const [texto,setTexto]=React.useState("UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO")
   const navigate=useNavigate();
 
-  const re_direccion=(usuario)=>{
+  const re_direccion=(usuario,editor)=>{
+    if(editor){navigate("/ABM/Principal")}
+    else{
     if(usuario=== false){
       navigate("/Docente/Pedidos");
     }
@@ -47,7 +49,7 @@ export default function Login() {
       navigate("/");
     }
 
-  }
+  }}
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,7 +59,7 @@ export default function Login() {
 
     
     Promise.resolve(datos).then(value=>{
-      re_direccion(value[0].admin);
+      re_direccion(value[0].admin,value[0].editor);
       localStorage.setItem('usuario',JSON.stringify(value[0]));
     })
     

@@ -12,6 +12,8 @@ import { Button, Grid, Box, Alert } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 
 import moment from 'moment'
@@ -25,7 +27,7 @@ export default function Filtros(props) {
 
     // const [fecha_inicio, set_fecha_inicio] = React.useState("");
     // const [fechaFin, setFechaFin] = React.useState("");
-
+   
     const [checked, setChecked] = React.useState(true);
 
     const guardar_inicio = (event) => {
@@ -51,8 +53,31 @@ export default function Filtros(props) {
 
 
     return (
-        <Box sx={{ flexGrow: 1, m: 2 }}>
 
+        <Box sx={{ flexGrow: 1 ,mt:0}}
+        
+        >
+             <Dialog
+                open={props.open}
+                onClose={props.handleClose}
+                scroll={props.scroll}
+                aria-labelledby="scroll-dialog-title"
+                aria-describedby="scroll-dialog-description"
+                maxWidth='xl'
+               
+                fullWidth
+                sx={{
+                    // padding: 2,
+
+                    height: 400
+                }}
+
+            >
+                {/* <DialogTitle id="scroll-dialog-title">Pedido n°: {"uno"}</DialogTitle> */}
+                <DialogContent
+                    dividers={props.scroll === 'paper'
+                    }
+>
             <Grid container component="form" onSubmit={props.cargaEncabezado} noValidate direction="row"
                 justifyContent="center"
                 alignItems="center"
@@ -62,7 +87,11 @@ export default function Filtros(props) {
                     borderLeft: 'var(--Grid-borderWidth) solid',
                     borderRight: 'var(--Grid-borderWidth) solid',
                     borderBottom: 'var(--Grid-borderWidth) solid',
-                    borderColor: 'divider', paddingX: 4, borderRadius: 4, paddingY: 2, marginX: 4
+                    borderColor: 'divider',
+                    //  paddingX: 4,
+                      borderRadius: 4,
+                    //    paddingY: 2,
+                        // marginX: 4
                 }}
                 spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
 
@@ -191,7 +220,10 @@ export default function Filtros(props) {
                 </Grid>
 
             </Grid>
+            </DialogContent>
+            </Dialog>
         </Box>
+
 
     );
 }

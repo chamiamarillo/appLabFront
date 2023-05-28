@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { Card,CardActionArea, makeStyles } from "@material-ui/core";
 import PedidoV1 from "../Docente/PedidoV1";
 import { getListaPedidos } from "../../Services/getPedidosService";
 import React, { useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import NoEncontrados from "../Docente/NoEncontrados"
 import Filtros from "./Filtros";
 import { axiosGetPedido } from '../../Services/getPedidosService';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const useStyles = makeStyles(() => ({
   marginTop: {
@@ -36,6 +37,21 @@ const [fecha_inicio, set_fecha_inicio] = React.useState("");
 const [fecha_fin, set_fecha_fin] = React.useState("");
 const [edificio, set_edificio] = React.useState("");
 
+// *******************************
+const [open, setOpen] = React.useState("");
+const [scroll, setScroll] = React.useState('paper');
+const [habilitar_filtro,setHabilitarFiltro]=React.useState(false)
+
+const handleClickOpen = (scrollType) => () => {
+  setOpen(true);
+  setScroll(scrollType);
+  setHabilitarFiltro(true)
+};
+
+const handleClose = () => {
+  setOpen(false);
+  setHabilitarFiltro(false)
+};
 
   
   const cargarEstado = (event) => {
@@ -104,15 +120,33 @@ useEffect(()=>{
       <Box sx={{ flexGrow: 1, m: 2 }}>
         <Header texto={texto} ></Header>
       </Box>
-      <Filtros
-      cargarEstado={cargarEstado}
-      fecha_fin={fecha_fin}
-      set_fecha_fin={set_fecha_fin}
-      set_fecha_inicio={set_fecha_inicio}
-      fecha_inicio={fecha_inicio}
-      edificio={edificio}
-      set_edificio={set_edificio}
-      />
+      <Box sx={{ flexGrow: 1, m: 2 }}>
+      <Card style={{ backgroundColor: "#b4e0bc", borderRadius: 15 }}>
+          <CardActionArea onClick={handleClickOpen('body')}>
+<FilterListIcon/>
+</CardActionArea> 
+</Card>
+</Box>
+{(habilitar_filtro)
+        ? ( <Filtros
+          cargarEstado={cargarEstado}
+          fecha_fin={fecha_fin}
+          set_fecha_fin={set_fecha_fin}
+          set_fecha_inicio={set_fecha_inicio}
+          fecha_inicio={fecha_inicio}
+          edificio={edificio}
+          set_edificio={set_edificio}
+         
+          open={open}
+          setOpen={setOpen}
+          handleClose={handleClose}
+          scroll={scroll}
+         
+        />)
+        : (<div></div>
+          )
+      }
+     
       {(listaPedidos.length < 1) ?
         (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
         : (
