@@ -302,6 +302,10 @@ const PedidoReactivo = (props) => {
           </Button>
 
         </Grid>
+
+        <Grid container direction="row"
+        justifyContent="center"
+        alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
         <Grid item xs={6} container justifyContent="center" display={props.reactivoOk} />
 
         <Grid item xs={6} container justifyContent="center" display={props.errorReactivo}>
@@ -310,6 +314,7 @@ const PedidoReactivo = (props) => {
         </Button>
         </Grid>
       </Grid>
+       </Grid>
       {(props.verMasReactivos.length > 0) ? (
         <Grid container alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
           <Grid item xs={12}>
