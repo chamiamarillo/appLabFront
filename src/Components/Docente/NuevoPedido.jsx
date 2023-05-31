@@ -267,7 +267,12 @@ export default function NuevoPedido() {
       "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
       "reactivo": reactivoElegido._id
     };
-    const reactivoRepetido = pedidoReactivos.filter(elemento=>elemento.reactivo === dato.reactivo)
+    const reactivoRepetido = pedidoReactivos.filter(
+      elemento=>elemento.reactivo === dato.reactivo 
+      && elemento.concentracion_tipo === dato.concentracion_tipo 
+      && elemento.concentracion_medida === dato.concentracion_medida
+      && elemento.disolvente === dato.disolvente
+      && elemento.otro_disolvente_descripcion === dato.otro_disolvente_descripcion)
     if(reactivoRepetido.length>0){
       setErrorReactivo("block")
       setReactivoOk("none")
