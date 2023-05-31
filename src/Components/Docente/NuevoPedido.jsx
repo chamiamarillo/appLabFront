@@ -64,6 +64,8 @@ export default function NuevoPedido() {
   const [listaReactivos, setListaReactivos] = useState([]);
   const [reactivoElegido, setReacElegido] = useState({});
   const [verMasReactivos, setverMasReactivos] = useState([]);
+  const [errorReactivo, setErrorReactivo] = useState("none");
+  const [reactivoOk, setReactivoOk] = useState("block");
 
   const [_med_reactivo, setUn_med_reactivo] = useState(" ");
   const [cal_reactivo, setCalReactivo] = useState(" ");
@@ -111,15 +113,11 @@ export default function NuevoPedido() {
 
   const calReactivo = (event) => { setCalReactivo(event.target.value); };
 
-
   const med_reactivo = (event) => { setUn_med_reactivo(event.target.value); };
 
   const navigate = useNavigate();
 
-
-
   const [texto, setEncabezado] = useState("CARGA DE PEDIDO");
-
 
   //CARGA ENCABEZADO AL PEDIDO
   const cargaEncabezado = async (event) => {
@@ -144,11 +142,7 @@ export default function NuevoPedido() {
     },
     );
 
-
-
   };
-
-
 
 
   //CARGA EQUIPO A LA LISTA
@@ -190,8 +184,6 @@ export default function NuevoPedido() {
     const cargar_Nuevos_EquiposVer = verMasEquip.filter(eq => eq.equipo._id !== event._id)
     setverMasEquip(cargar_Nuevos_EquiposVer);
 
-
-
     const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq => eq.equipo !== event._id)
     setPedidoEquipos(cargar_Nuevos_Equipos);
 
@@ -199,8 +191,6 @@ export default function NuevoPedido() {
   }
 
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
-
-
 
 
   // CARGA MATERIAL A LA LISTA
@@ -259,12 +249,6 @@ export default function NuevoPedido() {
 
 
   // CARGA REACTIVOS A LA LISTA
-
-
-
-  
-
-
   const cargaReactivos = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -283,7 +267,14 @@ export default function NuevoPedido() {
       "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
       "reactivo": reactivoElegido._id
     };
-
+    const reactivoRepetido = pedidoReactivos.filter(elemento=>elemento.reactivo === dato.reactivo)
+    if(reactivoRepetido.length>0){
+      setErrorReactivo("block")
+      setReactivoOk("none")
+    }
+    else{  
+      setErrorReactivo("none")
+      setReactivoOk("block")
     const cargarNuevosReactivos = dato => {
       setPedidoReactivos([...pedidoReactivos, dato]);
     }
@@ -303,6 +294,7 @@ export default function NuevoPedido() {
     cargarNuevosReactivosVer(datoVer)
     cargarNuevosReactivos(dato)
      data.reset()
+  }
   };
 
   const eliminarReactivo = (value) => {
@@ -312,10 +304,6 @@ export default function NuevoPedido() {
     setPedidoReactivos(cargar_reactivos);
   }
   const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
-
-
-
-
 
 
   const handleSubmit = () => {
@@ -344,10 +332,6 @@ export default function NuevoPedido() {
 
     postPedido(pedido);
     navigate('/Docente/Pedidos');
-
-
-
-
 
 
   };
@@ -382,11 +366,7 @@ export default function NuevoPedido() {
 
             />
 
-
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
-
-
-
 
             <PedidoEquipos
 
@@ -401,8 +381,6 @@ export default function NuevoPedido() {
               equipoOk={equipoOk}
 
             />
-
-
 
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
@@ -433,9 +411,6 @@ export default function NuevoPedido() {
               _disol_reactivo={_disol_reactivo}
               disolReactivo={disolReactivo}
 
-              //_otro_disol_reactivo = {_otro_disol_reactivo}
-              // otroDisolReactivo = {otroDisolReactivo}
-
               _med_reactivo={_med_reactivo}
               med_reactivo={med_reactivo}
 
@@ -449,11 +424,12 @@ export default function NuevoPedido() {
 
               ver_med={ver_med}
               visible_off_med={visible_off_med}
-              
+
+              errorReactivo={errorReactivo}
+              reactivoOk={reactivoOk}
             />
 
           </Box>
-
 
           {/* EMPIEZAN BOTONES */}
           <Grid container justifyContent="flex-end" spacing={2}
@@ -468,12 +444,7 @@ export default function NuevoPedido() {
                 startIcon={<ReplyAllIcon />}
                 onClick={() => {
                   navigate('/Docente/Pedidos')
-
-
                 }}
-
-
-
                 sx={{ mt: 3, mb: 2, height: 50 }}>  CANCELAR</Button>
 
             </Grid>
@@ -485,19 +456,12 @@ export default function NuevoPedido() {
                 variant="contained"
                 endIcon={<SendIcon />}
                 onClick={handleSubmit}
-
-
                 sx={{ mt: 3, mb: 2, height: 50 }}> CONFIRMAR PEDIDO</Button>
 
             </Grid>
           </Grid>
 
-
-
-
-
         </Box>
-
 
       </Container>
     </ThemeProvider>

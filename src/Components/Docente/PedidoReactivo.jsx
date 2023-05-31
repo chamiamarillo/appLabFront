@@ -302,8 +302,13 @@ const PedidoReactivo = (props) => {
           </Button>
 
         </Grid>
+        <Grid item xs={6} container justifyContent="center" display={props.reactivoOk} />
 
-
+        <Grid item xs={6} container justifyContent="center" display={props.errorReactivo}>
+        <Button variant="outlined" color="error" fullWidth heigth={40}>
+        EL REACTIVO YA FUE CARGADO
+        </Button>
+        </Grid>
       </Grid>
       {(props.verMasReactivos.length > 0) ? (
         <Grid container alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
