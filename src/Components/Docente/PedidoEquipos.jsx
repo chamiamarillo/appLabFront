@@ -91,7 +91,7 @@ const PedidoEquipos = (props) => {
                                     margin="normal"
                                     // value={params._id}
                                     name="descripcion_equipo"
-                                    label={"descripcion_equipo"}
+                                    label={"descripcion equipo"}
 
                                     InputLabelProps={{ className: "autocompleteLabel", shrink: true }}
                                     InputProps={{
@@ -112,7 +112,7 @@ const PedidoEquipos = (props) => {
                         id="cant_equipo"
                         variant="outlined"
                         name="cant_equipo"
-                        label="cant_equipos"
+                        label="cant equipos"
                         type="number"
                         InputLabelProps={{
                             shrink: true,

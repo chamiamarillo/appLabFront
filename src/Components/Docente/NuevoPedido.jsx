@@ -298,7 +298,7 @@ export default function NuevoPedido() {
     }
     cargarNuevosReactivosVer(datoVer)
     cargarNuevosReactivos(dato)
-     data.reset()
+    //  data.reset()
   }
   };
 
