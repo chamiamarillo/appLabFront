@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { Card, CardActionArea, makeStyles } from "@material-ui/core";
 import PedidoV1 from "../Docente/PedidoV1";
 import { getListaPedidos } from "../../Services/getPedidosService";
 import React, { useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import NoEncontrados from "../Docente/NoEncontrados"
 import Filtros from "./Filtros";
 import { axiosGetPedido } from '../../Services/getPedidosService';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const useStyles = makeStyles(() => ({
   marginTop: {
@@ -29,60 +30,75 @@ function Pedidos() {
 
 
 
-/********************************************** */  
-const [tipo_pedido,  setTipoPedido] = React.useState("");
-const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
-const [fecha_inicio, set_fecha_inicio] = React.useState("");
-const [fecha_fin, set_fecha_fin] = React.useState("");
-const [edificio, set_edificio] = React.useState("");
+  /********************************************** */
+  const [tipo_pedido, setTipoPedido] = React.useState("");
+  const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
+  const [fecha_inicio, set_fecha_inicio] = React.useState("");
+  const [fecha_fin, set_fecha_fin] = React.useState("");
+  const [edificio, set_edificio] = React.useState("");
+
+  // *******************************
+  const [open, setOpen] = React.useState("");
+  const [scroll, setScroll] = React.useState('paper');
 
 
-  
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+
+  };
+
+
   const cargarEstado = (event) => {
     // const dato=event.target.value
     event.preventDefault();
     console.log(event.target.value)
     guardarEstadoPedido(event.target.value)
     // cargarNuevosPedidos()
-    
-   
-   
-    
-
-}
-const guardarEstadoPedido=(event)=>{setTipoPedido(event)}
 
 
-function cargarNuevosPedidos() {
-console.log("se guarda algo en el estado",tipo_pedido);
-    axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio).then((item) => {setListaPedidos(item)}
-    
-   
-   );
-  
-};
-useEffect(()=>{
-  
+
+
+
+  }
+  const guardarEstadoPedido = (event) => { setTipoPedido(event) }
+
+
+  function cargarNuevosPedidos() {
+    console.log("se guarda algo en el estado", tipo_pedido);
+    axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio).then((item) => { setListaPedidos(item) }
+
+
+    );
+
+  };
+  useEffect(() => {
+
     cargarNuevosPedidos()
 
-  
 
-//  }
-  // if (tipo_pedido.length>0 ||){
-  //   if (tipo_pedido=="TODOS")  {
-  //      getListaPedidos()
-  //           .then(items => { 
-       
-  //       setListaPedidos(items)});
-  //    }
-  //   else{
-  //   cargarNuevosPedidos()
 
-  // }
+    //  }
+    // if (tipo_pedido.length>0 ||){
+    //   if (tipo_pedido=="TODOS")  {
+    //      getListaPedidos()
+    //           .then(items => { 
 
-//  }
-      
-},[tipo_pedido,fecha_fin,edificio])
+    //       setListaPedidos(items)});
+    //    }
+    //   else{
+    //   cargarNuevosPedidos()
+
+    // }
+
+    //  }
+
+  }, [tipo_pedido, fecha_fin, edificio])
 
   useEffect(() => {
     let mounted = true;
@@ -101,18 +117,44 @@ useEffect(()=>{
 
   return (
     <ThemeProvider theme={Theme1}>
+     
       <Box sx={{ flexGrow: 1, m: 2 }}>
         <Header texto={texto} ></Header>
       </Box>
+      
+      <Box sx={{ flexGrow: 1, m: 2 }}>
+        <Grid container columns={12} justifyContent="flex-end" direction="row" alignItems="flex-start">
+          <Grid item xs={1} align="center"  >
+          <Card 
+
+            // style={{ color: "#b4e0bc", borderRadius: 15 }}
+            >
+            <CardActionArea onClick={handleClickOpen('body')}>
+              <FilterListIcon fontSize="large"  style={ {color: "#b4e0bc"}}/>
+            </CardActionArea>
+          </Card>
+          </Grid>
+        </Grid>
+      </Box>
       <Filtros
-      cargarEstado={cargarEstado}
-      fecha_fin={fecha_fin}
-      set_fecha_fin={set_fecha_fin}
-      set_fecha_inicio={set_fecha_inicio}
-      fecha_inicio={fecha_inicio}
-      edificio={edificio}
-      set_edificio={set_edificio}
+        cargarEstado={cargarEstado}
+        fecha_fin={fecha_fin}
+        set_fecha_fin={set_fecha_fin}
+        set_fecha_inicio={set_fecha_inicio}
+        fecha_inicio={fecha_inicio}
+        edificio={edificio}
+        set_edificio={set_edificio}
+
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        scroll={scroll}
+
       />
+  
+  
+  
+
       {(listaPedidos.length < 1) ?
         (<Box sx={{ flexGrow: 1, md: 2 }}><NoEncontrados /></Box>)
         : (
