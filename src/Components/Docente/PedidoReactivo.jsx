@@ -67,7 +67,7 @@ const PedidoReactivo = (props) => {
                   margin="normal"
 
                   name="descripcion_reactivo"
-                  label={"descripcion_reactivo "}
+                  label={"descripcion reactivo "}
 
                   InputLabelProps={{ className: "autocompleteLabel", shrink: true }}
                   InputProps={{
@@ -100,7 +100,7 @@ const PedidoReactivo = (props) => {
         </Grid>
         <Grid item xs={2} container justifyContent="center" marginTop={1}>
           <FormControl fullWidth>
-            <InputLabel id="calidad_reactivo">calidad_reactivo</InputLabel>
+            <InputLabel id="calidad_reactivo">calidad reactivo</InputLabel>
             <Select
               InputLabelProps={{
                 shrink: true,
@@ -108,7 +108,7 @@ const PedidoReactivo = (props) => {
               labelId="calidad_reactivo"
               id="calidad_reactivo"
               value={props.cal_reactivo}
-              label="calidad_reactivo"
+              label="calidad reactivo"
               onChange={props.calReactivo}
               defaultValue={" "}
             >
@@ -129,7 +129,7 @@ const PedidoReactivo = (props) => {
             id="cant_reactivo"
             variant="outlined"
             name="cant_reactivo"
-            label="cant_reactivo"
+            label="cant reactivo"
             type="number"
             InputLabelProps={{
               shrink: true,
@@ -145,13 +145,13 @@ const PedidoReactivo = (props) => {
 
         <Grid item xs={2} container justifyContent="center" marginTop={1}>
           <FormControl fullWidth>
-            <InputLabel id="_med_reactivo2">un_med_reactivo</InputLabel>
+            <InputLabel id="_med_reactivo2">un med reactivo</InputLabel>
             <Select
 
               labelId="_med_reactivo2"
               id="_med_reactivo2"
               value={props._med_reactivo}
-              label="_med_reactivo2"
+              label="med_reactivo2"
               onChange={props.med_reactivo}
 
             >
@@ -199,7 +199,7 @@ const PedidoReactivo = (props) => {
 
         <Grid item xs={3} container justifyContent="center" marginTop={1}>
           <FormControl fullWidth>
-            <InputLabel id="tipo_reactivo"> Tipo </InputLabel>
+            <InputLabel id="tipo_reactivo"> tipo </InputLabel>
             <Select
               InputLabelProps={{
                 shrink: true,
@@ -232,7 +232,7 @@ const PedidoReactivo = (props) => {
             //required
             fullWidth
             id="med_concent"
-            label="med_concent"
+            label="med concent"
             name="med_concent"
             autoComplete="med_concent"
             InputLabelProps={{
@@ -255,7 +255,7 @@ const PedidoReactivo = (props) => {
               labelId="disolvente_reactivo"
               id="disolvente_reactivo"
               value={props._disol_reactivo}
-              label="disolvente_reactivo"
+              label="disolvente reactivo"
               onChange={props.disolReactivo}
               defaultValue={" "}
 
@@ -280,7 +280,7 @@ const PedidoReactivo = (props) => {
             // required
             fullWidth
             id="_otro_disol_reactivo"
-            label="detalle_otro_disolvente"
+            label="detalle otro disolvente"
             name="_otro_disol_reactivo"
             InputLabelProps={{ shrink: true }}
             autoComplete="_otro_disol_reactivo"

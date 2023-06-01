@@ -82,7 +82,7 @@ const PedidoMaterial = (props) => {
                             margin="normal"
 
                             name="descripcion_material"
-                            label={"descripcion_material"}
+                            label={"descripcion material"}
                             InputLabelProps={{ className: "autocompleteLabel", shrink: true, }}
                             InputProps={{
                                 ...params.InputProps,
@@ -100,7 +100,7 @@ const PedidoMaterial = (props) => {
                         id="cant_material"
                         variant="outlined"
                         name="cant_material"
-                        label="cant_material"
+                        label="cant material"
                         type="number"
                         InputLabelProps={{
                         shrink: true,

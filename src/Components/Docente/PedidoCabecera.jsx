@@ -51,7 +51,7 @@ const PedidoCabecera = (props) => {
           // required
           fullWidth
           id="n_pedido"
-          label="n_pedido"
+          label="n° pedido"
           name="n_pedido"
           variant="outlined"
           value={props.cantidadPedidos + 1}
@@ -64,7 +64,7 @@ const PedidoCabecera = (props) => {
       <Grid item xs={2} >
         <TextField
           id="fecha_solicitud"
-          label="fecha_solicitud"
+          label="fecha solicitud"
           name="fecha_solicitud"
           type="text"
           InputLabelProps={{
@@ -87,7 +87,7 @@ const PedidoCabecera = (props) => {
       <Typography sx={{ fontSize: 12 }} aria-label="simple table" color="text.secondary" >
         <fieldset  style={{width:"145px",height:"56px"}} >
        
-          <legend>fecha_utilizacion:</legend>
+          <legend>fecha utilizacion:</legend>
      
         
         <input  type="date" 
@@ -170,7 +170,7 @@ const PedidoCabecera = (props) => {
           required
           fullWidth
           id="cantidad_alumnos"
-          label="cantidad_alumnos"
+          label="cantidad alumnos"
           name="cantidad_alumnos"
           autoComplete="cantidad_alumnos"
           InputLabelProps={{ shrink: true }}
@@ -191,7 +191,7 @@ const PedidoCabecera = (props) => {
           id="cantidad_grupos"
           variant="outlined"
           name="cantidad_grupos"
-          label="cant_grupos"
+          label="cant grupos"
           type="number"
           InputLabelProps={{
             shrink: true,
