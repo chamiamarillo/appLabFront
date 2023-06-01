@@ -40,17 +40,17 @@ function Principal() {
   
   const [open, setOpen] = React.useState("");
   const [scroll, setScroll] = React.useState('paper');
-  const [habilitar_pedido,setHabilitarPedido]=React.useState(false)
+
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
-    setHabilitarPedido(true)
+   
   };
 
   const handleClose = () => {
     setOpen(false);
-    setHabilitarPedido(false)
+    
   };
 
   return (
@@ -68,18 +68,15 @@ Principal
          </CardActionArea>
          </Card>
       </Box>
-      {(habilitar_pedido)
-        ? (<AltaEquipo 
-        //   key={pedido._id.toString()}
+   
+       <AltaEquipo 
+      
           open={open}
           setOpen={setOpen}
           handleClose={handleClose}
           scroll={scroll}
          
-        ></AltaEquipo>)
-        : (<div></div>
-          )
-      }
+        />
 
     </ThemeProvider>
   );
