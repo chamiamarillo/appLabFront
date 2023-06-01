@@ -115,7 +115,13 @@ const PedidoMaterial = (props) => {
 
 
                     </Grid>
-                    <Grid item xs={3} container justifyContent="center" />
+                    <Grid item xs={3} container justifyContent="center" display={props.materialOk}/>
+                    
+                    <Grid item xs={3} container justifyContent="center" display={props.errorMaterial}>
+                    <Button variant="outlined" color="error" fullWidth heigth={40}>
+                    EL MATERIAL YA FUE CARGADO
+                    </Button>
+                    </Grid>
                     <Grid item xs={1} container justifyContent="center">
                     <Button fullWidth
                     margin="normal"
