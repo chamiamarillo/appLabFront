@@ -119,7 +119,7 @@ function Pedidos() {
     <ThemeProvider theme={Theme1}>
      
       <Box sx={{ flexGrow: 1, m: 2 }}>
-        <Header texto={texto} ></Header>
+        <Header texto={texto} isUserAdmin={true}></Header>
       </Box>
       
       <Box sx={{ flexGrow: 1, m: 2 }}>

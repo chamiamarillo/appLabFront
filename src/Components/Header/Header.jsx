@@ -11,7 +11,7 @@ import {ThemeProvider, createTheme } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
 import logo from '../Image/logo_unahur.png';
 import {useNavigate} from 'react-router-dom';
-
+import LaboratorioNav from "./LaboratorioNav";
 const themeHeader=createTheme({
   palette:{
       primary:{
@@ -20,13 +20,13 @@ const themeHeader=createTheme({
   },
 })
 Header.defaultProps={
-  isNotLogin: true
+  isNotLogin: true,
+  isUserAdmin: false
 }
 export default function Header(props) {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate=useNavigate();
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -41,7 +41,6 @@ export default function Header(props) {
   return (
     <ThemeProvider theme={Theme1}>
     <Box sx={{ flexGrow: 1 }}>
-        
       <AppBar style={{ backgroundColor: "#b4e0bc" }} position="static" 
       maxwidth="lg"
       >
@@ -88,9 +87,13 @@ export default function Header(props) {
             </div>
           )}
         </Toolbar>
+        {
+          props.isUserAdmin && (
+            <LaboratorioNav></LaboratorioNav>
+          )
+        }
       </AppBar>
-     
-    </Box>
+      </Box>
     </ThemeProvider>
   );
 }
