@@ -20,6 +20,7 @@ import laboratorio from '../Image/biologia.png';
 import Buscador from './Buscador';
 
 import Button from '@mui/material/Button';
+import { IndeterminateCheckBox } from '@material-ui/icons';
 
 
 export default function Equipos() {
@@ -36,6 +37,7 @@ export default function Equipos() {
   const handleBuscar = (term) => {
     setBusqueda(term);
   };
+ 
   return (
     <ThemeProvider theme={Theme1}>
 
@@ -70,7 +72,7 @@ export default function Equipos() {
                   <Buscador onBuscar={handleBuscar}></Buscador>
                 </Grid>
                 <Grid item xs={4} container justifyContent="flex-end">
-                  <NuevoEquipo></NuevoEquipo>
+                  <NuevoEquipo ></NuevoEquipo>
                 </Grid>
             </Grid>
           <Lista listaEquipos={listaEquipos}></Lista>
@@ -81,6 +83,9 @@ export default function Equipos() {
 }
 
 const NuevoEquipo = () => {
+  const handleNuevoEquipo = (event) => {
+    console.log("Nuevo Equipo"); // quitar
+  };
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <Button
@@ -90,6 +95,7 @@ const NuevoEquipo = () => {
         variant="contained"
         color="primary"
 				size="large"
+        onClick={handleNuevoEquipo}
       >
         NUEVO EQUIPO
       </Button>
@@ -99,6 +105,10 @@ const NuevoEquipo = () => {
 const Lista = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const displayedEquipos = props.listaEquipos.slice(startIndex, endIndex);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -107,9 +117,10 @@ const Lista = (props) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const startIndex = page * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
-  const displayedEquipos = props.listaEquipos.slice(startIndex, endIndex);
+  
+  const handleEditar = (event) => {
+    console.log(event); // quitar
+  }
   return (
     <Container>
       <TableContainer>
@@ -130,7 +141,7 @@ const Lista = (props) => {
                 <TableCell component="th" scope="row">{row.descripcion} </TableCell>
                 <TableCell align="center">{row.clase}</TableCell>
                 <TableCell align="center">
-                  <IconButton aria-label="editar" >
+                  <IconButton aria-label="editar" onClick={() => handleEditar(row)}>
                     <EditIcon />
                   </IconButton>
                 </TableCell>

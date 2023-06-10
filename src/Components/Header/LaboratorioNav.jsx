@@ -19,9 +19,9 @@ const LaboratorioNav = () => {
     const locationToTabIndex = {
       '/Laboratorio/Pedidos': 0,
       '/Laboratorio/Equipos': 1, /*
-      '/laboratorio/materiales': 2,
-      '/laboratorio/reactivos': 3,
-      '/laboratorio/usuarios': 4,*/
+      '/Laboratorio/Materiales': 2,
+      '/Laboratorio/Reactivos': 3,
+      '/Laboratorio/Usuarios': 4,*/
     };
 
     setValue(locationToTabIndex[currentLocation] || 0);
