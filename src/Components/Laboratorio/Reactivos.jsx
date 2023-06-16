@@ -15,21 +15,22 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination'
 import { ThemeProvider } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
-import {getListaEquiposFiltrada } from "../../Services/getService";
-import laboratorio from '../Image/biologia.png';
+import {getListaReactivosFiltrada } from "../../Services/getService";
+import quimica from '../Image/quimica.png'
 import Buscador from './Buscador';
 
 import Button from '@mui/material/Button';
 
 
-export default function Equipos() {
+export default function Reactivos() {
   //const [texto, setEncabezado] = useState("Laboratorio");
-  const [listaEquipos, setListaEquipos] = useState([]);
+  const [listaReactivos, setListaReactivos] = useState([]);
   const [busqueda, setBusqueda] = useState('');
   const [resetPage, setResetPage] = useState(false);
+
   useEffect(() => {
-    getListaEquiposFiltrada(busqueda)
-      .then((equipos) => setListaEquipos(equipos))
+    getListaReactivosFiltrada(busqueda)
+      .then((reactivos) => setListaReactivos(reactivos))
       .catch((error) => console.error(error));
   }, [busqueda]);
 
@@ -61,30 +62,30 @@ export default function Equipos() {
                 justifyContent="start"
                 alignItems="center">
                 <Grid item xs={1} container justifyContent="center"  >
-                  <img width={30} alt="" heigth={30} src={laboratorio} />
+                  <img width={30} alt="" heigth={30} src={quimica} />
                 </Grid>
                 <Grid item xs={3} container justifyContent="start">
                     <Typography sx={{ fontSize: 30 }} color="text.secondary">
-                      Equipos
+                      Reactivos
                     </Typography>
                 </Grid>
                 <Grid item xs={3} container justifyContent="center">
                   <Buscador onBuscar={handleBuscar}></Buscador>
                 </Grid>
                 <Grid item xs={4} container justifyContent="flex-end">
-                  <NuevoEquipo ></NuevoEquipo>
+                  <Nuevo/>
                 </Grid>
             </Grid>
-          <Lista listaEquipos={listaEquipos} setResetPage={setResetPage} resetPage={resetPage}></Lista>
+          <Lista listaReactivos={listaReactivos} setResetPage={setResetPage} resetPage={resetPage}></Lista>
       </Grid>
       </Container>
     </ThemeProvider>
   )
 }
 
-const NuevoEquipo = () => {
-  const handleNuevoEquipo = (event) => {
-    console.log("Nuevo Equipo"); // quitar
+const Nuevo = () => {
+  const handleNuevo = (event) => {
+    console.log("Nuevo Reactivo"); // quitar
   };
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -94,10 +95,10 @@ const NuevoEquipo = () => {
         margin="normal"
         variant="contained"
         color="primary"
-				size="large"
-        onClick={handleNuevoEquipo}
+		size="large"
+        onClick={handleNuevo}
       >
-        NUEVO EQUIPO
+        NUEVO REACTIVO
       </Button>
     </div>
   )
@@ -107,7 +108,7 @@ const Lista = (props) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const startIndex = page * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const displayedEquipos = props.listaEquipos.slice(startIndex, endIndex);
+  const displayedItems = props.listaReactivos.slice(startIndex, endIndex);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -122,11 +123,11 @@ const Lista = (props) => {
     console.log(event); // quitar
   }
   React.useEffect(() => {
-    if (props.listaEquipos.length > 0 && props.resetPage) {
+    if (props.listaReactivos.length > 0 && props.resetPage) {
       setPage(0);
       props.setResetPage(false);
     }
-  }, [props.listaEquipos, props.resetPage]);
+  }, [props.listaReactivos, props.resetPage]);
   return (
     <Container>
       <TableContainer>
@@ -134,18 +135,18 @@ const Lista = (props) => {
           <TableHead>
             <TableRow>
               <TableCell>Descripcion</TableCell>
-              <TableCell align="center">Clase</TableCell>
+              <TableCell align="center">CAS</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {displayedEquipos.map((row,index) => (
+            {displayedItems.map((row,index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{row.descripcion} </TableCell>
-                <TableCell align="center">{row.clase}</TableCell>
+                <TableCell align="center">{row.cas}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="editar" onClick={() => handleEditar(row)}>
                     <EditIcon />
@@ -156,18 +157,17 @@ const Lista = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
-        <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={props.listaEquipos.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        labelRowsPerPage={"Elementos por página"}
-        labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
-      />
+      <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={props.listaReactivos.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage={"Elementos por página"}
+          labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
+        />
     </Container>
   )
 }
-
