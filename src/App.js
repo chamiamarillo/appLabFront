@@ -20,7 +20,9 @@ import Pedidos from "./Components/Laboratorio/Pedidos";
 import Alta_Equipo from './Components/ABM/AltaEquipo';
 import Principal from './Components/ABM/Principal';
 import Equipos from './Components/Laboratorio/Equipos';
-
+import Usuarios from './Components/Laboratorio/Usuarios';
+import Materiales from './Components/Laboratorio/Materiales'
+import Reactivos from './Components/Laboratorio/Reactivos'
 function App() {
 
 
@@ -38,6 +40,10 @@ function App() {
         <Route path="/Laboratorio/Pedidos" element={<Pedidos />} />
 
         <Route path="/Laboratorio/Equipos" element={<Equipos/>}/>
+        <Route path="/Laboratorio/Usuarios" element={<Usuarios/>}/>
+        <Route path="/Laboratorio/Materiales" element={<Materiales/>}/>
+        <Route path="/Laboratorio/Reactivos" element={<Reactivos/>}/>
+        
         <Route path="/Docente/Pedidos/PedidoV1" element={<PedidoV1 />} />
 
         <Route path="/Docente/NuevoPedido" element={<NuevoPedido />} />

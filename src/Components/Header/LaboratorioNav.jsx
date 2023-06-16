@@ -18,10 +18,10 @@ const LaboratorioNav = () => {
     const currentLocation = window.location.pathname;
     const locationToTabIndex = {
       '/Laboratorio/Pedidos': 0,
-      '/Laboratorio/Equipos': 1, /*
+      '/Laboratorio/Equipos': 1, 
       '/Laboratorio/Materiales': 2,
       '/Laboratorio/Reactivos': 3,
-      '/Laboratorio/Usuarios': 4,*/
+      '/Laboratorio/Usuarios': 4,
     };
 
     setValue(locationToTabIndex[currentLocation] || 0);
@@ -31,9 +31,9 @@ const LaboratorioNav = () => {
         <Tabs value={value} onChange={handleChange}>
           <Tab label="Pedidos" onClick={() => navigate("/Laboratorio/Pedidos")} />
           <Tab label="Equipos" onClick={() => navigate("/Laboratorio/Equipos")} />
-          <Tab label="Materiales" />
-          <Tab label="Reactivos" />
-          <Tab label="Usuarios" />
+          <Tab label="Materiales" onClick={() => navigate("/Laboratorio/Materiales")}/>
+          <Tab label="Reactivos" onClick={() => navigate("/Laboratorio/Reactivos")}/>
+          <Tab label="Usuarios" onClick={() => navigate("/Laboratorio/Usuarios")}/>
       </Tabs>
     </Box>
   )
