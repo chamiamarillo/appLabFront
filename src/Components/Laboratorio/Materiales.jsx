@@ -18,20 +18,39 @@ import Theme1 from '../Theme/Theme1';
 import {getListaMaterialesFiltrada } from "../../Services/getService";
 import pipeta from '../Image/pipeta.png';
 import Buscador from './Buscador';
-
+import AltaMaterial from '../ABM/AltaMaterial';
 import Button from '@mui/material/Button';
-
+import ModMaterial from '../ABM/ModMaterial';
 
 export default function Materiales() {
   //const [texto, setEncabezado] = useState("Laboratorio");
   const [listaMateriales, setListaMateriales] = useState([]);
   const [busqueda, setBusqueda] = useState('');
   const [resetPage, setResetPage] = useState(false);
+ 
+  const [verEdicion,setVerEdicion]=useState("none")
+  const [open, setOpen] = React.useState("");
+  
+  const [scroll, setScroll] = React.useState('paper');
+  const [elegido,setElegido]=useState({});
+
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+
+  };
+
+
   useEffect(() => {
     getListaMaterialesFiltrada(busqueda)
       .then((materiales) => setListaMateriales(materiales))
       .catch((error) => console.error(error));
-  }, [busqueda]);
+  }, [busqueda,open,verEdicion]);
 
   const handleBuscar = (term) => {
     setBusqueda(term);
@@ -72,20 +91,56 @@ export default function Materiales() {
                   <Buscador onBuscar={handleBuscar}></Buscador>
                 </Grid>
                 <Grid item xs={4} container justifyContent="flex-end">
-                  <NuevoMaterial ></NuevoMaterial>
+                  <NuevoMaterial 
+                    open={open}
+                    setOpen={setOpen}
+                    handleClose={handleClose}
+                    scroll={scroll}
+                    handleClickOpen={handleClickOpen}
+                  
+                  ></NuevoMaterial>
                 </Grid>
             </Grid>
-          <Lista listaMateriales={listaMateriales} setResetPage={setResetPage} resetPage={resetPage}></Lista>
+            <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"
+            display={verEdicion}>
+              <ModMaterial
+              setVerEdicion={setVerEdicion}
+              elegido={elegido}
+              setElegido={setElegido}
+
+              />
+            </Grid>
+
+
+
+
+
+
+          <Lista listaMateriales={listaMateriales} 
+          setResetPage={setResetPage} resetPage={resetPage}
+           elegido={elegido}
+           setElegido={setElegido}
+           setVerEdicion={setVerEdicion}   >
+          </Lista>
       </Grid>
       </Container>
     </ThemeProvider>
   )
 }
 
-const NuevoMaterial = () => {
-  const handleNuevoMaterial = (event) => {
-    console.log("Nuevo Material"); // quitar
-  };
+const NuevoMaterial = (
+  { open = { open },
+  setOpen = { setOpen },
+  scroll = { scroll },
+  handleClose = { handleClose },
+  handleClickOpen = { handleClickOpen }
+}
+) => {
+  // const handleNuevoMaterial = (event) => {
+  //   console.log("Nuevo Material"); // quitar
+  // };
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <Button
@@ -95,10 +150,20 @@ const NuevoMaterial = () => {
         variant="contained"
         color="primary"
 		size="large"
-        onClick={handleNuevoMaterial}
+        onClick={handleClickOpen('body')}
       >
         NUEVO MATERIAL
       </Button>
+      <AltaMaterial
+
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        scroll={scroll}
+        handleClickOpen={handleClickOpen}
+
+      />
+
     </div>
   )
 }
@@ -119,7 +184,12 @@ const Lista = (props) => {
   };
   
   const handleEditar = (event) => {
-    console.log(event); // quitar
+    console.log(event);
+    props.setElegido(event)
+    console.log(props.elegido)
+    console.log(event); 
+    props.setVerEdicion("block")
+     // quitar
   }
   React.useEffect(() => {
     if (props.listaMateriales.length > 0 && props.resetPage) {

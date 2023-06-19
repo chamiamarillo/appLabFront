@@ -2,29 +2,29 @@ import React, { useState } from "react";
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
 import SendIcon from '@mui/icons-material/Send';
-import TableContainer from '@mui/material/TableContainer';
+// import TableContainer from '@mui/material/TableContainer';
 
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import moment from 'moment'
+// import Paper from '@mui/material/Paper';
+// import moment from 'moment'
 import Grid from '@mui/material/Grid';
-import laboratorio from '../Image/biologia.png';
+import pipeta from '../Image/pipeta.png';
 import { Autocomplete, TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
-import postEquipo from "../../Services/postEquipo";
+import postMaterial from "../../Services/postMaterial";
 import { useEffect } from "react";
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
-function AltaEquipo(
+function AltaMaterial(
     { open = { open },
         setOpen = { setOpen },
         scroll = { scroll },
@@ -34,7 +34,7 @@ function AltaEquipo(
     }
 ) {
     const [error,setError]=useState("none")
-    const cargaEquipo = async (event) => {
+    const cargaMaterial = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log(data.get('clase'));
@@ -51,7 +51,7 @@ function AltaEquipo(
             "unidadMedida": "UNI"
         }
        
-        postEquipo(dato)
+        postMaterial(dato)
         setError("none")
         setOpen(false);
     }
@@ -90,7 +90,7 @@ function AltaEquipo(
                 >
 
 
-                    <Grid container direction='row' component="form" onSubmit={cargaEquipo}
+                    <Grid container direction='row' component="form" onSubmit={cargaMaterial}
                         sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                         <Grid container
@@ -100,11 +100,11 @@ function AltaEquipo(
                             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
                             <Grid item xs={1} container justifyContent="center"  >
-                                <img width={30} alt="" heigth={30} src={laboratorio} />
+                                <img width={30} alt="" heigth={30} src={pipeta} />
                             </Grid>
                             <Grid item xs={4} container justifyContent="start">
                                 <Typography sx={{ fontSize: 30 }} color="text.secondary">
-                                    Equipo
+                                    Material
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}  display={error} container justifyContent="start">
@@ -154,17 +154,9 @@ function AltaEquipo(
                                         >
 
                                             <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"AGITADORES-CENTRIFUGAS"}>AGITADORES Y CENTRIFUGAS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"BAÑOS"}>BAÑOS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-GENERAL"}>EQUIPO GENERAL</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-PCR"}>EQUIPO PARA PCR</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"ESTERILIZACION"}>ESTERILIZACION</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"ESTUFAS,INCUBADORAS Y MUFLAS"}>ESTUFAS,INCUBADORAS Y MUFLAS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"MEDIDORES-SONDAS-PHMTS"}>MEDIDORES,SONDAS Y PHmetros</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"OPTICA"}>OPTICA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"QUIMICA-ANALITICA"}>QUÍMICA ANALÍTICA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"SALIDA-CAMPO-ANALISIS-AGUA"}>SALIDA DE CAMPO Y ANÁLISIS DE AGUA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"SISTEMAS-MEDICION"}>SISTEMAS DE MEDICION</MenuItem>
+                                            <MenuItem sx={{ fontSize: 12 }} value={"MATERIALES"}>MATERIALES</MenuItem>
+                                            <MenuItem sx={{ fontSize: 12 }} value={"MATERIAL VIDRIO"}>MATERIAL VIDRIO</MenuItem>
+             
                                         </Select>
                                     </FormControl>
 
@@ -267,4 +259,4 @@ function AltaEquipo(
 
 }
 
-export default AltaEquipo;
+export default AltaMaterial;

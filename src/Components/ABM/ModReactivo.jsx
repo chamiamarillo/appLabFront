@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
-// import Dialog from '@mui/material/Dialog';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
 import SendIcon from '@mui/icons-material/Send';
-// import TableContainer from '@mui/material/TableContainer';
+import TableContainer from '@mui/material/TableContainer';
 
 import Typography from '@mui/material/Typography';
-// import Paper from '@mui/material/Paper';
-// import moment from 'moment'
+import Paper from '@mui/material/Paper';
+import moment from 'moment'
 import Grid from '@mui/material/Grid';
 import laboratorio from '../Image/biologia.png';
-import { TextField, ThemeProvider } from '@mui/material';
+import { Autocomplete, TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
 
@@ -25,7 +25,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import updateEquipo from "../../Services/updateEquipo";
 
-function ModEquipo(
+function ModReactivo(
     { setVerEdicion = { setVerEdicion },
 elegido = { elegido } ,
 setElegido={setElegido}   }) {
@@ -257,4 +257,4 @@ setElegido={setElegido}   }) {
 
 }
 
-export default ModEquipo;
+export default ModReactivo;

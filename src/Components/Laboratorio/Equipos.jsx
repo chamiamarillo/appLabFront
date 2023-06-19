@@ -121,9 +121,11 @@ export default function Equipos() {
 
               />
             </Grid>
-          <Lista listaEquipos={listaEquipos} elegido={elegido} setElegido={setElegido}
-          
-          setVerEdicion={setVerEdicion} setResetPage={setResetPage} resetPage={resetPage}
+          <Lista listaEquipos={listaEquipos}
+           elegido={elegido}
+           setElegido={setElegido}
+           setVerEdicion={setVerEdicion} 
+           setResetPage={setResetPage} resetPage={resetPage}
 
            
           ></Lista>
