@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 // import Paper from '@mui/material/Paper';
 // import moment from 'moment'
 import Grid from '@mui/material/Grid';
-import laboratorio from '../Image/biologia.png';
+// import pipeta from '../Image/pipeta.png';
+
 import { TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
@@ -23,33 +24,37 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import updateEquipo from "../../Services/updateEquipo";
 
-function ModEquipo(
+import updateMaterial from "../../Services/updateMaterial";
+
+function ModMaterial(
     { setVerEdicion = { setVerEdicion },
-elegido = { elegido } ,
-setElegido={setElegido}   }) {
+        elegido = { elegido },
+        setElegido = { setElegido } }) {
 
-    const [nuevaDescripcion,setNuevaDescripcion] =useState("")
-    const [nuevaClase,setNuevaClase] =useState("")
-    const [nuevoStock,setNuevoStock] =useState("")
+    const [nuevaDescripcion, setNuevaDescripcion] = useState("")
+    const [nuevaClase, setNuevaClase] = useState("")
+    const [nuevoStock, setNuevoStock] = useState("")
 
 
-    const modDescripcion = (event) => { if (event.target.value !== null) {    
+    const modDescripcion = (event) => {
+        if (event.target.value !== null) {
             setNuevaDescripcion(event.target.value);
-            console.log("descripcion",event.target.value);
+            console.log("descripcion", event.target.value);
         }
-      };
-      const modClase = (event) => { if (event.target.value !== null) {    
-        setNuevaClase(event.target.value);
-    }
-  };
-  const modStock = (event) => { if (event.target.value !== null) {    
-    setNuevoStock(event.target.value);
-}
-};  
-    const modifEquipo =  () => {
-        
+    };
+    const modClase = (event) => {
+        if (event.target.value !== null) {
+            setNuevaClase(event.target.value);
+        }
+    };
+    const modStock = (event) => {
+        if (event.target.value !== null) {
+            setNuevoStock(event.target.value);
+        }
+    };
+    const modifEquipo = () => {
+
         const dato = {
             "clase": nuevaClase,
             "descripcion": nuevaDescripcion.toUpperCase(),
@@ -57,7 +62,7 @@ setElegido={setElegido}   }) {
             "unidadMedida": "UNI"
         }
 
-        updateEquipo(elegido._id,dato)
+        updateMaterial(elegido._id, dato)
         setVerEdicion("none")
 
 
@@ -67,8 +72,8 @@ setElegido={setElegido}   }) {
         setNuevaDescripcion(elegido.descripcion);
         setNuevaClase(elegido.clase);
         setNuevoStock(elegido.stock);
-        
-      }, [elegido]);
+
+    }, [elegido]);
 
 
 
@@ -90,7 +95,7 @@ setElegido={setElegido}   }) {
 
                     <Grid item xs={4} container justifyContent="start">
                         <Typography sx={{ fontSize: 30 }}
-                        color="text.primary"
+                            color="text.primary"
                         // color="text.secondary"
                         >
                             Edición activada
@@ -139,19 +144,11 @@ setElegido={setElegido}   }) {
                                     value={nuevaClase}
                                     onChange={modClase}
                                 >
+                                    <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
+                                    <MenuItem sx={{ fontSize: 12 }} value={"MATERIALES"}>MATERIALES</MenuItem>
+                                    <MenuItem sx={{ fontSize: 12 }} value={"MATERIAL VIDRIO"}>MATERIAL VIDRIO</MenuItem>
 
-                                  
-                                    <MenuItem sx={{ fontSize: 12 }} value={"AGITADORES-CENTRIFUGAS"}>AGITADORES Y CENTRIFUGAS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"BAÑOS"}>BAÑOS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO GENERAL"}>EQUIPO GENERAL</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-PCR"}>EQUIPO PARA PCR</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"ESTERILIZACION"}>ESTERILIZACION</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"ESTUFAS,INCUBADORAS Y MUFLAS"}>ESTUFAS,INCUBADORAS Y MUFLAS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"MEDIDORES-SONDAS-PHMTS"}>MEDIDORES,SONDAS Y PHmetros</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"OPTICA"}>OPTICA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"QUIMICA-ANALITICA"}>QUÍMICA ANALÍTICA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"SALIDA-CAMPO-ANALISIS-AGUA"}>SALIDA DE CAMPO Y ANÁLISIS DE AGUA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"SISTEMAS-MEDICION"}>SISTEMAS DE MEDICION</MenuItem>
+
                                 </Select>
                             </FormControl>
 
@@ -215,7 +212,7 @@ setElegido={setElegido}   }) {
 
                     <Grid item xs={2} height={30}
                         bgcolor={"primary.main"} borderRadius={2}
-                        sx={{ mt: 3, mb: 2,marginLeft:2}}
+                        sx={{ mt: 3, mb: 2, marginLeft: 2 }}
                     >
 
                         <Button
@@ -257,4 +254,4 @@ setElegido={setElegido}   }) {
 
 }
 
-export default ModEquipo;
+export default ModMaterial;

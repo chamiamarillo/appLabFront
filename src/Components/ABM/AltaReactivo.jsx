@@ -24,7 +24,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
-function AltaEquipo(
+function AltaReactivo(
     { open = { open },
         setOpen = { setOpen },
         scroll = { scroll },
@@ -41,7 +41,7 @@ function AltaEquipo(
         console.log(data.get('descripcion'));
         console.log(data.get('stock'));
 
-        if (data.get('clase') !== "" &&  data.get('descripcion') !== "" && data.get('stock') !== "") {
+        if (data.get('clase') != "" &&  data.get('descripcion') != "" && data.get('stock') != "") {
             setError("none")
        
         const dato = {
@@ -267,4 +267,4 @@ function AltaEquipo(
 
 }
 
-export default AltaEquipo;
+export default AltaReactivo;
