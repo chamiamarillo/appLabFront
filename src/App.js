@@ -18,7 +18,7 @@ import Docente from './Components/Docente/Pedidos';
 import Pedidos from "./Components/Laboratorio/Pedidos";
 
 import Alta_Equipo from './Components/ABM/AltaEquipo';
-import Principal from './Components/ABM/Principal';
+
 import Equipos from './Components/Laboratorio/Equipos';
 import Usuarios from './Components/Laboratorio/Usuarios';
 import Materiales from './Components/Laboratorio/Materiales'
@@ -49,7 +49,7 @@ function App() {
         <Route path="/Docente/NuevoPedido" element={<NuevoPedido />} />
         <Route path="/ABM/AltaEquipo" element={<Alta_Equipo/>}/>
 
-        <Route path="/ABM/Principal" element={<Principal/>}/>
+        
 
       </Routes>
 
