@@ -38,8 +38,7 @@ export default function Login() {
   const navigate=useNavigate();
 
   const re_direccion=(usuario,editor)=>{
-    if(editor){navigate("/ABM/Principal")}
-    else{
+    
     if(usuario=== false){
       navigate("/Docente/Pedidos");
     }
@@ -49,7 +48,7 @@ export default function Login() {
       navigate("/");
     }
 
-  }}
+  }
  
   const handleSubmit = (event) => {
     event.preventDefault();

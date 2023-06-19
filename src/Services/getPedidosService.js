@@ -17,34 +17,6 @@ export async function getCantidadPedidos() {
 
 
 
-// export function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio) {
-//     console.log("funcion", tipo_pedido);
-//     const params =
-//     {
-//         tipo_pedido: tipo_pedido,
-//         fecha_utilizacion: fecha_utilizacion,
-//         fecha_inicio: fecha_inicio,
-//         fecha_fin: fecha_fin,
-//         edificio: edificio
-//     }
-
-
-//     return fetch('http://localhost:3000/api/pedido/',
-//         {
-//             params: {
-//                 tipo_pedido: tipo_pedido,
-//                 fecha_utilizacion: fecha_utilizacion,
-//                 fecha_inicio: fecha_inicio,
-//                 fecha_fin: fecha_fin,
-//                 edificio: edificio
-//             }
-//         })
-
-//         .then(data => data.json())
-// }
-
-
-
 export async function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio)  {
     console.log(fecha_inicio);
     var params={}
@@ -53,16 +25,10 @@ export async function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inici
     if(fecha_inicio.length>0 && fecha_fin.length>0){
         params.fecha_fin=fecha_fin;params.fecha_inicio=fecha_inicio    }
     try {
-        console.log("funcion",tipo_pedido);
-        console.log("fecha",fecha_inicio,fecha_fin);
+       
         const response = await axios({
             method: 'get',params,
-            // params: {
-            //     tipo_pedido:tipo_pedido,
-            //        fecha_utilizacion: fecha_utilizacion,
-            //        fecha_inicio:fecha_inicio,
-            //        fecha_fin: fecha_fin,
-            //        edificio:edificio},
+            
             url: `http://localhost:3000/api/pedido/`,
             responseType: 'json'
         });

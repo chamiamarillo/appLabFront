@@ -21,9 +21,9 @@ import moment from 'moment'
 
 
 export default function Filtros(props) {
-   
 
-  
+
+
     const guardar_inicio = (event) => {
 
 
@@ -38,7 +38,7 @@ export default function Filtros(props) {
 
 
     React.useEffect(() => {
-      
+
 
         return () => {
 
@@ -61,12 +61,12 @@ export default function Filtros(props) {
 
                 fullWidth
                 sx={{
-                  
+
                     height: 400
                 }}
 
             >
-                
+
                 <DialogContent
                     dividers={props.scroll === 'paper'
                     }
