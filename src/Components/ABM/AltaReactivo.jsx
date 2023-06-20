@@ -13,11 +13,14 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import moment from 'moment'
 import Grid from '@mui/material/Grid';
+
+import quimica from '../Image/quimica.png'
 import laboratorio from '../Image/biologia.png';
 import { Autocomplete, TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
-import postEquipo from "../../Services/postEquipo";
+import postReactivo from "../../Services/postReactivo";
+ 
 import { useEffect } from "react";
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -34,24 +37,23 @@ function AltaReactivo(
     }
 ) {
     const [error,setError]=useState("none")
-    const cargaEquipo = async (event) => {
+    const cargaReactivo = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log(data.get('clase'));
+        console.log(data.get('cas'));
         console.log(data.get('descripcion'));
         console.log(data.get('stock'));
 
-        if (data.get('clase') != "" &&  data.get('descripcion') != "" && data.get('stock') != "") {
+        if (data.get('cas') != "" &&  data.get('descripcion') != "" && data.get('stock') != "") {
             setError("none")
        
         const dato = {
-            "clase": data.get('clase'),
+            "cas": data.get('cas'),
             "descripcion": (data.get('descripcion').toUpperCase()),
-            "stock": parseInt(data.get('stock')),
-            "unidadMedida": "UNI"
-        }
+            "stock": parseInt(data.get('stock'))
+                }
        
-        postEquipo(dato)
+        postReactivo(dato)
         setError("none")
         setOpen(false);
     }
@@ -90,7 +92,7 @@ function AltaReactivo(
                 >
 
 
-                    <Grid container direction='row' component="form" onSubmit={cargaEquipo}
+                    <Grid container direction='row' component="form" onSubmit={cargaReactivo}
                         sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                         <Grid container
@@ -100,7 +102,7 @@ function AltaReactivo(
                             spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
                             <Grid item xs={1} container justifyContent="center"  >
-                                <img width={30} alt="" heigth={30} src={laboratorio} />
+                                <img width={30} alt="" heigth={30} src={quimica} />
                             </Grid>
                             <Grid item xs={4} container justifyContent="start">
                                 <Typography sx={{ fontSize: 30 }} color="text.secondary">
@@ -140,33 +142,19 @@ function AltaReactivo(
                                 alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
                                 <Grid item xs={8} container justifyContent="center" marginTop={1} marginLeft={1}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="clase"> Clase </InputLabel>
-                                        <Select
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            labelId="clase"
-                                            id="clase"
-                                            label="clase"
-                                            name="clase"
-                                            defaultValue={" "}
-                                        >
+                               
+                                <TextField
+                                    sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                                    fullWidth
+                                    id="cas"
+                                    label="CAS"
+                                    name="cas"
+                                    InputLabelProps={{ shrink: true }}
+                                    // autoComplete="descripcion"
+                                    autoFocus
+                                />
 
-                                            <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"AGITADORES-CENTRIFUGAS"}>AGITADORES Y CENTRIFUGAS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"BAÑOS"}>BAÑOS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-GENERAL"}>EQUIPO GENERAL</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-PCR"}>EQUIPO PARA PCR</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"ESTERILIZACION"}>ESTERILIZACION</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"ESTUFAS,INCUBADORAS Y MUFLAS"}>ESTUFAS,INCUBADORAS Y MUFLAS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"MEDIDORES-SONDAS-PHMTS"}>MEDIDORES,SONDAS Y PHmetros</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"OPTICA"}>OPTICA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"QUIMICA-ANALITICA"}>QUÍMICA ANALÍTICA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"SALIDA-CAMPO-ANALISIS-AGUA"}>SALIDA DE CAMPO Y ANÁLISIS DE AGUA</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"SISTEMAS-MEDICION"}>SISTEMAS DE MEDICION</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                          
 
                                 </Grid>
 
