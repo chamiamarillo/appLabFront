@@ -7,18 +7,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import SendIcon from '@mui/icons-material/Send';
-import TableContainer from '@mui/material/TableContainer';
+// import TableContainer from '@mui/material/TableContainer';
 
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import moment from 'moment'
+// import Paper from '@mui/material/Paper';
+// import moment from 'moment'
 import Grid from '@mui/material/Grid';
 import laboratorio from '../Image/biologia.png';
 import { Autocomplete, TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
 import postEquipo from "../../Services/postEquipo";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';

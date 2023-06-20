@@ -67,10 +67,10 @@ export default function NuevoPedido() {
   const [errorReactivo, setErrorReactivo] = useState("none");
   const [reactivoOk, setReactivoOk] = useState("block");
 
-  const [_med_reactivo, setUn_med_reactivo] = useState(" ");
-  const [cal_reactivo, setCalReactivo] = useState(" ");
-  const [_tip_reactivo, setTipReactivo] = useState(" ");//tipo_concentracion
-  const [_disol_reactivo, setDisolReactivo] = useState(" ");
+  const [_med_reactivo, setUn_med_reactivo] = useState("");
+  const [cal_reactivo, setCalReactivo] = useState("");
+  const [_tip_reactivo, setTipReactivo] = useState("");//tipo_concentracion
+  const [_disol_reactivo, setDisolReactivo] = useState("");
   const [ver_disolvente,set_ver_disolvente] = useState("none");
   const [ver_otro_disolvente,set_otro_disolvente] = useState("none");
   const [visible_off,set_visible_off] = useState("block");

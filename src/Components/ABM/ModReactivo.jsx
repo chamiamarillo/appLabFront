@@ -23,41 +23,45 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import updateEquipo from "../../Services/updateEquipo";
+
+import updateReactivo from "../../Services/updateReactivos";
 
 function ModReactivo(
     { setVerEdicion = { setVerEdicion },
-elegido = { elegido } ,
-setElegido={setElegido}   }) {
+        elegido = { elegido },
+        setElegido = { setElegido } }) {
 
-    const [nuevaDescripcion,setNuevaDescripcion] =useState("")
-    const [nuevaClase,setNuevaClase] =useState("")
-    const [nuevoStock,setNuevoStock] =useState("")
+    const [nuevaDescripcion, setNuevaDescripcion] = useState("")
+    const [nuevoCAS, setNuevoCAS] = useState("")
+    const [nuevoStock, setNuevoStock] = useState("")
 
 
-    const modDescripcion = (event) => { if (event.target.value !== null) {    
+    const modDescripcion = (event) => {
+        if (event.target.value !== null) {
             setNuevaDescripcion(event.target.value);
-            console.log("descripcion",event.target.value);
+            console.log("descripcion", event.target.value);
         }
-      };
-      const modClase = (event) => { if (event.target.value !== null) {    
-        setNuevaClase(event.target.value);
-    }
-  };
-  const modStock = (event) => { if (event.target.value !== null) {    
-    setNuevoStock(event.target.value);
-}
-};  
-    const modifEquipo =  () => {
-        
+    };
+    const modCAS = (event) => {
+        if (event.target.value !== null) {
+            setNuevoCAS(event.target.value);
+        }
+    };
+    const modStock = (event) => {
+        if (event.target.value !== null) {
+            setNuevoStock(event.target.value);
+        }
+    };
+    const modifReactivo = () => {
+
         const dato = {
-            "clase": nuevaClase,
+            "cas": nuevoCAS.toUpperCase(),
             "descripcion": nuevaDescripcion.toUpperCase(),
             "stock": parseInt(nuevoStock),
-            "unidadMedida": "UNI"
+
         }
 
-        updateEquipo(elegido._id,dato)
+        updateReactivo(elegido._id, dato)
         setVerEdicion("none")
 
 
@@ -65,10 +69,10 @@ setElegido={setElegido}   }) {
     };
     useEffect(() => {
         setNuevaDescripcion(elegido.descripcion);
-        setNuevaClase(elegido.clase);
+        setNuevoCAS(elegido.cas);
         setNuevoStock(elegido.stock);
-        
-      }, [elegido]);
+
+    }, [elegido]);
 
 
 
@@ -90,7 +94,7 @@ setElegido={setElegido}   }) {
 
                     <Grid item xs={4} container justifyContent="start">
                         <Typography sx={{ fontSize: 30 }}
-                        color="text.primary"
+                            color="text.primary"
                         // color="text.secondary"
                         >
                             Edición activada
@@ -126,34 +130,21 @@ setElegido={setElegido}   }) {
                         alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
                         <Grid item xs={8} container justifyContent="center" marginTop={1} marginLeft={1}>
-                            <FormControl fullWidth>
-                                <InputLabel id="clase"> Clase </InputLabel>
-                                <Select
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    labelId="clase"
-                                    id="clase"
-                                    label="clase"
-                                    name="clase"
-                                    value={nuevaClase}
-                                    onChange={modClase}
-                                >
 
-                                  
-                                    <MenuItem sx={{ fontSize: 12 }} value={"AGITADORES-CENTRIFUGAS"}>AGITADORES Y CENTRIFUGAS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"BAÑOS"}>BAÑOS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO GENERAL"}>EQUIPO GENERAL</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-PCR"}>EQUIPO PARA PCR</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"ESTERILIZACION"}>ESTERILIZACION</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"ESTUFAS,INCUBADORAS Y MUFLAS"}>ESTUFAS,INCUBADORAS Y MUFLAS</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"MEDIDORES-SONDAS-PHMTS"}>MEDIDORES,SONDAS Y PHmetros</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"OPTICA"}>OPTICA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"QUIMICA-ANALITICA"}>QUÍMICA ANALÍTICA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"SALIDA-CAMPO-ANALISIS-AGUA"}>SALIDA DE CAMPO Y ANÁLISIS DE AGUA</MenuItem>
-                                    <MenuItem sx={{ fontSize: 12 }} value={"SISTEMAS-MEDICION"}>SISTEMAS DE MEDICION</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <TextField
+                                sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                                fullWidth
+                                id="cas"
+                                label="CAS"
+                                name="cas"
+                                value={nuevoCAS}
+                                InputLabelProps={{ shrink: true }}
+                                // autoComplete="descripcion"
+                                autoFocus
+                                onChange={modCAS}
+                            />
+
+
 
                         </Grid>
 
@@ -215,7 +206,7 @@ setElegido={setElegido}   }) {
 
                     <Grid item xs={2} height={30}
                         bgcolor={"primary.main"} borderRadius={2}
-                        sx={{ mt: 3, mb: 2,marginLeft:2}}
+                        sx={{ mt: 3, mb: 2, marginLeft: 2 }}
                     >
 
                         <Button
@@ -226,7 +217,7 @@ setElegido={setElegido}   }) {
                             endIcon={<SendIcon />}
                             color="primary"
                             borderRadius={4}
-                            onClick={modifEquipo}
+                            onClick={modifReactivo}
 
                         >
                             Modificar</Button>

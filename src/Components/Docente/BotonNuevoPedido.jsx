@@ -11,13 +11,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 
-// const ColorButton = styled(Button)(({ theme=Theme1 }) => ({
-//   color: theme.palette.getContrastText("primary"),
-//   backgroundColor: primary.fondo,
-//   '&:hover': {
-//     backgroundColor: primary.letra,
-//   },
-// }));
+
 
 const BotonNPedido = ({ setNuevoPedido }) => {
   const navigate = useNavigate();
@@ -31,12 +25,16 @@ const BotonNPedido = ({ setNuevoPedido }) => {
          bgcolor={"primary.main"} borderRadius={2}
 
         >
-          {/* <Typography
+          <Typography
             //component="button" 
-            borderRadius={8}
-            borderColor={"gris"}
-            align='rigth' width={200}
-             height={50} color={"gris.main"} bgcolor={"secondary.main"}   > */}
+            // borderRadius={8}
+            // borderColor={"gris"}
+            // align='rigth' width={200}
+            //  height={50}
+              // color={"gris.main"}
+              color={"blanco.main"}
+              // bgcolor={"secondary.main"} 
+                >
             <Button
               fullWidth
              style={{   height: 50 ,borderRadius:8}}
@@ -51,7 +49,7 @@ const BotonNPedido = ({ setNuevoPedido }) => {
               }}>
 
               PEDIDO NUEVO</Button>
-          {/* </Typography> */}
+          </Typography>
 
 
         </Grid>

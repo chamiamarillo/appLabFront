@@ -3,36 +3,37 @@ import teal from '@mui/material/colors/teal'
 import green from '@mui/material/colors/green'
 
 
-import { createTheme} from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-const Theme1=createTheme({
-    palette:{
-        primary:{
-       //   main:"#6d8e46"
-           main:teal[400]
-         //  main:"#9ccc65"
-         
+const Theme1 = createTheme({
+    palette: {
+        primary: {
+            //   main:"#6d8e46"
+            main: teal[400]
+            //  main:"#9ccc65"
+
         },
-        secondary:{
+        secondary: {
+
+            main: "#b4e0bc"
+        },
+        verdeC: {
+            main: "#b4e0bc"
+
+        },
         
-            main:"#b4e0bc"
+        rojo: {
+            main: "#ba000d"
         },
-        verdeC:{
-            main:"#b4e0bc"
+        gris: {
+            main: "#685E5E"
+        },
+        blanco: {
+            main: "#FFFFFF"
+        }
 
-        },
-        blanco:{
-            main:"white"
-        },
-        rojo:{
-            main:"#ba000d"
-        },
-        gris:{
-            main:"#685E5E"
-            }
-           
-       
+
     }
 })
- 
+
 export default Theme1;

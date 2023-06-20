@@ -110,9 +110,9 @@ const PedidoReactivo = (props) => {
               value={props.cal_reactivo}
               label="calidad reactivo"
               onChange={props.calReactivo}
-              defaultValue={" "}
+              defaultValue={""}
             >
-              <MenuItem sx={{ fontSize: 10 }} value={" "}> </MenuItem>
+              <MenuItem sx={{ fontSize: 10 }} value={""}> </MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"p.a."}>P/ANALISIS</MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"molec"}>CALIDAD MOLECULAR</MenuItem>
               <MenuItem sx={{ fontSize: 10 }} value={"°_tec"}>°TECNICO</MenuItem>
@@ -209,10 +209,10 @@ const PedidoReactivo = (props) => {
               value={props._tip_reactivo}
               label="tipo_reactivo"
               onChange={props.tipReactivo}
-              defaultValue={" "}
+              defaultValue={""}
             >
 
-              <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
+              <MenuItem sx={{ fontSize: 14 }} value={""}> </MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"puro"}>PURO</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"Molar"}>MOLARIDAD</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"Normal"}>NORMALIDAD</MenuItem>
@@ -257,10 +257,10 @@ const PedidoReactivo = (props) => {
               value={props._disol_reactivo}
               label="disolvente reactivo"
               onChange={props.disolReactivo}
-              defaultValue={" "}
+              defaultValue={""}
 
             >
-              <MenuItem sx={{ fontSize: 14 }} value={" "}> </MenuItem>
+              <MenuItem sx={{ fontSize: 14 }} value={""}> </MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"agua"}>AGUA</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"alcohol"}>ALCOHOL</MenuItem>
               <MenuItem sx={{ fontSize: 14 }} value={"otro"}>OTROS</MenuItem>

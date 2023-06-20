@@ -15,11 +15,13 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination'
 import { ThemeProvider } from '@mui/material/styles';
 import Theme1 from '../Theme/Theme1';
-import {getListaReactivosFiltrada } from "../../Services/getService";
+import { getListaReactivosFiltrada } from "../../Services/getService";
 import quimica from '../Image/quimica.png'
 import Buscador from './Buscador';
 
 import Button from '@mui/material/Button';
+import AltaReactivo from '../ABM/AltaReactivo';
+import ModReactivo from '../ABM/ModReactivo';
 
 
 export default function Reactivos() {
@@ -28,17 +30,36 @@ export default function Reactivos() {
   const [busqueda, setBusqueda] = useState('');
   const [resetPage, setResetPage] = useState(false);
 
+  const [verEdicion, setVerEdicion] = useState("none")
+  const [open, setOpen] = React.useState("");
+
+  const [scroll, setScroll] = React.useState('paper');
+  const [elegido, setElegido] = useState({});
+
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+
+  };
+
+
+
   useEffect(() => {
     getListaReactivosFiltrada(busqueda)
       .then((reactivos) => setListaReactivos(reactivos))
       .catch((error) => console.error(error));
-  }, [busqueda]);
+  }, [busqueda, open, verEdicion]);
 
   const handleBuscar = (term) => {
     setBusqueda(term);
     setResetPage(true);
   };
- 
+
   return (
     <ThemeProvider theme={Theme1}>
 
@@ -46,47 +67,80 @@ export default function Reactivos() {
 
         <Header texto={'Laboratorio'} isUserAdmin={true}>
         </Header>
-        
+
       </Box>
-      <Container component="main" color="primary" sx = {{marginTop: 5}}>
-      <Grid container
-            sx={{
-                '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
-                borderLeft: 'var(--Grid-borderWidth) solid',
-                borderRight: 'var(--Grid-borderWidth) solid',
-                borderBottom: 'var(--Grid-borderWidth) solid',
-                borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 4, marginX: 10,
-            }}
-            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
+      <Container component="main" color="primary" sx={{ marginTop: 5 }}>
+        <Grid container
+          sx={{
+            '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+            borderLeft: 'var(--Grid-borderWidth) solid',
+            borderRight: 'var(--Grid-borderWidth) solid',
+            borderBottom: 'var(--Grid-borderWidth) solid',
+            borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 4, marginX: 10,
+          }}
+          spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
           <Grid container direction="row"
-                justifyContent="start"
-                alignItems="center">
-                <Grid item xs={1} container justifyContent="center"  >
-                  <img width={30} alt="" heigth={30} src={quimica} />
-                </Grid>
-                <Grid item xs={3} container justifyContent="start">
-                    <Typography sx={{ fontSize: 30 }} color="text.secondary">
-                      Reactivos
-                    </Typography>
-                </Grid>
-                <Grid item xs={3} container justifyContent="center">
-                  <Buscador onBuscar={handleBuscar}></Buscador>
-                </Grid>
-                <Grid item xs={4} container justifyContent="flex-end">
-                  <Nuevo/>
-                </Grid>
+            justifyContent="start"
+            alignItems="center">
+            <Grid item xs={1} container justifyContent="center"  >
+              <img width={30} alt="" heigth={30} src={quimica} />
             </Grid>
-          <Lista listaReactivos={listaReactivos} setResetPage={setResetPage} resetPage={resetPage}></Lista>
-      </Grid>
+            <Grid item xs={3} container justifyContent="start">
+              <Typography sx={{ fontSize: 30 }} color="text.secondary">
+                Reactivos
+              </Typography>
+            </Grid>
+            <Grid item xs={3} container justifyContent="center">
+              <Buscador onBuscar={handleBuscar}></Buscador>
+            </Grid>
+            <Grid item xs={4} container justifyContent="flex-end">
+              <Nuevo
+                open={open}
+                setOpen={setOpen}
+                handleClose={handleClose}
+                scroll={scroll}
+                handleClickOpen={handleClickOpen}
+
+              />
+            </Grid>
+          </Grid>
+          <Grid container direction="row"
+            justifyContent="start"
+            alignItems="center"
+            display={verEdicion}>
+            <ModReactivo
+              setVerEdicion={setVerEdicion}
+              elegido={elegido}
+              setElegido={setElegido}
+
+            />
+          </Grid>
+          <Lista listaReactivos={listaReactivos}
+            setResetPage={setResetPage} resetPage={resetPage}
+            elegido={elegido}
+            setElegido={setElegido}
+            setVerEdicion={setVerEdicion}
+
+          ></Lista>
+        </Grid>
       </Container>
     </ThemeProvider>
   )
 }
 
-const Nuevo = () => {
-  const handleNuevo = (event) => {
-    console.log("Nuevo Reactivo"); // quitar
-  };
+const Nuevo = (
+  { open = { open },
+    setOpen = { setOpen },
+    scroll = { scroll },
+    handleClose = { handleClose },
+    handleClickOpen = { handleClickOpen }
+  }
+
+
+) => {
+  // const handleNuevo = (event) => {
+  //   console.log("Nuevo Reactivo"); // quitar
+  // };
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <Button
@@ -95,11 +149,20 @@ const Nuevo = () => {
         margin="normal"
         variant="contained"
         color="primary"
-		size="large"
-        onClick={handleNuevo}
+        size="large"
+        onClick={handleClickOpen('body')}
       >
         NUEVO REACTIVO
       </Button>
+      <AltaReactivo
+
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        scroll={scroll}
+        handleClickOpen={handleClickOpen}
+
+      />
     </div>
   )
 }
@@ -118,9 +181,12 @@ const Lista = (props) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  
+
   const handleEditar = (event) => {
+    props.setElegido(event)
+    console.log(props.elegido)
     console.log(event); // quitar
+    props.setVerEdicion("block")
   }
   React.useEffect(() => {
     if (props.listaReactivos.length > 0 && props.resetPage) {
@@ -140,7 +206,7 @@ const Lista = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {displayedItems.map((row,index) => (
+            {displayedItems.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -153,21 +219,21 @@ const Lista = (props) => {
                   </IconButton>
                 </TableCell>
               </TableRow>
-          ))}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={props.listaReactivos.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          labelRowsPerPage={"Elementos por página"}
-          labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
-        />
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={props.listaReactivos.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage={"Elementos por página"}
+        labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
+      />
     </Container>
   )
 }
