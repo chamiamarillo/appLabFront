@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, {useEffect,useState } from 'react'
 import { Button, Grid, TextField } from '@material-ui/core';
 
 
@@ -91,7 +91,16 @@ function AsignarLaboratorio(pedido,
 
     updatePedido(pedido.pedido._id, pedidoModificado)
 
-
+  //  useEffect(() => {
+  //     // setLaboAsignado(numero_laboratorio)
+  //     // setEdificioElegido(numero_laboratorio);
+  //     // setEstadoPed(event.target.value);
+    
+  //     return () => {
+     
+  //     }
+  //   }, [estado_ped])
+    
 
 
 
@@ -101,33 +110,40 @@ function AsignarLaboratorio(pedido,
 
   return (
     <Grid container direction='row'
-      sx={{ marginTop: 4 }}>
+      // sx={{ marginTop: 4 }}
+      >
 
-      <Grid container component="form" noValidate direction="row"
+      <Grid container 
+      // component="form" noValidate 
+      direction="row"
         justifyContent="space-around"
         alignItems="center"
+        // sx={{mb:4}}
 
-        sx={{
-          '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
-          borderLeft: 'var(--Grid-borderWidth) solid',
-          borderRight: 'var(--Grid-borderWidth) solid',
-          borderBottom: 'var(--Grid-borderWidth) solid',
-          borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 3
-        }}
+        // sx={{
+        //   '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+        //   borderLeft: 'var(--Grid-borderWidth) solid',
+        //   borderRight: 'var(--Grid-borderWidth) solid',
+        //   borderBottom: 'var(--Grid-borderWidth) solid',
+        //   borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 3
+        // }}
         spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
-        <Grid item xs={12} container justifyContent="start" >
+     
 
 
-          <Grid item xs={2} container justifyContent="start" >
+          <Grid item xs={2} container
+          //  justifyContent="start" 
+           >
 
             <TextField
-              sx={{ marginTop: 1 }}
+            fullWidth
+              // sx={{ marginTop: 1 }}
               onChange={laboEleg}
               id="laboratorio"
               variant="outlined"
               name="laboratorio"
-              label="laboratorio"
+              label="Laboratorio"
               type="number"
               InputLabelProps={{
                 shrink: true,
@@ -137,12 +153,16 @@ function AsignarLaboratorio(pedido,
                   max: 100, min: 0
                 }
               }}
+              value={laboAsignado}
 
             />
           </Grid>
-          <Grid item xs={5} container justifyContent="center" marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2}>
+          <Grid item xs={4} container
+          //  justifyContent="start" 
+          
+          >
             <FormControl fullWidth>
-              <InputLabel id="edificio">edificio</InputLabel>
+              <InputLabel id="edificio">Edificio</InputLabel>
               <Select
                 InputLabelProps={{
                   shrink: true,
@@ -150,12 +170,12 @@ function AsignarLaboratorio(pedido,
                 labelId="edificio"
                 id="edificio"
                 value={edificioElegido}
-                label="edificio"
+                label="Edificio"
                 onChange={edificio_elegido}
-                
+                variant="outlined"
                 // name='edificio'
               >
-                 <MenuItem sx={{width:100, fontSize: 10 }} value={" "}> </MenuItem>
+                 <MenuItem sx={{width:100, fontSize: 10 }} value={"Sin Asignar" }>Sin Asignar</MenuItem>
                 <MenuItem sx={{width:100, fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
                 <MenuItem sx={{width:100, fontSize: 10 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
                 <MenuItem sx={{ width:100,fontSize: 10 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
@@ -163,9 +183,11 @@ function AsignarLaboratorio(pedido,
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={5} container justifyContent="flex-start"  marginTop={2} spacing={{ xs: 2, md: 2 }} marginBottom={2} alignItems="flex-start">
+          <Grid item xs={4} container 
+        
+          >
             <FormControl fullWidth>
-              <InputLabel id="tipo_pedido">estado_pedido</InputLabel>
+              <InputLabel id="tipo_pedido">Estado Pedido</InputLabel>
               <Select
                 InputLabelProps={{
                   shrink: true,
@@ -173,11 +195,12 @@ function AsignarLaboratorio(pedido,
                 labelId="tipo_pedido"
                 id="tipo_pedido"
                 value={tipo_pedido}
-                label="tipo_pedido"
+                label="Estado Pedido"
                 onChange={estado_pedido}
+                variant="outlined"
                
               >
-                 <MenuItem sx={{ width:100, fontSize: 10 }} value={" "}> </MenuItem>
+                 {/* <MenuItem sx={{ width:100, fontSize: 10 }} value={""}> </MenuItem> */}
                 <MenuItem sx={{ width:100,fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
                 <MenuItem sx={{ width:100,fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
                 <MenuItem sx={{width:100, fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
@@ -186,21 +209,25 @@ function AsignarLaboratorio(pedido,
             </FormControl>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item xs={12} container justifyContent="flex-end" >
+      {/* </Grid> */}
+      <Grid container direction='row' spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} 
+       sx={{}}   justifyContent="flex-end" >
 
-        <Grid item xs={3} container justifyContent="center" marginLeft={1}>
+        <Grid item xs={6} 
+        //  justifyContent="center"
+          // sx={{marginTop:4}}
+          >
           <Button
 
             fullWidth
             margin="normal"
-            variant="contained"
+            variant="outlined"
             bgcolor={"secondary"} color={"primary"}
 
             onClick={modificarEncabezado}
             type="button"
           >
-            Modificar Laboratorio-Edificio-Estado
+            Aceptar Modificaciones Laboratorio-Edificio-Estado
 
           </Button>
 

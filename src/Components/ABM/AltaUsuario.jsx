@@ -92,8 +92,8 @@ function AltaUsuario(
                 "matricula": parseInt(data.get('matricula')),
                 // "admin": (data.get('admin')),
                 "editor": (data.get('editor')),
-                "email": email,
-                "dni":parseInt(data.get('dni'))
+                "email": email
+                // "dni":parseInt(data.get('dni'))
 
             }
             if (perfil === "DOCENTE") { dato.admin = false } else { dato.admin = true }
@@ -170,8 +170,6 @@ function AltaUsuario(
                                 </Typography>
                             </Grid>
                         </Grid>
-
-
                         <Grid container
                             noValidate direction="row"
                             justifyContent="start"
@@ -391,6 +389,11 @@ function AltaUsuario(
 
                             </Grid>
                         </Grid>
+
+
+
+  
+  
 
                         <Grid container direction="row"
                             justifyContent="space-around"
