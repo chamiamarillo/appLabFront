@@ -443,25 +443,28 @@ export default function NuevoPedido() {
 
               <Button fullWidth
                 color="error"
-                style={{ borderRadius: 8 }}
+                // style={{ borderRadius: 8 }}
                 margin="normal"
                 variant="contained"
                 startIcon={<ReplyAllIcon />}
                 onClick={() => {
                   navigate('/Docente/Pedidos')
                 }}
-                sx={{ mt: 3, mb: 2, height: 50 }}>  CANCELAR</Button>
+                sx={{ borderRadius: 2, height: 50 , border: 1, boxShadow:3, mb: 2 }}>  CANCELAR</Button>
 
             </Grid>
-            <Grid item xs={2} >
+            <Grid item xs={2} 
+            >
 
               <Button fullWidth
-                style={{ borderRadius: 8 }}
+                // style={{ borderRadius: 8 }}
                 margin="normal"
                 variant="contained"
                 endIcon={<SendIcon />}
                 onClick={handleSubmit}
-                sx={{ mt: 3, mb: 2, height: 50 }}> CONFIRMAR PEDIDO</Button>
+                // sx={{ mt: 3, mb: 2, height: 50 }}
+                sx={{borderRadius: 2, height: 50 , border: 1, boxShadow:3, mb: 2}}
+                > CONFIRMAR PEDIDO</Button>
 
             </Grid>
           </Grid>

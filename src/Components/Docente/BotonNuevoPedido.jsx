@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
@@ -13,6 +13,7 @@ import { purple } from '@mui/material/colors';
 
 
 
+
 const BotonNPedido = ({ setNuevoPedido }) => {
   const navigate = useNavigate();
   return (
@@ -21,37 +22,37 @@ const BotonNPedido = ({ setNuevoPedido }) => {
 
       <Grid container justifyContent="flex-end"
       >
-        <Grid item xs={2}  height={50} 
-         bgcolor={"primary.main"} borderRadius={2}
-
+        <Grid item xs={2}  
+         sx={{borderRadius: 2, height: 50 , border: 1, boxShadow:3,marginRight:4}}
+        // height={50} 
+          bgcolor={"primary.main"}
+          color={"blanco.main"}
+          //  borderRadius={2}
+         
         >
-          <Typography
-            //component="button" 
-            // borderRadius={8}
-            // borderColor={"gris"}
-            // align='rigth' width={200}
-            //  height={50}
-              // color={"gris.main"}
-              color={"blanco.main"}
-              // bgcolor={"secondary.main"} 
-                >
+          
+       
+          
             <Button
               fullWidth
-             style={{   height: 50 ,borderRadius:8}}
+             style={{   height: 50 ,
+              borderRadius:6
+          }}
               margin="normal"
               variant="contained"
               endIcon={<SendIcon />}
-              color="primary"
-              borderRadius={4}
+             
+              
+              // borderRadius={4}
               onClick={() => {
                 navigate('/Docente/NuevoPedido')
                 setNuevoPedido(true);
               }}>
 
               PEDIDO NUEVO</Button>
-          </Typography>
+       
 
-
+        
         </Grid>
       </Grid>
 
