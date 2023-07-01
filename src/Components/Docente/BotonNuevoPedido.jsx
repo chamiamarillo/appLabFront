@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Container } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Button } from '@mui/material';
+
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+
 import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import SendIcon from '@mui/icons-material/Send';
 
-import { styled } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
+
 
 
 

@@ -83,28 +83,13 @@ function Pedidos() {
 
 
 
-    //  }
-    // if (tipo_pedido.length>0 ||){
-    //   if (tipo_pedido=="TODOS")  {
-    //      getListaPedidos()
-    //           .then(items => { 
-
-    //       setListaPedidos(items)});
-    //    }
-    //   else{
-    //   cargarNuevosPedidos()
-
-    // }
-
-    //  }
-
   }, [tipo_pedido, fecha_fin, edificio])
 
   useEffect(() => {
     let mounted = true;
     const userActual = JSON.parse(localStorage.getItem('usuario'));
     setEsAdmin(userActual.admin)
-    console.log("voy a pedir los pedidos");
+    
     getListaPedidos()
       .then(items => {
         if (mounted) {
