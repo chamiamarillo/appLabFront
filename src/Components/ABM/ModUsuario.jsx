@@ -18,8 +18,8 @@ import updateUsuario from "../../Services/updateUsuario";
 
 const ModUsuario = (
     { setVerEdicion = { setVerEdicion },
-    elegido = { elegido } ,
-    setElegido={setElegido}   }
+        elegido = { elegido },
+        setElegido = { setElegido } }
 
 ) => {
     const [nuevoUsuario, setNuevoUsuario] = useState("")
@@ -67,7 +67,7 @@ const ModUsuario = (
     };
     const modPerfil = (event) => {
         if (event !== null) {
-            if (event==="LABORATORIO"){setVer("block")} else{setVer("none")}
+            if (event === "LABORATORIO") { setVer("block") } else { setVer("none") }
             setNuevoPerfil(event);
         }
     };
@@ -87,13 +87,13 @@ const ModUsuario = (
             // "admin": nuevoPerfil,
             "editor": nuevoEditor,
             "email": email,
-        
+
 
         }
         if (nuevoPerfil === "DOCENTE") { dato.admin = false } else { dato.admin = true }
         setVer("none")
         setVerEdicion("none")
-        updateUsuario(elegido._id,dato)
+        updateUsuario(elegido._id, dato)
     }
     useEffect(() => {
 
@@ -104,323 +104,329 @@ const ModUsuario = (
         setNuevaMatricula(elegido.matricula);
         setNuevoDNI(elegido.dni)
         setEmail(elegido.email);
-        setNuevoPerfil(elegido.perfil);
+
         setNuevoEditor(elegido.editor);
 
-        if (elegido.perfil===true){setVer("block")} else{setVer("none")}
+        if (elegido.perfil) {
+            setVer("block")
+            setNuevoPerfil("LABORATORIO")
+        } else {
+            setVer("none")
+            setNuevoPerfil("DOCENTE")
+        }
     }, [elegido]);
 
-  return (
-    <ThemeProvider theme={Theme1}>
+    return (
+        <ThemeProvider theme={Theme1}>
 
 
 
-    <Grid container direction='row'
-        sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
+            <Grid container direction='row'
+                sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="start"
-            spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-
-
-            <Grid item xs={4} container justifyContent="start">
-                <Typography sx={{ fontSize: 30 }}
-                    color="text.primary"
-                // color="text.secondary"
-                >
-                    Edición activada
-                </Typography>
-            </Grid>
-        </Grid>
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="start"
+                    spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
 
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="start" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-
-            <Grid item xs={6} alignItems="center" justifyContent="start">
-                <TextField
-
-                    helperText={"debe contener 6 caracteres"}
-                    sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
-                    fullWidth
-                    required
-                    id="usuario"
-                    label="Usuario"
-                    name="usuario"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    // autoComplete="descripcion"
-                    autoFocus
-                    value={nuevoUsuario}
-                    onChange={(e) => modificarUsuario(e.target.value)}
-                />
-
-            </Grid>
-            <Grid item xs={6} alignItems="center" justifyContent="start">
-                <TextField
-
-                    helperText={"debe contener 4 caracteres"}
-                    sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
-                    fullWidth
-                    required
-                    id="contrasenia"
-                    label="Contraseña"
-                    name="contrasenia"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    value={nuevaContrasenia}
-                    onChange={(e) => modContrasenia(e.target.value)}
-
-                    // autoComplete="descripcion"
-                    autoFocus
-                />
-
-            </Grid>
-        </Grid>
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-            <Grid item xs={6} alignItems="center" justifyContent="start">
-                <TextField
+                    <Grid item xs={4} container justifyContent="start">
+                        <Typography sx={{ fontSize: 30 }}
+                            color="text.primary"
+                        // color="text.secondary"
+                        >
+                            Edición activada
+                        </Typography>
+                    </Grid>
+                </Grid>
 
 
-                    sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
-                    fullWidth
-                    required
-                    id="nombre"
-                    label="Nombre"
-                    name="nombre"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    // autoComplete="descripcion"
-                    autoFocus
-                    value={nuevoNombre}
-                    onChange={(e) => modNombre(e.target.value)}
-                />
-            </Grid>
-            <Grid item xs={6} alignItems="center" justifyContent="start">
-                <TextField
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="start" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
-                    required
-                    sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
-                    fullWidth
-                    id="apellido"
-                    label="Apellido"
-                    name="apellido"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
+                    <Grid item xs={6} alignItems="center" justifyContent="start">
+                        <TextField
 
-                    autoFocus
-                    value={nuevoApellido}
-                    onChange={(e) => modApellido(e.target.value)}
-                />
+                            helperText={"debe contener 6 caracteres"}
+                            sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                            fullWidth
+                            required
+                            id="usuario"
+                            label="Usuario"
+                            name="usuario"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                            // autoComplete="descripcion"
+                            autoFocus
+                            value={nuevoUsuario}
+                            onChange={(e) => modificarUsuario(e.target.value)}
+                        />
+
+                    </Grid>
+                    <Grid item xs={6} alignItems="center" justifyContent="start">
+                        <TextField
+
+                            helperText={"debe contener 4 caracteres"}
+                            sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                            fullWidth
+                            required
+                            id="contrasenia"
+                            label="Contraseña"
+                            name="contrasenia"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                            value={nuevaContrasenia}
+                            onChange={(e) => modContrasenia(e.target.value)}
+
+                            // autoComplete="descripcion"
+                            autoFocus
+                        />
+
+                    </Grid>
+                </Grid>
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+                    <Grid item xs={6} alignItems="center" justifyContent="start">
+                        <TextField
 
 
-            </Grid>
-        </Grid>
+                            sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                            fullWidth
+                            required
+                            id="nombre"
+                            label="Nombre"
+                            name="nombre"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                            // autoComplete="descripcion"
+                            autoFocus
+                            value={nuevoNombre}
+                            onChange={(e) => modNombre(e.target.value)}
+                        />
+                    </Grid>
+                    <Grid item xs={6} alignItems="center" justifyContent="start">
+                        <TextField
+
+                            required
+                            sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
+                            fullWidth
+                            id="apellido"
+                            label="Apellido"
+                            name="apellido"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+
+                            autoFocus
+                            value={nuevoApellido}
+                            onChange={(e) => modApellido(e.target.value)}
+                        />
 
 
-
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
-
-            <Grid item xs={4} container justifyContent="center" >
-                <TextField
-                    sx={{ marginTop: 1 }}
-                    fullWidth
-                    id="matricula"
-                    variant="outlined"
-                    name="matricula"
-                    label="Matricula"
-                    type="number"
-                    required
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    InputProps={{
-                        inputProps: {
-                            max: 43000000, min: 5000000
-                        }
-                    }}
-                    value={nuevaMatricula}
-                    onChange={(e) => modMatricula(e.target.value)}
-
-                />
-            </Grid>
-
-            <Grid item xs={4} container justifyContent="center" sx={{ marginLeft: 4 }} >
-                <TextField
-                    sx={{ marginTop: 1 }}
-                    fullWidth
-                    id="dni"
-                    variant="outlined"
-                    name="dni"
-                    label="DNI"
-                    type="number"
-                    required
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    InputProps={{
-                        inputProps: {
-                            max: 43000000, min: 5000000
-                        }
-                    }}
-                    value={nuevoDNI}
-                    onChange={(e) => modDNI(e.target.value)}
-                />
-
-            </Grid>
-        </Grid>
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+                    </Grid>
+                </Grid>
 
 
 
-            <Grid item xs={6} container justifyContent="center" >
-                <TextField
-                    sx={{ marginTop: 1 }}
-                    label="Email"
-                    variant="outlined"
-                    id="email"
-                    type="email"
-                    fullWidth
-                    required
-                    // error={error.error}
-                    // helperText={error.message}
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                />
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
-            </Grid>
-        </Grid>
+                    <Grid item xs={4} container justifyContent="center" >
+                        <TextField
+                            sx={{ marginTop: 1 }}
+                            fullWidth
+                            id="matricula"
+                            variant="outlined"
+                            name="matricula"
+                            label="Matricula"
+                            type="number"
+                            required
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            InputProps={{
+                                inputProps: {
+                                    max: 43000000, min: 5000000
+                                }
+                            }}
+                            value={nuevaMatricula}
+                            onChange={(e) => modMatricula(e.target.value)}
 
-        <Grid container
-            noValidate direction="row"
-            justifyContent="start"
-            alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+                        />
+                    </Grid>
 
-            <Grid item xs={6} container justifyContent="center" marginTop={1}
-            // marginLeft={1}
-            >
-                <FormControl fullWidth>
-                    <InputLabel id="perfil"> Perfil </InputLabel>
-                    <Select
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        labelId="perfil"
-                        id="perfil"
-                        label="perfil"
-                        name="perfil"
-                        value={nuevoPerfil}
-                        onChange={(e) => modPerfil(e.target.value)}
+                    <Grid item xs={4} container justifyContent="center" sx={{ marginLeft: 4 }} >
+                        <TextField
+                            sx={{ marginTop: 1 }}
+                            fullWidth
+                            id="dni"
+                            variant="outlined"
+                            name="dni"
+                            label="DNI"
+                            type="number"
+                            required
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            InputProps={{
+                                inputProps: {
+                                    max: 43000000, min: 5000000
+                                }
+                            }}
+                            value={nuevoDNI}
+                            onChange={(e) => modDNI(e.target.value)}
+                        />
+
+                    </Grid>
+                </Grid>
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+
+
+
+                    <Grid item xs={6} container justifyContent="center" >
+                        <TextField
+                            sx={{ marginTop: 1 }}
+                            label="Email"
+                            variant="outlined"
+                            id="email"
+                            type="email"
+                            fullWidth
+                            required
+                            // error={error.error}
+                            // helperText={error.message}
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                        />
+
+                    </Grid>
+                </Grid>
+
+                <Grid container
+                    noValidate direction="row"
+                    justifyContent="start"
+                    alignItems="center" spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
+
+                    <Grid item xs={6} container justifyContent="center" marginTop={1}
+                    // marginLeft={1}
+                    >
+                        <FormControl fullWidth>
+                            <InputLabel id="perfil"> Perfil </InputLabel>
+                            <Select
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                labelId="perfil"
+                                id="perfil"
+                                label="perfil"
+                                name="perfil"
+                                value={nuevoPerfil}
+                                onChange={(e) => modPerfil(e.target.value)}
+
+                            >
+
+
+                                <MenuItem sx={{ fontSize: 12 }} value={"DOCENTE"}>DOCENTE</MenuItem>
+                                <MenuItem sx={{ fontSize: 12 }} value={"LABORATORIO"}>LABORATORIO</MenuItem>
+
+                            </Select>
+                        </FormControl>
+
+                    </Grid>
+                    <Grid item xs={6} display={ver} container justifyContent="center" marginTop={1}
+                    // marginLeft={1}
+                    >
+                        <FormControl fullWidth>
+                            <InputLabel id="editor"> Permisos de Editor </InputLabel>
+                            <Select
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                labelId="editor"
+                                id="editor"
+                                label="editor"
+                                name="editor"
+                                value={nuevoEditor}
+                                onChange={(e) => modEditor(e.target.value)}
+
+                            >
+
+                                <MenuItem sx={{ fontSize: 12 }} value={false}>NO </MenuItem>
+                                <MenuItem sx={{ fontSize: 12 }} value={true}>SI</MenuItem>
+
+
+                            </Select>
+                        </FormControl>
+
+                    </Grid>
+                </Grid>
+
+                {/* hasta aca */}
+                <Grid container direction="row"
+                    justifyContent="end"
+                    columns={{ xs: 12 }}    >
+
+                    <Grid item xs={2}
+                        height={30}
+                        bgcolor={"error"}
+                        borderRadius={2}
+                        sx={{ mt: 3, mb: 2 }}
 
                     >
+                        <Button fullWidth
 
 
-                        <MenuItem sx={{ fontSize: 12 }} value={"DOCENTE"}>DOCENTE</MenuItem>
-                        <MenuItem sx={{ fontSize: 12 }} value={"LABORATORIO"}>LABORATORIO</MenuItem>
+                            margin="normal"
+                            variant="contained"
+                            color="error"
+                            startIcon={<ReplyAllIcon />}
+                            onClick={() => {
+                                setVerEdicion("none");
+                            }}
+                            style={{ borderRadius: 8 }}
+                            styled={{ textTransform: 'none' }}
+                            sx={{ height: 50 }}
+                        >  CANCELAR</Button>
 
-                    </Select>
-                </FormControl>
+                    </Grid>
 
-            </Grid>
-            <Grid item xs={6} display={ver} container justifyContent="center" marginTop={1}
-            // marginLeft={1}
-            >
-                <FormControl fullWidth>
-                    <InputLabel id="editor"> Permisos de Editor </InputLabel>
-                    <Select
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        labelId="editor"
-                        id="editor"
-                        label="editor"
-                        name="editor"
-                        value={nuevoEditor}
-                    onChange={(e) => modEditor(e.target.value)}
-
+                    <Grid item xs={2} height={30}
+                        bgcolor={"primary.main"} borderRadius={2}
+                        sx={{ mt: 3, mb: 2, marginLeft: 2 }}
                     >
 
-                        <MenuItem sx={{ fontSize: 12 }} value={false}>NO </MenuItem>
-                        <MenuItem sx={{ fontSize: 12 }} value={true}>SI</MenuItem>
+                        <Button
+                            fullWidth
+                            style={{ height: 50, borderRadius: 8 }}
+                            margin="normal"
+                            variant="contained"
+                            endIcon={<SendIcon />}
+                            color="primary"
+                            borderRadius={4}
+                            onClick={modifUsuario}
 
+                        >
+                            Modificar</Button>
 
-                    </Select>
-                </FormControl>
-
-            </Grid>
-        </Grid>
-
-        {/* hasta aca */}
-        <Grid container direction="row"
-            justifyContent="end"
-            columns={{ xs: 12 }}    >
-
-            <Grid item xs={2}
-                height={30}
-                bgcolor={"error"}
-                borderRadius={2}
-                sx={{ mt: 3, mb: 2 }}
-
-            >
-                <Button fullWidth
-
-
-                    margin="normal"
-                    variant="contained"
-                    color="error"
-                    startIcon={<ReplyAllIcon />}
-                    onClick={() => {
-                        setVerEdicion("none");
-                    }}
-                    style={{ borderRadius: 8 }}
-                    styled={{ textTransform: 'none' }}
-                    sx={{ height: 50 }}
-                >  CANCELAR</Button>
-
+                    </Grid>
+                    <Grid item xs={2}></Grid>
+                </Grid>
             </Grid>
 
-            <Grid item xs={2} height={30}
-                bgcolor={"primary.main"} borderRadius={2}
-                sx={{ mt: 3, mb: 2, marginLeft: 2 }}
-            >
-
-                <Button
-                    fullWidth
-                    style={{ height: 50, borderRadius: 8 }}
-                    margin="normal"
-                    variant="contained"
-                    endIcon={<SendIcon />}
-                    color="primary"
-                    borderRadius={4}
-                    onClick={modifUsuario}
-
-                >
-                    Modificar</Button>
-
-            </Grid>
-            <Grid item xs={2}></Grid>
-        </Grid>
-    </Grid>
-
-</ThemeProvider >
-  )
+        </ThemeProvider >
+    )
 }
 
 export default ModUsuario
