@@ -93,7 +93,7 @@ const ModUsuario = (
         if (nuevoPerfil === "DOCENTE") { dato.admin = false } else { dato.admin = true }
         setVer("none")
         setVerEdicion("none")
-        updateUsuario(dato)
+        updateUsuario(elegido._id,dato)
     }
     useEffect(() => {
 

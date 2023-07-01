@@ -89,24 +89,24 @@ function AsignarLaboratorio(pedido,
 
     };
 
-    updatePedido(pedido.pedido._id, pedidoModificado)
+    updatePedido(pedido.pedido._id, pedidoModificado)}
 
-  //  useEffect(() => {
-  //     // setLaboAsignado(numero_laboratorio)
-  //     // setEdificioElegido(numero_laboratorio);
-  //     // setEstadoPed(event.target.value);
+   useEffect(() => {
+      // setLaboAsignado(numero_laboratorio)
+      // setEdificioElegido(numero_laboratorio);
+      // setEstadoPed(tipo_pedido);
     
-  //     return () => {
+      return () => {
      
-  //     }
-  //   }, [estado_ped])
+      }
+    }, [estado_ped,laboAsignado])
     
 
 
 
 
 
-  }
+  
 
   return (
     <Grid container direction='row'
@@ -118,15 +118,8 @@ function AsignarLaboratorio(pedido,
       direction="row"
         justifyContent="space-around"
         alignItems="center"
-        // sx={{mb:4}}
-
-        // sx={{
-        //   '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
-        //   borderLeft: 'var(--Grid-borderWidth) solid',
-        //   borderRight: 'var(--Grid-borderWidth) solid',
-        //   borderBottom: 'var(--Grid-borderWidth) solid',
-        //   borderColor: 'divider', paddingX: 2, borderRadius: 4, paddingY: 1, marginBottom: 3
-        // }}
+        
+    
         spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} >
 
      
@@ -173,7 +166,7 @@ function AsignarLaboratorio(pedido,
                 label="Edificio"
                 onChange={edificio_elegido}
                 variant="outlined"
-                // name='edificio'
+            
               >
                  <MenuItem sx={{width:100, fontSize: 10 }} value={"Sin Asignar" }>Sin Asignar</MenuItem>
                 <MenuItem sx={{width:100, fontSize: 10 }} value={"Malvinas"}>MALVINAS</MenuItem>
@@ -200,7 +193,7 @@ function AsignarLaboratorio(pedido,
                 variant="outlined"
                
               >
-                 {/* <MenuItem sx={{ width:100, fontSize: 10 }} value={""}> </MenuItem> */}
+               
                 <MenuItem sx={{ width:100,fontSize: 10 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
                 <MenuItem sx={{ width:100,fontSize: 10 }} value={"ACEPTADO"}>ACEPTADO</MenuItem>
                 <MenuItem sx={{width:100, fontSize: 10 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
@@ -209,13 +202,12 @@ function AsignarLaboratorio(pedido,
             </FormControl>
           </Grid>
         </Grid>
-      {/* </Grid> */}
+   
       <Grid container direction='row' spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }} 
        sx={{}}   justifyContent="flex-end" >
 
         <Grid item xs={6} 
-        //  justifyContent="center"
-          // sx={{marginTop:4}}
+       
           >
           <Button
 

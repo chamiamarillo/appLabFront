@@ -8,7 +8,7 @@ import Input from '@mui/material/Input';
 
 
 import moment from 'moment'
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, IconButton } from '@mui/material';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
@@ -161,7 +161,7 @@ const PedidoCabecera = (props) => {
       columns={{ xs: 12 }} >
 
 
-      <Grid item xs={4} container justifyContent="start">
+      <Grid item xs={2} container justifyContent="start">
 
 
 
@@ -205,12 +205,12 @@ const PedidoCabecera = (props) => {
         />
 
       </Grid>
-      <Grid item xs={3} justifyContent="flex-end"></Grid>
+      <Grid item xs={5} justifyContent="flex-end"></Grid>
 
-      <Grid item xs={1} justifyContent="flex-end">
+      <Grid item xs={1} justifyContent="flex-end"  alignItems="end" >
 
 
-        
+      
         <Button fullWidth
           margin="normal"
         variant="text"
