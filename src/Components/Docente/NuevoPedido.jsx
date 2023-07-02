@@ -13,7 +13,7 @@ import Header from '../Header/Header'
 
 import Theme1 from '../Theme/Theme1';
 
-
+import moment from 'moment'
 
 
 import { useNavigate } from 'react-router-dom';
@@ -53,6 +53,7 @@ export default function NuevoPedido() {
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
   const [confirmacionCabecera,setConfirCabecera]=useState("none");
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
 
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
@@ -120,24 +121,29 @@ export default function NuevoPedido() {
   const navigate = useNavigate();
 
   const [texto, setEncabezado] = useState("CARGA DE PEDIDO");
-
+ 
   //CARGA ENCABEZADO AL PEDIDO
   const cargaEncabezado = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     
     const fecha = new Date();
-    const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`);
+  
+
+    const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`)
+ 
+    
+    
     const nro_pedido = cantidadPedidos + 1;
 
-    if ((data.get('fecha_utilizacion').length>0) && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
+    if ((fecha_utilizacion != "") && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
     setConfirCabecera("block")
    
     setEncabezadoPedido({
 
       "descripcion": (nro_pedido).toString(),
       "fecha_solicitud": fecha,
-      "fecha_utilizacion": fecha_utilizacion,
+      "fecha_utilizacion":fecha_utilizacion,
       "numero_laboratorio": parseInt(0, 10),
       "tipo_pedido": "PENDIENTE",
       "alumnos": data.get('cantidad_alumnos'),
@@ -147,6 +153,7 @@ export default function NuevoPedido() {
       "numero_tp": "2",
     },
     );
+    
   } else{
     // setFaltanDatos(true)
     setAnchorEl(event.currentTarget);
@@ -384,6 +391,7 @@ export default function NuevoPedido() {
               setConfirCabecera={setConfirCabecera} 
               setAnchorEl={setAnchorEl}
               anchorEl={anchorEl}
+             
             />
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
