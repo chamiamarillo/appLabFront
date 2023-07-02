@@ -44,7 +44,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-const lightTheme = createTheme({ palette: { mode: 'light' } });
+const lightTheme = createTheme({ palette: { mode: 'light' } 
+});
 
 
 const PedidoCabecera = (props) => {
@@ -56,7 +57,7 @@ const PedidoCabecera = (props) => {
   const formatManiana = (moment(maniana).format('YYYY-MM-DD')).toString();
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
   const [confCabe, setConf] = useState(["block"]);
-
+  const [fechaUtilCorrecta,setFechaUtilizacionCorrecta]=useState("")
   // ************************
   // const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -83,17 +84,23 @@ const PedidoCabecera = (props) => {
   
     props.setAnchorEl(event.currentTarget)
   
-  } }
-
-
+  } else {setFechaUtilizacionCorrecta(moment(event.target.value).format('YYYY-MM-DD'))}}
+ 
+  useEffect(() => {
+    // setLaboAsignado(numero_laboratorio)
+    // setEdificioElegido(numero_laboratorio);
+    // setEstadoPed(tipo_pedido);
+  
+    return () => {
+   
+    }
+  }, [fechaUtilCorrecta])
   useEffect(() => {
     if (props.confirmacionCabecera === "block") {
        setConf("none")
     
        } 
-    //    else {
-    //      setMensajeAlerta("Faltan Cargar Datos")
-    // };
+    
 
     return () => { }
   }, [props.confirmacionCabecera,props.anchorEl])
@@ -153,10 +160,12 @@ const PedidoCabecera = (props) => {
             autoFocus
           />
         </Grid>
-        <Grid item xs={2} >
+        <Grid item xs={2}  >
 
         <TextField
         fullWidth
+        // margin="dense"
+        
         margin='normal'
         id="fecha_utilizacion"
         label="fecha_utilizacion"
@@ -165,8 +174,10 @@ const PedidoCabecera = (props) => {
         defaultValue={formatManiana}
         name='fecha_utilizacion'
         required
-        // helperText={"fecha > a 48 hs"}
-        className={classes.textField}
+        value={fechaUtilCorrecta}
+        
+        sx={{border:3,borderColor:'transparent'  }} 
+        // className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
@@ -268,7 +279,7 @@ const PedidoCabecera = (props) => {
             margin='normal'
             id="cantidad_grupos"
             variant="outlined"
-            name="cant_grupos"
+            name="cantidad_grupos"
             label="cant grupos"
             type="number"
             required
