@@ -51,7 +51,8 @@ export default function NuevoPedido() {
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
-  //const [fechaActual,setFechaActual]=useState(new Date());
+  const [confirmacionCabecera,setConfirCabecera]=useState("none");
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
@@ -78,6 +79,7 @@ export default function NuevoPedido() {
 
   const [ver_med,set_ver_med] = useState("none");
   const [visible_off_med,set_visible_off_med] = useState("block");
+
  
 
   const disolReactivo = (event) => {
@@ -127,6 +129,10 @@ export default function NuevoPedido() {
     const fecha = new Date();
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`);
     const nro_pedido = cantidadPedidos + 1;
+
+    if ((data.get('fecha_utilizacion').length>0) && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
+    setConfirCabecera("block")
+   
     setEncabezadoPedido({
 
       "descripcion": (nro_pedido).toString(),
@@ -141,6 +147,11 @@ export default function NuevoPedido() {
       "numero_tp": "2",
     },
     );
+  } else{
+    // setFaltanDatos(true)
+    setAnchorEl(event.currentTarget);
+   
+  }
 
   };
 
@@ -335,9 +346,10 @@ export default function NuevoPedido() {
 
     };
 
+
     postPedido(pedido);
     navigate('/Docente/Pedidos');
-
+    setConfirCabecera("none")
 
   };
   useEffect(() => {
@@ -368,7 +380,10 @@ export default function NuevoPedido() {
             <PedidoCabecera
               cargaEncabezado={cargaEncabezado}
               cantidadPedidos={cantidadPedidos}
-
+              confirmacionCabecera={confirmacionCabecera}
+              setConfirCabecera={setConfirCabecera} 
+              setAnchorEl={setAnchorEl}
+              anchorEl={anchorEl}
             />
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
