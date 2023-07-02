@@ -132,11 +132,11 @@ export default function NuevoPedido() {
 
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`)
  
-    
+
     
     const nro_pedido = cantidadPedidos + 1;
 
-    if ((fecha_utilizacion != "") && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
+    if ((fecha_utilizacion !== "") && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
     setConfirCabecera("block")
    
     setEncabezadoPedido({
