@@ -48,6 +48,8 @@ export default function NuevoPedido() {
   const [verMasEquip, setverMasEquip] = useState([]);
   const [errorEquipo, setErrorEquipo] = useState("none");
   const [equipoOk, setEquipoOk] = useState("block");
+  const [confirmacionEquipos,setConfirEquipos]=useState("none");
+  const [anchorEle, setAnchorEle] = React.useState(null);
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
@@ -167,6 +169,9 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    if ((equipoElegido._id === "") || (data.get('cant_equipo').length === 0)) {   setAnchorEle(event.currentTarget);}
+    else{
+      
     const dato = {
       "cantidad": parseInt(data.get('cant_equipo'), 10),
       "equipo": equipoElegido._id
@@ -177,6 +182,7 @@ export default function NuevoPedido() {
       setEquipoOk("none")
     }
     else{  
+     
       setErrorEquipo("none")
       setEquipoOk("block")
     const cargarNuevosEquipos = dato => {
@@ -194,7 +200,7 @@ export default function NuevoPedido() {
 
     cargarNuevosEquipos(dato)
 
-  }
+  }}
 
   };
   const eliminarEquipo = (event) => {
@@ -206,6 +212,7 @@ export default function NuevoPedido() {
     setPedidoEquipos(cargar_Nuevos_Equipos);
 
     console.log(event._id)
+   
   }
 
   const set_IdEquip = (event, value) => { setEquipoElegido(value); };
@@ -273,8 +280,7 @@ export default function NuevoPedido() {
     // console.log(data.get('cant_reactivo'));
     var med_conc=data.get('med_concent');
     if (med_conc===""){ med_conc=" " }  ;
-    // console.log(data.get('med_concent'));
-    // console.log(data.get('_otro_disol_reactivo'))
+  
     const dato = {
       "cantidad": parseInt(data.get('cant_reactivo'), 10),
       "un_medida": _med_reactivo,
@@ -407,7 +413,10 @@ export default function NuevoPedido() {
               eliminarEquipo={eliminarEquipo}
               errorEquipo={errorEquipo}
               equipoOk={equipoOk}
-
+              confirmacionEquipos={confirmacionEquipos}
+              setConfirEquipos={setConfirEquipos}
+              setAnchorEle={setAnchorEle}
+              anchorEle={anchorEle}
             />
 
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
@@ -496,5 +505,5 @@ export default function NuevoPedido() {
 
       </Container>
     </ThemeProvider>
-  );
+  )
 }
