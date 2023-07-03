@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import laboratorio from '../Image/biologia.png';
 import { Button, Autocomplete, TextField, Grid, Typography, ThemeProvider } from '@mui/material';
@@ -10,20 +10,37 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { getEquipoPorId } from '../../Services/getEquipoPorId';
-
+import CartelAlerta from './CartelAlerta';
 
 
 const PedidoEquipos = (props) => {
-
-
+    const [anchorEl, setAnchorEl] = useState("")
+    const [mensajeAlerta, setMensajeAlerta] = useState("Faltan Cargar Datos")
     const [expanded, setExpanded] = React.useState(false);
-
+   
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
+    // *******************************
+    const handleClose = () => {
+        setAnchorEl(null);
+
+        setMensajeAlerta("Faltan Cargar Datos")
+    }
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
+
 
     // console.log(props.pedidoEquipos[0]);
+    useEffect(() => {
+        setAnchorEl(props.anchorEle)
+        // setMensajeAlerta("Faltan Cargar Datos")
+
+        return () => { }
+    }, [props.confirmacionEquipos,props.anchorEle])
+
 
     return (
 
@@ -82,7 +99,7 @@ const PedidoEquipos = (props) => {
                         fullWidth
                         id="combo-box-demo"
                         options={props.listaEquipos}
-
+                        
                         getOptionLabel={(option) => option.descripcion}
                         onChange={(event, value) => props.set_IdEquip(event, value)}
                         renderInput={(params) => {
@@ -92,7 +109,7 @@ const PedidoEquipos = (props) => {
                                     // value={params._id}
                                     name="descripcion_equipo"
                                     label={"descripcion equipo"}
-
+                                  
                                     InputLabelProps={{ className: "autocompleteLabel", shrink: true }}
                                     InputProps={{
                                         ...params.InputProps,
@@ -108,7 +125,8 @@ const PedidoEquipos = (props) => {
 
                     <TextField
                         sx={{ marginTop: 1 }}
-
+                        fullWidth
+                        required
                         id="cant_equipo"
                         variant="outlined"
                         name="cant_equipo"
@@ -128,14 +146,25 @@ const PedidoEquipos = (props) => {
 
 
                 </Grid>
+                <CartelAlerta
+
+                    mensajeAlerta={mensajeAlerta}
+                    handleClose={handleClose}
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+
+                />
+
+
                 <Grid item xs={3} container justifyContent="center" display={props.equipoOk} />
 
                 <Grid item xs={3} container justifyContent="center" display={props.errorEquipo}>
-                <Button variant="outlined" color="error" fullWidth heigth={40}>
-        EL EQUIPO YA FUE CARGADO
-      </Button>
+                    <Button variant="outlined" color="error" fullWidth heigth={40}>
+                        EL EQUIPO YA FUE CARGADO
+                    </Button>
                 </Grid>
-                
+
                 <Grid item xs={1} container justifyContent="center">
                     <Button fullWidth
                         margin="normal"
@@ -146,7 +175,7 @@ const PedidoEquipos = (props) => {
                         </Avatar>
                     </Button>
                 </Grid>
-                
+
 
             </Grid>
 
@@ -198,11 +227,11 @@ const PedidoEquipos = (props) => {
 
 
 
-                                    {props.verMasEquip.map((row,index) => (
+                                    {props.verMasEquip.map((row, index) => (
 
 
 
-                                        <Grid container  key={index} direction="row"
+                                        <Grid container key={index} direction="row"
                                             alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 12 }} >
 
                                             <Grid item xs={6} container justifyContent="start" >
@@ -225,12 +254,12 @@ const PedidoEquipos = (props) => {
                                                 <Button fullWidth
                                                     margin="normal"
                                                     variant="text"
-                                                    type= "submit"
-                                                    onClick={()=>{
+                                                    type="submit"
+                                                    onClick={() => {
                                                         props.eliminarEquipo(row.equipo)
                                                     }}
-                                                    
-                                                    >
+
+                                                >
                                                     <Avatar>
                                                         <DeleteForeverIcon color={"rojo"} />
                                                     </Avatar>

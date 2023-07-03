@@ -2,108 +2,97 @@
 import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import { makeStyles } from '@material-ui/core/styles';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+
+
 import TextField from '@mui/material/TextField';
-import Input from '@mui/material/Input';
+
 import CheckIcon from '@mui/icons-material/Check';
 
 import moment from 'moment'
 import { Grid, Box, IconButton } from '@mui/material';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Popover from '@mui/material/Popover';
+
 
 
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
+import CartelAlerta from './CartelAlerta';
 
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  // textField: {
-  //   marginLeft: theme.spacing(1),
-  //   marginRight: theme.spacing(1),
-  //   width: 200,
-  // },
-}));
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: 'center',
-  color: '#ff0000',
-  
-  height: 60,
-  fontWeight: 600,
-  width: 200,
-  lineHeight: '60px',
-}));
-
-
-const lightTheme = createTheme({ palette: { mode: 'light' } 
-});
 
 
 const PedidoCabecera = (props) => {
-  const classes = useStyles();
+ 
   const fecha = new Date();
-  const hoy = new Date()
-  const manana = hoy.setTime(hoy.getTime() + (2 * 24 * 60 * 60 * 1000))
-  const maniana = new Date(manana)
-  const formatManiana = (moment(maniana).format('YYYY-MM-DD')).toString();
+ 
+  // hasta un mes y medio antes solicitar el material
+  var topeFecha = new Date()
+  const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
+  const formatTope = (moment(nTope).format('YYYY-MM-DD')).toString();
+  const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
+  console.log(verTope+'tope');
+
+  var manana= new Date()
+  manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
+  // const maniana = new Date(manana)
+  const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
+  const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
+  console.log(verManiana+'mañana');
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
+  console.log(fechaActual+'hoy');
   const [confCabe, setConf] = useState(["block"]);
-  const [fechaUtilCorrecta,setFechaUtilizacionCorrecta]=useState("")
+  const [fechaUtilCorrecta, setFechaUtilizacionCorrecta] = useState("")
   // ************************
   // const [anchorEl, setAnchorEl] = React.useState(null);
 
   // const handleClick = (event) => {
   //   setAnchorEl(event.currentTarget);
   // };
-  const [mensajeAlerta,setMensajeAlerta]=useState("Fecha invalida")
+  const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre"+verManiana+' y '+verTope)
   const handleClose = () => {
     props.setAnchorEl(null);
-    if (mensajeAlerta ==="Faltan Cargar Datos"){
-      setMensajeAlerta("Fecha invalida")
-    } else{
-    setMensajeAlerta("Faltan Cargar Datos")
-  }}
+    if (mensajeAlerta === "Faltan Cargar Datos") {
+      setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
+    } else {
+      setMensajeAlerta("Faltan Cargar Datos")
+    }
+  }
 
   const open = Boolean(props.anchorEl);
   const id = open ? 'simple-popover' : undefined;
- 
- 
-  const controlDia = (event) => { 
-  
-  if (event.target.value < formatManiana) {
-    setMensajeAlerta("Fecha invalida")
-  
-    props.setAnchorEl(event.currentTarget)
-  
-  } else {setFechaUtilizacionCorrecta(moment(event.target.value).format('YYYY-MM-DD'))}}
- 
+
+
+  const controlDia = (event) => {
+
+    if( (event.target.value < formatManiana) || (event.target.value > formatTope))  {
+      setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
+
+      props.setAnchorEl(event.currentTarget)
+
+    } else { setFechaUtilizacionCorrecta(moment(event.target.value).format('YYYY-MM-DD')) }
+  }
   useEffect(() => {
-    // setLaboAsignado(numero_laboratorio)
-    // setEdificioElegido(numero_laboratorio);
-    // setEstadoPed(tipo_pedido);
-  
+    setFechaUtilizacionCorrecta(formatManiana)
     return () => {
-   
+
+    }
+  }, [])
+  useEffect(() => {
+
+    return () => {
+
     }
   }, [fechaUtilCorrecta])
   useEffect(() => {
     if (props.confirmacionCabecera === "block") {
-       setConf("none")
-    
-       } 
-    
+      setConf("none")
+
+    }
+   
+
 
     return () => { }
-  }, [props.confirmacionCabecera,props.anchorEl])
+  }, [props.confirmacionCabecera, props.anchorEl])
 
 
   return (
@@ -151,7 +140,7 @@ const PedidoCabecera = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            
+
             value={fechaActual}
             margin="normal"
             disabled
@@ -162,28 +151,29 @@ const PedidoCabecera = (props) => {
         </Grid>
         <Grid item xs={2}  >
 
-        <TextField
-        fullWidth
-        // margin="dense"
-        
-        margin='normal'
-        id="fecha_utilizacion"
-        label="fecha_utilizacion"
-        type="date"
-        min={formatManiana}
-        defaultValue={formatManiana}
-        name='fecha_utilizacion'
-        required
-        value={fechaUtilCorrecta}
-        
-        sx={{border:3,borderColor:'transparent'  }} 
-        // className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        onChange={controlDia}
-      />        
-         
+          <TextField
+            fullWidth
+            // margin="dense"
+
+            margin='normal'
+            id="fecha_utilizacion"
+            label="fecha_utilizacion"
+            type="date"
+            min={formatManiana}
+            max={formatTope} 
+            defaultValue={formatManiana}
+            name='fecha_utilizacion'
+            required
+            value={fechaUtilCorrecta}
+           
+            sx={{ border: 3, borderColor: 'transparent' }}
+            // className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={controlDia}
+          />
+
 
         </Grid>
         <Grid item xs={2} >
@@ -297,33 +287,19 @@ const PedidoCabecera = (props) => {
         </Grid>
         <Grid item xs={5} justifyContent="flex-end"></Grid>
 
+        <CartelAlerta
 
-
-
-
-        <Popover id={id}
+          mensajeAlerta={mensajeAlerta}
+          handleClose={handleClose}
+          id={id}
           open={open}
           anchorEl={props.anchorEl}
 
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'center',
-            horizontal: 'center',
-          }}
+        />
 
 
-        >
 
-          <ThemeProvider theme={lightTheme}>
 
-            <Item>
-            {mensajeAlerta}
-              
-            </Item>
-
-          </ThemeProvider>
-
-        </Popover>
 
 
 
@@ -355,3 +331,65 @@ const PedidoCabecera = (props) => {
 }
 
 export default PedidoCabecera
+
+
+
+// const useStyles = makeStyles((theme) => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//   },
+
+// }));
+
+// const Item = styled(Paper)(({ theme }) => ({
+//   ...theme.typography.body2,
+//   textAlign: 'center',
+//   color: '#ff0000',
+
+//   height: 60,
+//   fontWeight: 600,
+//   width: 200,
+//   lineHeight: '60px',
+// }));
+
+
+// const lightTheme = createTheme({
+//   palette: { mode: 'light' }
+// });
+
+
+
+
+
+// const CartelAlerta = (props) => {
+
+
+//   return (
+//     <Popover
+//       id={props.id}
+//       open={props.open}
+//       anchorEl={props.anchorEl}
+
+//       onClose={props.handleClose}
+//       anchorOrigin={{
+//         vertical: 'center',
+//         horizontal: 'center',
+//       }}
+
+
+//     >
+
+//       <ThemeProvider theme={lightTheme}>
+
+//         <Item>
+//           {props.mensajeAlerta}
+
+//         </Item>
+
+//       </ThemeProvider>
+
+//     </Popover>);
+// }
+
+//   ;
