@@ -197,7 +197,7 @@ const Lista = (props) => {
   const handleEditar = (event) => {
     props.setElegido(event)
     console.log(props.elegido)
-    console.log(event); // quitar
+    
     props.setVerEdicion("block")
     
   }

@@ -157,6 +157,7 @@ const ModUsuario = (
                             id="usuario"
                             label="Usuario"
                             name="usuario"
+                            inputProps={{ minLength: 6, maxLength: 15}}
                             InputLabelProps={{
                                 shrink: true
                             }}
@@ -177,6 +178,7 @@ const ModUsuario = (
                             id="contrasenia"
                             label="Contraseña"
                             name="contrasenia"
+                            inputProps={{ minLength: 6, maxLength: 50}}
                             InputLabelProps={{
                                 shrink: true
                             }}
@@ -203,6 +205,7 @@ const ModUsuario = (
                             id="nombre"
                             label="Nombre"
                             name="nombre"
+                            inputProps={{ minLength: 2, maxLength: 30}}
                             InputLabelProps={{
                                 shrink: true
                             }}
@@ -221,6 +224,7 @@ const ModUsuario = (
                             id="apellido"
                             label="Apellido"
                             name="apellido"
+                            inputProps={{ minLength: 2, maxLength: 30}}
                             InputLabelProps={{
                                 shrink: true
                             }}
@@ -250,7 +254,6 @@ const ModUsuario = (
                             name="matricula"
                             label="Matricula"
                             type="number"
-                            required
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -280,7 +283,7 @@ const ModUsuario = (
                             }}
                             InputProps={{
                                 inputProps: {
-                                    max: 43000000, min: 5000000
+                                    max: 99999999, min: 1000000
                                 }
                             }}
                             value={nuevoDNI}

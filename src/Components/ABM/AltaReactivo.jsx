@@ -106,7 +106,7 @@ function AltaReactivo(
                             </Grid>
                             <Grid item xs={4} container justifyContent="start">
                                 <Typography sx={{ fontSize: 30 }} color="text.secondary">
-                                    Equipo
+                                    Reactivo
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}  display={error} container justifyContent="start">
@@ -129,9 +129,11 @@ function AltaReactivo(
                                     id="descripcion"
                                     label="Descripcion"
                                     name="descripcion"
+                                    inputProps={{ minLength: 5, maxLength: 50}}
                                     InputLabelProps={{ shrink: true }}
                                     // autoComplete="descripcion"
                                     autoFocus
+                                    required
                                 />
 
                             </Grid>

@@ -127,9 +127,11 @@ function AltaEquipo(
                                     id="descripcion"
                                     label="Descripcion"
                                     name="descripcion"
+                                    inputProps={{ minLength: 5, maxLength: 50}}
                                     InputLabelProps={{ shrink: true }}
                                     // autoComplete="descripcion"
                                     autoFocus
+                                    required
                                 />
 
                             </Grid>
