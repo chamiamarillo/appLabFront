@@ -71,7 +71,8 @@ function AltaEquipo(
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
                 fullWidth
-                sx={{padding: 2, height: 500}}
+                sx={{padding: 2, 
+                }}
 
             >
                 
@@ -79,11 +80,11 @@ function AltaEquipo(
                     dividers={scroll === 'paper'
                     }
                     sx={{
-                        '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+                        /*'--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
                         borderLeft: 'var(--Grid-borderWidth) solid',
                         borderRight: 'var(--Grid-borderWidth) solid',
                         borderBottom: 'var(--Grid-borderWidth) solid',
-                        borderColor: 'divider', padding: 2, borderRadius: 4, margin: 3
+                        borderColor: 'divider',*/ padding: 2, borderRadius: 4, margin: 3
 
                     }}
 
@@ -127,9 +128,11 @@ function AltaEquipo(
                                     id="descripcion"
                                     label="Descripcion"
                                     name="descripcion"
+                                    inputProps={{ minLength: 5, maxLength: 50}}
                                     InputLabelProps={{ shrink: true }}
                                     // autoComplete="descripcion"
                                     autoFocus
+                                    required
                                 />
 
                             </Grid>
@@ -188,7 +191,7 @@ function AltaEquipo(
                                                 max: 100, min: 0
                                             }
                                         }}
-
+                                        required
                                     />
                                 </Grid>
                             </Grid>

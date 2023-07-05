@@ -128,7 +128,7 @@ function AltaUsuario(
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
                 fullWidth
-                sx={{ padding: 2, height: 500 }}
+                sx={{ padding: 2}}
 
             >
 
@@ -136,11 +136,11 @@ function AltaUsuario(
                     dividers={scroll === 'paper'
                     }
                     sx={{
-                        '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+                        /*'--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
                         borderLeft: 'var(--Grid-borderWidth) solid',
                         borderRight: 'var(--Grid-borderWidth) solid',
                         borderBottom: 'var(--Grid-borderWidth) solid',
-                        borderColor: 'divider', padding: 2, borderRadius: 4, margin: 3
+                        borderColor: 'divider',*/ padding: 2, borderRadius: 4, margin: 3
 
                     }}
 
@@ -185,6 +185,7 @@ function AltaUsuario(
                                     id="usuario"
                                     label="Usuario"
                                     name="usuario"
+                                    inputProps={{ minLength: 6, maxLength: 15}}
                                     InputLabelProps={{
                                         shrink: true
                                     }}
@@ -196,13 +197,15 @@ function AltaUsuario(
                             <Grid item xs={6} alignItems="center" justifyContent="start">
                                 <TextField
 
-                                    helperText={"debe contener 4 caracteres"}
+                                    helperText={"debe contener 6 caracteres"}
                                     sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
                                     fullWidth
                                     required
                                     id="contrasenia"
                                     label="Contraseña"
                                     name="contrasenia"
+                                    type="password"
+                                    inputProps={{ minLength: 6, maxLength: 50}}
                                     InputLabelProps={{
                                         shrink: true
                                     }}
@@ -227,6 +230,7 @@ function AltaUsuario(
                                     id="nombre"
                                     label="Nombre"
                                     name="nombre"
+                                    inputProps={{ minLength: 2, maxLength: 30}}
                                     InputLabelProps={{
                                         shrink: true
                                     }}
@@ -243,6 +247,7 @@ function AltaUsuario(
                                     id="apellido"
                                     label="Apellido"
                                     name="apellido"
+                                    inputProps={{ minLength: 2, maxLength: 30}}
                                     InputLabelProps={{
                                         shrink: true
                                     }}
@@ -276,7 +281,7 @@ function AltaUsuario(
                                     }}
                                     InputProps={{
                                         inputProps: {
-                                            max: 43000000, min: 5000000
+                                            max: 99999999, min: 1000000
                                         }
                                     }}
 
@@ -293,12 +298,13 @@ function AltaUsuario(
                                     label="DNI"
                                     type="number"
                                     required
+                                    
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
                                     InputProps={{
                                         inputProps: {
-                                            max: 43000000, min: 5000000
+                                            max: 99999999, min: 1000000
                                         }
                                     }}
 
@@ -326,6 +332,10 @@ function AltaUsuario(
                                     helperText={error.message}
                                     onChange={(e) => setEmail(e.target.value)}
                                     value={email}
+                                    inputProps={{ minLength: 5, maxLength: 30}}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
 
                             </Grid>
@@ -351,7 +361,7 @@ function AltaUsuario(
                                         name="perfil"
                                         defaultValue={perfil}
                                         onChange={(e) => guardarPerfil(e.target.value)}
-
+                                        required
                                     >
 
                                       
@@ -366,7 +376,7 @@ function AltaUsuario(
                             // marginLeft={1}
                             >
                                 <FormControl fullWidth>
-                                    <InputLabel id="editor"> Permisos de Editor </InputLabel>
+                                    <InputLabel id="editor"> Editor </InputLabel>
                                     <Select
                                         InputLabelProps={{
                                             shrink: true,

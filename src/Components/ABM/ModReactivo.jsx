@@ -120,6 +120,8 @@ function ModReactivo(
                             autoComplete="descripcion"
                             autoFocus
                             onChange={modDescripcion}
+                            inputProps={{ minLength: 5, maxLength: 50}}
+                            required
                         />
 
                     </Grid>
