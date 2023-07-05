@@ -73,7 +73,7 @@ function AltaReactivo(
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
                 fullWidth
-                sx={{padding: 2, height: 500}}
+                sx={{padding: 2}}
 
             >
                 
@@ -81,11 +81,11 @@ function AltaReactivo(
                     dividers={scroll === 'paper'
                     }
                     sx={{
-                        '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+                        /*'--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
                         borderLeft: 'var(--Grid-borderWidth) solid',
                         borderRight: 'var(--Grid-borderWidth) solid',
                         borderBottom: 'var(--Grid-borderWidth) solid',
-                        borderColor: 'divider', padding: 2, borderRadius: 4, margin: 3
+                        borderColor: 'divider',*/ padding: 2, borderRadius: 4, margin: 3
 
                     }}
 

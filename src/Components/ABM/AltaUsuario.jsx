@@ -128,7 +128,7 @@ function AltaUsuario(
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
                 fullWidth
-                sx={{ padding: 2, height: 500 }}
+                sx={{ padding: 2}}
 
             >
 
@@ -136,11 +136,11 @@ function AltaUsuario(
                     dividers={scroll === 'paper'
                     }
                     sx={{
-                        '--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
+                        /*'--Grid-borderWidth': '1px', borderTop: 'var(--Grid-borderWidth) solid',
                         borderLeft: 'var(--Grid-borderWidth) solid',
                         borderRight: 'var(--Grid-borderWidth) solid',
                         borderBottom: 'var(--Grid-borderWidth) solid',
-                        borderColor: 'divider', padding: 2, borderRadius: 4, margin: 3
+                        borderColor: 'divider',*/ padding: 2, borderRadius: 4, margin: 3
 
                     }}
 
@@ -281,7 +281,7 @@ function AltaUsuario(
                                     }}
                                     InputProps={{
                                         inputProps: {
-                                            max: 43000000, min: 5000000
+                                            max: 99999999, min: 1000000
                                         }
                                     }}
 
@@ -298,6 +298,7 @@ function AltaUsuario(
                                     label="DNI"
                                     type="number"
                                     required
+                                    
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
@@ -332,6 +333,9 @@ function AltaUsuario(
                                     onChange={(e) => setEmail(e.target.value)}
                                     value={email}
                                     inputProps={{ minLength: 5, maxLength: 30}}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
 
                             </Grid>
@@ -357,7 +361,7 @@ function AltaUsuario(
                                         name="perfil"
                                         defaultValue={perfil}
                                         onChange={(e) => guardarPerfil(e.target.value)}
-
+                                        required
                                     >
 
                                       
@@ -372,7 +376,7 @@ function AltaUsuario(
                             // marginLeft={1}
                             >
                                 <FormControl fullWidth>
-                                    <InputLabel id="editor"> Permisos de Editor </InputLabel>
+                                    <InputLabel id="editor"> Editor </InputLabel>
                                     <Select
                                         InputLabelProps={{
                                             shrink: true,
