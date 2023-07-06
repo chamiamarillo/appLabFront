@@ -22,7 +22,7 @@ const PedidoEquipos = (props) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    // *******************************
+    // ************************************
     const handleClose = () => {
         setAnchorEl(null);
 
@@ -148,7 +148,7 @@ const PedidoEquipos = (props) => {
 
                 </Grid>
                 <CartelAlerta
-
+     
                     mensajeAlerta={mensajeAlerta}
                     handleClose={handleClose}
                     id={id}
