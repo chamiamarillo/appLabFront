@@ -44,11 +44,11 @@ export default function NuevoPedido() {
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [pedidoEquipos, setPedidoEquipos] = useState([]);
   const [listaEquipos, setListaEquipos] = useState([]);
-  const [equipoElegido, setEquipoElegido] = useState({});
+  const [equipoElegido, setEquipoElegido] = useState("");
   const [verMasEquip, setverMasEquip] = useState([]);
   const [errorEquipo, setErrorEquipo] = useState("none");
   const [equipoOk, setEquipoOk] = useState("block");
-  const [confirmacionEquipos,setConfirEquipos]=useState("none");
+ 
   const [anchorEle, setAnchorEle] = React.useState(null);
 
   const [cantidadPedidos, setCantPedido] = useState([]);
@@ -59,10 +59,11 @@ export default function NuevoPedido() {
 
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
-  const [materialElegido, setMatElegido] = useState({});
+  const [materialElegido, setMatElegido] = useState("");
   const [verMasMateriales, setverMasMateriales] = useState([]);
   const [errorMaterial, setErrorMaterial] = useState("none");
   const [materialOk, setMaterialOk] = useState("block");
+  const [anchorEleM, setAnchorEleM] = React.useState(null);
 
   const [pedidoReactivos, setPedidoReactivos] = useState([]);
   const [listaReactivos, setListaReactivos] = useState([]);
@@ -169,7 +170,7 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if ((equipoElegido._id === "") || (data.get('cant_equipo').length === 0)) {   setAnchorEle(event.currentTarget);}
+    if ((equipoElegido === "") || (data.get('cant_equipo').length === 0)|| (data.get('cant_equipo') == 0)) {   setAnchorEle(event.currentTarget);}
     else{
       
     const dato = {
@@ -199,7 +200,8 @@ export default function NuevoPedido() {
     cargarNuevosEquiposVer(datoVer)
 
     cargarNuevosEquipos(dato)
-
+    
+    setEquipoElegido("")
   }}
 
   };
@@ -214,22 +216,32 @@ export default function NuevoPedido() {
     console.log(event._id)
    
   }
+  console.log();
 
-  const set_IdEquip = (event, value) => { setEquipoElegido(value); };
+  const set_IdEquip = (event, value) => { 
+    console.log(value);
+    if (value!== null){  setEquipoElegido(value)} else{ setAnchorEle(event.currentTarget)}; };
 
 
   // CARGA MATERIAL A LA LISTA
   const cargaMaterial = async (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
+    console.log([materialElegido]);
+    console.log((data.get('cant_material'))== 0);
+    if ((materialElegido === "") || (data.get('cant_material').length === 0) || (data.get('cant_material') == 0)) {   setAnchorEleM(event.currentTarget)}
+    else{
     const dato = {
       "cantidad": parseInt(data.get('cant_material'), 10),
       "material": materialElegido._id
     };
     const materialRepetido = pedidoMateriales.filter(elemento=>elemento.material === dato.material)
+    console.log(materialRepetido);
     if(materialRepetido.length>0){
       setErrorMaterial("block")
       setMaterialOk("none")
+    
     }
     else{
       setErrorMaterial("none")
@@ -249,11 +261,13 @@ export default function NuevoPedido() {
     cargarNuevosMaterialesVer(datoVer)
 
     cargarNuevosMateriales(dato)
+    setMatElegido("")
+    setAnchorEleM(null)
 
   }
 
   };
-
+  }
 
   // ELIMINAR MATERIAL DE LA LISTA
 
@@ -270,7 +284,7 @@ export default function NuevoPedido() {
   }
 
 
-  const set_IdMat = (event, value) => { setMatElegido(value); };
+  const set_IdMat = (event, value) => { if (value!== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
 
 
   // CARGA REACTIVOS A LA LISTA
@@ -413,8 +427,6 @@ export default function NuevoPedido() {
               eliminarEquipo={eliminarEquipo}
               errorEquipo={errorEquipo}
               equipoOk={equipoOk}
-              confirmacionEquipos={confirmacionEquipos}
-              setConfirEquipos={setConfirEquipos}
               setAnchorEle={setAnchorEle}
               anchorEle={anchorEle}
             />
@@ -422,7 +434,7 @@ export default function NuevoPedido() {
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
             <PedidoMaterial
-              //key={id}
+             
               cargaMaterial={cargaMaterial}
               listaMateriales={listaMateriales}
               set_IdMat={set_IdMat}
@@ -432,6 +444,8 @@ export default function NuevoPedido() {
               eliminarMaterial={eliminarMaterial}
               errorMaterial={errorMaterial}
               materialOk={materialOk}
+              setAnchorEleM={setAnchorEleM}
+              anchorEleM={anchorEleM}
             />
 
             <PedidoReactivo

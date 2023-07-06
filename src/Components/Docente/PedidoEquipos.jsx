@@ -39,7 +39,7 @@ const PedidoEquipos = (props) => {
         // setMensajeAlerta("Faltan Cargar Datos")
 
         return () => { }
-    }, [props.confirmacionEquipos,props.anchorEle])
+    }, [props.anchorEle,props.PedidoEquipos])
 
 
     return (
@@ -132,12 +132,13 @@ const PedidoEquipos = (props) => {
                         name="cant_equipo"
                         label="cant equipos"
                         type="number"
+                        defaultValue={0}
                         InputLabelProps={{
                             shrink: true,
                         }}
                         InputProps={{
                             inputProps: {
-                                max: 100, min: 0
+                                max: 100, min: 1
                             }
                         }}
 
