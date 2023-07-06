@@ -30,16 +30,16 @@ const PedidoCabecera = (props) => {
   const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
   const formatTope = (moment(nTope).format('YYYY-MM-DD')).toString();
   const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
-  console.log(verTope+'tope');
+ 
 
   var manana= new Date()
   manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
   // const maniana = new Date(manana)
   const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
   const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
-  console.log(verManiana+'mañana');
+  
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
-  console.log(fechaActual+'hoy');
+ 
   const [confCabe, setConf] = useState(["block"]);
   const [fechaUtilCorrecta, setFechaUtilizacionCorrecta] = useState("")
   // ************************

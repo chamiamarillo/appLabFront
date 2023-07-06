@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import {Button, IconButton, Autocomplete, TextField, Box, Grid, Typography, ThemeProvider } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -10,15 +10,36 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import pipeta from '../Image/pipeta.png';
 import { margin } from '@mui/system';
-
+import CartelAlerta from './CartelAlerta';
 const PedidoMaterial = (props) => {
-    
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [mensajeAlerta, setMensajeAlerta] = useState("Faltan Cargar Datos")
     const [expanded, setExpanded] = React.useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+ // *******************************
+ const handleClose = () => {
+    setAnchorEl(null);
 
+    setMensajeAlerta("Faltan Cargar Datos")
+}
+
+const open = Boolean(anchorEl);
+const id = open ? 'simple-popover' : undefined;
+
+
+// console.log(props.pedidoEquipos[0]);
+useEffect(() => {
+    setAnchorEl(props.anchorEleM)
+    // setMensajeAlerta("Faltan Cargar Datos")
+
+    return () => { }
+}, [props.anchorEleM
+    // props.materialElegido
+    ,props.pedidoMateriales
+])
 
     return (
     
@@ -80,7 +101,7 @@ const PedidoMaterial = (props) => {
                         return (
                             <TextField {...params}
                             margin="normal"
-
+            // defaultValue={""}
                             name="descripcion_material"
                             label={"descripcion material"}
                             InputLabelProps={{ className: "autocompleteLabel", shrink: true, }}
@@ -96,18 +117,20 @@ const PedidoMaterial = (props) => {
                     <Grid item xs={2} container justifyContent="center">
                     <TextField
                         sx={{ marginTop: 1 }}
-
+                        required
                         id="cant_material"
                         variant="outlined"
                         name="cant_material"
                         label="cant material"
                         type="number"
+                    //    value={0}
+                        defaultValue={0}
                         InputLabelProps={{
                         shrink: true,
                         }}
                         InputProps={{
                         inputProps: {
-                            max: 100, min: 0
+                            max: 100, min: 1
                         }
                         }}
 
@@ -115,6 +138,17 @@ const PedidoMaterial = (props) => {
 
 
                     </Grid>
+                    <CartelAlerta
+
+mensajeAlerta={mensajeAlerta}
+handleClose={handleClose}
+id={id}
+open={open}
+anchorEl={anchorEl}
+
+/>
+
+
                     <Grid item xs={3} container justifyContent="center" display={props.materialOk}/>
                     
                     <Grid item xs={3} container justifyContent="center" display={props.errorMaterial}>
