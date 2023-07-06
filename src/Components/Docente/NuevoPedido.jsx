@@ -71,6 +71,7 @@ export default function NuevoPedido() {
   const [verMasReactivos, setverMasReactivos] = useState([]);
   const [errorReactivo, setErrorReactivo] = useState("none");
   const [reactivoOk, setReactivoOk] = useState("block");
+  const [anchorEleR, setAnchorEleR] = React.useState(null);
 
   const [_med_reactivo, setUn_med_reactivo] = useState("");
   const [cal_reactivo, setCalReactivo] = useState("");
@@ -170,7 +171,7 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if ((equipoElegido === "") || (data.get('cant_equipo').length === 0)|| (data.get('cant_equipo') == 0)) {   setAnchorEle(event.currentTarget);}
+    if ((equipoElegido === "") || (data.get('cant_equipo').length === 0)|| (parseInt(data.get('cant_equipo')) === 0)) {   setAnchorEle(event.currentTarget);}
     else{
       
     const dato = {
@@ -294,6 +295,7 @@ export default function NuevoPedido() {
     // console.log(data.get('cant_reactivo'));
     var med_conc=data.get('med_concent');
     if (med_conc===""){ med_conc=" " }  ;
+     if (reactivoElegido === null){  setAnchorEleR(event.currentTarget)}else{
   
     const dato = {
       "cantidad": parseInt(data.get('cant_reactivo'), 10),
@@ -337,7 +339,7 @@ export default function NuevoPedido() {
     cargarNuevosReactivosVer(datoVer)
     cargarNuevosReactivos(dato)
     //  data.reset()
-  }
+  };};
   };
 
   const eliminarReactivo = (value) => {
@@ -346,7 +348,13 @@ export default function NuevoPedido() {
     const cargar_reactivos = pedidoReactivos.filter(reactivo => reactivo.reactivo !== value._id)
     setPedidoReactivos(cargar_reactivos);
   }
-  const set_IdReactivo = (event, value) => { setReacElegido(value); console.log("hand", reactivoElegido) };
+
+  const set_IdReactivo = (event, value) => {
+    console.log(value);
+    if (value !== null){setReacElegido(value)} else{ 
+     setAnchorEleR(event.currentTarget)
+  };   }
+  // const set_IdMat = (event, value) => { if (value !== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
 
 
   const handleSubmit = () => {
@@ -478,6 +486,9 @@ export default function NuevoPedido() {
 
               errorReactivo={errorReactivo}
               reactivoOk={reactivoOk}
+
+              setAnchorEleR={setAnchorEleR}
+              anchorEleR={anchorEleR}
             />
 
           </Box>

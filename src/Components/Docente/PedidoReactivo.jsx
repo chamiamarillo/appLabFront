@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Button, Autocomplete, TextField, Grid, Typography, ThemeProvider } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,12 +13,38 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CartelAlerta from './CartelAlerta';
+
+
 const PedidoReactivo = (props) => {
+  const [anchorEl, setAnchorEl] = useState(null)
+    const [mensajeAlerta, setMensajeAlerta] = useState("Faltan Cargar Datos")
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+ // ************************************
+ const handleClose = () => {
+  setAnchorEl(null);
+
+  setMensajeAlerta("Faltan Cargar Datos")
+}
+
+const open = Boolean(anchorEl);
+const id = open ? 'simple-popover' : undefined;
+
+
+// console.log(props.pedidoEquipos[0]);
+useEffect(() => {
+  setAnchorEl(props.anchorEleR)
+  // setMensajeAlerta("Faltan Cargar Datos")
+
+  return () => { }
+}, [props.anchorEleR,props.PedidoReactivos
+  ])
+
+
 
   return (
     <Grid container component="form" onSubmit={props.cargaReactivos} noValidate direction="row"
@@ -98,6 +124,15 @@ const PedidoReactivo = (props) => {
             variant="outlined"
           />
         </Grid>
+        <CartelAlerta
+     
+     mensajeAlerta={mensajeAlerta}
+     handleClose={handleClose}
+     id={id}
+     open={open}
+     anchorEl={anchorEl}
+
+ />
         <Grid item xs={2} container justifyContent="center" marginTop={1}>
           <FormControl fullWidth>
             <InputLabel id="calidad_reactivo">calidad reactivo</InputLabel>
