@@ -7,7 +7,7 @@ import Theme1 from '../Theme/Theme1';
 import Header from '../Header/Header'
 import { ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import NoEncontrados from "../Docente/NoEncontrados"
+import NoEncontrados from "../Mensajes/NoEncontrados" 
 import Filtros from "./Filtros";
 import { axiosGetPedido } from '../../Services/getPedidosService';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Pedidos() {
-  const { marginTop } = useStyles();
+  // const { marginTop } = useStyles();
   const [listaPedidos, setListaPedidos] = useState([]);
   const [texto, setEncabezado] = useState("Laboratorio");
   const [esAdmin, setEsAdmin] = useState(true)

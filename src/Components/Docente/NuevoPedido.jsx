@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 
-
-
 import { Grid, Box } from '@mui/material';
 
 import Container from '@mui/material/Container';
@@ -32,10 +30,7 @@ import PedidoCabecera from './PedidoCabecera';
 import PedidoMaterial from './PedidoMaterial';
 
 import PedidoReactivo from './PedidoReactivo';
-
-
-//const theme = createTheme();
-
+import CartelOk from '../Mensajes/CartelOk';
 
 
 export default function NuevoPedido() {
@@ -55,7 +50,15 @@ export default function NuevoPedido() {
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
   const [confirmacionCabecera,setConfirCabecera]=useState("none");
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
+ 
+  var manana= new Date()
+  manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
+  const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
+  const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
+  var topeFecha = new Date()
+  const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
+  const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
+  const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre "+verManiana+' y '+verTope)
 
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
@@ -161,6 +164,7 @@ export default function NuevoPedido() {
   } else{
     // setFaltanDatos(true)
     setAnchorEl(event.currentTarget);
+    setMensajeAlerta("FALTAN CARGAR DATOS")
    
   }
 
@@ -230,8 +234,8 @@ export default function NuevoPedido() {
 
     const data = new FormData(event.currentTarget);
     console.log([materialElegido]);
-    console.log((data.get('cant_material'))== 0);
-    if ((materialElegido === "") || (data.get('cant_material').length === 0) || (data.get('cant_material') == 0)) {   setAnchorEleM(event.currentTarget)}
+    console.log(parseInt(data.get('cant_material'))=== 0);
+    if ((materialElegido === "") || (data.get('cant_material').length === 0) || (parseInt(data.get('cant_material')) === 0)) {   setAnchorEleM(event.currentTarget)}
     else{
     const dato = {
       "cantidad": parseInt(data.get('cant_material'), 10),
@@ -419,7 +423,9 @@ export default function NuevoPedido() {
               setConfirCabecera={setConfirCabecera} 
               setAnchorEl={setAnchorEl}
               anchorEl={anchorEl}
-             
+              mensajeAlerta={mensajeAlerta}
+              setMensajeAlerta={setMensajeAlerta}
+              formatManiana={formatManiana}
             />
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
@@ -529,6 +535,17 @@ export default function NuevoPedido() {
         </Box>
 
       </Container>
+      <CartelOk
+      setAnchorEleR={setAnchorEleR}
+      anchorEleR={anchorEleR}
+      >
+
+      </CartelOk>
     </ThemeProvider>
   )
 }
+
+
+
+
+

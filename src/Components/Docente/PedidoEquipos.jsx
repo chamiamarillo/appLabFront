@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import laboratorio from '../Image/biologia.png';
-import { Button, Autocomplete, TextField, Grid, Typography, ThemeProvider } from '@mui/material';
+import { Button, Autocomplete, TextField, Grid, Typography } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Accordion from '@mui/material/Accordion';
@@ -10,7 +10,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { getEquipoPorId } from '../../Services/getEquipoPorId';
-import CartelAlerta from './CartelAlerta';
+import CartelAlerta from '../Mensajes/CartelAlerta';
 
 
 const PedidoEquipos = (props) => {

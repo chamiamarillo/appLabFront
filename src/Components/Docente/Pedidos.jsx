@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import BotonNPedido from "./BotonNuevoPedido";
-import NoEncontrados from "./NoEncontrados"
+import NoEncontrados from "../Mensajes/NoEncontrados" 
 import Theme1 from '../Theme/Theme1';
 import { ThemeProvider } from '@mui/material/styles';
 
