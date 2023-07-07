@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Button, Autocomplete, TextField, Grid, Typography, ThemeProvider } from '@mui/material';
+import { Button, Autocomplete, TextField, Grid, Typography } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -13,7 +13,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CartelAlerta from './CartelAlerta';
+import CartelAlerta from '../Mensajes/CartelAlerta';
 
 
 const PedidoReactivo = (props) => {

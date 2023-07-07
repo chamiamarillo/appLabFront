@@ -17,7 +17,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
-import CartelAlerta from './CartelAlerta';
+import CartelAlerta from '../Mensajes/CartelAlerta';
 
 
 
@@ -28,16 +28,13 @@ const PedidoCabecera = (props) => {
   // hasta un mes y medio antes solicitar el material
   var topeFecha = new Date()
   const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
-  const formatTope = (moment(nTope).format('YYYY-MM-DD')).toString();
   const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
- 
+  const formatTope = (moment(nTope).format('YYYY-MM-DD')).toString();
 
   var manana= new Date()
   manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
-  // const maniana = new Date(manana)
-  const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
   const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
-  
+  const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
  
   const [confCabe, setConf] = useState(["block"]);
@@ -48,14 +45,14 @@ const PedidoCabecera = (props) => {
   // const handleClick = (event) => {
   //   setAnchorEl(event.currentTarget);
   // };
-  const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre"+verManiana+' y '+verTope)
+  // const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre"+verManiana+' y '+verTope)
   const handleClose = () => {
     props.setAnchorEl(null);
-    if (mensajeAlerta === "Faltan Cargar Datos") {
-      setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
-    } else {
-      setMensajeAlerta("Faltan Cargar Datos")
-    }
+    // if (mensajeAlerta === "Faltan Cargar Datos") {
+    //   setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
+    // } else {
+    //   setMensajeAlerta("Faltan Cargar Datos")
+    // }
   }
 
   const open = Boolean(props.anchorEl);
@@ -65,18 +62,13 @@ const PedidoCabecera = (props) => {
   const controlDia = (event) => {
 
     if( (event.target.value < formatManiana) || (event.target.value > formatTope))  {
-      setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
+      props.setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
 
       props.setAnchorEl(event.currentTarget)
 
     } else { setFechaUtilizacionCorrecta(moment(event.target.value).format('YYYY-MM-DD')) }
   }
-  useEffect(() => {
-    setFechaUtilizacionCorrecta(formatManiana)
-    return () => {
-
-    }
-  }, [])
+  
   useEffect(() => {
 
     return () => {
@@ -88,6 +80,8 @@ const PedidoCabecera = (props) => {
       setConf("none")
 
     }
+    setFechaUtilizacionCorrecta(props.formatManiana)
+   
    
 
 
@@ -289,7 +283,7 @@ const PedidoCabecera = (props) => {
 
         <CartelAlerta
 
-          mensajeAlerta={mensajeAlerta}
+          mensajeAlerta={props.mensajeAlerta}
           handleClose={handleClose}
           id={id}
           open={open}

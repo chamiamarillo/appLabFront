@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import pipeta from '../Image/pipeta.png';
 import { margin } from '@mui/system';
-import CartelAlerta from './CartelAlerta';
+import CartelAlerta from '../Mensajes/CartelAlerta';
 const PedidoMaterial = (props) => {
     const [anchorEl, setAnchorEl] = useState(null)
     const [mensajeAlerta, setMensajeAlerta] = useState("Faltan Cargar Datos")
