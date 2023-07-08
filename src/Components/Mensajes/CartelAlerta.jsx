@@ -1,8 +1,9 @@
 import React from 'react'
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Popover from '@mui/material/Popover';
+
 
 
 
@@ -25,9 +26,11 @@ const CartelAlerta = (props) => {
     >
 
     
-      <Typography sx={{ p: 2 ,height: 70,
+      <Typography
+       sx={{ p: 2 ,
+      height: 70,
     fontWeight: 900,
-    width: 400,border:2,borderColor:'red',color:'red',textAlign:'center',borderRadius:6}}> 
+    width: 400,border:3,borderColor:'red',color:'red',textAlign:'center',borderRadius:2}}> 
     {props.mensajeAlerta}
     </Typography>
       

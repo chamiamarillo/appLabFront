@@ -43,22 +43,22 @@ export default function NuevoPedido() {
   const [verMasEquip, setverMasEquip] = useState([]);
   const [errorEquipo, setErrorEquipo] = useState("none");
   const [equipoOk, setEquipoOk] = useState("block");
- 
+
   const [anchorEle, setAnchorEle] = React.useState(null);
 
   const [cantidadPedidos, setCantPedido] = useState([]);
   const [pedidoEncabezado, setEncabezadoPedido] = useState({});
-  const [confirmacionCabecera,setConfirCabecera]=useState("none");
+  const [confirmacionCabecera, setConfirCabecera] = useState("none");
   const [anchorEl, setAnchorEl] = React.useState(null);
- 
-  var manana= new Date()
+
+  var manana = new Date()
   manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
   const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
   const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
   var topeFecha = new Date()
   const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
   const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
-  const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre "+verManiana+' y '+verTope)
+  const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre " + verManiana + ' y ' + verTope)
 
   const [pedidoMateriales, setPedidoMateriales] = useState([]);
   const [listaMateriales, setListaMateriales] = useState([]);
@@ -80,30 +80,33 @@ export default function NuevoPedido() {
   const [cal_reactivo, setCalReactivo] = useState("");
   const [_tip_reactivo, setTipReactivo] = useState("");//tipo_concentracion
   const [_disol_reactivo, setDisolReactivo] = useState("");
-  const [ver_disolvente,set_ver_disolvente] = useState("none");
-  const [ver_otro_disolvente,set_otro_disolvente] = useState("none");
-  const [visible_off,set_visible_off] = useState("block");
-  const [visible_off_otro,set_visible_off_otro] = useState("block");
+  const [ver_disolvente, set_ver_disolvente] = useState("none");
+  const [ver_otro_disolvente, set_otro_disolvente] = useState("none");
+  const [visible_off, set_visible_off] = useState("block");
+  const [visible_off_otro, set_visible_off_otro] = useState("block");
 
-  const [ver_med,set_ver_med] = useState("none");
-  const [visible_off_med,set_visible_off_med] = useState("block");
+  const [ver_med, set_ver_med] = useState("none");
+  const [visible_off_med, set_visible_off_med] = useState("block");
 
- 
+
 
   const disolReactivo = (event) => {
-     const disolvente=event.target.value;
-     if (disolvente === "otro") {
-       set_otro_disolvente("block");
-       set_visible_off_otro("none")}
-     else {
-       set_otro_disolvente("none");
-       set_visible_off_otro("block")};
-     
-     setDisolReactivo(disolvente); }
+    const disolvente = event.target.value;
+    if (disolvente === "otro") {
+      set_otro_disolvente("block");
+      set_visible_off_otro("none")
+    }
+    else {
+      set_otro_disolvente("none");
+      set_visible_off_otro("block")
+    };
 
-  const tipReactivo = (event) => { 
-    const tipo_reactivo=event.target.value;
-    if (tipo_reactivo==="puro"){ 
+    setDisolReactivo(disolvente);
+  }
+
+  const tipReactivo = (event) => {
+    const tipo_reactivo = event.target.value;
+    if (tipo_reactivo === "puro") {
       set_ver_disolvente("none");
       set_otro_disolvente("none");
       set_visible_off("block");
@@ -111,14 +114,16 @@ export default function NuevoPedido() {
       set_ver_med("none")
       set_visible_off_otro("block")
     }
-    else{set_ver_disolvente("block") ;
+    else {
+      set_ver_disolvente("block");
       set_visible_off("none");
       set_visible_off_med("none");
       set_ver_med("block");
       set_visible_off_otro("block")
-       }  ;
+    };
 
-    setTipReactivo(tipo_reactivo); }
+    setTipReactivo(tipo_reactivo);
+  }
 
 
   const calReactivo = (event) => { setCalReactivo(event.target.value); };
@@ -128,45 +133,45 @@ export default function NuevoPedido() {
   const navigate = useNavigate();
 
   const [texto, setEncabezado] = useState("CARGA DE PEDIDO");
- 
+
   //CARGA ENCABEZADO AL PEDIDO
   const cargaEncabezado = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    
+
     const fecha = new Date();
-  
+
 
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`)
- 
 
-    
+
+
     const nro_pedido = cantidadPedidos + 1;
 
-    if ((fecha_utilizacion !== "") && (data.get('cantidad_alumnos').length>0) &&  (data.get('cantidad_grupos').length>0) ){
-    setConfirCabecera("block")
-   
-    setEncabezadoPedido({
+    if ((fecha_utilizacion !== "") && (data.get('cantidad_alumnos').length > 0) && (data.get('cantidad_grupos').length > 0)) {
+      setConfirCabecera("block")
 
-      "descripcion": (nro_pedido).toString(),
-      "fecha_solicitud": fecha,
-      "fecha_utilizacion":fecha_utilizacion,
-      "numero_laboratorio": parseInt(0, 10),
-      "tipo_pedido": "PENDIENTE",
-      "alumnos": data.get('cantidad_alumnos'),
-      "cantidad_grupos": data.get('cantidad_grupos'),
-      "edificio": "Sin asignar",
-      "materia": "string",
-      "numero_tp": "2",
-    },
-    );
-    
-  } else{
-    // setFaltanDatos(true)
-    setAnchorEl(event.currentTarget);
-    setMensajeAlerta("FALTAN CARGAR DATOS")
-   
-  }
+      setEncabezadoPedido({
+
+        "descripcion": (nro_pedido).toString(),
+        "fecha_solicitud": fecha,
+        "fecha_utilizacion": fecha_utilizacion,
+        "numero_laboratorio": parseInt(0, 10),
+        "tipo_pedido": "PENDIENTE",
+        "alumnos": data.get('cantidad_alumnos'),
+        "cantidad_grupos": data.get('cantidad_grupos'),
+        "edificio": "Sin asignar",
+        "materia": "string",
+        "numero_tp": "2",
+      },
+      );
+
+    } else {
+      // setFaltanDatos(true)
+      setAnchorEl(event.currentTarget);
+      setMensajeAlerta("FALTAN CARGAR DATOS")
+
+    }
 
   };
 
@@ -175,39 +180,40 @@ export default function NuevoPedido() {
   const cargaEquipo = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if ((equipoElegido === "") || (data.get('cant_equipo').length === 0)|| (parseInt(data.get('cant_equipo')) === 0)) {   setAnchorEle(event.currentTarget);}
-    else{
-      
-    const dato = {
-      "cantidad": parseInt(data.get('cant_equipo'), 10),
-      "equipo": equipoElegido._id
-    };
-    const equipoRepetido = pedidoEquipos.filter(elemento=>elemento.equipo === dato.equipo)
-    if(equipoRepetido.length>0){
-      setErrorEquipo("block")
-      setEquipoOk("none")
-    }
-    else{  
-     
-      setErrorEquipo("none")
-      setEquipoOk("block")
-    const cargarNuevosEquipos = dato => {
-      setPedidoEquipos([...pedidoEquipos, dato]);
-    }
-    const datoVer = {
-      "cantidad": parseInt(data.get('cant_equipo'), 10),
-      "equipo": equipoElegido
-    };
-    const cargarNuevosEquiposVer = dato => {
-      setverMasEquip([...verMasEquip, dato]);
-    }
+    if ((equipoElegido === "") || (data.get('cant_equipo').length === 0) || (parseInt(data.get('cant_equipo')) === 0)) { setAnchorEle(event.currentTarget); }
+    else {
 
-    cargarNuevosEquiposVer(datoVer)
+      const dato = {
+        "cantidad": parseInt(data.get('cant_equipo'), 10),
+        "equipo": equipoElegido._id
+      };
+      const equipoRepetido = pedidoEquipos.filter(elemento => elemento.equipo === dato.equipo)
+      if (equipoRepetido.length > 0) {
+        setErrorEquipo("block")
+        setEquipoOk("none")
+      }
+      else {
 
-    cargarNuevosEquipos(dato)
-    
-    setEquipoElegido("")
-  }}
+        setErrorEquipo("none")
+        setEquipoOk("block")
+        const cargarNuevosEquipos = dato => {
+          setPedidoEquipos([...pedidoEquipos, dato]);
+        }
+        const datoVer = {
+          "cantidad": parseInt(data.get('cant_equipo'), 10),
+          "equipo": equipoElegido
+        };
+        const cargarNuevosEquiposVer = dato => {
+          setverMasEquip([...verMasEquip, dato]);
+        }
+
+        cargarNuevosEquiposVer(datoVer)
+
+        cargarNuevosEquipos(dato)
+
+        setEquipoElegido("")
+      }
+    }
 
   };
   const eliminarEquipo = (event) => {
@@ -219,13 +225,14 @@ export default function NuevoPedido() {
     setPedidoEquipos(cargar_Nuevos_Equipos);
 
     console.log(event._id)
-   
+
   }
   console.log();
 
-  const set_IdEquip = (event, value) => { 
+  const set_IdEquip = (event, value) => {
     console.log(value);
-    if (value!== null){  setEquipoElegido(value)} else{ setAnchorEle(event.currentTarget)}; };
+    if (value !== null) { setEquipoElegido(value) } else { setAnchorEle(event.currentTarget) };
+  };
 
 
   // CARGA MATERIAL A LA LISTA
@@ -234,44 +241,44 @@ export default function NuevoPedido() {
 
     const data = new FormData(event.currentTarget);
     console.log([materialElegido]);
-    console.log(parseInt(data.get('cant_material'))=== 0);
-    if ((materialElegido === "") || (data.get('cant_material').length === 0) || (parseInt(data.get('cant_material')) === 0)) {   setAnchorEleM(event.currentTarget)}
-    else{
-    const dato = {
-      "cantidad": parseInt(data.get('cant_material'), 10),
-      "material": materialElegido._id
+    console.log(parseInt(data.get('cant_material')) === 0);
+    if ((materialElegido === "") || (data.get('cant_material').length === 0) || (parseInt(data.get('cant_material')) === 0)) { setAnchorEleM(event.currentTarget) }
+    else {
+      const dato = {
+        "cantidad": parseInt(data.get('cant_material'), 10),
+        "material": materialElegido._id
+      };
+      const materialRepetido = pedidoMateriales.filter(elemento => elemento.material === dato.material)
+      console.log(materialRepetido);
+      if (materialRepetido.length > 0) {
+        setErrorMaterial("block")
+        setMaterialOk("none")
+
+      }
+      else {
+        setErrorMaterial("none")
+        setMaterialOk("block")
+        const cargarNuevosMateriales = dato => {
+          setPedidoMateriales([...pedidoMateriales, dato]);
+        }
+
+        const datoVer = {
+          "cantidad": parseInt(data.get('cant_material'), 10),
+          "material": materialElegido
+        };
+        const cargarNuevosMaterialesVer = dato => {
+          setverMasMateriales([...verMasMateriales, dato]);
+        }
+
+        cargarNuevosMaterialesVer(datoVer)
+
+        cargarNuevosMateriales(dato)
+        setMatElegido("")
+        setAnchorEleM(null)
+
+      }
+
     };
-    const materialRepetido = pedidoMateriales.filter(elemento=>elemento.material === dato.material)
-    console.log(materialRepetido);
-    if(materialRepetido.length>0){
-      setErrorMaterial("block")
-      setMaterialOk("none")
-    
-    }
-    else{
-      setErrorMaterial("none")
-      setMaterialOk("block")  
-    const cargarNuevosMateriales = dato => {
-      setPedidoMateriales([...pedidoMateriales, dato]);
-    }
-
-    const datoVer = {
-      "cantidad": parseInt(data.get('cant_material'), 10),
-      "material": materialElegido
-    };
-    const cargarNuevosMaterialesVer = dato => {
-      setverMasMateriales([...verMasMateriales, dato]);
-    }
-
-    cargarNuevosMaterialesVer(datoVer)
-
-    cargarNuevosMateriales(dato)
-    setMatElegido("")
-    setAnchorEleM(null)
-
-  }
-
-  };
   }
 
   // ELIMINAR MATERIAL DE LA LISTA
@@ -289,7 +296,7 @@ export default function NuevoPedido() {
   }
 
 
-  const set_IdMat = (event, value) => { if (value!== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
+  const set_IdMat = (event, value) => { if (value !== null) { setMatElegido(value) } else { setAnchorEleM(event.currentTarget) }; };
 
 
   // CARGA REACTIVOS A LA LISTA
@@ -297,53 +304,54 @@ export default function NuevoPedido() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log(data.get('cant_reactivo'));
-    var med_conc=data.get('med_concent');
-    if (med_conc===""){ med_conc=" " }  ;
-     if (reactivoElegido === null){  setAnchorEleR(event.currentTarget)}else{
-  
-    const dato = {
-      "cantidad": parseInt(data.get('cant_reactivo'), 10),
-      "un_medida": _med_reactivo,
-      "calidad": cal_reactivo,
-      "concentracion_tipo": _tip_reactivo,
-      "concentracion_medida": med_conc,
-      "disolvente": _disol_reactivo,
-      "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
-      "reactivo": reactivoElegido._id
+    var med_conc = data.get('med_concent');
+    if (med_conc === "") { med_conc = " " };
+    if (reactivoElegido === null) { setAnchorEleR(event.currentTarget) } else {
+
+      const dato = {
+        "cantidad": parseInt(data.get('cant_reactivo'), 10),
+        "un_medida": _med_reactivo,
+        "calidad": cal_reactivo,
+        "concentracion_tipo": _tip_reactivo,
+        "concentracion_medida": med_conc,
+        "disolvente": _disol_reactivo,
+        "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+        "reactivo": reactivoElegido._id
+      };
+      const reactivoRepetido = pedidoReactivos.filter(
+        elemento => elemento.reactivo === dato.reactivo
+          && elemento.concentracion_tipo === dato.concentracion_tipo
+          && elemento.concentracion_medida === dato.concentracion_medida
+          && elemento.disolvente === dato.disolvente
+          && elemento.otro_disolvente_descripcion === dato.otro_disolvente_descripcion)
+      if (reactivoRepetido.length > 0) {
+        setErrorReactivo("block")
+        setReactivoOk("none")
+      }
+      else {
+        setErrorReactivo("none")
+        setReactivoOk("block")
+        const cargarNuevosReactivos = dato => {
+          setPedidoReactivos([...pedidoReactivos, dato]);
+        }
+        const datoVer = {
+          "cantidad": parseInt(data.get('cant_reactivo'), 10),
+          "un_medida": _med_reactivo,
+          "calidad": cal_reactivo,
+          "concentracion_tipo": _tip_reactivo,
+          "concentracion_medida": data.get('med_concent'),
+          "disolvente": _disol_reactivo,
+          "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+          "reactivo": reactivoElegido
+        };
+        const cargarNuevosReactivosVer = dato => {
+          setverMasReactivos([...verMasReactivos, dato]);
+        }
+        cargarNuevosReactivosVer(datoVer)
+        cargarNuevosReactivos(dato)
+        //  data.reset()
+      };
     };
-    const reactivoRepetido = pedidoReactivos.filter(
-      elemento=>elemento.reactivo === dato.reactivo 
-      && elemento.concentracion_tipo === dato.concentracion_tipo 
-      && elemento.concentracion_medida === dato.concentracion_medida
-      && elemento.disolvente === dato.disolvente
-      && elemento.otro_disolvente_descripcion === dato.otro_disolvente_descripcion)
-    if(reactivoRepetido.length>0){
-      setErrorReactivo("block")
-      setReactivoOk("none")
-    }
-    else{  
-      setErrorReactivo("none")
-      setReactivoOk("block")
-    const cargarNuevosReactivos = dato => {
-      setPedidoReactivos([...pedidoReactivos, dato]);
-    }
-    const datoVer = {
-      "cantidad": parseInt(data.get('cant_reactivo'), 10),
-      "un_medida": _med_reactivo,
-      "calidad": cal_reactivo,
-      "concentracion_tipo": _tip_reactivo,
-      "concentracion_medida": data.get('med_concent'),
-      "disolvente": _disol_reactivo,
-      "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
-      "reactivo": reactivoElegido
-    };
-    const cargarNuevosReactivosVer = dato => {
-      setverMasReactivos([...verMasReactivos, dato]);
-    }
-    cargarNuevosReactivosVer(datoVer)
-    cargarNuevosReactivos(dato)
-    //  data.reset()
-  };};
   };
 
   const eliminarReactivo = (value) => {
@@ -355,13 +363,20 @@ export default function NuevoPedido() {
 
   const set_IdReactivo = (event, value) => {
     console.log(value);
-    if (value !== null){setReacElegido(value)} else{ 
-     setAnchorEleR(event.currentTarget)
-  };   }
+    if (value !== null) { setReacElegido(value) } else {
+      console.log(event.currentTarget);
+      setAnchorEleR(event.currentTarget)
+    };
+  }
   // const set_IdMat = (event, value) => { if (value !== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
 
-
-  const handleSubmit = () => {
+  const [anchorE2, setAnchorE2] = React.useState(null);
+  const handleSubmit = (event) => {
+    
+    event.preventDefault();
+    console.log(event.currentTarget);
+   
+  //  ; setAnchorE2(event.currentTarget)
     const pedido = {
       "docente": {
         "nombre": userActual.nombre,
@@ -387,10 +402,31 @@ export default function NuevoPedido() {
 
 
     postPedido(pedido);
-    navigate('/Docente/Pedidos');
     setConfirCabecera("none")
+    // setTimeout(navigate('/Docente/Pedidos'), 5000); 
+    setAnchorE2(event.currentTarget)
+    
+
 
   };
+
+ 
+
+  // const handleClick2 = (event) => {
+
+  //   handleSubmit()
+  // };
+
+  const handleClose2 = () => {
+    setAnchorE2(null);
+    navigate('/Docente/Pedidos')
+
+  }
+
+  const open2 = Boolean(anchorE2);
+  const id2 = open2 ? 'simple-popover' : undefined;
+
+
   useEffect(() => {
     let mounted = true;
     getListaEquipos().then(items => { if (mounted) { setListaEquipos(items) } });
@@ -412,15 +448,16 @@ export default function NuevoPedido() {
       <Container component="main" color="primary">
 
         {/* COMIENZA EL CONTENEDOR DEL BLOQUE SUPERIOR    */}
-        {/* <Box component="form" onSubmit={handleSubmit} noValidate>      */}
-        <Box>
+
+
+        <Box >
           <Box sx={{ flexGrow: 1, md: 2 }}>
 
             <PedidoCabecera
               cargaEncabezado={cargaEncabezado}
               cantidadPedidos={cantidadPedidos}
               confirmacionCabecera={confirmacionCabecera}
-              setConfirCabecera={setConfirCabecera} 
+              setConfirCabecera={setConfirCabecera}
               setAnchorEl={setAnchorEl}
               anchorEl={anchorEl}
               mensajeAlerta={mensajeAlerta}
@@ -448,7 +485,7 @@ export default function NuevoPedido() {
             {/* COMIENZA CONTENEDOR DE MATERIALES */}
 
             <PedidoMaterial
-             
+
               cargaMaterial={cargaMaterial}
               listaMateriales={listaMateriales}
               set_IdMat={set_IdMat}
@@ -481,7 +518,7 @@ export default function NuevoPedido() {
 
               verMasReactivos={verMasReactivos}
               eliminarReactivo={eliminarReactivo}
-              
+
               ver_disolvente={ver_disolvente}
               ver_otro_disolvente={ver_otro_disolvente}
               visible_off={visible_off}
@@ -500,47 +537,68 @@ export default function NuevoPedido() {
           </Box>
 
           {/* EMPIEZAN BOTONES */}
+          <Box component="form" onSubmit={handleSubmit} noValidate>
           <Grid container justifyContent="flex-end" spacing={2}
           >
-            <Grid item xs={2} >
+            <CartelOk
 
-              <Button fullWidth
-                color="error"
-                // style={{ borderRadius: 8 }}
-                margin="normal"
-                variant="contained"
-                startIcon={<ReplyAllIcon />}
-                onClick={() => {
-                  navigate('/Docente/Pedidos')
-                }}
-                sx={{ borderRadius: 2, height: 50 , border: 1, boxShadow:3, mb: 2 }}>  CANCELAR</Button>
 
-            </Grid>
-            <Grid item xs={2} 
-            >
+handleClose2={handleClose2}
+id2={id2}
+open2={open2}
+anchorE2={anchorE2}
 
-              <Button fullWidth
-                // style={{ borderRadius: 8 }}
-                margin="normal"
-                variant="contained"
-                endIcon={<SendIcon />}
-                onClick={handleSubmit}
-                // sx={{ mt: 3, mb: 2, height: 50 }}
-                sx={{borderRadius: 2, height: 50 , border: 1, boxShadow:3, mb: 2}}
+/>
+          
+              <Grid item xs={2} >
+
+                <Button fullWidth
+                  color="error"
+                  // style={{ borderRadius: 8 }}
+                  margin="normal"
+                  variant="contained"
+                  startIcon={<ReplyAllIcon />}
+                  onClick={() => {
+                    navigate('/Docente/Pedidos')
+                  }}
+                  sx={{ borderRadius: 2, height: 50, border: 1, boxShadow: 3, mb: 2 }}>  CANCELAR</Button>
+
+              </Grid>
+              <Grid item xs={2} display={"none"}
+
+              
+              >
+                <input type="hidden" name="color" value={"verde"}/>
+              </Grid>
+
+              <Grid item xs={2}
+              >
+
+
+                <Button fullWidth
+                  // style={{ borderRadius: 8 }}
+                  margin="normal"
+                  variant="contained"
+                  endIcon={<SendIcon />}
+                  type='onSubmit'
+                  // onChange={handleClick2(event)}
+                  // onClick={handleSubmit}
+                  // sx={{ mt: 3, mb: 2, height: 50 }}
+                  sx={{ borderRadius: 2, height: 50, border: 1, boxShadow: 3, mb: 2 }}
                 > CONFIRMAR PEDIDO</Button>
 
-            </Grid>
+              </Grid>
+            
           </Grid>
+          </Box>
 
         </Box>
 
       </Container>
-      <CartelOk
-      setAnchorEleR={setAnchorEleR}
-      anchorEleR={anchorEleR}
-      >
+      
 
-      </CartelOk>
+
+
     </ThemeProvider>
   )
 }
