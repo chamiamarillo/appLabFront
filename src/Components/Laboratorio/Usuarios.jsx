@@ -179,8 +179,6 @@ const Lista = (props) => {
 
   const handleEditar = (event) => {
     props.setElegido(event)
-    console.log(props.elegido)
-    console.log(event); // quitar
     props.setVerEdicion("block")
   }
   React.useEffect(() => {
@@ -200,7 +198,7 @@ const Lista = (props) => {
               <TableCell align="center">Apellido</TableCell>
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">DNI</TableCell>
-              <TableCell align="center">Es Admin</TableCell>
+              <TableCell align="center">Rol</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -215,7 +213,7 @@ const Lista = (props) => {
                 <TableCell align="center">{row.apellido}</TableCell>
                 <TableCell align="center">{row.email}</TableCell>
                 <TableCell align="center">{row.dni}</TableCell>
-                <TableCell align="center">{String(row.admin)}</TableCell>
+                <TableCell align="center">{(row.admin) ? "Laboratorio" : "Docente"}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="editar" onClick={() => handleEditar(row)}>
                     <EditIcon />

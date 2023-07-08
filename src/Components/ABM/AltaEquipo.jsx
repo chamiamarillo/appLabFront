@@ -23,7 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-
+import PopUp from './PopUp';
 function AltaEquipo(
     { open = { open },
         setOpen = { setOpen },
@@ -33,6 +33,8 @@ function AltaEquipo(
 
     }
 ) {
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
     const [error,setError]=useState("none")
     const cargaEquipo = async (event) => {
         event.preventDefault();
@@ -54,6 +56,8 @@ function AltaEquipo(
         postEquipo(dato)
         setError("none")
         setOpen(false);
+        setOpenMensaje(true);
+        setMensajeSalida(dato)
     }
         else { setError("block")}
 
@@ -84,7 +88,7 @@ function AltaEquipo(
                         borderLeft: 'var(--Grid-borderWidth) solid',
                         borderRight: 'var(--Grid-borderWidth) solid',
                         borderBottom: 'var(--Grid-borderWidth) solid',
-                        borderColor: 'divider',*/ padding: 2, borderRadius: 4, margin: 3
+                        borderColor: 'divider',*/ padding: 2, margin: 3
 
                     }}
 
@@ -214,7 +218,7 @@ function AltaEquipo(
 
 
                                     margin="normal"
-                                    variant="contained"
+                                    variant="outlined"
                                     color="error"
                                     startIcon={<ReplyAllIcon />}
                                     onClick={() => {
@@ -261,7 +265,15 @@ function AltaEquipo(
                 </DialogContent>
             </Dialog>
 
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={"Nuevo equipo agregado"}
+                children={<EquipoDadoAlta equipo={mensajeSalida} />}
+            >
+            </PopUp>
 
         </ThemeProvider >
 
@@ -271,3 +283,21 @@ function AltaEquipo(
 }
 
 export default AltaEquipo;
+
+
+const EquipoDadoAlta = (props) => {
+    const equipo = props.equipo
+    return (
+        <div>
+            <p>
+                <strong>Equipo: </strong> {equipo.descripcion}
+            </p>
+            <p>
+                <strong>Clase: </strong> {equipo.clase}
+            </p>
+            <p>
+                <strong> Stock: </strong> {equipo.stock}
+            </p>
+        </div>
+    )
+}

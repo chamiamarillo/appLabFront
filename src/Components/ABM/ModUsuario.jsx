@@ -15,7 +15,8 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
 import updateUsuario from "../../Services/updateUsuario";
-
+import deleteUsuario from "../../Services/deleteUsuario";
+import PopUp from "./PopUp";
 const ModUsuario = (
     { setVerEdicion = { setVerEdicion },
         elegido = { elegido },
@@ -31,12 +32,14 @@ const ModUsuario = (
     const [email, setEmail] = useState("");
     const [nuevoPerfil, setNuevoPerfil] = useState("");
     const [nuevoEditor, setNuevoEditor] = useState("")
-
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
+    const [scroll, setScroll] = React.useState('paper');
+    const [titulo, setTitulo] = useState("");
     const [ver, setVer] = useState("none")
     const modificarUsuario = (event) => {
         if (event !== null) {
             setNuevoUsuario(event);
-            console.log("usuario", event);
         }
     };
     const modContrasenia = (event) => {
@@ -67,7 +70,7 @@ const ModUsuario = (
     };
     const modPerfil = (event) => {
         if (event !== null) {
-            if (event === "LABORATORIO") { setVer("block") } else { setVer("none") }
+            if (event === true) { setVer("block") } else { setVer("block") }
             setNuevoPerfil(event);
         }
     };
@@ -76,7 +79,8 @@ const ModUsuario = (
             setNuevoEditor(event);
         }
     };
-    const modifUsuario = () => {
+    const modifUsuario = (event) => {
+        event.preventDefault();
         const dato = {
             "usuario": nuevoUsuario,
             "contrasenia": nuevaContrasenia,
@@ -87,16 +91,27 @@ const ModUsuario = (
             // "admin": nuevoPerfil,
             "editor": nuevoEditor,
             "email": email,
-
+            "admin": nuevoPerfil
 
         }
-        if (nuevoPerfil === "DOCENTE") { dato.admin = false } else { dato.admin = true }
+        //if (nuevoPerfil === "DOCENTE") { dato.admin = false } else { dato.admin = true }
         setVer("none")
         setVerEdicion("none")
         updateUsuario(elegido._id, dato)
+        setMensajeSalida(dato)
+        setTitulo("Usuario Modificado")
+        setOpenMensaje(true)
+    }
+    const eliminarUsuario = (event) => {
+        event.preventDefault();
+        deleteUsuario(elegido._id)
+        setVerEdicion("none")
+        setMensajeSalida(elegido)
+        setOpenMensaje(true)
+        setTitulo("Usuario Eliminado")
+        setElegido("")
     }
     useEffect(() => {
-
         setNuevoUsuario(elegido.usuario);
         setNuevaContrasenia(elegido.contrasenia);
         setNuevoNombre(elegido.nombre);
@@ -106,14 +121,15 @@ const ModUsuario = (
         setEmail(elegido.email);
 
         setNuevoEditor(elegido.editor);
-
-        if (elegido.perfil) {
-            setVer("block")
+        setNuevoPerfil(elegido.admin);
+        /*if (elegido.perfil) {
+            //setVer("block")
             setNuevoPerfil("LABORATORIO")
         } else {
-            setVer("none")
+            //setVer("none")
             setNuevoPerfil("DOCENTE")
-        }
+        }*/
+        (elegido.admin) ? setVer("block") : setVer("none");
     }, [elegido]);
 
     return (
@@ -121,7 +137,7 @@ const ModUsuario = (
 
 
 
-            <Grid container direction='row'
+            <Grid container direction='row' component="form" onSubmit={modifUsuario}
                 sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                 <Grid container
@@ -174,6 +190,7 @@ const ModUsuario = (
                             helperText={"debe contener 4 caracteres"}
                             sx={{ marginTop: 1, marginBottom: 1, marginLeft: 0 }}
                             fullWidth
+                            type={"password"}
                             required
                             id="contrasenia"
                             label="Contraseña"
@@ -259,7 +276,7 @@ const ModUsuario = (
                             }}
                             InputProps={{
                                 inputProps: {
-                                    max: 43000000, min: 5000000
+                                    max: 99999999, min: 1000000
                                 }
                             }}
                             value={nuevaMatricula}
@@ -341,8 +358,8 @@ const ModUsuario = (
                             >
 
 
-                                <MenuItem sx={{ fontSize: 12 }} value={"DOCENTE"}>DOCENTE</MenuItem>
-                                <MenuItem sx={{ fontSize: 12 }} value={"LABORATORIO"}>LABORATORIO</MenuItem>
+                                <MenuItem sx={{ fontSize: 12 }} value={false}>DOCENTE</MenuItem>
+                                <MenuItem sx={{ fontSize: 12 }} value={true}>LABORATORIO</MenuItem>
 
                             </Select>
                         </FormControl>
@@ -380,7 +397,26 @@ const ModUsuario = (
                 <Grid container direction="row"
                     justifyContent="end"
                     columns={{ xs: 12 }}    >
+                    <Grid item xs={2}
+                        height={30}
+                        bgcolor={"error"}
+                        borderRadius={2}
+                        sx={{ mt: 3, mb: 2, mr: 2}}
 
+                    >
+                        <Button fullWidth
+                            margin="normal"
+                            variant="contained"
+                            color="error"
+                            startIcon={<ReplyAllIcon />}
+                            
+                            style={{ borderRadius: 8 }}
+                            styled={{ textTransform: 'none' }}
+                            sx={{ height: 50 }}
+                            onClick={eliminarUsuario}
+                        >  ELIMINAR</Button>
+
+                    </Grid>
                     <Grid item xs={2}
                         height={30}
                         bgcolor={"error"}
@@ -392,7 +428,7 @@ const ModUsuario = (
 
 
                             margin="normal"
-                            variant="contained"
+                            variant="outlined"
                             color="error"
                             startIcon={<ReplyAllIcon />}
                             onClick={() => {
@@ -418,7 +454,7 @@ const ModUsuario = (
                             endIcon={<SendIcon />}
                             color="primary"
                             borderRadius={4}
-                            onClick={modifUsuario}
+                            type="submit"
 
                         >
                             Modificar</Button>
@@ -427,9 +463,48 @@ const ModUsuario = (
                     <Grid item xs={2}></Grid>
                 </Grid>
             </Grid>
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={titulo}
+                children={<UsuarioModificado usuario={mensajeSalida} />}
+            >
+            </PopUp>
         </ThemeProvider >
     )
 }
 
 export default ModUsuario
+
+const UsuarioModificado = ({ usuario }) => {
+    return (
+        <div>
+            <p>
+                <strong> Usuario: </strong> {usuario.usuario}
+            </p>
+            <p>
+                <strong> Nombre: </strong> {usuario.nombre}
+            </p>
+            <p>
+                <strong> Apellido: </strong> {usuario.apellido}
+            </p>
+            <p>
+                <strong> DNI: </strong> {usuario.dni}
+            </p>
+            <p>
+                <strong> Matricula: </strong> {usuario.matricula}
+            </p>
+            <p>
+                <strong> Email: </strong> {usuario.email}
+            </p>
+            <p>
+                <strong> Perfil: </strong> {usuario.admin ? "ADMINISTRADOR" : "DOCENTE"}
+            </p>
+            <p>
+                <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
+            </p>
+        </div>
+    )
+}

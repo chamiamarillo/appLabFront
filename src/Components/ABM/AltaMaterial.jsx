@@ -23,6 +23,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import PopUp from "./PopUp";
 
 function AltaMaterial(
     { open = { open },
@@ -34,6 +35,8 @@ function AltaMaterial(
     }
 ) {
     const [error,setError]=useState("none")
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
     const cargaMaterial = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -54,6 +57,8 @@ function AltaMaterial(
         postMaterial(dato)
         setError("none")
         setOpen(false);
+        setOpenMensaje(true);
+        setMensajeSalida(dato);
     }
         else { setError("block")}
 
@@ -153,6 +158,7 @@ function AltaMaterial(
                                             label="clase"
                                             name="clase"
                                             defaultValue={" "}
+                                            required
                                         >
 
                                             <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
@@ -182,7 +188,7 @@ function AltaMaterial(
                                                 max: 100, min: 0
                                             }
                                         }}
-
+                                        required
                                     />
                                 </Grid>
                             </Grid>
@@ -251,7 +257,14 @@ function AltaMaterial(
 
                 </DialogContent>
             </Dialog>
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                children={<MaterialDadoAlta material={mensajeSalida} />}
+                titulo={"Nuevo material agregado"}
+            />
 
 
         </ThemeProvider >
@@ -262,3 +275,19 @@ function AltaMaterial(
 }
 
 export default AltaMaterial;
+
+const MaterialDadoAlta = ({ material }) => {
+    return (
+        <div>
+            <p>
+                <strong>Material: </strong> {material.descripcion}
+            </p>
+            <p>
+                <strong>Clase: </strong> {material.clase}
+            </p>
+            <p>
+                <strong>Stock: </strong> {material.stock}
+            </p>
+        </div>
+    )
+}

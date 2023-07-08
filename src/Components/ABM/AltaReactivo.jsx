@@ -26,7 +26,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-
+import PopUp from './PopUp'
 function AltaReactivo(
     { open = { open },
         setOpen = { setOpen },
@@ -37,6 +37,8 @@ function AltaReactivo(
     }
 ) {
     const [error,setError]=useState("none")
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
     const cargaReactivo = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -56,6 +58,8 @@ function AltaReactivo(
         postReactivo(dato)
         setError("none")
         setOpen(false);
+        setOpenMensaje(true);
+        setMensajeSalida(dato)
     }
         else { setError("block")}
 
@@ -154,6 +158,7 @@ function AltaReactivo(
                                     InputLabelProps={{ shrink: true }}
                                     // autoComplete="descripcion"
                                     autoFocus
+                                    required
                                 />
 
                           
@@ -178,6 +183,7 @@ function AltaReactivo(
                                                 max: 100, min: 0
                                             }
                                         }}
+                                        required
 
                                     />
                                 </Grid>
@@ -189,7 +195,7 @@ function AltaReactivo(
                         <Grid container direction="row"
                             justifyContent="space-around"
                             columns={{ xs: 12 }} >
-
+                            
                             <Grid item xs={4}
                                 height={50}
                                 bgcolor={"error"}
@@ -201,7 +207,7 @@ function AltaReactivo(
 
 
                                     margin="normal"
-                                    variant="contained"
+                                    variant="outlined"
                                     color="error"
                                     startIcon={<ReplyAllIcon />}
                                     onClick={() => {
@@ -241,7 +247,7 @@ function AltaReactivo(
 
                     </Grid>
 
-                 
+                
 
 
 
@@ -249,7 +255,15 @@ function AltaReactivo(
             </Dialog>
 
 
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={"Nuevo reactivo agregado"}
+                children={<ReactivoDadoAlta reactivo={mensajeSalida} />}
+            >
+            </PopUp>
         </ThemeProvider >
 
 
@@ -258,3 +272,19 @@ function AltaReactivo(
 }
 
 export default AltaReactivo;
+
+const ReactivoDadoAlta = ({ reactivo }) => {
+    return (
+        <div>
+            <p>
+                <strong>Reactivo: </strong> {reactivo.descripcion}
+            </p>
+            <p>
+                <strong>CAS: </strong> {reactivo.cas}
+            </p>
+            <p>
+                <strong>Stock: </strong> {reactivo.stock}
+            </p>
+        </div>
+    )
+}

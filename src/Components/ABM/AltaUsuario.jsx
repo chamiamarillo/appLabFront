@@ -25,7 +25,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-
+import PopUp from "./PopUp";
 function AltaUsuario(
     { open = { open },
         setOpen = { setOpen },
@@ -35,6 +35,8 @@ function AltaUsuario(
 
     }
 ) {
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
     const [error2, setError2] = useState("none")
     const [perfil, setPerfil] = useState("")
     const [ver,setVer]=useState("none")
@@ -103,6 +105,9 @@ function AltaUsuario(
             setError("none")
             setOpen(false);
             setEmail("")
+            setOpenMensaje(true);
+            setMensajeSalida(dato)
+            console.log(dato)
         }
         else { setError("block") }
 
@@ -420,7 +425,7 @@ function AltaUsuario(
 
 
                                     margin="normal"
-                                    variant="contained"
+                                    variant="outlined"
                                     color="error"
                                     startIcon={<ReplyAllIcon />}
                                     onClick={() => {
@@ -466,7 +471,15 @@ function AltaUsuario(
 
                 </DialogContent>
             </Dialog>
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={"Nuevo usuario agregado"}
+                children={<UsuarioDadoAlta usuario={mensajeSalida} />}
+            >
+            </PopUp>
 
 
         </ThemeProvider >
@@ -477,3 +490,34 @@ function AltaUsuario(
 }
 
 export default AltaUsuario;
+
+const UsuarioDadoAlta = ({ usuario }) => {
+    return (
+        <div>
+            <p>
+                <strong> Usuario: </strong> {usuario.usuario}
+            </p>
+            <p>
+                <strong> Nombre: </strong> {usuario.nombre}
+            </p>
+            <p>
+                <strong> Apellido: </strong> {usuario.apellido}
+            </p>
+            <p>
+                <strong> DNI: </strong> {usuario.dni}
+            </p>
+            <p>
+                <strong> Matricula: </strong> {usuario.matricula}
+            </p>
+            <p>
+                <strong> Email: </strong> {usuario.email}
+            </p>
+            <p>
+                <strong> Perfil: </strong> {usuario.admin ? "ADMINISTRADOR" : "DOCENTE"}
+            </p>
+            <p>
+                <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
+            </p>
+        </div>
+    )
+}

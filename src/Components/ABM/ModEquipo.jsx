@@ -24,6 +24,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import updateEquipo from "../../Services/updateEquipo";
+import deleteEquipo from "../../Services/deleteEquipo";
+import PopUp from './PopUp';
 
 function ModEquipo(
     { setVerEdicion = { setVerEdicion },
@@ -33,8 +35,10 @@ setElegido={setElegido}   }) {
     const [nuevaDescripcion,setNuevaDescripcion] =useState("")
     const [nuevaClase,setNuevaClase] =useState("")
     const [nuevoStock,setNuevoStock] =useState("")
-
-
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [scroll, setScroll] = React.useState('paper');
     const modDescripcion = (event) => { if (event.target.value !== null) {    
             setNuevaDescripcion(event.target.value);
             console.log("descripcion",event.target.value);
@@ -48,8 +52,8 @@ setElegido={setElegido}   }) {
     setNuevoStock(event.target.value);
 }
 };  
-    const modifEquipo =  () => {
-        
+    const modifEquipo =  (event) => {
+        event.preventDefault();
         const dato = {
             "clase": nuevaClase,
             "descripcion": nuevaDescripcion.toUpperCase(),
@@ -60,9 +64,25 @@ setElegido={setElegido}   }) {
         updateEquipo(elegido._id,dato)
         setVerEdicion("none")
 
-
-
+        setOpenMensaje(true);
+        setMensajeSalida(dato)
+        setTitulo("Equipo modificado")
     };
+    const eliminarEquipo =  (event) => {
+        event.preventDefault();
+        const dato = {
+            "clase": elegido.clase,
+            "descripcion": elegido.descripcion,
+            "stock": parseInt(elegido.stock),
+        }
+
+        deleteEquipo(elegido._id,dato)
+        setVerEdicion("none")
+
+        setOpenMensaje(true);
+        setMensajeSalida(dato)
+        setTitulo("Equipo eliminado")
+    }
     useEffect(() => {
         setNuevaDescripcion(elegido.descripcion);
         setNuevaClase(elegido.clase);
@@ -78,7 +98,7 @@ setElegido={setElegido}   }) {
 
 
 
-            <Grid container direction='row'
+            <Grid container direction='row' component="form" onSubmit={modifEquipo}
                 sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                 <Grid container
@@ -190,7 +210,26 @@ setElegido={setElegido}   }) {
                 <Grid container direction="row"
                     justifyContent="end"
                     columns={{ xs: 12 }}    >
+                    <Grid item xs={2}
+                        height={30}
+                        bgcolor={"error"}
+                        borderRadius={2}
+                        sx={{ mt: 3, mb: 2, mr: 2}}
 
+                    >
+                        <Button fullWidth
+                            margin="normal"
+                            variant="contained"
+                            color="error"
+                            startIcon={<ReplyAllIcon />}
+                            
+                            style={{ borderRadius: 8 }}
+                            styled={{ textTransform: 'none' }}
+                            sx={{ height: 50 }}
+                            onClick={eliminarEquipo}
+                        >  ELIMINAR</Button>
+
+                    </Grid>
                     <Grid item xs={2}
                         height={30}
                         bgcolor={"error"}
@@ -202,7 +241,7 @@ setElegido={setElegido}   }) {
 
 
                             margin="normal"
-                            variant="contained"
+                            variant="outlined"
                             color="error"
                             startIcon={<ReplyAllIcon />}
                             onClick={() => {
@@ -228,8 +267,8 @@ setElegido={setElegido}   }) {
                             endIcon={<SendIcon />}
                             color="primary"
                             borderRadius={4}
-                            onClick={modifEquipo}
-
+                            type="submit"
+                           
                         >
                             Modificar</Button>
 
@@ -250,7 +289,15 @@ setElegido={setElegido}   }) {
             {/* </DialogContent>
             </Dialog> */}
 
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={titulo}
+                children={<EquipoModificado equipo={mensajeSalida} />}
+            >
+            </PopUp>
 
         </ThemeProvider >
 
@@ -260,3 +307,20 @@ setElegido={setElegido}   }) {
 }
 
 export default ModEquipo;
+
+const EquipoModificado = (props) => {
+    const equipo = props.equipo
+    return (
+        <div>
+            <p>
+                <strong>Equipo: </strong> {equipo.descripcion}
+            </p>
+            <p>
+                <strong>Clase: </strong> {equipo.clase}
+            </p>
+            <p>
+                <strong> Stock: </strong> {equipo.stock}
+            </p>
+        </div>
+    )
+}
