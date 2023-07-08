@@ -372,11 +372,12 @@ export default function NuevoPedido() {
 
   const [anchorE2, setAnchorE2] = React.useState(null);
   const handleSubmit = (event) => {
-    
+
     event.preventDefault();
-    console.log(event.currentTarget);
-   
-  //  ; setAnchorE2(event.currentTarget)
+    
+    
+    if ( (pedidoEncabezado !== "") && ((pedidoMateriales.length>0) || (pedidoEquipos.length>0 )|| (pedidoReactivos.length>0))){
+    //  ; setAnchorE2(event.currentTarget)
     const pedido = {
       "docente": {
         "nombre": userActual.nombre,
@@ -405,12 +406,13 @@ export default function NuevoPedido() {
     setConfirCabecera("none")
     // setTimeout(navigate('/Docente/Pedidos'), 5000); 
     setAnchorE2(event.currentTarget)
-    
+  }else alert("error no se cargaron datos")
+
 
 
   };
 
- 
+
 
   // const handleClick2 = (event) => {
 
@@ -538,18 +540,18 @@ export default function NuevoPedido() {
 
           {/* EMPIEZAN BOTONES */}
           <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Grid container justifyContent="flex-end" spacing={2}
-          >
-            <CartelOk
+            <Grid container justifyContent="flex-end" spacing={2}
+            >
+              <CartelOk
 
 
-handleClose2={handleClose2}
-id2={id2}
-open2={open2}
-anchorE2={anchorE2}
+                handleClose2={handleClose2}
+                id2={id2}
+                open2={open2}
+                anchorE2={anchorE2}
 
-/>
-          
+              />
+
               <Grid item xs={2} >
 
                 <Button fullWidth
@@ -566,9 +568,9 @@ anchorE2={anchorE2}
               </Grid>
               <Grid item xs={2} display={"none"}
 
-              
+
               >
-                <input type="hidden" name="color" value={"verde"}/>
+                <input type="hidden" name="color" value={"verde"} />
               </Grid>
 
               <Grid item xs={2}
@@ -576,26 +578,24 @@ anchorE2={anchorE2}
 
 
                 <Button fullWidth
-                  // style={{ borderRadius: 8 }}
+                
                   margin="normal"
                   variant="contained"
                   endIcon={<SendIcon />}
                   type='onSubmit'
-                  // onChange={handleClick2(event)}
-                  // onClick={handleSubmit}
-                  // sx={{ mt: 3, mb: 2, height: 50 }}
+                  
                   sx={{ borderRadius: 2, height: 50, border: 1, boxShadow: 3, mb: 2 }}
                 > CONFIRMAR PEDIDO</Button>
 
               </Grid>
-            
-          </Grid>
+
+            </Grid>
           </Box>
 
         </Box>
 
       </Container>
-      
+
 
 
 
