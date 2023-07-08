@@ -23,8 +23,10 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import PopUp from "./PopUp";
 
 import updateReactivo from "../../Services/updateReactivos";
+import deleteReactivo from "../../Services/deleteReactivo";
 
 function ModReactivo(
     { setVerEdicion = { setVerEdicion },
@@ -34,7 +36,10 @@ function ModReactivo(
     const [nuevaDescripcion, setNuevaDescripcion] = useState("")
     const [nuevoCAS, setNuevoCAS] = useState("")
     const [nuevoStock, setNuevoStock] = useState("")
-
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [scroll, setScroll] = React.useState('paper');
 
     const modDescripcion = (event) => {
         if (event.target.value !== null) {
@@ -52,8 +57,8 @@ function ModReactivo(
             setNuevoStock(event.target.value);
         }
     };
-    const modifReactivo = () => {
-
+    const modifReactivo = (event) => {
+        event.preventDefault();
         const dato = {
             "cas": nuevoCAS.toUpperCase(),
             "descripcion": nuevaDescripcion.toUpperCase(),
@@ -64,9 +69,25 @@ function ModReactivo(
         updateReactivo(elegido._id, dato)
         setVerEdicion("none")
 
-
+        setOpenMensaje(true);
+        setMensajeSalida(dato)
+        setTitulo("Reactivo modificado")
 
     };
+    const eliminarReactivo = (event) => {
+        event.preventDefault();
+        const datosReactivo = {
+            "cas": elegido.cas,
+            "descripcion": elegido.descripcion,
+            "stock": elegido.stock,
+        }
+        deleteReactivo(elegido._id)
+        setVerEdicion("none")
+
+        setOpenMensaje(true);
+        setMensajeSalida(datosReactivo)
+        setTitulo("Reactivo eliminado")
+    }
     useEffect(() => {
         setNuevaDescripcion(elegido.descripcion);
         setNuevoCAS(elegido.cas);
@@ -82,7 +103,7 @@ function ModReactivo(
 
 
 
-            <Grid container direction='row'
+            <Grid container direction='row' component="form" onSubmit={modifReactivo}
                 sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                 <Grid container
@@ -170,7 +191,7 @@ function ModReactivo(
                                     }
                                 }}
                                 onChange={modStock}
-
+                                required
                             />
                         </Grid>
                     </Grid>
@@ -181,7 +202,26 @@ function ModReactivo(
                 <Grid container direction="row"
                     justifyContent="end"
                     columns={{ xs: 12 }}    >
+                    <Grid item xs={2}
+                        height={30}
+                        bgcolor={"error"}
+                        borderRadius={2}
+                        sx={{ mt: 3, mb: 2, mr: 2}}
 
+                    >
+                        <Button fullWidth
+                            margin="normal"
+                            variant="contained"
+                            color="error"
+                            startIcon={<ReplyAllIcon />}
+                            
+                            style={{ borderRadius: 8 }}
+                            styled={{ textTransform: 'none' }}
+                            sx={{ height: 50 }}
+                            onClick={eliminarReactivo}
+                        >  ELIMINAR</Button>
+
+                    </Grid>
                     <Grid item xs={2}
                         height={30}
                         bgcolor={"error"}
@@ -193,7 +233,7 @@ function ModReactivo(
 
 
                             margin="normal"
-                            variant="contained"
+                            variant="outlined"
                             color="error"
                             startIcon={<ReplyAllIcon />}
                             onClick={() => {
@@ -219,7 +259,7 @@ function ModReactivo(
                             endIcon={<SendIcon />}
                             color="primary"
                             borderRadius={4}
-                            onClick={modifReactivo}
+                            type="submit"
 
                         >
                             Modificar</Button>
@@ -241,7 +281,15 @@ function ModReactivo(
             {/* </DialogContent>
             </Dialog> */}
 
-
+                <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                titulo={titulo}
+                children={<ReactivoModificado reactivo={mensajeSalida} />}
+            >
+            </PopUp>
 
         </ThemeProvider >
 
@@ -251,3 +299,19 @@ function ModReactivo(
 }
 
 export default ModReactivo;
+
+const ReactivoModificado = ({ reactivo }) => {
+    return (
+        <div>
+            <p>
+                <strong>Reactivo: </strong> {reactivo.descripcion}
+            </p>
+            <p>
+                <strong>CAS: </strong> {reactivo.cas}
+            </p>
+            <p>
+                <strong>Stock: </strong> {reactivo.stock}
+            </p>
+        </div>
+    )
+}

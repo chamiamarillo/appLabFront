@@ -26,7 +26,9 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
 import updateMaterial from "../../Services/updateMaterial";
+import deleteMaterial from "../../Services/deleteMaterial";
 
+import PopUp from "./PopUp";
 function ModMaterial(
     { setVerEdicion = { setVerEdicion },
         elegido = { elegido },
@@ -35,12 +37,14 @@ function ModMaterial(
     const [nuevaDescripcion, setNuevaDescripcion] = useState("")
     const [nuevaClase, setNuevaClase] = useState("")
     const [nuevoStock, setNuevoStock] = useState("")
-
+    const [openMensaje, setOpenMensaje] = useState(false);
+    const [mensajeSalida, setMensajeSalida] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [scroll, setScroll] = React.useState('paper');
 
     const modDescripcion = (event) => {
         if (event.target.value !== null) {
             setNuevaDescripcion(event.target.value);
-            console.log("descripcion", event.target.value);
         }
     };
     const modClase = (event) => {
@@ -53,8 +57,8 @@ function ModMaterial(
             setNuevoStock(event.target.value);
         }
     };
-    const modifEquipo = () => {
-
+    const modifEquipo = (event) => {
+        event.preventDefault();
         const dato = {
             "clase": nuevaClase,
             "descripcion": nuevaDescripcion.toUpperCase(),
@@ -65,9 +69,19 @@ function ModMaterial(
         updateMaterial(elegido._id, dato)
         setVerEdicion("none")
 
-
+        setOpenMensaje(true)
+        setTitulo("Material Modificado")
+        setMensajeSalida(dato)
 
     };
+    const borrarMaterial = (event) => {
+        event.preventDefault();
+        deleteMaterial(elegido._id)
+        setVerEdicion("none")
+        setOpenMensaje(true)
+        setTitulo("Material Eliminado")
+        setMensajeSalida(elegido)
+    }
     useEffect(() => {
         setNuevaDescripcion(elegido.descripcion);
         setNuevaClase(elegido.clase);
@@ -83,7 +97,7 @@ function ModMaterial(
 
 
 
-            <Grid container direction='row'
+            <Grid container direction='row' component="form" onSubmit={modifEquipo}
                 sx={{ marginTop: 1 }} columns={{ xs: 12 }} >
 
                 <Grid container
@@ -145,6 +159,7 @@ function ModMaterial(
                                     name="clase"
                                     value={nuevaClase}
                                     onChange={modClase}
+                                    required
                                 >
                                     <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
                                     <MenuItem sx={{ fontSize: 12 }} value={"MATERIALES"}>MATERIALES</MenuItem>
@@ -176,7 +191,7 @@ function ModMaterial(
                                     }
                                 }}
                                 onChange={modStock}
-
+                                required
                             />
                         </Grid>
                     </Grid>
@@ -187,7 +202,25 @@ function ModMaterial(
                 <Grid container direction="row"
                     justifyContent="end"
                     columns={{ xs: 12 }}    >
+                    <Grid item xs={2}
+                        height={30}
+                        bgcolor={"error"}
+                        borderRadius={2}
+                        sx={{ mt: 3, mb: 2, mr: 2}}
 
+                    >
+                        <Button fullWidth
+                            margin="normal"
+                            variant="contained"
+                            color="error"
+                            startIcon={<ReplyAllIcon />}
+                            
+                            style={{ borderRadius: 8 }}
+                            styled={{ textTransform: 'none' }}
+                            sx={{ height: 50 }}
+                            onClick={borrarMaterial}
+                        >  ELIMINAR</Button>
+                    </Grid>
                     <Grid item xs={2}
                         height={30}
                         bgcolor={"error"}
@@ -199,7 +232,7 @@ function ModMaterial(
 
 
                             margin="normal"
-                            variant="contained"
+                            variant="outlined"
                             color="error"
                             startIcon={<ReplyAllIcon />}
                             onClick={() => {
@@ -225,7 +258,7 @@ function ModMaterial(
                             endIcon={<SendIcon />}
                             color="primary"
                             borderRadius={4}
-                            onClick={modifEquipo}
+                            type="submit"
 
                         >
                             Modificar</Button>
@@ -246,7 +279,14 @@ function ModMaterial(
 
             {/* </DialogContent>
             </Dialog> */}
-
+            <PopUp
+                open={openMensaje}
+                setOpen={setOpenMensaje}
+                handleClose={() => setOpenMensaje(false)}
+                scroll={scroll}
+                children={<MaterialModificado material={mensajeSalida} />}
+                titulo={titulo}
+            />
 
 
         </ThemeProvider >
@@ -257,3 +297,19 @@ function ModMaterial(
 }
 
 export default ModMaterial;
+
+const MaterialModificado = ({ material }) => {
+    return (
+        <div>
+            <p>
+                <strong>Material: </strong> {material.descripcion}
+            </p>
+            <p>
+                <strong>Clase: </strong> {material.clase}
+            </p>
+            <p>
+                <strong>Stock: </strong> {material.stock}
+            </p>
+        </div>
+    )
+}
