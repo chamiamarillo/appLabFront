@@ -371,13 +371,14 @@ export default function NuevoPedido() {
   // const set_IdMat = (event, value) => { if (value !== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
 
   const [anchorE2, setAnchorE2] = React.useState(null);
+  const[pedidoIncompleto,setPedidoIncompleto]=useState(false);
   const handleSubmit = (event) => {
 
     event.preventDefault();
     
     
     if ( (pedidoEncabezado !== "") && ((pedidoMateriales.length>0) || (pedidoEquipos.length>0 )|| (pedidoReactivos.length>0))){
-    //  ; setAnchorE2(event.currentTarget)
+   
     const pedido = {
       "docente": {
         "nombre": userActual.nombre,
@@ -404,9 +405,12 @@ export default function NuevoPedido() {
 
     postPedido(pedido);
     setConfirCabecera("none")
-    // setTimeout(navigate('/Docente/Pedidos'), 5000); 
+    setPedidoIncompleto(false)
     setAnchorE2(event.currentTarget)
-  }else alert("error no se cargaron datos")
+  }else 
+
+  setPedidoIncompleto(true)
+  setAnchorE2(event.currentTarget)
 
 
 
@@ -549,6 +553,8 @@ export default function NuevoPedido() {
                 id2={id2}
                 open2={open2}
                 anchorE2={anchorE2}
+                setAnchorE2={setAnchorE2}
+                pedidoIncompleto={ pedidoIncompleto}
 
               />
 
