@@ -17,7 +17,8 @@ const Theme1 = createTheme({
         
         secondary: {
 
-            main: "#b4e0bc"
+            main: "#b4e0bc",
+            oscuro:'#248f37'
         },
         verdeC: {
             main: "#b4e0bc"

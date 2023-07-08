@@ -39,20 +39,10 @@ const PedidoCabecera = (props) => {
  
   const [confCabe, setConf] = useState(["block"]);
   const [fechaUtilCorrecta, setFechaUtilizacionCorrecta] = useState("")
-  // ************************
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const [mensajeAlerta, setMensajeAlerta] = useState("Fecha invalida , debe estar entre"+verManiana+' y '+verTope)
+  
   const handleClose = () => {
     props.setAnchorEl(null);
-    // if (mensajeAlerta === "Faltan Cargar Datos") {
-    //   setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
-    // } else {
-    //   setMensajeAlerta("Faltan Cargar Datos")
-    // }
+    
   }
 
   const open = Boolean(props.anchorEl);
