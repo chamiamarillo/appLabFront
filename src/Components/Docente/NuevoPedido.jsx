@@ -35,7 +35,7 @@ import CartelOk from '../Mensajes/CartelOk';
 
 export default function NuevoPedido() {
   //PRUEBA CODIGO
-
+ 
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [pedidoEquipos, setPedidoEquipos] = useState([]);
   const [listaEquipos, setListaEquipos] = useState([]);
@@ -161,10 +161,11 @@ export default function NuevoPedido() {
         "alumnos": data.get('cantidad_alumnos'),
         "cantidad_grupos": data.get('cantidad_grupos'),
         "edificio": "Sin asignar",
-        "materia": "string",
-        "numero_tp": "2",
+        "materia":  data.get('materia'),
+        "numero_tp": nro_pedido,
       },
       );
+      
 
     } else {
       // setFaltanDatos(true)
@@ -418,19 +419,16 @@ export default function NuevoPedido() {
 
 
 
-  // const handleClick2 = (event) => {
-
-  //   handleSubmit()
-  // };
-
   const handleClose2 = () => {
     setAnchorE2(null);
+    
     navigate('/Docente/Pedidos')
 
   }
 
   const open2 = Boolean(anchorE2);
   const id2 = open2 ? 'simple-popover' : undefined;
+
 
 
   useEffect(() => {
@@ -469,6 +467,7 @@ export default function NuevoPedido() {
               mensajeAlerta={mensajeAlerta}
               setMensajeAlerta={setMensajeAlerta}
               formatManiana={formatManiana}
+             
             />
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
