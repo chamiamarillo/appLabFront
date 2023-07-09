@@ -99,7 +99,7 @@ export default function Filtros(props) {
 
                                 // name='edificio'
                                 >
-                                    <MenuItem sx={{ width: 100, fontSize: 14 }} value={""}>TODOS</MenuItem>
+                                    <MenuItem sx={{ width: 100, fontSize: 14 }} value={"TODOS"}>TODOS</MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"Malvinas"}>MALVINAS</MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"Origone-A"}>ORIGONE - A</MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"Origone-B"}>ORIGONE - B</MenuItem>
@@ -125,12 +125,12 @@ export default function Filtros(props) {
                                     value={props.tipo_pedido}
                                     label="estado"
                                     onChange={props.cargarEstado}
-                                    defaultValue={""}
+                                    // defaultValue={""}
 
 
                                 >
 
-                                    <MenuItem sx={{ width: 100, fontSize: 14 }} value={""}> TODOS </MenuItem>
+                                    <MenuItem sx={{ width: 100, fontSize: 14 }} value={"TODOS"}> TODOS </MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"ACEPTADO"}> ACEPTADO </MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"PENDIENTE"}>PENDIENTE</MenuItem>
                                     <MenuItem sx={{ width: 100, fontSize: 14 }} value={"RECHAZADO"}>RECHAZADO</MenuItem>
