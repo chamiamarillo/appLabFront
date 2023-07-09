@@ -77,7 +77,7 @@ export default function Filtros(props) {
                             borderBottom: 'var(--Grid-borderWidth) solid',
                             borderColor: 'divider',
                             borderRadius: 2,
-                           
+
                         }}
                         spacing={{ xs: 1, md: 1 }} columns={{ xs: 12 }}>
 
@@ -86,7 +86,7 @@ export default function Filtros(props) {
 
                             <FormControl fullWidth  >
 
-                                <InputLabel id="edificio">EDIFICIO</InputLabel>
+                                <InputLabel id="edificio" sx={{ fontSize: 14 }} >EDIFICIO</InputLabel>
                                 <Select
                                     InputLabelProps={{
                                         shrink: true,
@@ -114,7 +114,7 @@ export default function Filtros(props) {
 
                         <Grid item xs={2} container  >
                             <FormControl fullWidth>
-                                <InputLabel id="estado" >ESTADO</InputLabel>
+                                <InputLabel id="estado" sx={{ fontSize: 14 }}  >ESTADO</InputLabel>
                                 <Select
 
                                     InputLabelProps={{
@@ -125,7 +125,7 @@ export default function Filtros(props) {
                                     value={props.tipo_pedido}
                                     label="estado"
                                     onChange={props.cargarEstado}
-                                    // defaultValue={""}
+                                // defaultValue={""}
 
 
                                 >
@@ -145,21 +145,26 @@ export default function Filtros(props) {
 
 
                         <Grid item xs={2} display="flex" justifyContent={"center"} alignContent={"top"}
-                            sx={{ border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70, marginX: 1, marginTop: 1 }}>
+                            sx={{
+                                border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70, marginX: 1,
+                                marginTop: 0.5
+                            }}>
 
                             <Typography sx={{
                                 fontSize: 14
                             }}
                                 aria-label="simple table"
                                 color="text.secondary"  >
-                                <legend>Inicio de busqueda </legend>
+                                <legend>INICIO DE BUSQUEDA </legend>
                                 <input
                                     type="date"
                                     fullWidth
                                     style={{
 
-                                        fontSize: '1.0rem', padding: "1.0 rem", width: "80%", border: "none"
-                                        , fontFamily: "cursive", color: "grey"
+                                        // fontSize: '1.0rem',
+                                        padding: "1.0 rem", width: "80%", border: "none"
+                                        // , fontFamily: "cursive"
+                                        , color: "grey"
                                     }}
                                     value={props.fecha_inicio}
                                     onChange={guardar_inicio}
@@ -173,14 +178,19 @@ export default function Filtros(props) {
                         </Grid>
 
                         <Grid item xs={2} display="flex" justifyContent={"center"} alignContent={"top"}
-                            sx={{ border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70, marginX: 1, marginTop: 1 }}>
+                            sx={{
+                                border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70,
+                                //  marginX: 1, 
+                                marginTop: 0.5
+                            }}>
                             <Typography sx={{ fontSize: 14 }} aria-label="simple table" color="text.secondary" >
-                                <legend>Fin de busqueda</legend>
+                                <legend>FIN DE BUSQUEDA</legend>
                                 <input
                                     type="date"
                                     style={{
                                         border: "none", padding: "1.0 rem", width: "80%",
-                                        fontSize: '1.0rem', fontFamily: "cursive", color: "grey"
+                                        // fontSize: '1.0rem', fontFamily: "cursive",
+                                        color: "grey"
                                     }}
 
                                     min={props.fecha_inicio}
@@ -194,23 +204,23 @@ export default function Filtros(props) {
                             </Typography>
                         </Grid>
 
-                        <Grid item xs={2}
+                        <Grid item xs={2} sm={4} md={4}
                             sx={{
 
-                                marginX: 1, marginTop:3 ,marginBottom:2, border:1,borderColor:'red',borderRadius: 2
+                                marginX: 1, marginTop: 2.5, marginBottom: 2, border: 1, borderColor: 'red', borderRadius: 1
                             }}
-                        
+
 
                         >
-                           
+
                             <Button
                                 fullWidth
                                 style={{
-                                    fontSize: '0.7rem', height: 45, color:"red",border:"none"
+                                    fontSize: '0.7rem', height: '2.5rem', color: "red", border: "none", paddingRight: 4
 
                                 }}
                                 // variant="outlined"
-                                 color="error"
+                                color="error"
 
                                 endIcon={<DateRangeIcon />}
 
@@ -220,7 +230,7 @@ export default function Filtros(props) {
                                 }}>
 
                                 eliminar filtros fecha</Button>
-                           
+
 
 
                         </Grid>
