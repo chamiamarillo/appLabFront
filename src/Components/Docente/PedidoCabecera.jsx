@@ -22,27 +22,42 @@ import CartelAlerta from '../Mensajes/CartelAlerta';
 
 
 const PedidoCabecera = (props) => {
- 
+
   const fecha = new Date();
- 
+
   // hasta un mes y medio antes solicitar el material
   var topeFecha = new Date()
   const nTope = topeFecha.setTime(topeFecha.getTime() + (60 * 24 * 60 * 60 * 1000))
   const verTope = (moment(nTope).format('DD-MM-YYYY')).toString();
   const formatTope = (moment(nTope).format('YYYY-MM-DD')).toString();
 
-  var manana= new Date()
+  var manana = new Date()
   manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
   const verManiana = (moment(manana).format('DD-MM-YYYY')).toString();
   const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
   const fechaActual = (moment(fecha).format('DD/MM/YYYY'));
- 
+
+  const [horaOk, setHoraOk] = useState("08:00")
+
   const [confCabe, setConf] = useState(["block"]);
   const [fechaUtilCorrecta, setFechaUtilizacionCorrecta] = useState("")
-  
+  const [materiaMostrar,setMateriaMostrar] = useState(["materia"]);
+  const controlHora = (event) => {
+
+
+    if ((event.target.value > "21:00") || (event.target.value < "08:00")) {
+
+
+      props.setMensajeAlerta('Hora incorrecta, los horarios permiditos son de 08:00 a 21:00')
+
+      props.setAnchorEl(event.currentTarget)
+
+    } else { setHoraOk(event.target.value) }
+  }
+
   const handleClose = () => {
     props.setAnchorEl(null);
-    
+
   }
 
   const open = Boolean(props.anchorEl);
@@ -51,14 +66,14 @@ const PedidoCabecera = (props) => {
 
   const controlDia = (event) => {
 
-    if( (event.target.value < formatManiana) || (event.target.value > formatTope))  {
-      props.setMensajeAlerta('Fecha invalida , debe estar entre'+verManiana+' y '+verTope)
+    if ((event.target.value < formatManiana) || (event.target.value > formatTope)) {
+      props.setMensajeAlerta('Fecha invalida , debe estar entre ' + verManiana + ' y ' + verTope)
 
       props.setAnchorEl(event.currentTarget)
 
     } else { setFechaUtilizacionCorrecta(moment(event.target.value).format('YYYY-MM-DD')) }
   }
-  
+
   useEffect(() => {
 
     return () => {
@@ -71,8 +86,8 @@ const PedidoCabecera = (props) => {
 
     }
     setFechaUtilizacionCorrecta(props.formatManiana)
-   
-   
+
+
 
 
     return () => { }
@@ -144,12 +159,12 @@ const PedidoCabecera = (props) => {
             label="fecha_utilizacion"
             type="date"
             min={formatManiana}
-            max={formatTope} 
+            max={formatTope}
             defaultValue={formatManiana}
             name='fecha_utilizacion'
             required
             value={fechaUtilCorrecta}
-           
+
             sx={{ border: 3, borderColor: 'transparent' }}
             // className={classes.textField}
             InputLabelProps={{
@@ -167,15 +182,17 @@ const PedidoCabecera = (props) => {
             label="hora"
             name="hora"
             type="time"
-
-            defaultValue="08:00"
+            min={"08:00"}
+            max={"21:00"}
+            value={horaOk}
+            defaultValue={horaOk}
             InputLabelProps={{
               shrink: true,
             }}
             inputProps={{
               step: 300, // 5 min
             }}
-
+            onChange={controlHora}
             margin="normal"
             required
             fullWidth
@@ -185,13 +202,15 @@ const PedidoCabecera = (props) => {
         <Grid item xs={2} >
           <TextField
             margin="normal"
-
+            required
             fullWidth
+            // value={materiaMostrar}
+            defaultValue={materiaMostrar}
             id="materia"
             label="materia"
             name="materia"
             InputLabelProps={{ shrink: true }}
-            autoComplete="materia"
+            // autoComplete="materia"
             autoFocus
           />
 

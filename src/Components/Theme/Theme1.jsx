@@ -29,7 +29,7 @@ const Theme1 = createTheme({
             main: "#ba000d"
         },
         gris: {
-            main: "#685E5E"
+            main: "#685E5E",claro:"#cfc6c6"
         },
         blanco: {
             main: "#FFFFFF"
