@@ -197,7 +197,7 @@ export default function Filtros(props) {
                         <Grid item xs={2}
                             sx={{
 
-                                marginX: 1, marginY: 1
+                                marginX: 1, marginTop:3 ,marginBottom:2, border:1,borderColor:'red',borderRadius: 2
                             }}
                         
 
@@ -206,13 +206,12 @@ export default function Filtros(props) {
                             <Button
                                 fullWidth
                                 style={{
-                                    fontSize: '0.7rem', height: 55, borderRadius: 2
+                                    fontSize: '0.7rem', height: 45, color:"red",border:"none"
 
                                 }}
+                                // variant="outlined"
+                                 color="error"
 
-                                variant="outlined"
-
-                                color="error"
                                 endIcon={<DateRangeIcon />}
 
                                 onClick={() => {
