@@ -20,8 +20,9 @@ export async function getCantidadPedidos() {
 export async function axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio)  {
     console.log(fecha_inicio);
     var params={}
-    if(tipo_pedido.length>0){params.tipo_pedido= tipo_pedido}
-    if(edificio.length>0){params.edificio= edificio}
+    
+    if((tipo_pedido.length>0)&&(tipo_pedido!=="TODOS")){params.tipo_pedido= tipo_pedido}
+    if((edificio.length>0)&&(edificio!=="TODOS")){params.edificio= edificio}
     if(fecha_inicio.length>0 && fecha_fin.length>0){
         params.fecha_fin=fecha_fin;params.fecha_inicio=fecha_inicio    }
     try {

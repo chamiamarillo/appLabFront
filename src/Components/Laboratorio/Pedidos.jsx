@@ -55,11 +55,12 @@ function Pedidos() {
 
 
   const cargarEstado = (event) => {
-    // const dato=event.target.value
+ 
     event.preventDefault();
     console.log(event.target.value)
+   
     guardarEstadoPedido(event.target.value)
-    // cargarNuevosPedidos()
+    
 
 
 
@@ -71,6 +72,8 @@ function Pedidos() {
 
   function cargarNuevosPedidos() {
     console.log("se guarda algo en el estado", tipo_pedido);
+    // if(tipo_pedido==="TODOS"){ guardarEstadoPedido("")}
+    // if(edificio==="TODOS"){set_edificio("")}
     axiosGetPedido(fecha_utilizacion, tipo_pedido, fecha_inicio, fecha_fin, edificio).then((item) => { setListaPedidos(item) }
 
 
