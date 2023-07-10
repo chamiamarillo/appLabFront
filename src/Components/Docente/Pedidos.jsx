@@ -89,9 +89,9 @@ function Pedidos() {
                 m: 4,
               }}
               alignItems="space-between"
-              spacing={{ xs: 2, md: 3 }} columns={{ xs: 3, sm: 6, md: 12 }} >
+              spacing={{ xs: 2, md: 2 }} columns={{ xs: 3, sm: 6, md: 12 }} >
               {listaPedidos.map((pedido) => (
-                <Grid item xs={3} key={pedido._id}>
+                <Grid item xs={3} sm={3} md={3}  key={pedido._id}>
                   <PedidoV1 key={pedido._id} pedido={pedido} esAdmin={esAdmin} />
                 </Grid>
               ))}

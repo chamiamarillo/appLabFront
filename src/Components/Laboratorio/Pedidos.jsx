@@ -31,11 +31,11 @@ function Pedidos() {
 
 
   /********************************************** */
-  const [tipo_pedido, setTipoPedido] = React.useState("");
+  const [tipo_pedido, setTipoPedido] = React.useState("TODOS");
   const [fecha_utilizacion, set_fecha_utilizacion] = React.useState("");
   const [fecha_inicio, set_fecha_inicio] = React.useState("");
   const [fecha_fin, set_fecha_fin] = React.useState("");
-  const [edificio, set_edificio] = React.useState("");
+  const [edificio, set_edificio] = React.useState("TODOS");
 
   // *******************************
   const [open, setOpen] = React.useState("");
@@ -132,6 +132,7 @@ function Pedidos() {
         fecha_inicio={fecha_inicio}
         edificio={edificio}
         set_edificio={set_edificio}
+        tipo_pedido={tipo_pedido}
 
         open={open}
         setOpen={setOpen}
