@@ -78,11 +78,11 @@ function PedidoV1({ pedido, esAdmin}) {
 
   return (
     <ThemeProvider theme={Theme1}>
-      <Box sx={{ m: 10,height:240 }} md={{m:5,height:200 }}
+      <Box sx={{ m: 10}} 
        styles={{
         display: "flex",
         margin: "8px",
-        height: "200px"
+        height: "240px"
       }} padding="2px">
         <Card style={{ backgroundColor: "#b4e0bc", borderRadius: 15 }}>
           <CardActionArea onClick={handleClickOpen('body')}>
@@ -124,9 +124,10 @@ function PedidoV1({ pedido, esAdmin}) {
                 <Typography sx={{color:'red'}}>
               <p>
                 <strong>Estado: {tipo_pedido}</strong>
-              </p></Typography>):(<p>
+              </p></Typography>):(
+               <Typography ><p>
                 <strong>Estado: </strong>{tipo_pedido}
-              </p>)}
+              </p></Typography>)}
               
             </CardContent>
           </CardActionArea>
