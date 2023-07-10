@@ -48,7 +48,7 @@ export default function Filtros(props) {
 
     return (
 
-        <Box sx={{ flexGrow: 1, mb: 10 }}
+        <Box sx={{ flexGrow: 1, mb: 6 }}
 
         >
             <Dialog
@@ -146,12 +146,12 @@ export default function Filtros(props) {
 
                         <Grid item xs={2} display="flex" justifyContent={"center"} alignContent={"top"}
                             sx={{
-                                border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70, marginX: 1,
+                                border: 1, borderColor: 'gris.claro', borderRadius: 1, marginX: 1,
                                 marginTop: 0.5
                             }}>
 
                             <Typography sx={{
-                                fontSize: 14
+                                fontSize: 12, minHeight: 45
                             }}
                                 aria-label="simple table"
                                 color="text.secondary"  >
@@ -180,16 +180,15 @@ export default function Filtros(props) {
                         <Grid item xs={2} display="flex" justifyContent={"center"} alignContent={"top"}
                             sx={{
                                 border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70,
-                                //  marginX: 1, 
                                 marginTop: 0.5
                             }}>
-                            <Typography sx={{ fontSize: 14 }} aria-label="simple table" color="text.secondary" >
+                            <Typography sx={{ fontSize: 12, minHeight: 45 }} aria-label="simple table" color="text.secondary" >
                                 <legend>FIN DE BUSQUEDA</legend>
                                 <input
                                     type="date"
                                     style={{
                                         border: "none", padding: "1.0 rem", width: "80%",
-                                        // fontSize: '1.0rem', fontFamily: "cursive",
+
                                         color: "grey"
                                     }}
 
