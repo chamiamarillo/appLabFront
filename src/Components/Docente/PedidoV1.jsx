@@ -18,13 +18,14 @@ import {
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PedidoDetalle from "../Laboratorio/PedidoDetalle";
 import PedidoDetalleLabo from "../Laboratorio/PedidoDetalleLabo";
+import { Typography } from "@mui/material";
 
 
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     margin: "8px",
-    height: "240px"
+    minHeight: "240px"
 
 
   },
@@ -50,6 +51,7 @@ function PedidoV1({ pedido, esAdmin}) {
     lista_equipos
   } = pedido;
   const fecha_utilizar = (moment(fecha_utilizacion).utc().format('DD/MM/YYYY HH:mm'));
+ 
   const [open, setOpen] = React.useState("");
   const [scroll, setScroll] = React.useState('paper');
 
@@ -61,10 +63,23 @@ function PedidoV1({ pedido, esAdmin}) {
   const handleClose = () => {
     setOpen(false);
   };
+/*  control de estado pendiente con fecha cercana de utilizacion */ 
+  // const [estaPendiente,setEstaPendiente]=React.useState(false);
+  var manana = new Date()
+  manana = manana.setTime(manana.getTime() + (2 * 24 * 60 * 60 * 1000))
+  
+  
+  const formatManiana = (moment(manana).format('YYYY-MM-DD')).toString();
+  
+  // if((fecha_utilizacion<=formatManiana)&& (tipo_pedido==="PENDIENTE")){
+  //   setEstaPendiente('red')
+  // };
+  
 
   return (
     <ThemeProvider theme={Theme1}>
-      <Box sx={{ m: 10 }} styles={{
+      <Box sx={{ m: 10}} 
+       styles={{
         display: "flex",
         margin: "8px",
         height: "240px"
@@ -105,9 +120,15 @@ function PedidoV1({ pedido, esAdmin}) {
               <p>
                 <strong>Docente : </strong> {`${docente.nombre} ${docente.apellido}`}
               </p>
+             {(( fecha_utilizacion<formatManiana)&& (tipo_pedido==="PENDIENTE"))?(
+                <Typography sx={{color:'red'}}>
               <p>
+                <strong>Estado: {tipo_pedido}</strong>
+              </p></Typography>):(
+               <Typography ><p>
                 <strong>Estado: </strong>{tipo_pedido}
-              </p>
+              </p></Typography>)}
+              
             </CardContent>
           </CardActionArea>
         </Card>
