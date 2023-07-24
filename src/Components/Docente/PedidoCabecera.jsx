@@ -41,7 +41,7 @@ const PedidoCabecera = (props) => {
 
   const [confCabe, setConf] = useState(["block"]);
   const [fechaUtilCorrecta, setFechaUtilizacionCorrecta] = useState("")
-  const [materiaMostrar,setMateriaMostrar] = useState(["materia"]);
+  const [materiaMostrar,setMateriaMostrar] = useState("");
   const controlHora = (event) => {
 
 
@@ -156,7 +156,7 @@ const PedidoCabecera = (props) => {
 
             margin='normal'
             id="fecha_utilizacion"
-            label="fecha_utilizacion"
+            label="fecha utilización"
             type="date"
             min={formatManiana}
             max={formatTope}
@@ -205,7 +205,7 @@ const PedidoCabecera = (props) => {
             required
             fullWidth
             // value={materiaMostrar}
-            defaultValue={materiaMostrar}
+            // defaultValue={materiaMostrar}
             id="materia"
             label="materia"
             name="materia"
