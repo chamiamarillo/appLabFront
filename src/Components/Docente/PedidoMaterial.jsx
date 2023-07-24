@@ -103,7 +103,7 @@ useEffect(() => {
                             margin="normal"
             // defaultValue={""}
                             name="descripcion_material"
-                            label={"descripcion material"}
+                            label={"descripción material"}
                             InputLabelProps={{ className: "autocompleteLabel", shrink: true, }}
                             InputProps={{
                                 ...params.InputProps,

@@ -93,7 +93,7 @@ useEffect(() => {
                   margin="normal"
 
                   name="descripcion_reactivo"
-                  label={"descripcion reactivo "}
+                  label={"descripción reactivo "}
 
                   InputLabelProps={{ className: "autocompleteLabel", shrink: true }}
                   InputProps={{
@@ -216,7 +216,7 @@ useEffect(() => {
 
         <Grid item xs={5} container justifyContent="center">
           <Typography sx={{ fontSize: 14 }} color="text.secondary">
-            Concentración
+            concentración
           </Typography>
         </Grid>
         <Grid item xs={6} container justifyContent="center"></Grid>
