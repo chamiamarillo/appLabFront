@@ -35,7 +35,7 @@ import CartelOk from '../Mensajes/CartelOk';
 
 export default function NuevoPedido() {
   //PRUEBA CODIGO
- 
+
   const userActual = JSON.parse(localStorage.getItem('usuario'));
   const [pedidoEquipos, setPedidoEquipos] = useState([]);
   const [listaEquipos, setListaEquipos] = useState([]);
@@ -90,45 +90,7 @@ export default function NuevoPedido() {
 
 
 
-  const disolReactivo = (event) => {
-    const disolvente = event.target.value;
-    if (disolvente === "otro") {
-      set_otro_disolvente("block");
-      set_visible_off_otro("none")
-    }
-    else {
-      set_otro_disolvente("none");
-      set_visible_off_otro("block")
-    };
 
-    setDisolReactivo(disolvente);
-  }
-
-  const tipReactivo = (event) => {
-    const tipo_reactivo = event.target.value;
-    if (tipo_reactivo === "puro") {
-      set_ver_disolvente("none");
-      set_otro_disolvente("none");
-      set_visible_off("block");
-      set_visible_off_med("block");
-      set_ver_med("none")
-      set_visible_off_otro("block")
-    }
-    else {
-      set_ver_disolvente("block");
-      set_visible_off("none");
-      set_visible_off_med("none");
-      set_ver_med("block");
-      set_visible_off_otro("block")
-    };
-
-    setTipReactivo(tipo_reactivo);
-  }
-
-
-  const calReactivo = (event) => { setCalReactivo(event.target.value); };
-
-  const med_reactivo = (event) => { setUn_med_reactivo(event.target.value); };
 
   const navigate = useNavigate();
 
@@ -138,14 +100,8 @@ export default function NuevoPedido() {
   const cargaEncabezado = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     const fecha = new Date();
-
-
     const fecha_utilizacion = new Date(`${data.get('fecha_utilizacion')}T${data.get('hora')}:00.000Z`)
-
-
-
     const nro_pedido = cantidadPedidos + 1;
 
     if ((fecha_utilizacion !== "") && (data.get('cantidad_alumnos').length > 0) && (data.get('cantidad_grupos').length > 0)) {
@@ -161,19 +117,17 @@ export default function NuevoPedido() {
         "alumnos": data.get('cantidad_alumnos'),
         "cantidad_grupos": data.get('cantidad_grupos'),
         "edificio": "Sin asignar",
-        "materia":  data.get('materia'),
+        "materia": data.get('materia'),
         "numero_tp": nro_pedido,
       },
       );
-      
+
 
     } else {
       // setFaltanDatos(true)
       setAnchorEl(event.currentTarget);
       setMensajeAlerta("FALTAN CARGAR DATOS")
-
     }
-
   };
 
 
@@ -183,7 +137,6 @@ export default function NuevoPedido() {
     const data = new FormData(event.currentTarget);
     if ((equipoElegido === "") || (data.get('cant_equipo').length === 0) || (parseInt(data.get('cant_equipo')) === 0)) { setAnchorEle(event.currentTarget); }
     else {
-
       const dato = {
         "cantidad": parseInt(data.get('cant_equipo'), 10),
         "equipo": equipoElegido._id
@@ -224,15 +177,10 @@ export default function NuevoPedido() {
 
     const cargar_Nuevos_Equipos = pedidoEquipos.filter(eq => eq.equipo !== event._id)
     setPedidoEquipos(cargar_Nuevos_Equipos);
-
-    console.log(event._id)
-
   }
-  console.log();
 
   const set_IdEquip = (event, value) => {
-    console.log(value);
-    if (value !== null) { setEquipoElegido(value) } else { setAnchorEle(event.currentTarget) };
+      if (value !== null) { setEquipoElegido(value) } else { setAnchorEle(event.currentTarget) };
   };
 
 
@@ -301,22 +249,73 @@ export default function NuevoPedido() {
 
 
   // CARGA REACTIVOS A LA LISTA
+
+  const disolReactivo = (event) => {
+    const disolvente = event.target.value;
+    if (disolvente === "otro") {
+      set_otro_disolvente("block");
+      set_visible_off_otro("none")
+    }
+    else {
+      set_otro_disolvente("none");
+      set_visible_off_otro("block")
+    };
+
+    setDisolReactivo(disolvente);
+  }
+
+  const tipReactivo = (event) => {
+    const tipo_reactivo = event.target.value;
+    if (tipo_reactivo === "puro") {
+      set_ver_disolvente("none");
+      set_otro_disolvente("none");
+      set_visible_off("block");
+      set_visible_off_med("block");
+      set_ver_med("none")
+      set_visible_off_otro("block")
+    }
+    else {
+      set_ver_disolvente("block");
+      set_visible_off("none");
+      set_visible_off_med("none");
+      set_ver_med("block");
+      set_visible_off_otro("block")
+    };
+
+    setTipReactivo(tipo_reactivo);
+  }
+/* borrar datos*/
+ const inicializarReact = () => { setCalReactivo("");
+  setUn_med_reactivo(""); setTipReactivo(""); setDisolReactivo("");setOtroDisolDesc("");  set_otro_disolvente("none"); set_visible_off_otro("block")
+  set_cant_react(0);set_med_concentracion(" ")
+
+}
+const [med_concentracion,set_med_concentracion]=useState(" ");
+const setMedidaConcentracion= (event) => { set_med_concentracion(event.target.value); };
+ 
+const [can_react,set_cant_react]=React.useState(0);
+const cargaCantReac = (event) => { set_cant_react(event.target.value); };
+
+const [otroDisolDesc,setOtroDisolDesc]=React.useState("");
+const cargaOtroDisol = (event) => { setOtroDisolDesc(event.target.value); };
+  const calReactivo = (event) => { setCalReactivo(event.target.value); };
+  
+  const med_reactivo = (event) => { setUn_med_reactivo(event.target.value); };
   const cargaReactivos = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log(data.get('cant_reactivo'));
-    var med_conc = data.get('med_concent');
-    if (med_conc === "") { med_conc = " " };
+    
+   
     if (reactivoElegido === null) { setAnchorEleR(event.currentTarget) } else {
 
       const dato = {
-        "cantidad": parseInt(data.get('cant_reactivo'), 10),
+        "cantidad": can_react,
         "un_medida": _med_reactivo,
         "calidad": cal_reactivo,
         "concentracion_tipo": _tip_reactivo,
-        "concentracion_medida": med_conc,
+        "concentracion_medida":med_concentracion,
         "disolvente": _disol_reactivo,
-        "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+        "otro_disolvente_descripcion": otroDisolDesc,
         "reactivo": reactivoElegido._id
       };
       const reactivoRepetido = pedidoReactivos.filter(
@@ -336,13 +335,13 @@ export default function NuevoPedido() {
           setPedidoReactivos([...pedidoReactivos, dato]);
         }
         const datoVer = {
-          "cantidad": parseInt(data.get('cant_reactivo'), 10),
+          "cantidad": can_react,
           "un_medida": _med_reactivo,
           "calidad": cal_reactivo,
           "concentracion_tipo": _tip_reactivo,
-          "concentracion_medida": data.get('med_concent'),
+          "concentracion_medida": med_concentracion,
           "disolvente": _disol_reactivo,
-          "otro_disolvente_descripcion": data.get('_otro_disol_reactivo'),
+          "otro_disolvente_descripcion": otroDisolDesc,
           "reactivo": reactivoElegido
         };
         const cargarNuevosReactivosVer = dato => {
@@ -350,7 +349,7 @@ export default function NuevoPedido() {
         }
         cargarNuevosReactivosVer(datoVer)
         cargarNuevosReactivos(dato)
-        //  data.reset()
+        inicializarReact();
       };
     };
   };
@@ -372,46 +371,46 @@ export default function NuevoPedido() {
   // const set_IdMat = (event, value) => { if (value !== null){ setMatElegido(value)} else{ setAnchorEleM(event.currentTarget)}; };
 
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const[pedidoIncompleto,setPedidoIncompleto]=useState(false);
+  const [pedidoIncompleto, setPedidoIncompleto] = useState(false);
   const handleSubmit = (event) => {
 
     event.preventDefault();
-    
-    
-    if ( (pedidoEncabezado !== "") && ((pedidoMateriales.length>0) || (pedidoEquipos.length>0 )|| (pedidoReactivos.length>0))){
-   
-    const pedido = {
-      "docente": {
-        "nombre": userActual.nombre,
-        "apellido": userActual.apellido,
-        "dni": userActual.dni,
-        "matricula": userActual.matricula
-      },
-      "descripcion": pedidoEncabezado.descripcion,
-      "fecha_solicitud": pedidoEncabezado.fecha_solicitud,
-      "fecha_utilizacion": pedidoEncabezado.fecha_utilizacion,
-      "numero_laboratorio": pedidoEncabezado.numero_laboratorio,
-      "tipo_pedido": pedidoEncabezado.tipo_pedido,
-      "cantidad_grupos": pedidoEncabezado.cantidad_grupos,
-      "alumnos": pedidoEncabezado.alumnos,
-      "edificio": pedidoEncabezado.edificio,
-      "materia": pedidoEncabezado.materia,
-      "numero_tp": pedidoEncabezado.numero_tp,
-      "lista_equipos": pedidoEquipos,
-      "lista_reactivos": pedidoReactivos,
-      "lista_materiales": pedidoMateriales
-
-    };
 
 
-    postPedido(pedido);
-    setConfirCabecera("none")
-    setPedidoIncompleto(false)
+    if ((pedidoEncabezado !== "") && ((pedidoMateriales.length > 0) || (pedidoEquipos.length > 0) || (pedidoReactivos.length > 0))) {
+
+      const pedido = {
+        "docente": {
+          "nombre": userActual.nombre,
+          "apellido": userActual.apellido,
+          "dni": userActual.dni,
+          "matricula": userActual.matricula
+        },
+        "descripcion": pedidoEncabezado.descripcion,
+        "fecha_solicitud": pedidoEncabezado.fecha_solicitud,
+        "fecha_utilizacion": pedidoEncabezado.fecha_utilizacion,
+        "numero_laboratorio": pedidoEncabezado.numero_laboratorio,
+        "tipo_pedido": pedidoEncabezado.tipo_pedido,
+        "cantidad_grupos": pedidoEncabezado.cantidad_grupos,
+        "alumnos": pedidoEncabezado.alumnos,
+        "edificio": pedidoEncabezado.edificio,
+        "materia": pedidoEncabezado.materia,
+        "numero_tp": pedidoEncabezado.numero_tp,
+        "lista_equipos": pedidoEquipos,
+        "lista_reactivos": pedidoReactivos,
+        "lista_materiales": pedidoMateriales
+
+      };
+
+
+      postPedido(pedido);
+      setConfirCabecera("none")
+      setPedidoIncompleto(false)
+      setAnchorE2(event.currentTarget)
+    } else
+
+      setPedidoIncompleto(true)
     setAnchorE2(event.currentTarget)
-  }else 
-
-  setPedidoIncompleto(true)
-  setAnchorE2(event.currentTarget)
 
 
 
@@ -421,7 +420,7 @@ export default function NuevoPedido() {
 
   const handleClose2 = () => {
     setAnchorE2(null);
-    
+
     navigate('/Docente/Pedidos')
 
   }
@@ -467,7 +466,7 @@ export default function NuevoPedido() {
               mensajeAlerta={mensajeAlerta}
               setMensajeAlerta={setMensajeAlerta}
               formatManiana={formatManiana}
-             
+
             />
 
             {/* COMIENZA CONTENEDOR DE EQUIPOS */}
@@ -537,6 +536,15 @@ export default function NuevoPedido() {
 
               setAnchorEleR={setAnchorEleR}
               anchorEleR={anchorEleR}
+
+              cargaOtroDisol={cargaOtroDisol}
+              otroDisolDesc={otroDisolDesc}
+
+              cargaCantReac={cargaCantReac}
+              can_react={can_react}
+
+              med_concentracion={med_concentracion}
+              setMedidaConcentracion={setMedidaConcentracion}
             />
 
           </Box>
@@ -553,7 +561,7 @@ export default function NuevoPedido() {
                 open2={open2}
                 anchorE2={anchorE2}
                 setAnchorE2={setAnchorE2}
-                pedidoIncompleto={ pedidoIncompleto}
+                pedidoIncompleto={pedidoIncompleto}
 
               />
 
@@ -583,12 +591,12 @@ export default function NuevoPedido() {
 
 
                 <Button fullWidth
-                
+
                   margin="normal"
                   variant="contained"
                   endIcon={<SendIcon />}
                   type='onSubmit'
-                  
+
                   sx={{ borderRadius: 2, height: 50, border: 1, boxShadow: 3, mb: 2 }}
                 > CONFIRMAR PEDIDO</Button>
 

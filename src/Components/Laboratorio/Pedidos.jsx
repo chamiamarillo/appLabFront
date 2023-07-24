@@ -83,7 +83,7 @@ function Pedidos() {
   useEffect(() => {
 
     cargarNuevosPedidos()
-
+  console.log("se renderiza");
 
 
   }, [tipo_pedido, fecha_fin, edificio])
