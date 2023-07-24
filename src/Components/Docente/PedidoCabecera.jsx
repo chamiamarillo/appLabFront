@@ -67,7 +67,7 @@ const PedidoCabecera = (props) => {
   const controlDia = (event) => {
 
     if ((event.target.value < formatManiana) || (event.target.value > formatTope)) {
-      props.setMensajeAlerta('Fecha invalida , debe estar entre ' + verManiana + ' y ' + verTope)
+      props.setMensajeAlerta('Fecha inválida, debe estar entre ' + verManiana + ' y ' + verTope)
 
       props.setAnchorEl(event.currentTarget)
 
