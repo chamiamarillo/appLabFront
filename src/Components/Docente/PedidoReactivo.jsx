@@ -86,7 +86,7 @@ useEffect(() => {
             options={props.listaReactivos}
             getOptionLabel={(option) => option.descripcion}
             onChange={(event, value) => props.set_IdReactivo(event, value)}
-            //value={reactivoElegido}
+            // value={props.reactivoElegido}
             renderInput={(params) => {
               return (
                 <TextField {...params}
@@ -166,6 +166,8 @@ useEffect(() => {
             name="cant_reactivo"
             label="cant reactivo"
             type="number"
+            value={props.can_react}
+            onChange={props.cargaCantReac}
             InputLabelProps={{
               shrink: true,
             }}
@@ -274,7 +276,8 @@ useEffect(() => {
               shrink: true,
             }}
             autoFocus
-            defaultValue={""}
+            value={props.med_concentracion}
+            onChange={props.setMedidaConcentracion}
           />
 
         </Grid>
@@ -319,6 +322,8 @@ useEffect(() => {
             name="_otro_disol_reactivo"
             InputLabelProps={{ shrink: true }}
             autoComplete="_otro_disol_reactivo"
+            onChange={props.cargaOtroDisol}
+            value={props.otroDisolDesc}
             autoFocus
           />
 
