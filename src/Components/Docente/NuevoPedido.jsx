@@ -287,10 +287,10 @@ export default function NuevoPedido() {
 /* borrar datos*/
  const inicializarReact = () => { setCalReactivo("");
   setUn_med_reactivo(""); setTipReactivo(""); setDisolReactivo("");setOtroDisolDesc("");  set_otro_disolvente("none"); set_visible_off_otro("block")
-  set_cant_react(0);set_med_concentracion(" ")
+  set_cant_react(0);set_med_concentracion("")
 
 }
-const [med_concentracion,set_med_concentracion]=useState(" ");
+const [med_concentracion,set_med_concentracion]=useState("");
 const setMedidaConcentracion= (event) => { set_med_concentracion(event.target.value); };
  
 const [can_react,set_cant_react]=React.useState(0);
@@ -307,17 +307,18 @@ const cargaOtroDisol = (event) => { setOtroDisolDesc(event.target.value); };
     
    
     if (reactivoElegido === null) { setAnchorEleR(event.currentTarget) } else {
-
-      const dato = {
+    
+      var dato = {
         "cantidad": can_react,
         "un_medida": _med_reactivo,
         "calidad": cal_reactivo,
         "concentracion_tipo": _tip_reactivo,
-        "concentracion_medida":med_concentracion,
-        "disolvente": _disol_reactivo,
+         "disolvente": _disol_reactivo,
         "otro_disolvente_descripcion": otroDisolDesc,
         "reactivo": reactivoElegido._id
       };
+      if((med_concentracion.length>0)){ dato.concentracion_medida=med_concentracion}
+
       const reactivoRepetido = pedidoReactivos.filter(
         elemento => elemento.reactivo === dato.reactivo
           && elemento.concentracion_tipo === dato.concentracion_tipo

@@ -113,8 +113,8 @@ useEffect(() => {
                         }}
                     />
                     </Grid>
-                    <Grid item xs={1} container justifyContent="center" />
-                    <Grid item xs={2} container justifyContent="center">
+                    <Grid item xs={2} container justifyContent="center" />
+                    <Grid item xs={1} container justifyContent="center">
                     <TextField
                         sx={{ marginTop: 1 }}
                         required
