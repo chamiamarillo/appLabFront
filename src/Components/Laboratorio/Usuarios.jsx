@@ -90,7 +90,7 @@ export default function Usuarios() {
               </Typography>
             </Grid>
             <Grid item xs={3} container justifyContent="center">
-              <Buscador onBuscar={handleBuscar}></Buscador>
+              <Buscador onBuscar={handleBuscar} placeholder={"Por usuario o DNI"}></Buscador>
             </Grid>
             <Grid item xs={4} container justifyContent="flex-end">
               <NuevoUsuario
@@ -198,7 +198,7 @@ const Lista = (props) => {
               <TableCell align="center">Apellido</TableCell>
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">DNI</TableCell>
-              <TableCell align="center">Rol</TableCell>
+              <TableCell align="center">Perfil</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>

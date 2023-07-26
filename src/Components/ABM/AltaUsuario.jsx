@@ -26,15 +26,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import PopUp from "./PopUp";
-function AltaUsuario(
-    { open = { open },
-        setOpen = { setOpen },
-        scroll = { scroll },
-        handleClose = { handleClose },
 
-
-    }
-) {
+function AltaUsuario({open = { open }, setOpen = { setOpen }, scroll = { scroll }, handleClose = { handleClose },}) {
+    
     const [openMensaje, setOpenMensaje] = useState(false);
     const [mensajeSalida, setMensajeSalida] = useState("");
     const [error2, setError2] = useState("none")
@@ -88,12 +82,12 @@ function AltaUsuario(
             const dato = {
                 "usuario": data.get('usuario'),
                 "contrasenia": data.get('contrasenia'),
-                "nombre": data.get('nombre').toUpperCase(),
-                "apellido": data.get('apellido').toUpperCase(),
+                "nombre": data.get('nombre'), //.toUpperCase(),
+                "apellido": data.get('apellido'), //.toUpperCase(),
                 "dni": parseInt(data.get('dni')),
                 "matricula": parseInt(data.get('matricula')),
                 // "admin": (data.get('admin')),
-                "editor": (data.get('editor')),
+                "editor": false,
                 "email": email
                 // "dni":parseInt(data.get('dni'))
 
@@ -278,7 +272,7 @@ function AltaUsuario(
                                     id="matricula"
                                     variant="outlined"
                                     name="matricula"
-                                    label="Matricula"
+                                    label="Matrícula"
                                     type="number"
                                     required
                                     InputLabelProps={{
@@ -377,7 +371,7 @@ function AltaUsuario(
                                 </FormControl>
 
                             </Grid>
-                            <Grid item xs={6}  display={ver} container justifyContent="center" marginTop={1} 
+                            {/*<Grid item xs={6}  display={ver} container justifyContent="center" marginTop={1} 
                             // marginLeft={1}
                             >
                                 <FormControl fullWidth>
@@ -401,8 +395,9 @@ function AltaUsuario(
 
                                     </Select>
                                 </FormControl>
-
+                                    
                             </Grid>
+                            */}
                         </Grid>
 
 
@@ -507,17 +502,18 @@ const UsuarioDadoAlta = ({ usuario }) => {
                 <strong> DNI: </strong> {usuario.dni}
             </p>
             <p>
-                <strong> Matricula: </strong> {usuario.matricula}
+                <strong> Matrícula: </strong> {usuario.matricula}
             </p>
             <p>
                 <strong> Email: </strong> {usuario.email}
             </p>
             <p>
-                <strong> Perfil: </strong> {usuario.admin ? "ADMINISTRADOR" : "DOCENTE"}
+                <strong> Perfil: </strong> {usuario.admin ? "LABORATORIO" : "DOCENTE"}
             </p>
-            <p>
-                <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
-            </p>
+            {/*<p>
+            <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
+            </p>*/}
+            
         </div>
     )
 }

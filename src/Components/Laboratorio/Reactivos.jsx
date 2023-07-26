@@ -91,7 +91,7 @@ export default function Reactivos() {
               </Typography>
             </Grid>
             <Grid item xs={3} container justifyContent="center">
-              <Buscador onBuscar={handleBuscar}></Buscador>
+              <Buscador onBuscar={handleBuscar} placeholder={"Por descripción o CAS"}></Buscador>
             </Grid>
             <Grid item xs={4} container justifyContent="flex-end">
               <Nuevo
@@ -200,7 +200,7 @@ const Lista = (props) => {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>Descripcion</TableCell>
+              <TableCell>Descripción</TableCell>
               <TableCell align="center">CAS</TableCell>
               <TableCell></TableCell>
             </TableRow>

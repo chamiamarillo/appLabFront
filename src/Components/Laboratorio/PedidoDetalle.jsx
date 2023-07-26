@@ -84,7 +84,7 @@ function PedidoDetalle(
                                 <label id="label_alumno"> Alumnos: </label> <input type="text" id="alumno" name="alumno" value={alumnos} disabled />
                                 <label id="label_grupo"> Grupos: </label> <input type="text" id="grupo" name="grupo" value={cantidad_grupos} disabled />
                                 <br></br>
-                                <label htmlFor="laboratorio" id="label_laboratorio"> Laboratorio: </label> <input type="text" id="laboratorio" name="laboratorio" value={numero_laboratorio} disabled />
+                                <label htmlFor="laboratorio" id="label_laboratorio"> Laboratorio: </label> <input type="text" id="laboratorio" name="laboratorio" value={(numero_laboratorio !== 0 ? numero_laboratorio : "Sin Asignar")} disabled />
                                 <label htmlFor="edificio" id="label_edificio"> Edificio: </label> <input type="text" id="edificio" name="edificio" value={edificio} disabled />
                                 <label htmlFor="estado" id="label_estado"> Estado: </label> <input type="text" id="tipo_pedido" name="tipo_pedido" value={tipo_pedido} disabled />
                             </fieldset>

@@ -7,7 +7,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 const Buscador = (props) => {
 	const [term, setTerm] = useState('');
-
+	const placeholder = props.placeholder
 	const handleInputChange = (event) => {
 		const newTerm = event.target.value;
 		setTerm(newTerm);
@@ -24,10 +24,10 @@ const Buscador = (props) => {
 	return (
 		<Grid component="form" onSubmit={handleSubmit}>
 			<TextField
-				placeholder="Buscar"
+				placeholder={props.placeholder}
    			type="text"
    			variant="outlined"
-   			fullWidth
+   			fullWidthprops
    			size="small"
    			onChange={handleInputChange}
 				value={term}
