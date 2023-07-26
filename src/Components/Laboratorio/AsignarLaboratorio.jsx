@@ -31,7 +31,7 @@ function AsignarLaboratorio(pedido,
   descripcion,
   tipo_pedido,
   materia,
-
+  handleClose,
 ) {
 
 
@@ -68,7 +68,7 @@ function AsignarLaboratorio(pedido,
 
 
 
-  const modificarEncabezado = () => {
+  const modificarEncabezado = (event) => {
 
 
 
@@ -88,7 +88,6 @@ function AsignarLaboratorio(pedido,
       "lista_materiales": lista_materiales
 
     };
-
     updatePedido(pedido.pedido._id, pedidoModificado)}
 
    useEffect(() => {
@@ -109,7 +108,7 @@ function AsignarLaboratorio(pedido,
   
 
   return (
-    <Grid container direction='row'
+    <Grid container direction='row' component="form" onSubmit={modificarEncabezado}
       // sx={{ marginTop: 4 }}
       >
 
@@ -216,10 +215,10 @@ function AsignarLaboratorio(pedido,
             variant="outlined"
             bgcolor={"secondary"} color={"primary"}
 
-            onClick={modificarEncabezado}
-            type="button"
+            //onClick={modificarEncabezado}
+            type="submit"
           >
-            Aceptar Modificaciones Laboratorio-Edificio-Estado
+            Modificar
 
           </Button>
 

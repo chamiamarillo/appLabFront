@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import { TextField, ThemeProvider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Theme1 from '../Theme/Theme1';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { useEffect } from "react";
 import FormControl from '@mui/material/FormControl';
@@ -84,8 +85,8 @@ const ModUsuario = (
         const dato = {
             "usuario": nuevoUsuario,
             "contrasenia": nuevaContrasenia,
-            "nombre": nuevoNombre.toLocaleUpperCase(),
-            "apellido": nuevoApellido.toUpperCase(),
+            "nombre": nuevoNombre, //.toLocaleUpperCase(),
+            "apellido": nuevoApellido, //.toUpperCase(),
             "dni": parseInt(nuevoDNI),
             "matricula": parseInt(nuevaMatricula),
             // "admin": nuevoPerfil,
@@ -269,7 +270,7 @@ const ModUsuario = (
                             id="matricula"
                             variant="outlined"
                             name="matricula"
-                            label="Matricula"
+                            label="Matrícula"
                             type="number"
                             InputLabelProps={{
                                 shrink: true,
@@ -365,7 +366,7 @@ const ModUsuario = (
                         </FormControl>
 
                     </Grid>
-                    <Grid item xs={6} display={ver} container justifyContent="center" marginTop={1}
+                    {/*<Grid item xs={6} display={ver} container justifyContent="center" marginTop={1}
                     // marginLeft={1}
                     >
                         <FormControl fullWidth>
@@ -389,8 +390,9 @@ const ModUsuario = (
 
                             </Select>
                         </FormControl>
-
+                            
                     </Grid>
+                    */}
                 </Grid>
 
                 {/* hasta aca */}
@@ -408,7 +410,7 @@ const ModUsuario = (
                             margin="normal"
                             variant="contained"
                             color="error"
-                            startIcon={<ReplyAllIcon />}
+                            startIcon={<DeleteForeverIcon/>}
                             
                             style={{ borderRadius: 8 }}
                             styled={{ textTransform: 'none' }}
@@ -494,17 +496,18 @@ const UsuarioModificado = ({ usuario }) => {
                 <strong> DNI: </strong> {usuario.dni}
             </p>
             <p>
-                <strong> Matricula: </strong> {usuario.matricula}
+                <strong> Matrícula: </strong> {usuario.matricula}
             </p>
             <p>
                 <strong> Email: </strong> {usuario.email}
             </p>
             <p>
-                <strong> Perfil: </strong> {usuario.admin ? "ADMINISTRADOR" : "DOCENTE"}
+                <strong> Perfil: </strong> {usuario.admin ? "LABORATORIO" : "DOCENTE"}
             </p>
-            <p>
-                <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
+            {/*<p>
+            <strong> Editor: </strong> {usuario.editor ? "SI" : "NO"}
             </p>
+            */}
         </div>
     )
 }

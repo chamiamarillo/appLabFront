@@ -163,7 +163,7 @@ function AltaEquipo(
                                             <MenuItem sx={{ fontSize: 12 }} value={" "}> </MenuItem>
                                             <MenuItem sx={{ fontSize: 12 }} value={"AGITADORES-CENTRIFUGAS"}>AGITADORES Y CENTRIFUGAS</MenuItem>
                                             <MenuItem sx={{ fontSize: 12 }} value={"BAÑOS"}>BAÑOS</MenuItem>
-                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-GENERAL"}>EQUIPO GENERAL</MenuItem>
+                                            <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO GENERAL"}>EQUIPO GENERAL</MenuItem>
                                             <MenuItem sx={{ fontSize: 12 }} value={"EQUIPO-PCR"}>EQUIPO PARA PCR</MenuItem>
                                             <MenuItem sx={{ fontSize: 12 }} value={"ESTERILIZACION"}>ESTERILIZACION</MenuItem>
                                             <MenuItem sx={{ fontSize: 12 }} value={"ESTUFAS,INCUBADORAS Y MUFLAS"}>ESTUFAS,INCUBADORAS Y MUFLAS</MenuItem>

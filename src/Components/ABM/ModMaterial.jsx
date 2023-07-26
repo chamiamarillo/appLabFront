@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import Dialog from '@mui/material/Dialog';
 // import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
@@ -213,7 +214,7 @@ function ModMaterial(
                             margin="normal"
                             variant="contained"
                             color="error"
-                            startIcon={<ReplyAllIcon />}
+                            startIcon={<DeleteForeverIcon/>}
                             
                             style={{ borderRadius: 8 }}
                             styled={{ textTransform: 'none' }}

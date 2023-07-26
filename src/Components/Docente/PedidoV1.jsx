@@ -109,7 +109,7 @@ function PedidoV1({ pedido, esAdmin}) {
             />
             <CardContent style={{ textAlign: "left" }}>
               <p>
-                <strong>Laboratorio: </strong> {numero_laboratorio}
+                <strong>Laboratorio: </strong> {numero_laboratorio !== 0 ? numero_laboratorio : "Sin asignar" }
               </p>
               <p>
                 <strong>Edificio: </strong> {edificio}
