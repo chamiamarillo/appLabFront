@@ -37,7 +37,7 @@ export default function Login() {
   const [texto, setTexto] = React.useState("UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO")
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState("")
-  const [mensajeAlerta, setMensajeAlerta] = React.useState("Datos incorrectos , verifique usuario y password")
+  const [mensajeAlerta, setMensajeAlerta] = React.useState("Datos incorrectos, verifique usuario y password")
  
  
   
