@@ -149,49 +149,35 @@ export default function Filtros(props) {
                                 border: 1, borderColor: 'gris.claro', borderRadius: 1, marginX: 1,
                                 marginTop: 0.5
                             }}>
-
-                            <Typography sx={{
-                                fontSize: 12, minHeight: 45
-                            }}
-                                aria-label="simple table"
-                                color="text.secondary"  >
+                            <Typography sx={{ fontSize: 12, minHeight: 45 }} aria-label="simple table" color="text.secondary" >
+                            
                                 <legend>INICIO DE BUSQUEDA </legend>
                                 <input
                                     type="date"
                                     fullWidth
-                                    style={{
-
-                                        // fontSize: '1.0rem',
-                                        padding: "1.0 rem", width: "80%", border: "none"
-                                        // , fontFamily: "cursive"
-                                        , color: "grey"
-                                    }}
+                                    style={{ padding: "1.0 rem", width: "80%", border: "none" , color: "grey"     }}
                                     value={props.fecha_inicio}
                                     onChange={guardar_inicio}
                                     id="fecha_inicio"
-                                    //
                                     name="fecha_inicio" />
 
                             </Typography>
-
-
                         </Grid>
 
                         <Grid item xs={2} display="flex" justifyContent={"center"} alignContent={"top"}
-                            sx={{
+                        sx={{
+                            border: 1, borderColor: 'gris.claro', borderRadius: 1, marginX: 1,
+                            marginTop: 0.5
+                        }}>
+                            {/* sx={{
                                 border: 1, borderColor: 'gris.claro', borderRadius: 1, minHeigth: 70,
                                 marginTop: 0.5
-                            }}>
+                            }}> */}
                             <Typography sx={{ fontSize: 12, minHeight: 45 }} aria-label="simple table" color="text.secondary" >
                                 <legend>FIN DE BUSQUEDA</legend>
                                 <input
                                     type="date"
-                                    style={{
-                                        border: "none", padding: "1.0 rem", width: "80%",
-
-                                        color: "grey"
-                                    }}
-
+                                    style={{ padding: "1.0 rem", width: "80%", border: "none" , color: "grey"     }}
                                     min={props.fecha_inicio}
                                     id="fecha_fin"
                                     name="fecha_fin"

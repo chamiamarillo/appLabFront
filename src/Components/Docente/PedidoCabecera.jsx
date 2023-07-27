@@ -48,7 +48,7 @@ const PedidoCabecera = (props) => {
     if ((event.target.value > "21:00") || (event.target.value < "08:00")) {
 
 
-      props.setMensajeAlerta('Hora incorrecta, los horarios permiditos son de 08:00 a 21:00')
+      props.setMensajeAlerta('Hora incorrecta, los horarios permitidos son de 08:00 a 21:00')
 
       props.setAnchorEl(event.currentTarget)
 

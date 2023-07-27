@@ -28,7 +28,7 @@ const CartelAlerta = (props) => {
           p: 2,
           height: 110,
           fontWeight: 900,
-          width: 400, border: 2, borderColor: 'red', color: 'red', textAlign: 'center', borderRadius: 2
+          width: 400, border: 1, borderColor: 'red', color: 'red', textAlign: 'center', borderRadius: 2
         }}>
           <CardMedia
             component="img"
@@ -37,8 +37,8 @@ const CartelAlerta = (props) => {
             alt="error"
           />
           <Box >
-          <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="h9" align="center" sx={{minWidth:250, fontWeight: 700 }}>  {props.mensajeAlerta} </Typography>
+          <CardContent sx={{ display: 'flex', flexDirection: 'column',textAlign: 'center' }}>
+            <Typography variant="h9" align="center" sx={{minWidth:250, fontWeight: 500 }}>  {props.mensajeAlerta} </Typography>
           </CardContent>
 
         </Box>
