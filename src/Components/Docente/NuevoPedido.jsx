@@ -126,7 +126,7 @@ export default function NuevoPedido() {
     } else {
       // setFaltanDatos(true)
       setAnchorEl(event.currentTarget);
-      setMensajeAlerta("FALTAN CARGAR DATOS")
+      setMensajeAlerta("Faltan cargar datos")
     }
   };
 
@@ -286,8 +286,14 @@ export default function NuevoPedido() {
   }
 /* borrar datos*/
  const inicializarReact = () => { setCalReactivo("");
-  setUn_med_reactivo(""); setTipReactivo(""); setDisolReactivo("");setOtroDisolDesc("");  set_otro_disolvente("none"); set_visible_off_otro("block")
-  set_cant_react(0);set_med_concentracion("")
+  setUn_med_reactivo(""); setTipReactivo(""); setDisolReactivo("");setOtroDisolDesc("");  
+  set_cant_react(0);set_med_concentracion("");
+  set_ver_disolvente("none");
+  set_otro_disolvente("none");
+  set_visible_off("block");
+  set_visible_off_med("block");
+  set_ver_med("none")
+  set_visible_off_otro("block")
 
 }
 const [med_concentracion,set_med_concentracion]=useState("");
