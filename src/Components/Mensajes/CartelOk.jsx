@@ -25,8 +25,9 @@ const CartelOk = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  const handleError = () => { 
-    props.setAnchorE2(null) }
+  const handleError = () => {
+    props.setAnchorE2(null)
+  }
 
   useEffect(() => {
     setAnchorEl(props.anchorE2)
@@ -80,7 +81,7 @@ const CartelOk = (props) => {
                   type='text'
 
                   onClick={handleError}
-                  sx={{ color: 'red'}}
+                  sx={{ color: 'red' }}
                 >
                   Click para continuar
                 </Button>
