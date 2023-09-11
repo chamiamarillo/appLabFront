@@ -1,14 +1,10 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Theme1 from '../Theme/Theme1';
@@ -34,10 +30,11 @@ function Copyright(props) {
 
 export default function Login() {
 
-  const [texto, setTexto] = React.useState("UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO")
+  const texto = "UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO"
+  const mensajeAlerta = "Datos incorrectos, verifique usuario y password"
+
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState("")
-  const [mensajeAlerta, setMensajeAlerta] = React.useState("Datos incorrectos, verifique usuario y password")
 
 
 
@@ -65,35 +62,37 @@ export default function Login() {
 
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async(event) => {
+    try {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const datos = await getUsuario(data.get('user'), data.get('password'));
+      const info = event.currentTarget;
+      
+      Promise.resolve(datos).then(value => {
+        if ((value).length === 0) {
 
-    const data = new FormData(event.currentTarget);
-    const datos = getUsuario(data.get('user'), data.get('password'));
-    const info = event.currentTarget;
-
-
-    Promise.resolve(datos).then(value => {
-      console.log((value).length);
-      if ((value).length === 0) {
-
-        setAnchorEl(info)
-      }
-      else {
-        re_direccion(value[0].admin, value[0].editor);
-        localStorage.setItem('usuario', JSON.stringify(value[0]));
-      }
-
-    })
+          setAnchorEl(info)
+        }
+        else {
+          
+          re_direccion(value[0].usuario, value[0].editor);
+          localStorage.setItem('usuario', JSON.stringify(value[0]));
+        }
+  
+      })
+    } catch (error) {
+        console.log(error)
+    }
 
   };
 
   return (
     <ThemeProvider theme={Theme1}>
       <Box sx={{ flexGrow: 1, m: 2 }}>
-        <Typography variant="body1" align='center' color='primary.main' >
-          <Header texto={texto} isNotLogin={false} ></Header>
-        </Typography>
+        <Typography variant="body1" align='center' color='primary.main' />
+          <Header texto={"UNAHUR-DESARROLLO DE APLICACIONES-CARGA DE PEDIDOS DE LABORATORIO"} isNotLogin={false} ></Header>
+        {/* </Typography> */}
       </Box>
 
       <Container component="main" maxWidth="xs" backgroundcolor="verdeC" >
