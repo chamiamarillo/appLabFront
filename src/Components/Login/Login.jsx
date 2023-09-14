@@ -61,12 +61,18 @@ export default function Login() {
     } else if (usuario === true) {
       navigate("/Laboratorio/Pedidos");
     } else {
-      navigate("/");
+      navigate("/login");
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async(event) => {
+    try {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const datos = await getUsuario(data.get('user'), data.get('password'));
+      const info = event.currentTarget;
+      Promise.resolve(datos).then(value => {
+        if ((value).length === 0) {
 
     const data = new FormData(event.currentTarget);
     const datos = getUsuario(data.get("user"), data.get("password"));
@@ -111,4 +117,4 @@ export default function Login() {
       </Grid>
     </Box>
   );
-}
+
