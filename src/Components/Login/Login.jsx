@@ -13,6 +13,9 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header'
 import { getUsuario } from '../../Services/getUsuarioService';
 import CartelAlerta from '../Mensajes/CartelAlerta';
+import { userContext } from '../../Context/LabProvider';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="secondary" align="center" {...props}>
@@ -36,7 +39,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState("")
 
-
+  const {user, setUser} = useContext(userContext)
 
   // ************************************
   const handleClose = () => {
@@ -51,13 +54,13 @@ export default function Login() {
 
   const re_direccion = (usuario, editor) => {
 
-    if (usuario === false) {
+    if (usuario.rol === 'docente') {
       navigate("/Docente/Pedidos");
     }
-    else if (usuario === true) {
+    else if (usuario.rol === 'admin') {
       navigate("/Laboratorio/Pedidos");
     } else {
-      navigate("/");
+      navigate("/login");
     }
 
   }
@@ -68,16 +71,16 @@ export default function Login() {
       const data = new FormData(event.currentTarget);
       const datos = await getUsuario(data.get('user'), data.get('password'));
       const info = event.currentTarget;
-      
       Promise.resolve(datos).then(value => {
         if ((value).length === 0) {
 
           setAnchorEl(info)
         }
         else {
-          
-          re_direccion(value[0].usuario, value[0].editor);
-          localStorage.setItem('usuario', JSON.stringify(value[0]));
+          localStorage.setItem('usuario', JSON.stringify(value[0]))
+          setUser(value[0] || JSON.parse(localStorage.getItem('usuario')))
+          console.log(user.rol)
+          re_direccion(value[0], value[0].editor);
         }
   
       })

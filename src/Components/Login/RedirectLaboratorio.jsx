@@ -1,11 +1,23 @@
 import React, { useContext } from 'react'
+import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-//import { userContext } from '../../context/UserProvider';
+import { userContext } from '../../Context/LabProvider';
 
 const RedirectLaboratorio = () => {
-    //const {user} = useContext(userContext)
 
-    if('laboratorio' === 'laboratorio'){
+    const {user, setUser} = useContext(userContext)
+
+    useEffect(() => {
+        if (localStorage.getItem("usuario")) {
+            setUser(JSON.parse(localStorage.getItem("usuario")));
+        }
+      }, []);
+
+    useEffect(() => {
+        localStorage.setItem("usuario", JSON.stringify(user));
+    }, [user]);
+    
+    if(user.rol === 'admin'){
         return(
             <div >  
                 <Outlet/>

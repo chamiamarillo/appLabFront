@@ -36,15 +36,14 @@ return (
     <ThemeProvider theme={Theme1}>
     <form onSubmit={handleSubmit(onSubmit)}>
         <input
-        type="email"
+        type="text"
         placeholder='Usuario'
         label='Usuario'
-        {...register("email", { 
-            required,
-            pattern: patternEmail
+        {...register("user", { 
+            required
         })}
         />
-        { errors && errors.email}
+        { errors && errors.user}
         <input
         type="password"
         placeholder='Contraseña'

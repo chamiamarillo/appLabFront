@@ -18,6 +18,6 @@ export const formValidate = () => {
           validateTrim: {trim: v => v.trim() !== "" || "no ingrese espacios"},
           validateEqualsPassword(getValues){
               return v => v === getValues("password") || "no coincide la password"
-          }
+          },
       }
   }

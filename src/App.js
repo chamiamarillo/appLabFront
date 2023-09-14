@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import Login from './Components/Login/Login';
 import RedirectDocente from './Components/Login/RedirectDocente';
@@ -16,32 +16,37 @@ import Equipos from './Components/Laboratorio/Equipos';
 import Usuarios from './Components/Laboratorio/Usuarios';
 import Materiales from './Components/Laboratorio/Materiales'
 import Reactivos from './Components/Laboratorio/Reactivos'
+import LabProvider from './Context/LabProvider';
+import LoginOp from './Components/Login/LoginOp';
+
 function App() {
+
   return (
     <BrowserRouter>
+      <LabProvider>
+        <Routes>
 
-      <Routes>
+          <Route path='/login' element={<RedirectLog/>}>
+              <Route path="/login" element={<Login />} />
+          </Route>
 
-        <Route path='/' element={<RedirectLog/>}>
-            <Route path="/login" element={<Login />} />
-        </Route>
+          <Route path="/" element={<RedirectDocente />} >
+              <Route path='/Docente/Pedidos' element={<Docente />} /> {/*home docentes*/}
+              <Route path="/Docente/Pedidos/PedidoV1" element={<PedidoV1 />} />
+              <Route path="/Docente/NuevoPedido" element={<NuevoPedido />} />          
+          </Route>
 
-        <Route path="/" element={<RedirectDocente />} >
-            <Route index element={<Docente />} /> {/*home docentes*/}
-            <Route path="/Docente/Pedidos/PedidoV1" element={<PedidoV1 />} />
-            <Route path="/Docente/NuevoPedido" element={<NuevoPedido />} />          
-        </Route>
+          <Route path='/' element={<RedirectLaboratorio/>}>
+              <Route path="/Laboratorio/Pedidos" element={<Pedidos />} /> {/*pedidos laboratorio*/}
+              <Route path="/Laboratorio/Equipos" element={<Equipos/>}/>
+              <Route path="/Laboratorio/Usuarios" element={<Usuarios/>}/>
+              <Route path="/Laboratorio/Materiales" element={<Materiales/>}/>
+              <Route path="/Laboratorio/Reactivos" element={<Reactivos/>}/>          
+              <Route path="/ABM/AltaEquipo" element={<Alta_Equipo/>}/>
+          </Route>
 
-        <Route path='/' element={<RedirectLaboratorio/>}>
-            <Route path="/Laboratorio/Pedidos" element={<Pedidos />} /> {/*pedidos laboratorio*/}
-            <Route path="/Laboratorio/Equipos" element={<Equipos/>}/>
-            <Route path="/Laboratorio/Usuarios" element={<Usuarios/>}/>
-            <Route path="/Laboratorio/Materiales" element={<Materiales/>}/>
-            <Route path="/Laboratorio/Reactivos" element={<Reactivos/>}/>          
-            <Route path="/ABM/AltaEquipo" element={<Alta_Equipo/>}/>
-        </Route>
-
-      </Routes>
+        </Routes>
+      </LabProvider>
     </BrowserRouter>
   );
 }
