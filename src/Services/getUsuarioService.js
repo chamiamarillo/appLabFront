@@ -1,8 +1,15 @@
 import axios from 'axios';
+import { urlBD } from '../connectDB';
 
-export function getUsuario(user, password) {
-    return fetch('http://localhost:3000/api/usuario/getOneByUsuarioContrasenia/'+ user + '/' + password)
-        .then(data => data.json())
+export const getUsuario = async(user, password) => {
+    try {
+        const data = await fetch(`${urlBD}/api/usuario/getOneByUsuarioContrasenia/${user}/${password}`)
+        return data.json()
+    } catch (error) {
+        console.log(error)
+    }
+    
+        
 }
 
 export async function getListaUsuariosFiltrada(buscar) {
@@ -11,7 +18,7 @@ export async function getListaUsuariosFiltrada(buscar) {
     try {
         const response = await axios({
             method: 'get',params,
-            url: `http://localhost:3000/api/usuarios/`,
+            url: `${urlBD}/api/usuarios/`,
             responseType: 'json'
         });
         return response.data;
